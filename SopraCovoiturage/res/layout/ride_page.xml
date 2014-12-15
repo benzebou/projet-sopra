@@ -4,6 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    
+	<TextView
+	    android:text="Depart"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+	<EditText
+        android:id="@+id/Depart"
+        android:inputType="text"        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+	
 
 </LinearLayout>
