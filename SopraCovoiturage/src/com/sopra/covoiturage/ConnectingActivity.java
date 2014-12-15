@@ -2,6 +2,7 @@ package com.sopra.covoiturage;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 public class ConnectingActivity extends Activity {
@@ -19,7 +20,7 @@ public class ConnectingActivity extends Activity {
 		mdpText = (EditText) findViewById(R.id.passwordField);
 	}
 	
-	public void onConnectionButtonClick() {
+	public void onConnectionButtonClick(View v) {
 		//facade = new FacadeView();
 		//facade.performConnect(loginText.getText().toString());
 		

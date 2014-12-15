@@ -2,23 +2,68 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="#f6f6f6" >
 
-    <EditText
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:textSize="24sp"
+        android:textColor="#de002d" 
+        android:text="Pseudo" />
+    <EditText   
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100sp"
+        android:layout_marginRight="100sp"
         android:id="@+id/loginField"
-        android:inputType="text"        
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:inputType="text"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp" 
+        android:textSize="24sp"
+        android:textColor="#de002d"
+        android:text="Mot de passe" />
     <EditText
         android:id="@+id/passwordField"
         android:inputType="textPassword"
-        android:layout_width="wrap_content"
+        android:layout_marginLeft="100sp"
+        android:layout_marginRight="100sp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <Button
+    
+	<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000" 
+        android:paddingRight="110sp"
+        android:textSize="20sp"
+        android:layout_gravity="right"
+        android:text="Mot de passe oublié" />
+    
+	<Button
         android:id="@+id/connectionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:onClick="onConnectionButtonClick"
+        android:textColor="#000000"
+        android:layout_gravity="center"
         android:text="Se connecter" />
+       
+	<Button
+        android:id="@+id/registerButton"
+        android:layout_width="220sp"
+        android:layout_height="80sp"
+        android:textSize="32sp"
+        android:layout_marginTop="50sp"
+        android:onClick="onConnectionButtonClick"
+        android:text="S'inscrire"
+        android:layout_gravity="center"
+        android:textColor="#000000"
+        android:background="#de002d" />
 
 </LinearLayout>
