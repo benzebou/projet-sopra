@@ -50,11 +50,8 @@ public class Controller {
 		
 	}
 	
-	public void getModificationInformation () {
-		
-	}
 	 
-	public void getProfileInformation () {
-		
+	public Information getProfileInformation () {
+		return null ; 
 	}
 }
