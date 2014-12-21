@@ -2,6 +2,12 @@ package controller;
 
 public class Controller {
 
+	// private FacadeView facadeView ; 
+	
+	public Controller () {
+		//facadeView = new FacadeView () ;
+	}
+	
 	public void performConnect () {} 
 	
 	public void passwordForgotten ()  {
