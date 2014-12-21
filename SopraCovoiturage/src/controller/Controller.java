@@ -1,5 +1,7 @@
 package controller;
 
+import modele.Information;
+
 public class Controller {
 
 	// private FacadeView facadeView ; 
@@ -8,9 +10,11 @@ public class Controller {
 		//facadeView = new FacadeView () ;
 	}
 	
-	public void performConnect () {} 
+	public void performConnect (String nickname, String password) {
+		
+	} 
 	
-	public void passwordForgotten ()  {
+	public void passwordForgotten (String mail)  {
 		
 	}
 	
@@ -18,7 +22,7 @@ public class Controller {
 		
 	}
 	
-	public void performProfileModification () {
+	public void performProfileModification (Information info) {
 		
 	}
 	
@@ -26,11 +30,11 @@ public class Controller {
 		
 	}
 	
-	public void performRides () {
+	public void performRides (int postcode, String workplace) {
 		
 	}
 	
-	public void performRegister () {
+	public void performRegister (Information info) {
 		
 	}
 	
@@ -46,12 +50,10 @@ public class Controller {
 		
 	}
 	
-	// void?
 	public void getModificationInformation () {
 		
 	}
-	
-	// void? 
+	 
 	public void getProfileInformation () {
 		
 	}
