@@ -1,161 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="#f6f6f6"
-    android:orientation="vertical" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"
-        android:text="Profile"
-        android:textColor="#de002d"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/nom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp"
-        android:gravity="center_horizontal"
-        android:hint="nom"
-        android:inputType="text"
-        android:textSize="12sp" />
-
-    <EditText
-        android:id="@+id/prenom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp"
-        android:gravity="center_horizontal"
-        android:hint="prénom"
-        android:inputType="text"
-        android:textSize="12sp" />
-
-    <EditText
-        android:id="@+id/mot_de_passe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="Mot de passe"
-        android:inputType="textPassword"
-        android:textSize="12sp" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="email"
-        android:inputType="textEmailAddress"
-        android:textSize="12sp" />
-
-    <EditText
-        android:id="@+id/telephone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="téléphone"
-        android:inputType="phone"
-        android:textSize="12sp" />
+    android:layout_height="wrap_content" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="#f6f6f6"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:text="Profile"
+            android:textColor="#de002d"
+            android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/commune"
-            android:layout_width="wrap_content"
+            android:id="@+id/nom"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50sp"
-            android:ems="10"
+            android:layout_marginRight="50sp"
             android:gravity="center_horizontal"
-            android:hint="commune"
-            android:textSize="12sp" >
-        </EditText>
+            android:hint="nom"
+            android:inputType="text"
+            android:textSize="12sp" />
 
         <EditText
-            android:id="@+id/code_postale"
-            android:layout_width="wrap_content"
+            android:id="@+id/prenom"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
+            android:gravity="center_horizontal"
+            android:hint="prénom"
+            android:inputType="text"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/mot_de_passe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
             android:layout_marginRight="50sp"
             android:ems="10"
             android:gravity="center_horizontal"
-            android:hint="code"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <Spinner
-        android:id="@+id/lieu_de_travail"
-        android:layout_width="match_parent"
-        android:layout_height="40sp"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp" />
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50sp"
-        android:layout_marginRight="50sp" >
-
-        <EditText
-            android:id="@+id/heure_aller"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="heure aller"
-            android:inputType="time"
+            android:hint="Mot de passe"
+            android:inputType="textPassword"
             android:textSize="12sp" />
 
         <EditText
-            android:id="@+id/heure_retour"
-            android:layout_width="wrap_content"
+            android:id="@+id/email"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="heure retour"
-            android:inputType="time"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/inscrire"
-            android:layout_width="91dp"
-            android:layout_height="20dp"
             android:layout_marginLeft="50sp"
-            android:background="#de002d"
-            android:text="s&apos;incrire"
-            android:textColor="#000000" />
-
-        <Button
-            android:id="@+id/annuler"
-            android:layout_width="91dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="35sp"
             android:layout_marginRight="50sp"
-            android:background="#de002d"
-            android:text="annuler"
-            android:textColor="#000000" />
-    </LinearLayout>
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            android:textSize="12sp" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/telephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="téléphone"
+            android:inputType="phone"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/commune"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50sp"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="commune"
+                android:textSize="12sp" >
+            </EditText>
+
+            <EditText
+                android:id="@+id/code_postale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50sp"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:hint="code"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/lieu_de_travail"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
+            android:gravity="center_horizontal"
+            android:hint="bureau"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp" >
+
+            <EditText
+                android:id="@+id/heure_aller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="heure aller"
+                android:inputType="time"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/heure_retour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="heure retour"
+                android:inputType="time"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/lundi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="lundi"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/mardi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="mardi"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/mercredi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="mercredi"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/jeudi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="jeudi"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/vendredi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="vendredi"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/samedi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="samedi"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/dimanche"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="dimanche"
+                    android:textSize="12sp" />
+            </TableRow>
+        </TableLayout>
+
+
+
+        <CheckBox
+            android:id="@+id/Conducteur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
+            android:checked="true"
+            android:text="Conducteur"
+            android:textSize="12sp" />
+
+        <CheckBox
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
+            android:checked="true"
+            android:text="Souhaite être notifié"
+            android:textSize="12sp" />
+                <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp" >
+>
+
+            <Button
+                android:id="@+id/inscrire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="10sp" 
+                android:layout_weight="1"
+                android:background="#de002d"
+                android:text="s&apos;incrire"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/annuler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="#de002d"
+                android:text="annuler"
+                android:textColor="#000000" />
+        </LinearLayout>
+    </LinearLayout>
+    
+    
+
+</ScrollView>
