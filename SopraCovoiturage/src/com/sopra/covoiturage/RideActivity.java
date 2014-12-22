@@ -16,6 +16,7 @@ public class RideActivity extends Activity{
 	private EditText DepartText;
 	private Spinner spinner;
 	private FacadeView fac;
+	private boolean conducteur;
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,26 +40,26 @@ public class RideActivity extends Activity{
          
 		spinner.setAdapter(dataAdapter);
 		
-		//getbasicRide from the Database
+		ArrayList<String> rides = getBasicRide();
+		
 		
 	}
 	
 	
-	public void search(View view) {
-		spinner = (Spinner) findViewById(R.id.Arrivee);
-		DepartText = (EditText) findViewById(R.id.Depart);
+	public void onCheckboxClicked(View view) {
+		conducteur = ! conducteur;
 	}
 	
-	public void onCheckboxClicked(View v) {
-		
-	}
 	
 	public void onClickSearch(View v) {
-		// search the right ride for the departure and arrival propose.
+		spinner = (Spinner) findViewById(R.id.Arrivee);
+		DepartText = (EditText) findViewById(R.id.Depart);
+		
 	}
 	
+	
 	public ArrayList<String> getBasicRide() {
-		return fac.getBasicRide();
+		return null;//fac.performRides(/*User.Postcode, User.workplace*/);
 	}
 	
 	
