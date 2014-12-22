@@ -12,7 +12,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar">
-        <activity 
+        <activity
             android:name="com.sopra.covoiturage.ConnectingActivity"
             android:label="@string/app_name">
             <intent-filter>
@@ -20,14 +20,19 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        
-        <activity 
+       
+        <activity
             android:name="com.sopra.covoiturage.RideActivity"
+            android:label="@string/app_name">
+        </activity>
+       
+        <activity
+            android:name="com.sopra.covoiturage.MailRequestActivity"
             android:label="@string/app_name">
         </activity>
         
         <activity
-            android:name="com.sopra.covoiturage.MailRequestActivity"
+            android:name="com.sopra.covoiturage.RegisterActivity"
             android:label="@string/app_name">
         </activity>
     </application>
