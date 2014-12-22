@@ -15,6 +15,7 @@ public class RideActivity extends Activity{
 	//private FacadeView facade;
 	private EditText DepartText;
 	private Spinner spinner;
+	private FacadeView fac;
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,10 @@ public class RideActivity extends Activity{
 	
 	public void onClickSearch(View v) {
 		// search the right ride for the departure and arrival propose.
+	}
+	
+	public ArrayList<String> getBasicRide() {
+		return fac.getBasicRide();
 	}
 	
 	

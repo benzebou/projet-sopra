@@ -1,5 +1,15 @@
 package com.sopra.covoiturage;
 
+import java.util.ArrayList;
+
 public class FacadeView {
 
+	/////////////////////////////
+	//	  For Ride Activity    //
+	/////////////////////////////
+	
+	public ArrayList<String> getBasicRide() {
+		return null ;
+	}
+	
 }
