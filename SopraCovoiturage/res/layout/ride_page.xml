@@ -6,44 +6,57 @@
     
     
     <TextView
-		    android:text="Recherche Avancée :"
-		    android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="20sp"
-	        android:textColor="#de002d" />
+		android:text="Recherche Avancée :"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#de002d" />
     
     <LinearLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal" >
+	    
 		<TextView
 		    android:text="Depart"
 		    android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" />
+	        android:layout_height="wrap_content"
+	        android:textSize="15sp" />
 		<EditText
 	        android:id="@+id/Depart"
 	        android:inputType="text"        
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" />
+	        android:layout_height="wrap_content"/>
 		<TextView
 		    android:text="Arrivee"
 		    android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" />
+	        android:layout_height="wrap_content"
+	        android:textSize="15sp" />
 		<Spinner  
 		    android:id="@+id/Arrivee"  
 		    android:layout_width="wrap_content"  
-		    android:layout_height="wrap_content" />
+		    android:layout_height="wrap_content"/>
+	</LinearLayout>
+
+    <LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
 		<Button
 		    android:layout_height="wrap_content"
 		    android:layout_width="wrap_content"
 		    android:text="search"
-	     	android:onClick="search" />
+		    android:textSize="15sp"
+	     	android:onClick="onClickSearch" />
 	</LinearLayout>
-
+    
+    
+    
     <CheckBox android:id="@+id/Conducteur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Conducteur"
+        android:textSize="15sp"
         android:onClick="onCheckboxClicked"/>
 
     <TextView
@@ -53,5 +66,53 @@
 	    android:textSize="20sp"
 	    android:textColor="#de002d" />
     
-    
+	<TableLayout
+	    android:id="@+id/Trajets"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" >
+	 
+	    <!-- 2 columns -->
+	    <TableRow
+	        android:id="@+id/RowTitle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:padding="5dip" >
+	 
+	        <TextView
+	            android:id="@+id/Mail"
+	            android:text="Mail"
+	            android:textSize="15sp" 
+	            android:paddingRight="15dip"/>
+	 
+	        <TextView
+	            android:id="@+id/ConducteurInfo"
+	            android:text="Conducteur"
+	            android:textSize="15sp" 
+	            android:paddingLeft="15dip"/>
+	    </TableRow>
+	    
+	    <!-- just draw a red line -->
+	    <View
+	        android:layout_height="2dip"
+	        android:background="#de002d" />
+	    
+	    <TableRow
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:padding="5dip">
+	        
+	        <TextView
+	            android:text="saade@etud.insa-toulouse.fr"
+	            android:textSize="15sp" 
+	            android:paddingRight="15dip"/>
+	 
+	        <TextView
+	            android:text="Oui"
+	            android:textSize="15sp" 
+	            android:paddingLeft="15dip"/>
+	    </TableRow>
+	    
+	    
+	</TableLayout>
+	    
 </LinearLayout>
