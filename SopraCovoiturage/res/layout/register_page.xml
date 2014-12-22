@@ -2,94 +2,160 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#f6f6f6"
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_marginLeft="120dp"
+        android:text="Profile"
+        android:textColor="#de002d"
+        android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/editText1"
-        android:layout_width="292dp"
-        android:layout_height="23dp"
-        android:ems="10"
-        android:inputType="textPersonName" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/nom"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:layout_marginRight="50sp"
+        android:gravity="center_horizontal"
+        android:hint="nom"
+        android:inputType="text"
+        android:textSize="12sp" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/prenom"
         android:layout_width="match_parent"
-        android:layout_height="23dp"
-        android:ems="10"
-        android:inputType="textPassword" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:layout_marginRight="50sp"
+        android:gravity="center_horizontal"
+        android:hint="prénom"
+        android:inputType="text"
+        android:textSize="12sp" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/mot_de_passe"
         android:layout_width="match_parent"
-        android:layout_height="22dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:layout_marginRight="50sp"
         android:ems="10"
-        android:inputType="textEmailAddress" />
+        android:gravity="center_horizontal"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
+        android:textSize="12sp" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/email"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:layout_marginRight="50sp"
         android:ems="10"
-        android:inputType="phone" />
+        android:gravity="center_horizontal"
+        android:hint="email"
+        android:inputType="textEmailAddress"
+        android:textSize="12sp" />
 
     <EditText
-        android:id="@+id/editText6"
-        android:layout_width="379dp"
-        android:layout_height="27dp"
-        android:ems="10" />
+        android:id="@+id/telephone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:layout_marginRight="50sp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="téléphone"
+        android:inputType="phone"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/commune"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="commune"
+            android:textSize="12sp" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/code_postale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50sp"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="code"
+            android:textSize="12sp" />
+    </LinearLayout>
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/lieu_de_travail"
         android:layout_width="match_parent"
-        android:layout_height="24dp" />
+        android:layout_height="40sp"
+        android:layout_marginLeft="50sp"
+        android:layout_marginRight="50sp" />
 
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:ems="10"
-        android:inputType="time" />
-
-    <EditText
-        android:id="@+id/editText8"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:ems="10"
-        android:inputType="time" />
-
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:layout_marginLeft="50sp"
+        android:layout_marginRight="50sp" >
 
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        <EditText
+            android:id="@+id/heure_aller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="heure aller"
+            android:inputType="time"
+            android:textSize="12sp" />
 
-    <Button
-        android:id="@+id/button1"
+        <EditText
+            android:id="@+id/heure_retour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="heure retour"
+            android:inputType="time"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/inscrire"
+            android:layout_width="91dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="50sp"
+            android:background="#de002d"
+            android:text="s&apos;incrire"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/annuler"
+            android:layout_width="91dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="35sp"
+            android:layout_marginRight="50sp"
+            android:background="#de002d"
+            android:text="annuler"
+            android:textColor="#000000" />
+    </LinearLayout>
 
 </LinearLayout>
