@@ -123,4 +123,8 @@ public class Controller {
 	public Information getProfileInformation () {
 		return null ; 
 	}
+	
+	public static void main (String argv[]) {
+		System.out.println("Coucou") ;		
+	}
 }
