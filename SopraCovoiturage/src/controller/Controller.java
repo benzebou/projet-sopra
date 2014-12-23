@@ -21,7 +21,7 @@ public class Controller {
 	
 	public void performConnect (String nickname, String password) {
 		// URL du serveur
-		String ur= "www.exempl.ma\\index.jsp" ;
+		String ur= "http://localhost/carpooling/http_post_entry.php" ;
 		// requete
 		String post="login="+nickname+"&mdp="+password ;
 		URL url;
@@ -124,7 +124,8 @@ public class Controller {
 		return null ; 
 	}
 	
-	public static void main (String argv[]) {
-		System.out.println("Coucou") ;		
+	public static void main (String argv[]) {	
+		Controller con = new Controller () ;
+		con.performConnect("user", "test") ;
 	}
 }
