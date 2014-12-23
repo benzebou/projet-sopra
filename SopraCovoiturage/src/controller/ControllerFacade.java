@@ -28,29 +28,29 @@ public class ControllerFacade {
 	public void performConnect (String nickname, String password) {
 		boolean requete =requests.connectionRequest(nickname, password) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Connexion : réussite !") ;
+			System.out.println("CONTROLLER_FACADE : Connexion : réussite !\n") ;
 		}
 		else 
-			System.out.println("CONTROLLER_FACADE : Connexion : échec !") ;
+			System.out.println("CONTROLLER_FACADE : Connexion : échec !\n") ;
 	}
 	
 	
 	public void passwordForgotten (String mail)  {
 		boolean requete =requests.passwordForgottenRequest(mail) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Recuperation MDP : réussite !") ;
+			System.out.println("CONTROLLER_FACADE : Recuperation MDP : réussite !\n") ;
 		}
 		else 
-			System.out.println("CONTROLLER_FACADE : Recuperation MDP : échec !") ;
+			System.out.println("CONTROLLER_FACADE : Recuperation MDP : échec !\n") ;
 	}
 	
 	public void performDisconnect (String nickname, String password) {
 		boolean requete =requests.disconnectionRequest(nickname, password) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Deconnexion user : réussite !") ;
+			System.out.println("CONTROLLER_FACADE : Deconnexion user : réussite !\n") ;
 		}
 		else 
-			System.out.println("CONTROLLER_FACADE : Deconnexion user : échec !") ;	
+			System.out.println("CONTROLLER_FACADE : Deconnexion user : échec !\n") ;	
 	}
 	
 	public void performProfileModification (Information info) {
@@ -68,10 +68,10 @@ public class ControllerFacade {
 	public void performRegister (Information info) {
 		boolean requete =requests.creationUserRequest(info) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Creation user : réussite !") ;
+			System.out.println("CONTROLLER_FACADE : Creation user : réussite !\n") ;
 		}
 		else 
-			System.out.println("CONTROLLER_FACADE : Creation user : échec !") ;
+			System.out.println("CONTROLLER_FACADE : Creation user : échec !\n") ;
 	}
 	
 	public void processUserDisconnected() { 	
@@ -89,11 +89,11 @@ public class ControllerFacade {
 	public Information getProfileInformation (String nickname) {
 		Information requete =requests.getProfileInformation(nickname) ;
 		if (requete!= null) {
-			System.out.println("CONTROLLER_FACADE : getProfileInformation : réussite !") ;
+			System.out.println("CONTROLLER_FACADE : getProfileInformation : réussite !\n") ;
 			return requete ; 
 		}
 		else {
-			System.out.println("CONTROLLER_FACADE : getProfileInformation : échec !") ;
+			System.out.println("CONTROLLER_FACADE : getProfileInformation : échec !\n") ;
 			return null;
 		}
 
