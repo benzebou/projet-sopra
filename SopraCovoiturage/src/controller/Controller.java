@@ -126,6 +126,6 @@ public class Controller {
 	
 	public static void main (String argv[]) {	
 		Controller con = new Controller () ;
-		con.performConnect("user", "test") ;
+		con.performConnect("user1", "test") ;
 	}
 }
