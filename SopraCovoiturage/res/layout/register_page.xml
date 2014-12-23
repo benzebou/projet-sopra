@@ -93,7 +93,7 @@
             </EditText>
 
             <EditText
-                android:id="@+id/code_postale"
+                android:id="@+id/code_postal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="50sp"
@@ -159,8 +159,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
+                    android:onClick="onCheckboxClicked"
                     android:text="lundi"
-                    android:textSize="12sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
 
                 <CheckBox
                     android:id="@+id/mardi"
@@ -168,8 +170,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
+                    android:onClick="onCheckBoxClicked"
                     android:text="mardi"
-                    android:textSize="12sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
             </TableRow>
 
             <TableRow
@@ -183,8 +187,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
+                    android:onClick="onCheckBoxClicked"
                     android:text="mercredi"
-                    android:textSize="12sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
 
                 <CheckBox
                     android:id="@+id/jeudi"
@@ -192,8 +198,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
+                    android:onClick="onCheckBoxClicked"
                     android:text="jeudi"
-                    android:textSize="12sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
             </TableRow>
 
             <TableRow
@@ -207,17 +215,20 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
+                    android:onClick="onCheckBoxClicked"
                     android:text="vendredi"
-                    android:textSize="12sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
 
                 <CheckBox
                     android:id="@+id/samedi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
+                    android:onClick="onCheckBoxClicked"
                     android:text="samedi"
-                    android:textSize="12sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
             </TableRow>
 
             <TableRow>
@@ -233,23 +244,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
+                    android:onClick="onCheckBoxClicked"
                     android:text="dimanche"
-                    android:textSize="12sp" />
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
             </TableRow>
         </TableLayout>
 
-
-
         <CheckBox
-            android:id="@+id/Conducteur"
+            android:id="@+id/conducteur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50sp"
             android:layout_marginRight="50sp"
-            android:checked="true"
+            android:onClick="onCheckBoxClicked"
             android:text="Conducteur"
-            android:textSize="12sp" />
+            android:textColor="#000000"
+            android:textSize="15sp" />
 
         <CheckBox
             android:id="@+id/notification"
@@ -257,10 +268,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50sp"
             android:layout_marginRight="50sp"
-            android:checked="true"
+            android:onClick="onCheckboxClicked"
             android:text="Souhaite être notifié"
-            android:textSize="12sp" />
-                <LinearLayout
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50sp"
@@ -272,9 +285,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="10sp" 
+                android:layout_marginRight="10sp"
                 android:layout_weight="1"
                 android:background="#de002d"
+                android:onClick="onInscrireButtonClick"
                 android:text="s&apos;incrire"
                 android:textColor="#000000" />
 
@@ -285,11 +299,10 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="#de002d"
+                android:onClick="onAnnulerButtonClick"
                 android:text="annuler"
                 android:textColor="#000000" />
         </LinearLayout>
     </LinearLayout>
-    
-    
 
 </ScrollView>
