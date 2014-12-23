@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 
 import com.sopra.covoiturage.FacadeView;
 
@@ -70,8 +69,14 @@ public class ControllerFacade {
 			System.out.println("CONTROLLER_FACADE : Creation user : échec !") ;
 	}
 	
-	public void processUserDisconnected () {
-		
+	// a tester
+	public void processUserDisconnected (String nickname, String password) {
+		boolean requete =requests.disconnectionRequest(nickname, password) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Deconnexion user : réussite !") ;
+		}
+		else 
+			System.out.println("CONTROLLER_FACADE : Deconnexion user : échec !") ;		
 	}
 	
 	public void changeActivityReport () {
@@ -94,7 +99,8 @@ public class ControllerFacade {
 		Information info = new Information("user100", "1234", "user@monmail.fr", "smith",
 				"john", "0561665522", "31400", "bureau1",
 				days, true);
-		//con.performConnect("user1", "test") ; fonctionne
-		con.performRegister(info);
+		con.performConnect("user1", "test") ; //fonctionne
+		//con.performRegister(info);
+		con.processUserDisconnected("user1", "test") ; 
 	}
 }
