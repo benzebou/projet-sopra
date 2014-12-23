@@ -6,6 +6,8 @@ public class Information {
 
 	private String login ;
 	
+	private String mdp ;
+	
 	private String email ;
 	
 	private String name ;
@@ -14,7 +16,7 @@ public class Information {
 	
 	private String phone ;
 	
-	private int postcode ;
+	private String postcode ;
 	
 	private String workplace ;
 	
@@ -27,4 +29,45 @@ public class Information {
 	public Information() {
 		
 	}
+
+	public String getLogin() {
+		return login;
+	}
+	
+	public String getMdp() {
+		return mdp ;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+	public String getWorkplace() {
+		return workplace;
+	}
+
+	public ArrayList<Boolean> getDays() {
+		return days;
+	}
+
+	public boolean isConducteur() {
+		return conducteur;
+	}
+	
 }
