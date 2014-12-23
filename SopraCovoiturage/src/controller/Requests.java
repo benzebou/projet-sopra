@@ -114,35 +114,35 @@ public class Requests {
 			map.put("tel", info.getPhone());
 			map.put("postal", info.getPostcode());
 			map.put("travail", info.getWorkplace());
-			// A MODIFIER
+			// TODO A MODIFIER
 			map.put("horairesMatin", "09:30");
 			map.put("horairesSoir", "10:10");
 			
-			if (info.getDays().get(0)) 
+			if (info.getDays()[0]) 
 				map.put("lundi", "1");
 			else
-				map.put("lundi", "1");
-			if (info.getDays().get(1)) 
+				map.put("lundi", "0");
+			if (info.getDays()[1]) 
 				map.put("mardi", "1");
 			else 
 				map.put("mardi", "0");
-			if (info.getDays().get(2)) 
+			if (info.getDays()[2]) 
 				map.put("mercredi", "1");
 			else 
 				map.put("mercredi", "0");
-			if (info.getDays().get(3)) 
+			if (info.getDays()[3]) 
 				map.put("jeudi", "1");
 			else 
 				map.put("jeudi", "0");
-			if (info.getDays().get(4)) 
+			if (info.getDays()[4]) 
 				map.put("vendredi", "1");
 			else 
 				map.put("vendredi", "0");
-			if (info.getDays().get(5)) 
+			if (info.getDays()[5]) 
 				map.put("samedi", "1");
 			else 
 				map.put("samedi", "0");
-			if (info.getDays().get(6)) 
+			if (info.getDays()[6]) 
 				map.put("dimanche", "1");
 			else 
 				map.put("dimanche", "0");

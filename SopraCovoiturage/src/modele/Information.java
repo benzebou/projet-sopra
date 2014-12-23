@@ -1,6 +1,5 @@
 package modele;
 
-import java.util.ArrayList;
 
 public class Information {
 
@@ -22,13 +21,30 @@ public class Information {
 	
 	//private ArrayList<> schedule ; 
 	
-	private ArrayList<Boolean> days ;
+	private Boolean[] days ;
 	
 	private boolean conducteur ;
 
 	public Information() {
 		
 	}
+	
+	public Information(String login, String mdp, String email, String name,
+			String firstname, String phone, String postcode, String workplace,
+			Boolean[] days, boolean conducteur) {
+		super();
+		this.login = login;
+		this.mdp = mdp;
+		this.email = email;
+		this.name = name;
+		this.firstname = firstname;
+		this.phone = phone;
+		this.postcode = postcode;
+		this.workplace = workplace;
+		this.days = days;
+		this.conducteur = conducteur;
+	}
+
 
 	public String getLogin() {
 		return login;
@@ -62,7 +78,7 @@ public class Information {
 		return workplace;
 	}
 
-	public ArrayList<Boolean> getDays() {
+	public Boolean[] getDays() {
 		return days;
 	}
 

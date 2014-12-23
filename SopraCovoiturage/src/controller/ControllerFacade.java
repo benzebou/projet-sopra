@@ -1,14 +1,6 @@
 package controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.HttpURLConnection ;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import com.sopra.covoiturage.FacadeView;
 
@@ -98,6 +90,11 @@ public class ControllerFacade {
 	public static void main (String argv[]) {	
 		ControllerFacade con = null ;
 		con = ControllerFacade.getInstance() ;
-		con.performConnect("user1", "test") ;
+		Boolean[] days = new Boolean[]{true,true,true,true,true,false,false};
+		Information info = new Information("user100", "1234", "user@monmail.fr", "smith",
+				"john", "0561665522", "31400", "bureau1",
+				days, true);
+		//con.performConnect("user1", "test") ; fonctionne
+		con.performRegister(info);
 	}
 }
