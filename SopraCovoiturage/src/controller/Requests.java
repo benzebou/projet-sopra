@@ -15,15 +15,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.http.ParseException;
-import org.json.JSONObject;
+import modele.Information;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteCursorDriver;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
-import android.database.sqlite.SQLiteQuery;
-
+import org.json.simple.parser.ContainerFactory;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Requests {
 
@@ -56,35 +52,114 @@ public class Requests {
 		*
 		*
 	 */
-	public class httpRequest {
 
-		private String urlRequest = "http://127.0.0.1/public/http_post_entry.php";
+		private static String urlRequest = "http://localhost/carpooling/http_post_entry.php";
 		//private static String urlRequest = "http://etud.insa-toulouse.fr/~demeyer/http_post_entry.php";
 		
-		private String cookie;
+		private static String cookie;
 		
-		public void main(String[] args) throws IOException, requestException {
+		
+		public boolean connectionRequest (String nickname, String password) {
+			HashMap<String, String> map = new HashMap<String, String> () ;
+			map.put("loginAdmin", nickname) ;
+			map.put("mdp", password) ;
+			if (connectionAdminRequest(map))
+				return true ;
+			else { 
+				map.remove("loginAdmin") ;
+				map.put("loginUser", nickname) ;
+				if (connectionUserRequest(map)) 
+					return true ;
+				else return false ;
+			}
+		}
+		
+		
+		private boolean connectionUserRequest (HashMap<String, String> map) {
+			RequestReponses reponse = null ;
+			reponse = postRequest(RequestType.CONNECT_USER,map) ;
+			if (reponse.isSuccess()) 
+				return true ;
+			else 
+				return false ;
+		}
+
+		private boolean connectionAdminRequest (HashMap<String, String> map) {
+			RequestReponses reponse = postRequest(RequestType.CONNECT_ADMIN,map) ;
+			if (reponse.isSuccess()) 
+				return true ;
+			else 
+				return false ;
+		}
+		
+		
+		public boolean passwordForgottenRequest (String mail) {
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("mail", mail);
+			RequestReponses reponse = postRequest(RequestType.PASSWORD_FORGOTTEN,map) ;
+			if (reponse.isSuccess()) 
+				return true ;
+			else 
+				return false ;
+		}
+		
+		
+		public boolean creationUserRequest (Information info) {
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("login", info.getLogin()); 
+			map.put("mdp", info.getMdp());
+			map.put("mail", info.getEmail());
+			map.put("nom", info.getName());
+			map.put("prenom", info.getFirstname());
+			map.put("tel", info.getPhone());
+			map.put("postal", info.getPostcode());
+			map.put("travail", info.getWorkplace());
+			// A MODIFIER
+			map.put("horairesMatin", "09:30");
+			map.put("horairesSoir", "10:10");
 			
-			// Connexion d'un utilisateur : login + mdp
-			//HashMap<String,String> connectionParameters = new HashMap<String,String>();
-			//connectionParameters.put("loginUser", "user2");
-			//connectionParameters.put("mdp", "test");
-			//System.out.println("/***** Requête 1 : Connexion d'un utilisateur *****/");
-			//System.out.println(postRequest(requestType.CONNECT_USER,connectionParameters));
+			if (info.getDays().get(0)) 
+				map.put("lundi", "1");
+			else
+				map.put("lundi", "1");
+			if (info.getDays().get(1)) 
+				map.put("mardi", "1");
+			else 
+				map.put("mardi", "0");
+			if (info.getDays().get(2)) 
+				map.put("mercredi", "1");
+			else 
+				map.put("mercredi", "0");
+			if (info.getDays().get(3)) 
+				map.put("jeudi", "1");
+			else 
+				map.put("jeudi", "0");
+			if (info.getDays().get(4)) 
+				map.put("vendredi", "1");
+			else 
+				map.put("vendredi", "0");
+			if (info.getDays().get(5)) 
+				map.put("samedi", "1");
+			else 
+				map.put("samedi", "0");
+			if (info.getDays().get(6)) 
+				map.put("dimanche", "1");
+			else 
+				map.put("dimanche", "0");
 			
-			// Connexion d'un administrateur : login + mdp
-			HashMap<String,String> connectionParameters2 = new HashMap<String,String>();
-			connectionParameters2.put("loginAdmin", "admin1");
-			connectionParameters2.put("mdp", "sopra");
-			System.out.println("/***** Requête 2 : Connexion d'un administrateur *****/");
-			System.out.println(postRequest(RequestType.CONNECT_ADMIN,connectionParameters2));
+			if (info.isConducteur()) 
+				map.put("conducteur", "1");
+			else 
+				map.put("conducteur", "0");
 			
-			// Mot de passe oublié : mail
-			//HashMap<String,String> connectionParameters3 = new HashMap<String,String>();
-			//connectionParameters3.put("mail", "user1@test.fr");
-			//System.out.println("/***** Requête 3 : Mot de passe perdu *****/");
-			//Map<String,String> m = postRequest(requestType.PASSWORD_FORGOTTEN,connectionParameters3);
-			//System.out.println(m);
+			RequestReponses reponse = postRequest(RequestType.REGISTER,map) ;
+			if (reponse.isSuccess()) 
+				return true ;
+			else 
+				return false ;
+			}
+		
+		public static void main(String[] args) throws IOException, requestException {
 			
 			// A VERIFIER
 			// Deconnexion d'un utilisateur/administrateur : login + mdp (pour s'assurer que c'est bien lui)
@@ -94,28 +169,6 @@ public class Requests {
 			//System.out.println("/***** Requête 4 : Deconnexion *****/");
 			//System.out.println(postRequest(requestType.DISCONNECT,connectionParameters4));
 			
-			// Creation d'un utilisateur
-			/*HashMap<String,String> connectionParameters5 = new HashMap<String,String>();
-			connectionParameters5.put("login", "user2");
-			connectionParameters5.put("mdp", "test");
-			connectionParameters5.put("mail", "test@test.fr");
-			connectionParameters5.put("nom", "a");
-			connectionParameters5.put("prenom", "b");
-			connectionParameters5.put("tel", "");
-			connectionParameters5.put("postal", "31400");
-			connectionParameters5.put("travail", "1");
-			connectionParameters5.put("horairesMatin", "09:30");
-			connectionParameters5.put("horairesSoir", "10:10");
-			connectionParameters5.put("lundi", "1");
-			connectionParameters5.put("mardi", "0");
-			connectionParameters5.put("mercredi", "0");
-			connectionParameters5.put("jeudi", "0");
-			connectionParameters5.put("vendredi", "0");
-			connectionParameters5.put("samedi", "1");
-			connectionParameters5.put("dimanche", "1");
-			connectionParameters5.put("conducteur", "0");*/
-			//System.out.println("/***** Requête 5 : Creation de profil *****/");
-			//System.out.println(postRequest(requestType.REGISTER,connectionParameters5));
 			
 			// Obtenir les informations d'un profil : login (utilisateur à afficher)
 			//HashMap<String,String> connectionParameters6 = new HashMap<String,String>();
@@ -197,10 +250,8 @@ public class Requests {
 			
 		}
 		
-		private String getRequestParameters(RequestType typeOfRequest, HashMap<String,String> parameters){
-			
+		private static String getRequestParameters(RequestType typeOfRequest, HashMap<String,String> parameters){
 			String urlParameters = "request=" + typeOfRequest.toString().toLowerCase();
-			
 			if (parameters != null){
 				
 				// We fetch parameters in an iterator
@@ -211,16 +262,14 @@ public class Requests {
 					Entry<String,String> couple = it.next();
 					urlParameters += "&" + couple.getKey() + "=" + couple.getValue();
 				}
-				
 			}
-			
 			return urlParameters;
 		}
 		
 		@SuppressWarnings("unchecked")
-		private HashMap<String,String> jsonToMap(String json){
-			JSONObject parser = new JSONObject();
-			  CursorFactory containerFactory = new CursorFactory(){
+		private static HashMap<String,String> jsonToMap(String json){
+			JSONParser parser = new JSONParser();
+			  ContainerFactory containerFactory = new ContainerFactory(){
 			    public List<String> creatArrayContainer() {
 			      return new LinkedList<String>();
 			    }
@@ -228,14 +277,6 @@ public class Requests {
 			    public Map<String,String> createObjectContainer() {
 			      return new LinkedHashMap<String,String>();
 			    }
-
-				@Override
-				public Cursor newCursor(SQLiteDatabase db,
-						SQLiteCursorDriver masterQuery, String editTable,
-						SQLiteQuery query) {
-					// TODO Auto-generated method stub
-					return null;
-				}
 			                        
 			  };
 			    Map<String,String> result = null;            
@@ -271,7 +312,7 @@ public class Requests {
 		 * @param urlParameters
 		 * @return the response in the JSON format
 		 */
-		public RequestReponses postRequest(RequestType typeOfRequest, HashMap<String,String> parameters) {
+		public static RequestReponses postRequest(RequestType typeOfRequest, HashMap<String,String> parameters) {
 		    String urlParameters = getRequestParameters(typeOfRequest,parameters);
 			URL url;
 			HttpURLConnection connection = null; 
@@ -350,5 +391,5 @@ public class Requests {
 		      }
 		    }
 		}
-}
-}
+		
+	}

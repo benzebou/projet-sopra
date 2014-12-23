@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.HttpURLConnection ;
+import java.util.HashMap;
 
 import com.sopra.covoiturage.FacadeView;
 
@@ -18,9 +19,12 @@ public class ControllerFacade {
 	private static ControllerFacade singleton ;
 	
 	 private FacadeView facadeView ; 
+	 
+	 private Requests requests ;
 	
 	private ControllerFacade () {
 		facadeView = new FacadeView () ;
+		requests = new Requests () ;
 	}
 	
 	public static ControllerFacade getInstance () {
@@ -31,71 +35,22 @@ public class ControllerFacade {
 	}
 	
 	public void performConnect (String nickname, String password) {
-		// URL du serveur
-		String ur= "http://localhost/carpooling/http_post_entry.php" ;
-		// requete
-		String post="login="+nickname+"&mdp="+password ;
-		URL url;
-		try {
-			url = new URL(ur);
-			URLConnection  conn = (HttpURLConnection) url.openConnection();
-			conn.setDoOutput(true);
-			OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
-			writer.write(post);
-			writer.flush();
-			//recuperation du code html
-			String reponse=null,ligne = null;
-			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			while ((ligne = reader.readLine()) != null) {
-			        reponse+= ligne.trim()+"\n";
-			}
-			System.out.print(reponse);
-
-			// traitement a faire suivant la reponse 
-			
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		boolean requete =requests.connectionRequest(nickname, password) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Connexion : réussite !") ;
 		}
-	} 
+		else 
+			System.out.println("CONTROLLER_FACADE : Connexion : échec !") ;
+	}
 	
-	// Julie : je me suis inspirée de la fonction du dessus, je sais pas vrmt si ca marche..
+	
 	public void passwordForgotten (String mail)  {
-		// URL du serveur
-		String ur= "www.exempl.ma\\index.jsp" ;
-		// requete
-		String post="mail="+mail ;
-		URL url;
-		try {
-			url = new URL(ur);
-			URLConnection  conn = (HttpURLConnection) url.openConnection();
-			conn.setDoOutput(true);
-			OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
-			writer.write(post);
-			writer.flush();
-			//recuperation du code html
-			String reponse=null,ligne = null;
-			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			while ((ligne = reader.readLine()) != null) {
-			        reponse+= ligne.trim()+"\n";
-			}
-			System.out.print(reponse);
-
-			// traitement a faire suivant la reponse 
-					
-					
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		boolean requete =requests.passwordForgottenRequest(mail) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Recuperation MDP : réussite !") ;
 		}
-		
+		else 
+			System.out.println("CONTROLLER_FACADE : Recuperation MDP : échec !") ;
 	}
 	
 	public void performDisconnect () {
@@ -115,7 +70,12 @@ public class ControllerFacade {
 	}
 	
 	public void performRegister (Information info) {
-		
+		boolean requete =requests.creationUserRequest(info) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Creation user : réussite !") ;
+		}
+		else 
+			System.out.println("CONTROLLER_FACADE : Creation user : échec !") ;
 	}
 	
 	public void processUserDisconnected () {
