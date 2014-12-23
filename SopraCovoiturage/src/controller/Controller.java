@@ -52,7 +52,38 @@ public class Controller {
 		}
 	} 
 	
+	// Julie : je me suis inspirée de la fonction du dessus, je sais pas vrmt si ca marche..
 	public void passwordForgotten (String mail)  {
+		// URL du serveur
+		String ur= "www.exempl.ma\\index.jsp" ;
+		// requete
+		String post="mail="+mail ;
+		URL url;
+		try {
+			url = new URL(ur);
+			URLConnection  conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+			writer.write(post);
+			writer.flush();
+			//recuperation du code html
+			String reponse=null,ligne = null;
+			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			while ((ligne = reader.readLine()) != null) {
+			        reponse+= ligne.trim()+"\n";
+			}
+			System.out.print(reponse);
+
+			// traitement a faire suivant la reponse 
+					
+					
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
