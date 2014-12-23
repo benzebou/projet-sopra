@@ -44,8 +44,13 @@ public class ControllerFacade {
 			System.out.println("CONTROLLER_FACADE : Recuperation MDP : échec !") ;
 	}
 	
-	public void performDisconnect () {
-		
+	public void performDisconnect (String nickname, String password) {
+		boolean requete =requests.disconnectionRequest(nickname, password) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Deconnexion user : réussite !") ;
+		}
+		else 
+			System.out.println("CONTROLLER_FACADE : Deconnexion user : échec !") ;	
 	}
 	
 	public void performProfileModification (Information info) {
@@ -69,14 +74,7 @@ public class ControllerFacade {
 			System.out.println("CONTROLLER_FACADE : Creation user : échec !") ;
 	}
 	
-	// a tester
-	public void processUserDisconnected (String nickname, String password) {
-		boolean requete =requests.disconnectionRequest(nickname, password) ;
-		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Deconnexion user : réussite !") ;
-		}
-		else 
-			System.out.println("CONTROLLER_FACADE : Deconnexion user : échec !") ;		
+	public void processUserDisconnected() { 	
 	}
 	
 	public void changeActivityReport () {
@@ -101,6 +99,6 @@ public class ControllerFacade {
 				days, true);
 		con.performConnect("user1", "test") ; //fonctionne
 		//con.performRegister(info); //fonctionne
-		//con.processUserDisconnected("user1", "test") ; // fonctionne
+		con.performDisconnect("user1", "test") ; // fonctionne
 	}
 }
