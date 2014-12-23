@@ -97,10 +97,10 @@ public class ControllerFacade {
 		con = ControllerFacade.getInstance() ;
 		Boolean[] days = new Boolean[]{true,true,true,true,true,false,false};
 		Information info = new Information("user100", "1234", "user@monmail.fr", "smith",
-				"john", "0561665522", "31400", "bureau1",
+				"john", "0561665522", "31400", "1",
 				days, true);
 		con.performConnect("user1", "test") ; //fonctionne
-		//con.performRegister(info);
-		con.processUserDisconnected("user1", "test") ; 
+		//con.performRegister(info); //fonctionne
+		//con.processUserDisconnected("user1", "test") ; // fonctionne
 	}
 }

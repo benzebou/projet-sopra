@@ -153,35 +153,38 @@ public class Requests {
 				map.put("conducteur", "0");
 			
 			RequestReponses reponse = postRequest(RequestType.REGISTER,map) ;
+			System.out.println(reponse);
 			if (reponse.isSuccess()) 
 				return true ;
 			else 
 				return false ;
 			}
 		
-		// a tester
 		public boolean disconnectionRequest (String nickname, String password) {
 			HashMap<String, String> map = new HashMap<String, String> () ;
 			map.put("login", nickname) ;
 			map.put("mdp", password) ;
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.DISCONNECT,map) ;
+			System.out.println(reponse);
 			if (reponse.isSuccess()) 
 				return true ;
 			else 
 				return false ;
 		}
 		
-		// A VERIFIER
-		// Deconnexion d'un utilisateur/administrateur : login + mdp (pour s'assurer que c'est bien lui)
-		//HashMap<String,String> connectionParameters4 = new HashMap<String,String>();
-		//connectionParameters4.put("login", "user2");
-		//connectionParameters4.put("mdp", "test");
-		//System.out.println("/***** Requête 4 : Deconnexion *****/");
-		//System.out.println(postRequest(requestType.DISCONNECT,connectionParameters4));
-		
-		
-
+		public boolean getModificationInformation(String nickname) {
+			// Obtenir les informations d'un profil : login (utilisateur à afficher)
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("login", nickname);
+			RequestReponses reponse = null ;
+			reponse = postRequest(RequestType.GET_PROFILE_INFORMATIONS,map) ;
+			if (reponse.isSuccess()) 
+				return true ;
+			else 
+				return false ;		
+		}
+			
 		public static void main(String[] args) throws IOException, requestException {
 			
 
@@ -391,6 +394,8 @@ public class Requests {
 			        response.append('\r');
 			      }
 			      rd.close();
+			      String a = response.toString();
+			      System.out.println(a);
 			      return new RequestReponses(connection.getResponseCode(),true,jsonToMap(response.toString()));
 		      }catch(requestException e){
 		    	  return new RequestReponses(connection.getResponseCode(),false,null);
