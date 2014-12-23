@@ -153,7 +153,6 @@ public class Requests {
 				map.put("conducteur", "0");
 			
 			RequestReponses reponse = postRequest(RequestType.REGISTER,map) ;
-			System.out.println(reponse);
 			if (reponse.isSuccess()) 
 				return true ;
 			else 
@@ -166,13 +165,13 @@ public class Requests {
 			map.put("mdp", password) ;
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.DISCONNECT,map) ;
-			System.out.println(reponse);
 			if (reponse.isSuccess()) 
 				return true ;
 			else 
 				return false ;
 		}
 		
+		// renvoyer les infos ?
 		public boolean getModificationInformation(String nickname) {
 			// Obtenir les informations d'un profil : login (utilisateur à afficher)
 			HashMap<String,String> map = new HashMap<String,String>();
