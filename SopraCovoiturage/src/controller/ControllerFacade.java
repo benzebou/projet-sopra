@@ -9,14 +9,25 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.HttpURLConnection ;
 
+import com.sopra.covoiturage.FacadeView;
+
 import modele.Information;
 
-public class Controller {
+public class ControllerFacade {
 
-	// private FacadeView facadeView ; 
+	private static ControllerFacade singleton ;
 	
-	public Controller () {
-		//facadeView = new FacadeView () ;
+	 private FacadeView facadeView ; 
+	
+	private ControllerFacade () {
+		facadeView = new FacadeView () ;
+	}
+	
+	public static ControllerFacade getInstance () {
+		if (singleton == null) {
+			singleton = new ControllerFacade() ;
+		}
+		return singleton ;
 	}
 	
 	public void performConnect (String nickname, String password) {
@@ -125,7 +136,8 @@ public class Controller {
 	}
 	
 	public static void main (String argv[]) {	
-		Controller con = new Controller () ;
+		ControllerFacade con = null ;
+		con = ControllerFacade.getInstance() ;
 		con.performConnect("user1", "test") ;
 	}
 }
