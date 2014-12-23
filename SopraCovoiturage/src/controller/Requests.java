@@ -172,16 +172,19 @@ public class Requests {
 		}
 		
 		// renvoyer les infos ?
-		public boolean getModificationInformation(String nickname) {
+		public Information getProfileInformation(String nickname) {
 			// Obtenir les informations d'un profil : login (utilisateur à afficher)
 			HashMap<String,String> map = new HashMap<String,String>();
 			map.put("login", nickname);
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.GET_PROFILE_INFORMATIONS,map) ;
-			if (reponse.isSuccess()) 
-				return true ;
+			if (reponse.isSuccess()) {
+				Information info = new Information();
+				// TODO : recuperer les infos
+				return info;
+			}
 			else 
-				return false ;		
+				return null ;		
 		}
 			
 		public static void main(String[] args) throws IOException, requestException {
