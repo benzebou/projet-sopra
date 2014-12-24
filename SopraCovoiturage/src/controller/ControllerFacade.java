@@ -193,6 +193,10 @@ public class ControllerFacade {
 		}		
 	}
 	
+	public ArrayList<String> getWorkplacesRequest() {
+		return requests.getWorkplacesRequest() ;
+	}
+	
 	public static void main (String argv[]) {	
 		ControllerFacade con = null ;
 		con = ControllerFacade.getInstance() ;

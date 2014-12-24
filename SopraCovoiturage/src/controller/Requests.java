@@ -162,8 +162,6 @@ public class Requests {
 				return reponse.getCode() ;
 			}
 		
-		
-		// pas de difference entre admin et user?
 		public boolean disconnectionRequest (String nickname, String password) {
 			HashMap<String, Object> map = new HashMap<String, Object> () ;
 			map.put("login", nickname) ;
@@ -176,9 +174,8 @@ public class Requests {
 				return false ;
 		}
 		
-		// renvoyer les infos ?
 		public Information getProfileInformationRequest(String nickname) {
-			// Obtenir les informations d'un profil : login (utilisateur à afficher)
+			// Obtenir les informations d'un profil : nickname (utilisateur à afficher)
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", nickname);
 			RequestReponses reponse = null ;
@@ -381,22 +378,46 @@ public class Requests {
 			return workplaces ;
 		}
 		
+		// a tester
+		public boolean addTownRequest(String town, String code) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("code", code);
+			map.put("commune", town);
+			RequestReponses reponse = postRequest(RequestType.ADD_TOWN,map) ;
+			if (reponse.isSuccess()) {
+				return true;
+			}
+			else 
+				return false ;
+		}
+		
+		// a tester
+		public boolean deletionTownRequest(String code) {
+		RequestReponses reponseBefore = postRequest(RequestType.GET_LIST_TOWN,null) ;
+		// parcours de la HashMap
+		String id = null ;
+		for (Entry<String, Object> entry : reponseBefore.getData().entrySet()) {
+			String MapReponse = (String) entry.getValue() ;
+			if (MapReponse.equals(code)) {
+				id = entry.getKey() ;
+				break ;
+			}
+		}	
+		if (id != null) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("code", id);
+			RequestReponses reponseAfter = postRequest(RequestType.DELETE_TOWN,map) ;
+			if (reponseAfter.isSuccess()) {
+				return true;
+			}
+			else 
+				return false ;
+		}
+		else return false ;
+	}
+		
 		public static void main(String[] args) throws IOException, requestException {	
 
-		
-			// Ajouter une commune : code + commune
-			//HashMap<String,String> connectionParameters13 = new HashMap<String,String>();
-			//connectionParameters13.put("code", "25000");
-			//connectionParameters13.put("commune", "Besançon");
-			//System.out.println("/***** Requête 13 : Ajouter une commune *****/");
-			//System.out.println(postRequest(requestType.ADD_TOWN,connectionParameters13));
-			
-			//Suppression d'une commune : code 
-			//HashMap<String,String> connectionParameters15 = new HashMap<String,String>();
-			//connectionParameters15.put("code", "25000");
-			//System.out.println("/***** Requête 15 : Suppression d'une commune *****/");
-			//System.out.println(postRequest(requestType.DELETE_TOWN,connectionParameters15));
-			
 		}
 		
 		private static String getRequestParameters(RequestType typeOfRequest, HashMap<String, Object> map){
