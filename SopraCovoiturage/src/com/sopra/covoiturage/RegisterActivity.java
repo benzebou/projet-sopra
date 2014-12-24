@@ -11,7 +11,7 @@ import android.widget.Spinner;
 
 public class RegisterActivity extends Activity  {
 
-	//private FacadeView facade;
+	private FacadeView facade;
 	private EditText login;
 	private EditText nom;
 	private EditText prenom;
@@ -127,6 +127,7 @@ public class RegisterActivity extends Activity  {
 	}
 
 	public void onAnnulerButtonClick(View v) {
+		facade.changeActivityConnecting();
 
 	}
 }
