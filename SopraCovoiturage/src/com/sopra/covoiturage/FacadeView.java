@@ -1,8 +1,7 @@
 package com.sopra.covoiturage;
 
 import java.util.ArrayList;
-
-import modele.Information;
+import modele.Ride;
 
 public class FacadeView {
 	
@@ -43,7 +42,27 @@ public class FacadeView {
 		
 	}
 	
-	public void registrationFailed (Information info) {
+	public void registrationFailed (int codeErreur) {
+		
+	}
+	
+	public void confirmModification () {
+		
+	}
+	
+	public void modificationFailed (int codeErreur) {
+		
+	}
+	
+	public void changeActivityConnecting () {
+		
+	}
+	
+	public void deletionFailure () {
+		
+	}
+	
+	public void processRides (ArrayList<Ride> listOfRides) {
 		
 	}
 }
