@@ -26,7 +26,7 @@ public class Information {
 	private boolean conducteur ;
 
 	public Information() {
-		
+		days = new Boolean[7] ;
 	}
 	
 	public Information(String login, String mdp, String email, String name,
@@ -45,6 +45,46 @@ public class Information {
 		this.conducteur = conducteur;
 	}
 
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	public void setWorkplace(String workplace) {
+		this.workplace = workplace;
+	}
+
+	public void setDays(Boolean[] days) {
+		this.days = days;
+	}
+
+	public void setConducteur(boolean conducteur) {
+		this.conducteur = conducteur;
+	}
 
 	public String getLogin() {
 		return login;
@@ -84,6 +124,13 @@ public class Information {
 
 	public boolean isConducteur() {
 		return conducteur;
+	}
+	
+	public String toString () {
+		return "Login: "+login+"\nMdp: "+mdp+"\nMail: "+email+"\nNom: "+name+"\nPrenom: "+firstname+
+				"\nTel: "+phone+"\nCodePostal: "+postcode+"\nTravail: "+workplace+"\nConducteur? : "
+				+conducteur+"\nlundi? : "+days[0]+"\nmardi? : "+days[1]+"\nmercredi? : "+days[2]
+				+"\njeudi? : "+days[3]+"\nvendredi? : "+days[4]+"\nsamedi? : "+days[5]+"\ndimanche? : "+days[6];
 	}
 	
 }
