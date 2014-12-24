@@ -65,4 +65,8 @@ public class FacadeView {
 	public void processRides (ArrayList<Ride> listOfRides) {
 		
 	}
+	
+	public void displayWorkplaces(ArrayList<String> listOfWorkplaces) {
+		
+	}
 }
