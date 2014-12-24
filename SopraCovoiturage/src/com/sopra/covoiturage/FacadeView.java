@@ -13,4 +13,11 @@ public class FacadeView {
 		return null;
 	}
 	
+	public void processConnected () {
+		
+	}
+	
+	public void processNotConnected() {
+		
+	}
 }
