@@ -2,6 +2,8 @@ package com.sopra.covoiturage;
 
 import java.util.ArrayList;
 
+import modele.Information;
+
 public class FacadeView {
 	
 	
@@ -18,6 +20,30 @@ public class FacadeView {
 	}
 	
 	public void processNotConnected() {
+		
+	}
+	
+	public void processSendPwdMailOk () {
+		
+	}
+
+	public void processSendPwdMailFailure () {
+		
+	}
+	
+	public void processUserDisconnected() {
+		
+	}
+	
+	public void processUserNotDisconnected () {
+		
+	}
+	
+	public void changeActivityProfile () {
+		
+	}
+	
+	public void registrationFailed (Information info) {
 		
 	}
 }
