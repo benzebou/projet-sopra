@@ -69,4 +69,13 @@ public class FacadeView {
 	public void displayWorkplaces(ArrayList<String> listOfWorkplaces) {
 		
 	}
+	
+	public void erreurAddWorkplace () {
+		
+	}
+	
+	public void erreurDeletionWorkplace() {
+		
+	}
 }
+
