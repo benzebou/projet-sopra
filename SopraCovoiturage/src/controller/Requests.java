@@ -63,7 +63,7 @@ public class Requests {
 		
 		
 		public boolean connectionRequest (String nickname, String password) {
-			HashMap<String, String> map = new HashMap<String, String> () ;
+			HashMap<String, Object> map = new HashMap<String, Object> () ;
 			map.put("loginAdmin", nickname) ;
 			map.put("mdp", password) ;
 			if (connectionAdminRequest(map))
@@ -78,16 +78,16 @@ public class Requests {
 		}
 		
 		
-		private boolean connectionUserRequest (HashMap<String, String> map) {
+		private boolean connectionUserRequest (HashMap<String, Object> map) {
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.CONNECT_USER,map) ;
-			if (reponse.isSuccess()) 
-				return true ;
+			if (reponse.isSuccess()) {
+				return true ; }
 			else 
 				return false ;
 		}
 
-		private boolean connectionAdminRequest (HashMap<String, String> map) {
+		private boolean connectionAdminRequest (HashMap<String, Object> map) {
 			RequestReponses reponse = postRequest(RequestType.CONNECT_ADMIN,map) ;
 			if (reponse.isSuccess()) 
 				return true ;
@@ -97,7 +97,7 @@ public class Requests {
 		
 		
 		public boolean passwordForgottenRequest (String mail) {
-			HashMap<String,String> map = new HashMap<String,String>();
+			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("mail", mail);
 			RequestReponses reponse = postRequest(RequestType.PASSWORD_FORGOTTEN,map) ;
 			if (reponse.isSuccess()) 
@@ -107,8 +107,8 @@ public class Requests {
 		}
 		
 		
-		public boolean creationUserRequest (Information info) {
-			HashMap<String,String> map = new HashMap<String,String>();
+		public int creationUserRequest (Information info) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", info.getLogin()); 
 			map.put("mdp", info.getMdp());
 			map.put("mail", info.getEmail());
@@ -157,15 +157,15 @@ public class Requests {
 			
 			RequestReponses reponse = postRequest(RequestType.REGISTER,map) ;
 			if (reponse.isSuccess()) 
-				return true ;
+				return 0 ;
 			else 
-				return false ;
+				return reponse.getCode() ;
 			}
 		
 		
 		// pas de difference entre admin et user?
 		public boolean disconnectionRequest (String nickname, String password) {
-			HashMap<String, String> map = new HashMap<String, String> () ;
+			HashMap<String, Object> map = new HashMap<String, Object> () ;
 			map.put("login", nickname) ;
 			map.put("mdp", password) ;
 			RequestReponses reponse = null ;
@@ -179,21 +179,21 @@ public class Requests {
 		// renvoyer les infos ?
 		public Information getProfileInformationRequest(String nickname) {
 			// Obtenir les informations d'un profil : login (utilisateur à afficher)
-			HashMap<String,String> map = new HashMap<String,String>();
+			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", nickname);
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.GET_PROFILE_INFORMATIONS,map) ;
 			if (reponse.isSuccess()) {
 				Information info = new Information();
 				reponse.getData() ;
-				info.setLogin(reponse.getData().get("login"));
-				info.setEmail(reponse.getData().get("mail"));
-				info.setName(reponse.getData().get("nom"));
-				info.setFirstname(reponse.getData().get("prenom"));
-				info.setMdp(reponse.getData().get("mdp"));
-				info.setPhone(reponse.getData().get("tel"));
-				info.setWorkplace(reponse.getData().get("travail"));
-				info.setPostcode(reponse.getData().get("postal"));
+				info.setLogin((String)reponse.getData().get("login"));
+				info.setEmail((String)reponse.getData().get("mail"));
+				info.setName((String)reponse.getData().get("nom"));
+				info.setFirstname((String)reponse.getData().get("prenom"));
+				info.setMdp((String)reponse.getData().get("mdp"));
+				info.setPhone((String)reponse.getData().get("tel"));
+				info.setWorkplace((String)reponse.getData().get("travail"));
+				info.setPostcode((String)reponse.getData().get("postal"));
 				if (reponse.getData().get("conducteur") == "1")
 					info.setConducteur(true);
 				else
@@ -234,8 +234,8 @@ public class Requests {
 		}
 		
 		
-		public boolean profileModificationRequest (Information info) {
-			HashMap<String,String> map = new HashMap<String,String>();
+		public int profileModificationRequest (Information info) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", info.getLogin()); 
 			map.put("mdp", info.getMdp());
 			map.put("mail", info.getEmail());
@@ -285,15 +285,15 @@ public class Requests {
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.MODIFY_PROFILE,map) ;
 			if (reponse.isSuccess()) {
-				return true;
+				return 0 ;
 			}
 			else 
-				return false ;	
+				return reponse.getCode() ;	
 		}
 		
 		
 		public boolean removeProfileRequest (String nickname) {
-			HashMap<String,String> map = new HashMap<String,String>();
+			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", nickname);
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.REMOVE_PROFILE,map) ;
@@ -304,50 +304,86 @@ public class Requests {
 				return false ;
 		}
 
-		// List de ride?
+		
 		public ArrayList<Ride> ridesRequest (String postCode, String workplace) {
-			HashMap<String,String> map = new HashMap<String,String>();
+			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("postal", postCode);
 			map.put("bureau", workplace) ;
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.SEARCH_RIDE,map) ;
 			if (reponse.isSuccess()) {
 				ArrayList<Ride> rideList = new ArrayList<Ride> () ;
+
 				// parcours de la HashMap
-				//rideList.add(reponse.getData().get()) ;
+				for (Entry<String, Object> entry : reponse.getData().entrySet()) {
+					LinkedHashMap nMapReponse = (LinkedHashMap) entry.getValue() ;
+					Ride nride = new Ride () ;
+					nride.setDepart((String)nMapReponse.get("postal"));
+					nride.setArrivee((String)nMapReponse.get("travail"));
+					nride.setHeureDepart((String)nMapReponse.get("horairesMatin"));
+					if (nMapReponse.get("conducteur") == "1")
+						nride.getUserList().put((String)nMapReponse.get("login"), true) ;
+					else 
+						nride.getUserList().put((String)nMapReponse.get("login"), false) ;
+					rideList.add(nride) ;
+				}
+				
 				return rideList ;
 			}
 			else
 				return null ;
 		}
 		
-		// Rechercher les trajets : code postal + lieu de travail (l'un ou l'autre ou les deux)
-		//HashMap<String,String> connectionParameters9 = new HashMap<String,String>();
-		//connectionParameters9.put("postal", "31400");
-		//connectionParameters9.put("travail", "3");
-		//System.out.println("/***** Requête 9 : Suppression d'un profil *****/");
-		//System.out.println(postRequest(requestType.SEARCH_RIDE,connectionParameters9));
+
+		public boolean addWorkplaceRequest(String workplace) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("bureau", workplace);
+			RequestReponses reponse = postRequest(RequestType.ADD_WORKPLACE,map) ;
+			if (reponse.isSuccess()) {
+				return true;
+			}
+			else 
+				return false ;
+		}
+		
+		public boolean deletionWorkplaceRequest (String workplace) {			
+			RequestReponses reponseBefore = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
+			// parcours de la HashMap
+			String id = null ;
+			for (Entry<String, Object> entry : reponseBefore.getData().entrySet()) {
+				String MapReponse = (String) entry.getValue() ;
+				if (MapReponse.equals(workplace)) {
+					id = entry.getKey() ;
+					break ;
+				}
+			}	
+			if (id != null) {
+				HashMap<String,Object> map = new HashMap<String,Object>();
+				map.put("idBureau", id);
+				RequestReponses reponseAfter = postRequest(RequestType.DELETE_WORKPLACE,map) ;
+				if (reponseAfter.isSuccess()) {
+					return true;
+				}
+				else 
+					return false ;
+			}
+			else return false ;
+		}
+		
+		public ArrayList<String> getWorkplacesRequest() {
+			RequestReponses reponse = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
+			ArrayList<String> workplaces = new ArrayList<String>() ;
+			// parcours de la HashMap
+			for (Entry<String, Object> entry : reponse.getData().entrySet()) {
+				String MapReponse = (String) entry.getValue() ;
+				workplaces.add(MapReponse) ;
+			}
+			return workplaces ;
+		}
 		
 		public static void main(String[] args) throws IOException, requestException {	
 
 		
-			// Ajouter un lieu de travail : nom du bureau
-			//HashMap<String,String> connectionParameters10 = new HashMap<String,String>();
-			//connectionParameters10.put("bureau", "bureau4");
-			//System.out.println("/***** Requête 10 : Ajouter un lieu de travail *****/");
-			//System.out.println(postRequest(requestType.ADD_WORKPLACE,connectionParameters10));
-			
-			// Recuperation des lieux de travail
-			//System.out.println("/***** Requête 11 : Recuperation des lieux de travail *****/");
-			//String s = postRequest(requestType.GET_LIST_WORKPLACE,null);
-			//System.out.println(s);
-			
-			// Suppression d'un lieu de travail : nom du bureau
-			//HashMap<String,String> connectionParameters12 = new HashMap<String,String>();
-			//connectionParameters12.put("idBureau", "4");
-			//System.out.println("/***** Requête 12 : Suppression d'un lieu de travail *****/");
-			//System.out.println(postRequest(requestType.DELETE_WORKPLACE,connectionParameters12));
-			
 			// Ajouter une commune : code + commune
 			//HashMap<String,String> connectionParameters13 = new HashMap<String,String>();
 			//connectionParameters13.put("code", "25000");
@@ -355,30 +391,24 @@ public class Requests {
 			//System.out.println("/***** Requête 13 : Ajouter une commune *****/");
 			//System.out.println(postRequest(requestType.ADD_TOWN,connectionParameters13));
 			
-			// Recuperation des codes postaux (avec chaque commune respective)
-			System.out.println("/***** Requête 14 : Recuperation des lieux de travail *****/");
-			RequestReponses response = postRequest(RequestType.GET_LIST_TOWN,null);
-			System.out.println(response.toString());
-			
 			//Suppression d'une commune : code 
 			//HashMap<String,String> connectionParameters15 = new HashMap<String,String>();
 			//connectionParameters15.put("code", "25000");
 			//System.out.println("/***** Requête 15 : Suppression d'une commune *****/");
 			//System.out.println(postRequest(requestType.DELETE_TOWN,connectionParameters15));
 			
-			
 		}
 		
-		private static String getRequestParameters(RequestType typeOfRequest, HashMap<String,String> parameters){
+		private static String getRequestParameters(RequestType typeOfRequest, HashMap<String, Object> map){
 			String urlParameters = "request=" + typeOfRequest.toString().toLowerCase();
-			if (parameters != null){
+			if (map != null){
 				
 				// We fetch parameters in an iterator
-				Iterator<Entry<String, String>> it = parameters.entrySet().iterator();
+				Iterator<Entry<String, Object>> it = map.entrySet().iterator();
 				
 				// We add parameters
 				while(it.hasNext()){
-					Entry<String,String> couple = it.next();
+					Entry<String,Object> couple = it.next();
 					urlParameters += "&" + couple.getKey() + "=" + couple.getValue();
 				}
 			}
@@ -386,7 +416,7 @@ public class Requests {
 		}
 		
 		@SuppressWarnings("unchecked")
-		private static HashMap<String,String> jsonToMap(String json){
+		private static Map<String,Object> jsonToMap(String json){
 			JSONParser parser = new JSONParser();
 			  ContainerFactory containerFactory = new ContainerFactory(){
 			    public List<String> creatArrayContainer() {
@@ -398,31 +428,33 @@ public class Requests {
 			    }
 			                        
 			  };
-			    Map<String,String> result = null;            
+			    Map<String,Object> result = null;
+			    
 			  try{
 				  Object obj = parser.parse(json, containerFactory);
 				  if (obj instanceof LinkedList){
-					  LinkedList<LinkedHashMap<String,String>> list = (LinkedList<LinkedHashMap<String,String>>)obj;
-					  result = new HashMap<String,String>();
+					  
+					  LinkedList<LinkedHashMap<String,Object>> list = (LinkedList<LinkedHashMap<String,Object>>)obj;
+					  result = new HashMap<String,Object>();
 					  for (int i = 0; i < list.size(); i++){
-						  LinkedHashMap<String,String> lhm = list.get(i);
-						  Iterator<Entry<String, String>> it = lhm.entrySet().iterator();
-						  Entry<String, String> entry = it.next();
-						  String id = entry.getValue();
+						  LinkedHashMap<String,Object> lhm = list.get(i);
+						  Iterator<Entry<String, Object>> it = lhm.entrySet().iterator();
+						  Entry<String, Object> entry = it.next();
+						  String id = (String)entry.getValue();
 						  entry = it.next();
-						  String value = entry.getValue();
+						  Object value = entry.getValue();
 						  result.put(id, value);
 					  }
 				  }
 				  else
 				  {
-					  result = (Map<String,String>)obj;
+					  result = (Map<String,Object>)obj;
 				  }
 			  }
 			  catch(ParseException pe){
-			    System.out.println("Erreur lors du decodage du format JSON : "+pe);
+			    System.out.println("Erreur lors du decodage du format JSON : "+pe+", veuillez vérifier le message reçu par l'application dans la méthode postRequest avant de transformer la réponse JSON en classe");
 			  }
-			  return (HashMap<String,String>)result;
+			  return (Map<String,Object>)result;
 		}
 		
 		/**
@@ -431,8 +463,8 @@ public class Requests {
 		 * @param urlParameters
 		 * @return the response in the JSON format
 		 */
-		public static RequestReponses postRequest(RequestType typeOfRequest, HashMap<String,String> parameters) {
-		    String urlParameters = getRequestParameters(typeOfRequest,parameters);
+		public static RequestReponses postRequest(RequestType typeOfRequest, HashMap<String, Object> map) {
+		    String urlParameters = getRequestParameters(typeOfRequest,map);
 			URL url;
 			HttpURLConnection connection = null; 
 		     
@@ -512,5 +544,6 @@ public class Requests {
 		      }
 		    }
 		}
+
 		
 	}

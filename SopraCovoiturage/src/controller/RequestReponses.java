@@ -7,12 +7,15 @@ public class RequestReponses {
 
 		private int code;
 		private boolean success;
-		private Map<String,String> data;
+		private Map<String,Object> data;
 		
-		public RequestReponses(int code, boolean success, HashMap<String,String> data){
+		public RequestReponses(int code, boolean success, Map<String, Object> map){
 			this.code = code;
 			this.success = success;
-			this.data = data;
+			if (map == null)
+				this.data = new HashMap<String,Object>();
+			else 
+				this.data = map ;
 		}
 
 		public int getCode() {
@@ -23,7 +26,7 @@ public class RequestReponses {
 			return success;
 		}
 
-		public Map<String, String> getData() {
+		public Map<String, Object> getData() {
 			return data;
 		}
 		
