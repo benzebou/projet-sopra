@@ -207,7 +207,7 @@ public class ControllerFacade {
 		//con.getProfileInformation("user1");
 		//con.performRides("31400", "3"); // fonctionne avec un ride en tout cas / a tester avec plus
 		//con.addWorkplace("bureau3"); // fonctionne
-		con.deletionWorkplace("bureau3");
+		con.deletionWorkplace("bureau3"); // fonctionne
 	}
 
 
