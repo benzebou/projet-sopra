@@ -1,9 +1,12 @@
 package controller;
 
 
+import java.util.ArrayList;
+
 import com.sopra.covoiturage.FacadeView;
 
 import modele.Information;
+import modele.Ride;
 
 public class ControllerFacade {
 
@@ -54,15 +57,31 @@ public class ControllerFacade {
 	}
 	
 	public void performProfileModification (Information info) {
-		
+		boolean requete =requests.profileModificationRequest(info) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Suppression user : réussite !\n") ;
+		}
+		else 
+			System.out.println("CONTROLLER_FACADE : Suppression user : échec !\n") ;
 	}
 	
-	public void performDeletion () {
-		
+	public void performDeletion (String nickname) {
+		boolean requete =requests.removeProfileRequest(nickname) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Suppression user : réussite !\n") ;
+		}
+		else 
+			System.out.println("CONTROLLER_FACADE : Suppression user : échec !\n") ;
 	}
 	
-	public void performRides (int postcode, String workplace) {
-		
+	public ArrayList<Ride> performRides (String postcode, String workplace) {
+		ArrayList<Ride> requete =requests.ridesRequest(postcode, workplace) ;
+		if (requete != null) {
+			System.out.println("CONTROLLER_FACADE : Rides : réussite !\n") ;
+		}
+		else 
+			System.out.println("CONTROLLER_FACADE : Rides : échec !\n") ;
+		return requete;
 	}
 	
 	public void performRegister (Information info) {
@@ -74,7 +93,13 @@ public class ControllerFacade {
 			System.out.println("CONTROLLER_FACADE : Creation user : échec !\n") ;
 	}
 	
-	public void processUserDisconnected() { 	
+	public void processUserDisconnected(String nickname, String password) { 	
+		boolean requete =requests.disconnectionRequest(nickname, password) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Disconnection user : réussite !\n") ;
+		}
+		else 
+			System.out.println("CONTROLLER_FACADE : Disconnection user : échec !\n") ;
 	}
 	
 	public void changeActivityReport () {
@@ -87,16 +112,16 @@ public class ControllerFacade {
 	
 	 
 	public Information getProfileInformation (String nickname) {
-		Information requete =requests.getProfileInformation(nickname) ;
+		Information requete =requests.getProfileInformationRequest(nickname) ;
 		if (requete!= null) {
 			System.out.println("CONTROLLER_FACADE : getProfileInformation : réussite !\n") ;
+			System.out.println(requete) ;
 			return requete ; 
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : getProfileInformation : échec !\n") ;
 			return null;
 		}
-
 	}
 	
 	public static void main (String argv[]) {	
@@ -110,5 +135,6 @@ public class ControllerFacade {
 		//con.performRegister(info); //fonctionne
 		//con.performDisconnect("user1", "test") ; // fonctionne
 		con.getProfileInformation("user1");
+		con.performRides("31400", "3");
 	}
 }

@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.ResponseCache;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -16,6 +18,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import modele.Information;
+import modele.Ride;
 
 import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.JSONParser;
@@ -159,6 +162,8 @@ public class Requests {
 				return false ;
 			}
 		
+		
+		// pas de difference entre admin et user?
 		public boolean disconnectionRequest (String nickname, String password) {
 			HashMap<String, String> map = new HashMap<String, String> () ;
 			map.put("login", nickname) ;
@@ -172,7 +177,7 @@ public class Requests {
 		}
 		
 		// renvoyer les infos ?
-		public Information getProfileInformation(String nickname) {
+		public Information getProfileInformationRequest(String nickname) {
 			// Obtenir les informations d'un profil : login (utilisateur à afficher)
 			HashMap<String,String> map = new HashMap<String,String>();
 			map.put("login", nickname);
@@ -180,60 +185,152 @@ public class Requests {
 			reponse = postRequest(RequestType.GET_PROFILE_INFORMATIONS,map) ;
 			if (reponse.isSuccess()) {
 				Information info = new Information();
-				// TODO : recuperer les infos
+				reponse.getData() ;
+				info.setLogin(reponse.getData().get("login"));
+				info.setEmail(reponse.getData().get("mail"));
+				info.setName(reponse.getData().get("nom"));
+				info.setFirstname(reponse.getData().get("prenom"));
+				info.setMdp(reponse.getData().get("mdp"));
+				info.setPhone(reponse.getData().get("tel"));
+				info.setWorkplace(reponse.getData().get("travail"));
+				info.setPostcode(reponse.getData().get("postal"));
+				if (reponse.getData().get("conducteur") == "1")
+					info.setConducteur(true);
+				else
+					info.setConducteur(false);
+				if (reponse.getData().get("lundi") == "1")
+					info.getDays()[0] = true ;
+				else
+					info.getDays()[0] = false ;
+				if (reponse.getData().get("mardi") == "1")
+					info.getDays()[1] = true ;
+				else
+					info.getDays()[1] = false ;
+				if (reponse.getData().get("mercredi") == "1")
+					info.getDays()[2] = true ;
+				else
+					info.getDays()[2] = false ;
+				if (reponse.getData().get("jeudi") == "1")
+					info.getDays()[3] = true ;
+				else
+					info.getDays()[3] = false ;
+				if (reponse.getData().get("vendredi") == "1")
+					info.getDays()[4] = true ;
+				else
+					info.getDays()[4] = false ;
+				if (reponse.getData().get("samedi") == "1")
+					info.getDays()[5] = true ;
+				else
+					info.getDays()[5] = false ;
+				if (reponse.getData().get("dimanche") == "1")
+					info.getDays()[6] = true ;
+				else
+					info.getDays()[6] = false ;
+				
 				return info;
 			}
 			else 
 				return null ;		
 		}
+		
+		
+		public boolean profileModificationRequest (Information info) {
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("login", info.getLogin()); 
+			map.put("mdp", info.getMdp());
+			map.put("mail", info.getEmail());
+			map.put("nom", info.getName());
+			map.put("prenom", info.getFirstname());
+			map.put("tel", info.getPhone());
+			map.put("postal", info.getPostcode());
+			map.put("travail", info.getWorkplace());
+			// TODO A MODIFIER
+			map.put("horairesMatin", "09:30");
+			map.put("horairesSoir", "10:10");
 			
-		public static void main(String[] args) throws IOException, requestException {
+			if (info.getDays()[0]) 
+				map.put("lundi", "1");
+			else
+				map.put("lundi", "0");
+			if (info.getDays()[1]) 
+				map.put("mardi", "1");
+			else 
+				map.put("mardi", "0");
+			if (info.getDays()[2]) 
+				map.put("mercredi", "1");
+			else 
+				map.put("mercredi", "0");
+			if (info.getDays()[3]) 
+				map.put("jeudi", "1");
+			else 
+				map.put("jeudi", "0");
+			if (info.getDays()[4]) 
+				map.put("vendredi", "1");
+			else 
+				map.put("vendredi", "0");
+			if (info.getDays()[5]) 
+				map.put("samedi", "1");
+			else 
+				map.put("samedi", "0");
+			if (info.getDays()[6]) 
+				map.put("dimanche", "1");
+			else 
+				map.put("dimanche", "0");
 			
+			if (info.isConducteur()) 
+				map.put("conducteur", "1");
+			else 
+				map.put("conducteur", "0");
+			
+			RequestReponses reponse = null ;
+			reponse = postRequest(RequestType.MODIFY_PROFILE,map) ;
+			if (reponse.isSuccess()) {
+				return true;
+			}
+			else 
+				return false ;	
+		}
+		
+		
+		public boolean removeProfileRequest (String nickname) {
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("login", nickname);
+			RequestReponses reponse = null ;
+			reponse = postRequest(RequestType.REMOVE_PROFILE,map) ;
+			if (reponse.isSuccess()) {
+				return true;
+			}
+			else 
+				return false ;
+		}
 
-			
-			
-			// Obtenir les informations d'un profil : login (utilisateur à afficher)
-			//HashMap<String,String> connectionParameters6 = new HashMap<String,String>();
-			//connectionParameters6.put("login", "user2");
-			//System.out.println("/***** Requête 6 : Obtenir les informations d'un profil *****/");
-			//System.out.println(postRequest(requestType.GET_PROFILE_INFORMATIONS,connectionParameters6));
-			
-			// Modifier les informations d'un profil
-			/*HashMap<String,String> connectionParameters7 = new HashMap<String,String>();
-			connectionParameters7.put("login", "user2");
-			connectionParameters7.put("mdp", "test");
-			connectionParameters7.put("mail", "azerty@test.fr");
-			connectionParameters7.put("nom", "a");
-			connectionParameters7.put("prenom", "b");
-			connectionParameters7.put("tel", "");
-			connectionParameters7.put("postal", "31400");
-			connectionParameters7.put("travail", "1");
-			connectionParameters7.put("horairesMatin", "09:30");
-			connectionParameters7.put("horairesSoir", "10:10");
-			connectionParameters7.put("lundi", "1");
-			connectionParameters7.put("mardi", "0");
-			connectionParameters7.put("mercredi", "0");
-			connectionParameters7.put("jeudi", "0");
-			connectionParameters7.put("vendredi", "0");
-			connectionParameters7.put("samedi", "1");
-			connectionParameters7.put("dimanche", "1");
-			connectionParameters7.put("conducteur", "0");*/
-			//System.out.println("/***** Requête 7 : Modifier les informations d'un profil *****/");
-			//System.out.println(postRequest(requestType.MODIFY_PROFILE,connectionParameters7));
-			
-			// Supprimer un profil : login (utilisateur à supprimer)
-			//HashMap<String,String> connectionParameters8 = new HashMap<String,String>();
-			//connectionParameters8.put("login", "user2");
-			//System.out.println("/***** Requête 8 : Suppression d'un profil *****/");
-			//System.out.println(postRequest(requestType.REMOVE_PROFILE,connectionParameters8));
+		// List de ride?
+		public ArrayList<Ride> ridesRequest (String postCode, String workplace) {
+			HashMap<String,String> map = new HashMap<String,String>();
+			map.put("postal", postCode);
+			map.put("bureau", workplace) ;
+			RequestReponses reponse = null ;
+			reponse = postRequest(RequestType.SEARCH_RIDE,map) ;
+			if (reponse.isSuccess()) {
+				ArrayList<Ride> rideList = new ArrayList<Ride> () ;
+				// parcours de la HashMap
+				//rideList.add(reponse.getData().get()) ;
+				return rideList ;
+			}
+			else
+				return null ;
+		}
+		
+		// Rechercher les trajets : code postal + lieu de travail (l'un ou l'autre ou les deux)
+		//HashMap<String,String> connectionParameters9 = new HashMap<String,String>();
+		//connectionParameters9.put("postal", "31400");
+		//connectionParameters9.put("travail", "3");
+		//System.out.println("/***** Requête 9 : Suppression d'un profil *****/");
+		//System.out.println(postRequest(requestType.SEARCH_RIDE,connectionParameters9));
+		
+		public static void main(String[] args) throws IOException, requestException {	
 
-			// Rechercher les trajets : code postal + lieu de travail (l'un ou l'autre ou les deux)
-			//HashMap<String,String> connectionParameters9 = new HashMap<String,String>();
-			//connectionParameters9.put("postal", "31400");
-			//connectionParameters9.put("travail", "3");
-			//System.out.println("/***** Requête 9 : Suppression d'un profil *****/");
-			//System.out.println(postRequest(requestType.SEARCH_RIDE,connectionParameters9));
-			
+		
 			// Ajouter un lieu de travail : nom du bureau
 			//HashMap<String,String> connectionParameters10 = new HashMap<String,String>();
 			//connectionParameters10.put("bureau", "bureau4");
