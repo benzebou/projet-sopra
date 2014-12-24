@@ -2,11 +2,9 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.ResponseCache;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,7 +48,7 @@ public class Requests {
 		DELETE_TOWN : HashMap contenant les parametres (code) (exemple voir requete 1)
 		*
 		*
-		* La reponse est au format 
+		* La reponse est au format JSON
 		*
 		*
 		*
@@ -61,7 +59,12 @@ public class Requests {
 		
 		private static String cookie;
 		
-		
+		/**
+		 * Methode permettant la connexion d'un utilisateur au serveur 
+		 * @param nickname : login de l'utilisateur
+		 * @param password : mot de passe de l'utilisateur
+		 * @return boolean : true si la requete s'est bien executee, false sinon
+		 */
 		public boolean connectionRequest (String nickname, String password) {
 			HashMap<String, Object> map = new HashMap<String, Object> () ;
 			map.put("loginAdmin", nickname) ;
@@ -77,7 +80,12 @@ public class Requests {
 			}
 		}
 		
-		
+		/**
+		 * Methode appelee par "connectionRequest" si l'utilisateur n'est pas un admin
+		 * Methode permettant la connexion d'un utilisateur au serveur 
+		 * @param map
+		 * @return boolean : true si la requete s'est bien executee, false sinon
+		 */
 		private boolean connectionUserRequest (HashMap<String, Object> map) {
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.CONNECT_USER,map) ;
@@ -86,7 +94,13 @@ public class Requests {
 			else 
 				return false ;
 		}
-
+		
+		/**
+		 * Methode appelee par "connectionRequest" si l'utilisateur est un administrateur
+		 * Methode permettant la connexion d'un administrateur au serveur 
+		 * @param map
+		 * @return boolean : true si la requete s'est bien executee, false sinon
+		 */
 		private boolean connectionAdminRequest (HashMap<String, Object> map) {
 			RequestReponses reponse = postRequest(RequestType.CONNECT_ADMIN,map) ;
 			if (reponse.isSuccess()) 
@@ -95,7 +109,11 @@ public class Requests {
 				return false ;
 		}
 		
-		
+		/**
+		 * Methode permettant a un utilisateur de reinitialiser son mot de passe
+		 * @param mail : mail de l'utilisateur
+		 * @return boolean : true si la requete s'est bien executee, false sinon
+		 */
 		public boolean passwordForgottenRequest (String mail) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("mail", mail);
@@ -106,7 +124,11 @@ public class Requests {
 				return false ;
 		}
 		
-		
+		/**
+		 * methode permettant d'inscrire un nouvel utilisateur
+		 * @param info : informations du profil de l'utilisateur
+		 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
+		 */
 		public int creationUserRequest (Information info) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", info.getLogin()); 
@@ -162,6 +184,12 @@ public class Requests {
 				return reponse.getCode() ;
 			}
 		
+		/**
+		 * Methode permettant la deconnexion d'un utilisateur au serveur 
+		 * @param nickname : login de l'utilisateur
+		 * @param password : mot de passe de l'utilisateur
+		 * @return boolean : true si la requete s'est bien executee, false sinon
+		 */
 		public boolean disconnectionRequest (String nickname, String password) {
 			HashMap<String, Object> map = new HashMap<String, Object> () ;
 			map.put("login", nickname) ;
@@ -174,6 +202,11 @@ public class Requests {
 				return false ;
 		}
 		
+		/**
+		 * Methode permettant de renvoyer les informations sur l'utilisateur ayant pour login nickname 
+		 * @param nickname : login de l'utilisateur 
+		 * @return Informations : informations sur l'utilisateur 
+		 */
 		public Information getProfileInformationRequest(String nickname) {
 			// Obtenir les informations d'un profil : nickname (utilisateur à afficher)
 			HashMap<String,Object> map = new HashMap<String,Object>();
@@ -230,7 +263,11 @@ public class Requests {
 				return null ;		
 		}
 		
-		
+		/**
+		 * methode permettant de modifier le profil d'un utilisateur
+		 * @param info : informations sur l'utilisateur
+		 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
+		 */
 		public int profileModificationRequest (Information info) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", info.getLogin()); 
@@ -288,7 +325,11 @@ public class Requests {
 				return reponse.getCode() ;	
 		}
 		
-		
+		/**
+		 * Methode permettant de supprimer un utilisateur
+		 * @param nickname : login de l'utilisateur a supprimer
+		 * @return boolean : true si la requete s'est bien executee, false sinon
+		 */
 		public boolean removeProfileRequest (String nickname) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", nickname);
@@ -301,7 +342,11 @@ public class Requests {
 				return false ;
 		}
 
-		
+		/** Methode permettant de recuperer des trajets 
+		 * @param postCode : code postal du lieu de depart
+		 * @param workplace : lieu de travail (destination)
+		 * @return ArrayList<Ride> : liste des trajets
+		 */
 		public ArrayList<Ride> ridesRequest (String postCode, String workplace) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("postal", postCode);
@@ -331,7 +376,11 @@ public class Requests {
 				return null ;
 		}
 		
-
+		/**
+		 * Permet d'ajouter un lieu de travail
+		 * @param workplace : lieu de travail a ajouter
+		 * @return boolean : true si la requete s'est bien executee, false sinon
+		 */
 		public boolean addWorkplaceRequest(String workplace) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("bureau", workplace);
@@ -343,6 +392,11 @@ public class Requests {
 				return false ;
 		}
 		
+		/**
+		 * Methode permettant de supprimer un lieu de travail
+		 * @param workplace : lieu de travail a supprimer
+		 * @return boolean : true si la requete s'est bien executee, false sinon
+		 */
 		public boolean deletionWorkplaceRequest (String workplace) {			
 			RequestReponses reponseBefore = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
 			// parcours de la HashMap
@@ -367,6 +421,10 @@ public class Requests {
 			else return false ;
 		}
 		
+		/**
+		 * Methode permettant de renvoyer la liste des lieux de travail
+		 * @return ArrayList<String> : liste des lieux de travail
+		 */
 		public ArrayList<String> getWorkplacesRequest() {
 			RequestReponses reponse = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
 			ArrayList<String> workplaces = new ArrayList<String>() ;
@@ -378,10 +436,15 @@ public class Requests {
 			return workplaces ;
 		}
 		
-		// a tester
-		public boolean addTownRequest(String town, String code) {
+		/**
+		 * Permet d'ajouter une commune
+		 * @param town : nom de la commune a ajouter
+		 * @param postCode : code postal de la commune a ajouter
+		 * @return boolean : true si la requete s'est bien executee, false sinon
+		 */
+		public boolean addTownRequest(String town, String postCode) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
-			map.put("code", code);
+			map.put("code", postCode);
 			map.put("commune", town);
 			RequestReponses reponse = postRequest(RequestType.ADD_TOWN,map) ;
 			if (reponse.isSuccess()) {
@@ -391,14 +454,18 @@ public class Requests {
 				return false ;
 		}
 		
-		// a tester
-		public boolean deletionTownRequest(String code) {
+		/**
+		 * Methode permettant de supprimer une commune
+		 * @param postCode : code postal de la commune a supprimer
+		 * @return boolean : true si la requete s'est bien executee, false sinon
+		 */
+		public boolean deletionTownRequest(String postCode) {
 		RequestReponses reponseBefore = postRequest(RequestType.GET_LIST_TOWN,null) ;
 		// parcours de la HashMap
 		String id = null ;
 		for (Entry<String, Object> entry : reponseBefore.getData().entrySet()) {
 			String MapReponse = (String) entry.getValue() ;
-			if (MapReponse.equals(code)) {
+			if (MapReponse.equals(postCode)) {
 				id = entry.getKey() ;
 				break ;
 			}
@@ -414,12 +481,29 @@ public class Requests {
 				return false ;
 		}
 		else return false ;
-	}
-		
-		public static void main(String[] args) throws IOException, requestException {	
-
 		}
 		
+		/**
+		 * Methode permettant de renvoyer la liste des communes
+		 * @return ArrayList<String> : liste des communes
+		 */
+		public ArrayList<String> getTownListRequest() {
+			RequestReponses reponse = postRequest(RequestType.GET_LIST_TOWN,null) ;
+			ArrayList<String> townList = new ArrayList<String>() ;
+			// parcours de la HashMap
+			for (Entry<String, Object> entry : reponse.getData().entrySet()) {
+				String MapReponse = (String) entry.getValue() ;
+				townList.add(MapReponse) ;
+			}
+			return townList ;
+		}
+
+		/**
+		 * Methode permettant de recuperer les parametres d'une requete
+		 * @param typeOfRequest : type de la requete
+		 * @param map 
+		 * @return parametres de la requete sous format "parametres d'url"
+		 */
 		private static String getRequestParameters(RequestType typeOfRequest, HashMap<String, Object> map){
 			String urlParameters = "request=" + typeOfRequest.toString().toLowerCase();
 			if (map != null){
@@ -437,6 +521,11 @@ public class Requests {
 		}
 		
 		@SuppressWarnings("unchecked")
+		/**
+		 * Conversion de JSON vers MAP
+		 * @param json
+		 * @return Map<String,Object>
+		 */
 		private static Map<String,Object> jsonToMap(String json){
 			JSONParser parser = new JSONParser();
 			  ContainerFactory containerFactory = new ContainerFactory(){
@@ -479,7 +568,7 @@ public class Requests {
 		}
 		
 		/**
-		 * Unique fonction qui sera appellee
+		 * Unique fonction qui sera appellee : effectue une requete
 		 * @param typeOfRequest
 		 * @param urlParameters
 		 * @return the response in the JSON format
@@ -565,6 +654,8 @@ public class Requests {
 		      }
 		    }
 		}
+
+
 
 		
 	}

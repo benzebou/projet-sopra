@@ -1,5 +1,8 @@
 package controller;
 
+/**
+ * enum RequestType : liste des types de requetes possibles
+ */
 enum RequestType {
 		CONNECT_USER,
 		CONNECT_ADMIN,

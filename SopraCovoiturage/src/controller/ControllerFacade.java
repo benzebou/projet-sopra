@@ -71,7 +71,10 @@ public class ControllerFacade {
 		}
 	}
 	
-	
+	/**
+	 * Methode permettant a un utilisateur de reinitialiser son mot de passe
+	 * @param mail : mail de l'utilisateur
+	 */
 	public void passwordForgotten (String mail)  {
 		boolean requete =requests.passwordForgottenRequest(mail) ;
 		if (requete) {
@@ -84,6 +87,11 @@ public class ControllerFacade {
 		}
 	}
 	
+	/**
+	 * Methode permettant la deconnexion d'un utilisateur au serveur 
+	 * @param nickname : login de l'utilisateur
+	 * @param password : mot de passe de l'utilisateur
+	 */
 	public void performDisconnect (String nickname, String password) {
 		boolean requete =requests.disconnectionRequest(nickname, password) ;
 		if (requete) {
@@ -96,6 +104,10 @@ public class ControllerFacade {
 		}
 	}
 	
+	/**
+	 * methode permettant de modifier le profil d'un utilisateur
+	 * @param info : informations sur l'utilisateur
+	 */
 	public void performProfileModification (Information info) {
 		int requete =requests.profileModificationRequest(info) ;
 		if (requete == 0) {
@@ -108,6 +120,11 @@ public class ControllerFacade {
 		}
 	}
 	
+	/**
+	 * Methode utilisee seulement par un administrateur
+	 * Permet de supprimer un utilisateur
+	 * @param nickname : login de l'utilisateur a supprimer
+	 */
 	public void performDeletion (String nickname) {
 		boolean requete =requests.removeProfileRequest(nickname) ;
 		if (requete) {
@@ -120,6 +137,11 @@ public class ControllerFacade {
 		}
 	}
 	
+	/**
+	 * Methode permettant de recuperer des trajets 
+	 * @param postcode : code postal du lieu de depart
+	 * @param workplace : lieu de travail (destination)
+	 */
 	public void performRides (String postcode, String workplace) {
 		ArrayList<Ride> requete =requests.ridesRequest(postcode, workplace) ;
 		if (requete != null) {
@@ -132,6 +154,10 @@ public class ControllerFacade {
 		facadeView.processRides(requete);
 	}
 	
+	/**
+	 * methode permettant d'inscrire un nouvel utilisateur
+	 * @param info : informations du profil de l'utilisateur
+	 */
 	public void performRegister (Information info) {
 		int requete =requests.creationUserRequest(info) ;
 		if (requete == 0) {
@@ -153,7 +179,11 @@ public class ControllerFacade {
 		
 	}
 	
-	 
+	/**
+	 * Methode permettant de renvoyer les informations sur l'utilisateur ayant pour login nickname 
+	 * @param nickname : login de l'utilisateur 
+	 * @return Informations : informations sur l'utilisateur 
+	 */
 	public Information getProfileInformation (String nickname) {
 		Information requete =requests.getProfileInformationRequest(nickname) ;
 		if (requete!= null) {
@@ -167,6 +197,11 @@ public class ControllerFacade {
 		}
 	}
 	
+	/**
+	 * Methode utilisee seulement par un administrateur
+	 * Permet d'ajouter un lieu de travail
+	 * @param workplace : lieu de travail a ajouter
+	 */
 	public void addWorkplace (String workplace) {
 		boolean requete =requests.addWorkplaceRequest(workplace) ;
 		if (requete) {
@@ -180,6 +215,11 @@ public class ControllerFacade {
 		}	
 	}
 	
+	/**
+	 * Methode utilisee seulement par un administrateur
+	 * Permet de supprimer un lieu de travail
+	 * @param workplace : lieu de travail a supprimer
+	 */
 	public void deletionWorkplace (String workplace) {
 		boolean requete =requests.deletionWorkplaceRequest(workplace) ;
 		if (requete) {
@@ -193,9 +233,60 @@ public class ControllerFacade {
 		}		
 	}
 	
+	/**
+	 * Methode permettant de renvoyer la liste des lieux de travail
+	 * @return ArrayList<String> : liste des lieux de travail
+	 */
 	public ArrayList<String> getWorkplacesRequest() {
 		return requests.getWorkplacesRequest() ;
 	}
+	
+	/**
+	 * Methode utilisee seulement par un administrateur
+	 * Permet d'ajouter une commune
+	 * @param town : nom de la commune a ajouter
+	 * @param code : code postal de la commune a ajouter
+	 */
+	public void addTown (String town, String code) {
+		boolean requete =requests.addTownRequest(town, code) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Addition town : réussite !\n") ;
+			ArrayList<String> townList = requests.getTownListRequest() ;
+			facadeView.displayTownList(townList);
+		}
+		else { 
+			System.out.println("CONTROLLER_FACADE : Addition town : échec !\n") ;
+			facadeView.erreurAddTown();
+		}	
+	}
+	
+	
+	/**
+	 * Methode utilisee seulement par un administrateur
+	 * Permet de supprimer une commune
+	 * @param code : code postal de la commune a supprimer
+	 */
+	public void deletionTown (String code) {
+		boolean requete =requests.deletionTownRequest(code) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Deletion town : réussite !\n") ;
+			ArrayList<String> townList = requests.getTownListRequest() ;
+			facadeView.displayTownList(townList);
+		}
+		else { 
+			System.out.println("CONTROLLER_FACADE : Deletion town : échec !\n") ;
+			facadeView.erreurAddTown();
+		}		
+	}
+	
+	/**
+	 * Methode permettant de renvoyer la liste des communes
+	 * @return ArrayList<String> : liste des communes
+	 */
+	public ArrayList<String> getTownListRequest() {
+		return requests.getTownListRequest() ;
+	}
+
 	
 	public static void main (String argv[]) {	
 		ControllerFacade con = null ;
@@ -211,7 +302,9 @@ public class ControllerFacade {
 		//con.getProfileInformation("user1");
 		//con.performRides("31400", "3"); // fonctionne avec un ride en tout cas / a tester avec plus
 		//con.addWorkplace("bureau3"); // fonctionne
-		con.deletionWorkplace("bureau3"); // fonctionne
+		//con.deletionWorkplace("bureau3"); // fonctionne
+		//con.addTown("Foix", "09000"); // fonctionne
+		//con.deletionTown("9000");
 	}
 
 

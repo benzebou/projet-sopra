@@ -77,5 +77,13 @@ public class FacadeView {
 	public void erreurDeletionWorkplace() {
 		
 	}
+
+	public void displayTownList(ArrayList<String> townList) {
+
+	}
+
+	public void erreurAddTown() {
+
+	}
 }
 
