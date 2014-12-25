@@ -26,6 +26,7 @@ public class Information {
 	private boolean conducteur ;
 
 	public Information() {
+		schedule = new String[2] ;
 		days = new Boolean[7] ;
 	}
 	
