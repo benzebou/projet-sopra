@@ -14,52 +14,74 @@ public class RideActivity extends Activity{
 	
 	//private FacadeView facade;
 	private EditText DepartText;
-	private Spinner spinner;
+	private Spinner workplace;
 	private FacadeView fac;
-	private boolean conducteur;
+	private Spinner conducteur;
+	private ArrayList<String> rides;
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ride_page);
 		
-		Spinner spinner = new Spinner(this);
-		spinner = (Spinner) findViewById(R.id.Arrivee);
-	    List<String> list = new ArrayList<String>();
+		// Initialisation spinner workplace
+		this.workplace = new Spinner(this);
+		this.workplace = (Spinner) findViewById(R.id.Arrivee);
+	    List<String> listW = new ArrayList<String>();
 	    // getWorkplace from the database
-	    list.add("Workplace1");
-	    list.add("Workplace2");
-	    list.add("Workplace3");
-	    list.add("Workplace4");
-	    list.add("Workplace5");
-	    list.add("Workplace6");
+	    listW.add("Workplace1");
+	    listW.add("Workplace2");
+	    listW.add("Workplace3");
+	    listW.add("Workplace4");
+	    listW.add("Workplace5");
+	    listW.add("Workplace6");
 	    
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
-         
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-         
-		spinner.setAdapter(dataAdapter);
-		
-		ArrayList<String> rides = getBasicRide();
+        ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listW);
+        dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		workplace.setAdapter(dataAdapterW);
 		
 		
+		// Initialisation spinner conducteur
+	    this.conducteur = new Spinner(this);
+		this.conducteur = (Spinner) findViewById(R.id.Conducteur);
+	    List<String> listC = new ArrayList<String>();
+	    listC.add("les deux");
+	    listC.add("conducteur");
+	    listC.add("non conducteur");
+
+        ArrayAdapter<String> dataAdapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listC);
+        dataAdapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		this.conducteur.setAdapter(dataAdapterC);
+		
+		
+		// Initialise le tableau de trajet
+		displayBasicRide();
+
 	}
 	
-	
-	public void onCheckboxClicked(View view) {
-		conducteur = ! conducteur;
-	}
-	
-	
+
 	public void onClickSearch(View v) {
-		spinner = (Spinner) findViewById(R.id.Arrivee);
-		DepartText = (EditText) findViewById(R.id.Depart);
+		this.workplace = (Spinner) findViewById(R.id.Arrivee);
+		this.DepartText = (EditText) findViewById(R.id.Depart);
+		
+	}
+	
+	public void onClickConducteur(View v) {
+		this.conducteur = (Spinner) findViewById(R.id.Conducteur);
+		Object selection = this.conducteur.getSelectedItem();
+		displayRide((String) selection);
 		
 	}
 	
 	
-	public ArrayList<String> getBasicRide() {
-		return null;//fac.performRides(/*User.Postcode, User.workplace*/);
+	public void displayBasicRide() {
+		//this.rides = fac.performRides(/*User.Postcode, User.workplace*/);
+		//displayRide("both");
+	}
+	
+	
+	public void displayRide(String conducteur) {
+		
 	}
 	
 	

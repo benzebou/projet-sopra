@@ -25,8 +25,9 @@
 		<EditText
 	        android:id="@+id/Depart"
 	        android:inputType="text"        
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"/>
+	        android:layout_width="75sp"
+	        android:layout_height="wrap_content"
+	        android:maxLength="5"/>
 		<TextView
 		    android:text="Arrivee"
 		    android:layout_width="wrap_content"
@@ -52,12 +53,10 @@
     
     
     
-    <CheckBox android:id="@+id/Conducteur"
+    <Spinner android:id="@+id/Conducteur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Conducteur"
-        android:textSize="15sp"
-        android:onClick="onCheckboxClicked"/>
+        android:onClick="onClickConducteur"/>
 
     <TextView
 		android:text="Trajets Correspondants :"
