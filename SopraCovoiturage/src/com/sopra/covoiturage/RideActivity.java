@@ -3,6 +3,8 @@ package com.sopra.covoiturage;
 import java.util.ArrayList;
 import java.util.List;
 
+import modele.*;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +19,8 @@ public class RideActivity extends Activity{
 	private Spinner workplace;
 	private FacadeView fac;
 	private Spinner conducteur;
-	private ArrayList<String> rides;
+	private ArrayList<Ride> rides;
+	private Information user;
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +78,13 @@ public class RideActivity extends Activity{
 	
 	
 	public void displayBasicRide() {
-		//this.rides = fac.performRides(/*User.Postcode, User.workplace*/);
+		//this.rides = fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
 		//displayRide("both");
 	}
 	
 	
 	public void displayRide(String conducteur) {
-		
+		// parcours la liste rides et affiche les trajets dont conducteur correspond
 	}
 	
 	
