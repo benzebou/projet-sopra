@@ -19,7 +19,7 @@ public class Information {
 	
 	private String workplace ;
 	
-	//private ArrayList<> schedule ; 
+	private String [] schedule ; 
 	
 	private Boolean[] days ;
 	
@@ -30,7 +30,7 @@ public class Information {
 	}
 	
 	public Information(String login, String mdp, String email, String name,
-			String firstname, String phone, String postcode, String workplace,
+			String firstname, String phone, String postcode, String workplace, String[] schedule,
 			Boolean[] days, boolean conducteur) {
 		super();
 		this.login = login;
@@ -41,6 +41,7 @@ public class Information {
 		this.phone = phone;
 		this.postcode = postcode;
 		this.workplace = workplace;
+		this.schedule = schedule ;
 		this.days = days;
 		this.conducteur = conducteur;
 	}
@@ -78,6 +79,14 @@ public class Information {
 		this.workplace = workplace;
 	}
 
+	public void setMorning (String morning) {
+		this.schedule[0] = morning ;
+	}
+	
+	public void setEvening (String evening) {
+		this.schedule[1] = evening ;
+	}
+	
 	public void setDays(Boolean[] days) {
 		this.days = days;
 	}
@@ -118,6 +127,14 @@ public class Information {
 		return workplace;
 	}
 
+	public String getMorning() {
+		return schedule[0] ;
+	}
+	
+	public String getEvening() {
+		return schedule[1] ;
+	}
+	
 	public Boolean[] getDays() {
 		return days;
 	}
@@ -128,7 +145,8 @@ public class Information {
 	
 	public String toString () {
 		return "Login: "+login+"\nMdp: "+mdp+"\nMail: "+email+"\nNom: "+name+"\nPrenom: "+firstname+
-				"\nTel: "+phone+"\nCodePostal: "+postcode+"\nTravail: "+workplace+"\nConducteur? : "
+				"\nTel: "+phone+"\nCodePostal: "+postcode+"\nTravail: "+workplace+"\nTime morning: "+schedule[0]
+						+"\nTime evening: "+schedule[1]+"\nConducteur? : "
 				+conducteur+"\nlundi? : "+days[0]+"\nmardi? : "+days[1]+"\nmercredi? : "+days[2]
 				+"\njeudi? : "+days[3]+"\nvendredi? : "+days[4]+"\nsamedi? : "+days[5]+"\ndimanche? : "+days[6];
 	}
