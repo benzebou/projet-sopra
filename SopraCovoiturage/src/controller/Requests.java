@@ -139,9 +139,8 @@ public class Requests {
 			map.put("tel", info.getPhone());
 			map.put("postal", info.getPostcode());
 			map.put("travail", info.getWorkplace());
-			// TODO A MODIFIER
-			map.put("horairesMatin", "09:30");
-			map.put("horairesSoir", "10:10");
+			map.put("horairesMatin", info.getMorning());
+			map.put("horairesSoir", info.getEvening());
 			
 			if (info.getDays()[0]) 
 				map.put("lundi", "1");
@@ -278,9 +277,8 @@ public class Requests {
 			map.put("tel", info.getPhone());
 			map.put("postal", info.getPostcode());
 			map.put("travail", info.getWorkplace());
-			// TODO A MODIFIER
-			map.put("horairesMatin", "09:30");
-			map.put("horairesSoir", "10:10");
+			map.put("horairesMatin", info.getMorning());
+			map.put("horairesSoir", info.getEvening());
 			
 			if (info.getDays()[0]) 
 				map.put("lundi", "1");
@@ -540,7 +538,7 @@ public class Requests {
 		 * @param json
 		 * @return Map<String,Object>
 		 */
-		private static Map<String,Object> jsonToMap(String json){
+		private static Map<String,Object> jsonToMap(String json) {
 			JSONParser parser = new JSONParser();
 			  ContainerFactory containerFactory = new ContainerFactory(){
 			    public List<String> creatArrayContainer() {

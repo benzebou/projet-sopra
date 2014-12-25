@@ -44,14 +44,7 @@ public class ControllerFacade {
 		return singleton ;
 	}
 	
-	/**
-	 * Getter de requests
-	 * @return requests
-	 */
-	private Requests getRequests() {
-		return requests ;
-	}
-	
+
 	/**
 	 * Methode permettant la connexion d'un utilisateur au serveur 
 	 * @param nickname : login de l'utilisateur
@@ -292,9 +285,10 @@ public class ControllerFacade {
 	public static void main (String argv[]) {	
 		ControllerFacade con = null ;
 		con = ControllerFacade.getInstance() ;
+		String [] schedule = new String[]{"10:30", "18:00"} ;
 		Boolean[] days = new Boolean[]{true,true,true,true,true,false,false};
 		Information info = new Information("user100", "1234", "user@monmail.fr", "smith",
-				"john", "0561665522", "31400", "3",
+				"john", "0561665522", "31400", "3", schedule,
 				days, true);
 		con.performConnect("admin1", "sopra") ; //fonctionne
 		//con.performConnect("user1", "test") ; //fonctionne
@@ -307,8 +301,4 @@ public class ControllerFacade {
 		//con.addTown("Foix", "09000"); // fonctionne
 		//con.deletionTown("9000");
 	}
-
-
-	
-
 }
