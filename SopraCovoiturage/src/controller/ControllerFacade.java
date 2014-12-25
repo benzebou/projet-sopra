@@ -2,9 +2,7 @@ package controller;
 
 
 import java.util.ArrayList;
-
 import com.sopra.covoiturage.FacadeView;
-
 import modele.Information;
 import modele.Ride;
 
@@ -146,7 +144,10 @@ public class ControllerFacade {
 		ArrayList<Ride> requete =requests.ridesRequest(postcode, workplace) ;
 		if (requete != null) {
 			System.out.println("CONTROLLER_FACADE : Rides : réussite !\n") ;
-			System.out.println(requete.get(0)) ;
+			for (int i=0; i<requete.size(); i++) {
+				System.out.println(requete.get(i)+"\n") ;
+			}
+			
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Rides : échec !\n") ;
@@ -237,7 +238,7 @@ public class ControllerFacade {
 	 * Methode permettant de renvoyer la liste des lieux de travail
 	 * @return ArrayList<String> : liste des lieux de travail
 	 */
-	public ArrayList<String> getWorkplacesRequest() {
+	public ArrayList<String> getWorkplaces() {
 		return requests.getWorkplacesRequest() ;
 	}
 	
@@ -283,7 +284,7 @@ public class ControllerFacade {
 	 * Methode permettant de renvoyer la liste des communes
 	 * @return ArrayList<String> : liste des communes
 	 */
-	public ArrayList<String> getTownListRequest() {
+	public ArrayList<String> getTownList() {
 		return requests.getTownListRequest() ;
 	}
 
@@ -293,14 +294,14 @@ public class ControllerFacade {
 		con = ControllerFacade.getInstance() ;
 		Boolean[] days = new Boolean[]{true,true,true,true,true,false,false};
 		Information info = new Information("user100", "1234", "user@monmail.fr", "smith",
-				"john", "0561665522", "31400", "1",
+				"john", "0561665522", "31400", "3",
 				days, true);
 		con.performConnect("admin1", "sopra") ; //fonctionne
 		//con.performConnect("user1", "test") ; //fonctionne
 		//con.performRegister(info); //fonctionne
 		//con.performDisconnect("user1", "test") ; // fonctionne
 		//con.getProfileInformation("user1");
-		//con.performRides("31400", "3"); // fonctionne avec un ride en tout cas / a tester avec plus
+		//con.performRides("31400", "3"); // fonctionne
 		//con.addWorkplace("bureau3"); // fonctionne
 		//con.deletionWorkplace("bureau3"); // fonctionne
 		//con.addTown("Foix", "09000"); // fonctionne

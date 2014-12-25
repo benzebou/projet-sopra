@@ -359,17 +359,31 @@ public class Requests {
 				// parcours de la HashMap
 				for (Entry<String, Object> entry : reponse.getData().entrySet()) {
 					LinkedHashMap nMapReponse = (LinkedHashMap) entry.getValue() ;
-					Ride nride = new Ride () ;
-					nride.setDepart((String)nMapReponse.get("postal"));
-					nride.setArrivee((String)nMapReponse.get("travail"));
-					nride.setHeureDepart((String)nMapReponse.get("horairesMatin"));
-					if (nMapReponse.get("conducteur") == "1")
-						nride.getUserList().put((String)nMapReponse.get("login"), true) ;
-					else 
-						nride.getUserList().put((String)nMapReponse.get("login"), false) ;
-					rideList.add(nride) ;
+					// meme horaires de depart
+					boolean memeHoraires = false ;
+					Ride ride = new Ride () ;
+					for (int i=0; i<rideList.size(); i++) {
+						if (rideList.get(i).getHeureDepart().equals((String)nMapReponse.get("horairesMatin"))) {
+							memeHoraires = true ;
+							ride = rideList.get(i) ;
+							break ;
+						}	
+					}
+					if (memeHoraires) {
+						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
+						ride.getUserList().add(user) ;
+					}
+					// different horaires de depart : nouveau ride dans la liste
+					else {
+						Ride nride = new Ride () ;
+						nride.setDepart((String)nMapReponse.get("postal"));
+						nride.setArrivee((String)nMapReponse.get("travail"));
+						nride.setHeureDepart((String)nMapReponse.get("horairesMatin"));
+						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
+						nride.getUserList().add(user) ;
+						rideList.add(nride) ;
+					}	
 				}
-				
 				return rideList ;
 			}
 			else
@@ -464,7 +478,7 @@ public class Requests {
 		// parcours de la HashMap
 		String id = null ;
 		for (Entry<String, Object> entry : reponseBefore.getData().entrySet()) {
-			String MapReponse = (String) entry.getValue() ;
+			String MapReponse = (String) entry.getKey() ;
 			if (MapReponse.equals(postCode)) {
 				id = entry.getKey() ;
 				break ;
