@@ -1,5 +1,6 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -11,10 +12,10 @@ public class Ride {
 	
 	private String heureDepart ;
 	
-	private HashMap<String, Boolean> userList ;
+	private ArrayList<Information> userList ;
 
 	public Ride () {
-		userList = new HashMap<String, Boolean>() ;
+		userList = new ArrayList<Information>() ;
 	}
 	
 	public String getDepart() {
@@ -41,21 +42,27 @@ public class Ride {
 		this.heureDepart = heureDepart;
 	}
 
-	public HashMap<String, Boolean> getUserList() {
+	public ArrayList<Information> getUserList() {
 		return userList;
 	}
 
-	public void setUserList(HashMap<String, Boolean> userList) {
+	public void setUserList(ArrayList<Information> userList) {
 		this.userList = userList;
 	}
 	
 	public String toString() {
 		String users = new String () ;
-		for (Entry<String, Boolean> entry : userList.entrySet()) {
-			users = users +" " +entry.getKey()+" // Conducteur? "+entry.getValue()+"\n" ;
+		for (int i=0; i<userList.size(); i++) {
+			users = users +" " +userList.get(i).getLogin()+" // Conducteur? "+userList.get(i).isConducteur()+"\n" ;
 		}
 		return "RIDE - depart: "+depart+"\narrivee: "+arrivee+"\nheureDepart: "+heureDepart
 				+"\nUsers: "+users ;
+	}
+	
+	public boolean contains(String nHeureDepart) {
+		if (this.heureDepart == nHeureDepart)
+			return true ;
+		else return false ;
 	}
 }
 
