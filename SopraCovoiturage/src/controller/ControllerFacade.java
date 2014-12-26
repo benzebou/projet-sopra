@@ -4,10 +4,12 @@ package controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.sopra.covoiturage.FacadeView;
-
 import modele.Information;
 import modele.Ride;
+
+import android.util.Log;
+
+import com.sopra.covoiturage.FacadeView;
 
 public class ControllerFacade {
 
@@ -43,6 +45,17 @@ public class ControllerFacade {
 	public static ControllerFacade getInstance (FacadeView facade) {
 		if (singleton == null) {
 			singleton = new ControllerFacade(facade) ;
+		}
+		return singleton ;
+	}
+	
+	// TESTS UNIQUEMENT
+	private ControllerFacade () {
+		requests = new Requests () ;
+	}
+	public static ControllerFacade getInstance () {
+		if (singleton == null) {
+			singleton = new ControllerFacade() ;
 		}
 		return singleton ;
 	}
@@ -203,6 +216,7 @@ public class ControllerFacade {
 		boolean requete =requests.addWorkplaceRequest(workplace) ;
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Addition workplace : r�ussite !\n") ;
+			Log.d("SC", "CONTROLLER_FACADE : Addition workplace : r�ussite !\n");
 			ArrayList<String> workplaces = requests.getWorkplacesRequest() ;
 			facadeView.displayWorkplaces(workplaces);
 		}
