@@ -3,7 +3,6 @@ package com.sopra.covoiturage;
 import java.util.ArrayList;
 
 import modele.Ride;
-import android.app.Activity;
 import android.content.Intent;
 import controller.ControllerFacade;
 
