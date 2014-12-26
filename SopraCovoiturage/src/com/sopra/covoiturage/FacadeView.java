@@ -1,17 +1,21 @@
 package com.sopra.covoiturage;
 
 import java.util.ArrayList;
+
+import controller.ControllerFacade;
 import modele.Ride;
 
 public class FacadeView {
+	
+	private ControllerFacade controller;
 	
 	
 	//////////////////////////////
 	//	   For Ride Activity    //
 	//////////////////////////////
 	
-	public ArrayList<String> performRides() {
-		return null;
+	public ArrayList<Ride> performRides(String postcode, String workplace) {
+		return this.controller.performRides(postcode, workplace);
 	}
 	
 	public void processConnected () {

@@ -1,6 +1,7 @@
 package com.sopra.covoiturage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import modele.*;
@@ -78,14 +79,17 @@ public class RideActivity extends Activity{
 	
 	
 	public void displayBasicRide() {
-		//this.rides = fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
+		this.rides = fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
 		//displayRide("both");
 	}
 	
 	
 	public void displayRide(String conducteur) {
 		// parcours la liste rides et affiche les trajets dont conducteur correspond
+		Iterator i = this.rides.iterator();
+		while(i.hasNext()){
+			// add a new row with mail and driver?.
+		}
 	}
-	
 	
 }
