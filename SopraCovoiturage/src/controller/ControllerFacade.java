@@ -32,7 +32,6 @@ public class ControllerFacade {
 	 * Constructeur par defaut de ControllerFacade
 	 */
 	private ControllerFacade () {
-		facadeView = new FacadeView () ;
 		requests = new Requests () ;
 	}
 	

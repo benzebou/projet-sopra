@@ -2,12 +2,26 @@ package com.sopra.covoiturage;
 
 import java.util.ArrayList;
 
-import controller.ControllerFacade;
 import modele.Ride;
+import android.app.Activity;
+import android.content.Intent;
+import controller.ControllerFacade;
 
 public class FacadeView {
 	
 	private ControllerFacade controller;
+	private ConnectingActivity firstActivity;
+	
+	public FacadeView(ConnectingActivity activity) {
+		controller = ControllerFacade.getInstance();
+		firstActivity = activity;
+		
+	}
+	
+	/* CONNECTION */
+	public void performConnect(String nickname, String password) {
+		controller.performConnect(nickname, password);
+	}
 	
 	
 	//////////////////////////////
@@ -18,8 +32,9 @@ public class FacadeView {
 		this.controller.performRides(postcode, workplace);
 	}
 	
-	public void processConnected () {
-		
+	public void processConnected() {
+		Intent i = new Intent(firstActivity, RideActivity.class);
+		firstActivity.startActivity(i); 
 	}
 	
 	public void processNotConnected() {

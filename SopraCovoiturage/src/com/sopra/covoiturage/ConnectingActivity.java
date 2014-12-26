@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 public class ConnectingActivity extends Activity {
 	
-	//private FacadeView facade;
+	private FacadeView facade;
 	private EditText loginText;
 	private EditText mdpText;
 	
@@ -18,12 +18,12 @@ public class ConnectingActivity extends Activity {
 		
 		loginText = (EditText) findViewById(R.id.loginField);
 		mdpText = (EditText) findViewById(R.id.passwordField);
+		
+		facade = new FacadeView(this);
 	}
 	
 	public void onConnectionButtonClick(View v) {
-		//facade = new FacadeView();
-		//facade.performConnect(loginText.getText().toString());
-		
+		facade.performConnect(loginText.getText().toString(), mdpText.getText().toString());
 	}
 
 }

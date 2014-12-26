@@ -79,7 +79,7 @@ public class RideActivity extends Activity{
 	
 	
 	public void displayBasicRide() {
-		this.rides = fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
+		//this.rides = fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
 		//displayRide("both");
 	}
 	
@@ -89,9 +89,9 @@ public class RideActivity extends Activity{
 		Iterator i = this.rides.iterator();
 		while(i.hasNext()){
 			// add a new row with mail and driver?.
-			if (conducteur == "non conducteur" //&& conducteur(i) == false );
-			else if (conducteur == "conducteur" // && conducteur(i) == true);
-			else ;
+			//if (conducteur == "non conducteur" //&& conducteur(i) == false );
+			//else if (conducteur == "conducteur" // && conducteur(i) == true);
+			//else ;
 		}
 	}
 	
