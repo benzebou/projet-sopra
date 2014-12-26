@@ -65,19 +65,28 @@ public class Requests {
 		 * @param password : mot de passe de l'utilisateur
 		 * @return boolean : true si la requete s'est bien executee, false sinon
 		 */
-		public boolean connectionRequest (String nickname, String password) {
+		public boolean[] connectionRequest (String nickname, String password) {
+			boolean[] tab = new boolean[2] ; 
 			HashMap<String, Object> map = new HashMap<String, Object> () ;
 			map.put("loginAdmin", nickname) ;
 			map.put("mdp", password) ;
-			if (connectionAdminRequest(map))
-				return true ;
+			if (connectionAdminRequest(map)) {
+				tab[0] = true ;
+				tab[1] = true ;
+			}
 			else { 
 				map.remove("loginAdmin") ;
 				map.put("loginUser", nickname) ;
-				if (connectionUserRequest(map)) 
-					return true ;
-				else return false ;
+				if (connectionUserRequest(map)) {
+					tab[0] = true ;
+					tab[1] = false ;
+				}	
+				else {
+					tab[0] = false ;
+					tab[1] = false ;
+				}
 			}
+			return tab ;
 		}
 		
 		/**

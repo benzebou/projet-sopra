@@ -67,10 +67,10 @@ public class ControllerFacade {
 	 * @param password : mot de passe de l'utilisateur
 	 */
 	public void performConnect (String nickname, String password) {
-		boolean requete =requests.connectionRequest(nickname, password) ;
-		if (requete) {
+		boolean[] requete =requests.connectionRequest(nickname, password) ;
+		if (requete[0]) {
 			System.out.println("CONTROLLER_FACADE : Connexion : r�ussite !\n") ;
-			facadeView.processConnected();
+			facadeView.processConnected(requete[1]);
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Connexion : �chec !\n") ;
