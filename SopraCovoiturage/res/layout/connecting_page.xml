@@ -73,7 +73,7 @@
 	        android:layout_height="80sp"
 	        android:textSize="32sp"
 	        android:layout_marginTop="50sp"
-	        android:onClick="onConnectionButtonClick"
+	        android:onClick="onRegisterButtonClick"
 	        android:text="S'inscrire"
 	        android:layout_gravity="center"
 	        android:textColor="#000000"

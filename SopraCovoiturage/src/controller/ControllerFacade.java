@@ -31,7 +31,8 @@ public class ControllerFacade {
 	/** 
 	 * Constructeur par defaut de ControllerFacade
 	 */
-	private ControllerFacade () {
+	private ControllerFacade (FacadeView facade) {
+		facadeView = facade;
 		requests = new Requests () ;
 	}
 	
@@ -39,9 +40,9 @@ public class ControllerFacade {
 	 * Permet de recuperer l'instance de ControllerFacade
 	 * @return singleton
 	 */
-	public static ControllerFacade getInstance () {
+	public static ControllerFacade getInstance (FacadeView facade) {
 		if (singleton == null) {
-			singleton = new ControllerFacade() ;
+			singleton = new ControllerFacade(facade) ;
 		}
 		return singleton ;
 	}

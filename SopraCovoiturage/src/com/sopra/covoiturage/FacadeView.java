@@ -13,7 +13,7 @@ public class FacadeView {
 	private ConnectingActivity firstActivity;
 	
 	public FacadeView(ConnectingActivity activity) {
-		controller = ControllerFacade.getInstance();
+		controller = ControllerFacade.getInstance(this);
 		firstActivity = activity;
 		
 	}
