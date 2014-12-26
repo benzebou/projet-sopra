@@ -511,44 +511,70 @@ public class Requests {
 		}
 
 		
-		public int numberDriverAndNoDriverRequest () {
+		public String[] numberDriverAndPassengerRequest () {
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS,null) ;
+			String[] tab = new String[2] ;
 			if (reponse.isSuccess()) {
-				System.out.println((Integer) reponse.getData().get("1")) ;
-				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
-				return (Integer) reponse.getData().get("1") ;
+				tab[0] = (String) reponse.getData().get("drivers") ;
+				tab[1] = (String) reponse.getData().get("passengers") ;
 			}
 			else {
-				// Comment faire la difference entre un code et un nombre de conducteurs??
-				return reponse.getCode() ;
+				tab[0] = "-1" ;
+				tab[1] = ((Integer)reponse.getCode()).toString() ;
 			}
+			return tab ;
 		}
 		
 		
-		public int numberDriverAndNoDriverPerRideRequest () {
+		public HashMap<String,String[]> numberDriverAndPassengerPerRideRequest () {
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS_PER_RIDE,null) ;
+			HashMap<String,String[]> requete = new HashMap<String,String[]> () ;
+			String[] tab = new String[2] ;
 			if (reponse.isSuccess()) {
-				System.out.println((Integer) reponse.getData().get("1")) ;
-				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
-				return (Integer) reponse.getData().get("1") ;
+				// parcours de la HashMap
+				for (Entry<String, Object> entry : reponse.getData().entrySet()) {
+					LinkedHashMap nMapReponse = (LinkedHashMap) entry.getValue() ;
+					
+					/**********************************************************
+					 * 				AFFICHAGE POUR TEST
+					 **********************************************************/
+					System.out.println("RIDE : "+entry.getKey()) ;
+					System.out.println("Drivers : "+((Long) nMapReponse.get("drivers")).toString()) ;
+					System.out.println("Passengers : "+((Long) nMapReponse.get("passengers")).toString()) ;
+					
+					tab[0] = ((Long) nMapReponse.get("drivers")).toString() ;
+					tab[1] = ((Long) nMapReponse.get("passengers")).toString() ;
+					requete.put(entry.getKey(), tab) ;
+				}
 			}
 			else {
-				// Comment faire la difference entre un code et un nombre de conducteurs??
-				return reponse.getCode() ;
+				tab[0] = ((Integer)reponse.getCode()).toString() ;
+				tab[1] = ((Integer)reponse.getCode()).toString() ;
+				requete.put("-1", tab) ;
 			}
+			return requete ;
 		}
 		
-		public int numberConnectionRequest () {
+		
+		// FONCTIONNE PAS
+		public String[] numberConnectionRequest () {
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,null) ;
+			String number = "-1" ;
+			String[] tab = new String[2] ;
 			if (reponse.isSuccess()) {
-				System.out.println((Integer) reponse.getData().get("1")) ;
-				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
-				return (Integer) reponse.getData().get("1") ;
+				System.out.println("SUCCES - TAILLE : "+reponse.getData().size()) ;
+				for (Entry<String, Object> entry : reponse.getData().entrySet()) {
+					System.out.println((String) entry.getValue()) ;
+					number = (String) entry.getValue() ;
+				}
+				tab[0] = "0" ;
+				tab[1] = number ;
 			}
 			else {
-				// Comment faire la difference entre un code et un nombre de conducteurs??
-				return reponse.getCode() ;
+				tab[0] = "-1" ;
+				tab[1] = ((Integer) reponse.getCode()).toString() ;
 			}
+			return tab ;
 		}
 		
 		
@@ -557,9 +583,9 @@ public class Requests {
 			map.put("date", date) ;
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
 			if (reponse.isSuccess()) {
-				System.out.println((Integer) reponse.getData().get("1")) ;
-				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
-				return (Integer) reponse.getData().get("1") ;
+				System.out.println((Integer) reponse.getData().get(date)) ;
+				System.out.println("TAILLE : "+reponse.getData().size()) ;
+				return (Integer) reponse.getData().get(date) ;
 			}
 			else {
 				// Comment faire la difference entre un code et un nombre de conducteurs??
@@ -667,6 +693,7 @@ public class Requests {
 			  }
 			  return (Map<String,Object>)result;
 		}
+		
 		
 		/**
 		 * Unique fonction qui sera appellee : effectue une requete
