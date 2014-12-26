@@ -15,9 +15,14 @@ public class Ride {
 	private String arrivee ;
 	
 	/**
-	 * Horaires de depart
+	 * Horaires de depart le matin
 	 */
-	private String heureDepart ;
+	private String heureDepartMatin ;
+	
+	/**
+	 * Horaires de depart le soir
+	 */
+	private String heureDepartSoir ;
 	
 	/**
 	 * Liste de user effectuant ce meme trajet, a la meme heure
@@ -64,21 +69,37 @@ public class Ride {
 	}
 
 	/**
-	 * Getter des horaires de depart
+	 * Getter des horaires de depart le matin
 	 * @return heureDepart
 	 */
-	public String getHeureDepart() {
-		return heureDepart;
+	public String getHeureDepartMatin() {
+		return heureDepartMatin;
 	}
-
+	
 	/**
 	 * Setter des horaires de depart
 	 * @param heureDepart : horaires de depart
 	 */
-	public void setHeureDepart(String heureDepart) {
-		this.heureDepart = heureDepart;
+	public void setHeureDepartMatin(String heureDepart) {
+		this.heureDepartMatin = heureDepart;
 	}
 
+	/**
+	 * Getter des horaires de depart le soir
+	 * @return heureDepart
+	 */
+	public String getHeureDepartSoir() {
+		return heureDepartSoir;
+	}
+	
+	/**
+	 * Setter des horaires de depart
+	 * @param heureDepart : horaires de depart
+	 */
+	public void setHeureDepartSoir(String heureDepart) {
+		this.heureDepartSoir = heureDepart;
+	}
+	
 	/**
 	 * Getter de la liste de user
 	 * @return userList
@@ -103,8 +124,8 @@ public class Ride {
 		for (int i=0; i<userList.size(); i++) {
 			users = users +" " +userList.get(i).getLogin()+" // Conducteur? "+userList.get(i).isConducteur()+"\n" ;
 		}
-		return "RIDE - depart: "+depart+"\narrivee: "+arrivee+"\nheureDepart: "+heureDepart
-				+"\nUsers: "+users ;
+		return "RIDE - depart: "+depart+"\narrivee: "+arrivee+"\nheureDepartMatin: "+heureDepartMatin
+				+"\nheureDepartSoir: "+heureDepartSoir+"\nUsers: "+users ;
 	}
 	
 	/**
@@ -112,8 +133,8 @@ public class Ride {
 	 * @param nHeureDepart 
 	 * @return vrai si les horaires de depart correspondent, sinon faux
 	 */
-	public boolean contains(String nHeureDepart) {
-		if (this.heureDepart == nHeureDepart)
+	public boolean contains(String nHeureDepartMatin, String nHeureDepartSoir) {
+		if (this.heureDepartMatin == nHeureDepartMatin && this.heureDepartSoir == nHeureDepartSoir)
 			return true ;
 		else return false ;
 	}
