@@ -69,11 +69,11 @@ public class ControllerFacade {
 	public void performConnect (String nickname, String password) {
 		boolean[] requete =requests.connectionRequest(nickname, password) ;
 		if (requete[0]) {
-			System.out.println("CONTROLLER_FACADE : Connexion : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Connexion : reussite !\n") ;
 			facadeView.processConnected(requete[1]);
 		}
 		else {
-			System.out.println("CONTROLLER_FACADE : Connexion : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Connexion : echec !\n") ;
 			facadeView.processNotConnected();
 		}
 	}
@@ -85,11 +85,11 @@ public class ControllerFacade {
 	public void passwordForgotten (String mail)  {
 		boolean requete =requests.passwordForgottenRequest(mail) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Recuperation MDP : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Recuperation MDP : reussite !\n") ;
 			facadeView.processSendPwdMailOk();
 		}
 		else  {
-			System.out.println("CONTROLLER_FACADE : Recuperation MDP : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Recuperation MDP : echec !\n") ;
 			facadeView.processSendPwdMailFailure();
 		}
 	}
@@ -102,11 +102,11 @@ public class ControllerFacade {
 	public void performDisconnect (String nickname, String password) {
 		boolean requete =requests.disconnectionRequest(nickname, password) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Deconnexion user : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Deconnexion user : reussite !\n") ;
 			facadeView.processUserDisconnected();
 		}
 		else {
-			System.out.println("CONTROLLER_FACADE : Deconnexion user : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Deconnexion user : echec !\n") ;
 			facadeView.processUserNotDisconnected();
 		}
 	}
@@ -118,11 +118,11 @@ public class ControllerFacade {
 	public void performProfileModification (Information info) {
 		int requete =requests.profileModificationRequest(info) ;
 		if (requete == 0) {
-			System.out.println("CONTROLLER_FACADE : Suppression user : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Suppression user : reussite !\n") ;
 			facadeView.confirmModification();
 		}
 		else {
-			System.out.println("CONTROLLER_FACADE : Suppression user : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Suppression user : echec !\n") ;
 			facadeView.modificationFailed(requete);
 		}
 	}
@@ -135,11 +135,11 @@ public class ControllerFacade {
 	public void performDeletion (String nickname) {
 		boolean requete =requests.removeProfileRequest(nickname) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Suppression user : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Suppression user : reussite !\n") ;
 			facadeView.changeActivityConnecting();
 		}
 		else {
-			System.out.println("CONTROLLER_FACADE : Suppression user : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Suppression user : echec !\n") ;
 			facadeView.deletionFailure();
 		}
 	}
@@ -152,14 +152,14 @@ public class ControllerFacade {
 	public void performRides (String postcode, String workplace) {
 		ArrayList<Ride> requete = requests.ridesRequest(postcode, workplace) ;
 		if (requete != null) {
-			System.out.println("CONTROLLER_FACADE : Rides : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Rides : reussite !\n") ;
 			for (int i=0; i<requete.size(); i++) {
 				System.out.println(requete.get(i)+"\n") ;
 			}
 			
 		}
 		else {
-			System.out.println("CONTROLLER_FACADE : Rides : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Rides : echec !\n") ;
 		}
 		facadeView.processRides(requete);
 	}
@@ -171,11 +171,11 @@ public class ControllerFacade {
 	public void performRegister (Information info) {
 		int requete =requests.creationUserRequest(info) ;
 		if (requete == 0) {
-			System.out.println("CONTROLLER_FACADE : Creation user : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Creation user : reussite !\n") ;
 			facadeView.changeActivityProfile();
 		}
 		else { 
-			System.out.println("CONTROLLER_FACADE : Creation user : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Creation user : echec !\n") ;
 			facadeView.registrationFailed(requete);
 		}
 	}
@@ -197,12 +197,12 @@ public class ControllerFacade {
 	public Information getProfileInformation (String nickname) {
 		Information requete =requests.getProfileInformationRequest(nickname) ;
 		if (requete!= null) {
-			System.out.println("CONTROLLER_FACADE : getProfileInformation : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : getProfileInformation : reussite !\n") ;
 			System.out.println(requete) ;
 			return requete ;
 		}
 		else {
-			System.out.println("CONTROLLER_FACADE : getProfileInformation : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : getProfileInformation : echec !\n") ;
 			return null;
 		}
 	}
@@ -215,13 +215,13 @@ public class ControllerFacade {
 	public void addWorkplace (String workplace) {
 		boolean requete =requests.addWorkplaceRequest(workplace) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Addition workplace : r�ussite !\n") ;
-			Log.d("SC", "CONTROLLER_FACADE : Addition workplace : r�ussite !\n");
+			System.out.println("CONTROLLER_FACADE : Addition workplace : reussite !\n") ;
+			Log.d("SC", "CONTROLLER_FACADE : Addition workplace : reussite !\n");
 			ArrayList<String> workplaces = requests.getWorkplacesRequest() ;
 			facadeView.displayWorkplaces(workplaces);
 		}
 		else { 
-			System.out.println("CONTROLLER_FACADE : Addition workplace : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Addition workplace : echec !\n") ;
 			facadeView.erreurAddWorkplace();
 		}	
 	}
@@ -234,12 +234,12 @@ public class ControllerFacade {
 	public void deletionWorkplace (String workplace) {
 		boolean requete =requests.deletionWorkplaceRequest(workplace) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Deletion workplace : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Deletion workplace : reussite !\n") ;
 			ArrayList<String> workplaces = requests.getWorkplacesRequest() ;
 			facadeView.displayWorkplaces(workplaces);
 		}
 		else { 
-			System.out.println("CONTROLLER_FACADE : Deletion workplace : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Deletion workplace : echec !\n") ;
 			facadeView.erreurDeletionWorkplace();
 		}		
 	}
@@ -261,12 +261,12 @@ public class ControllerFacade {
 	public void addTown (String town, String code) {
 		boolean requete =requests.addTownRequest(town, code) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Addition town : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Addition town : reussite !\n") ;
 			ArrayList<String> townList = requests.getTownListRequest() ;
 			facadeView.displayTownList(townList);
 		}
 		else { 
-			System.out.println("CONTROLLER_FACADE : Addition town : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Addition town : echec !\n") ;
 			facadeView.erreurAddTown();
 		}	
 	}
@@ -280,12 +280,12 @@ public class ControllerFacade {
 	public void deletionTown (String code) {
 		boolean requete =requests.deletionTownRequest(code) ;
 		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Deletion town : r�ussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Deletion town : reussite !\n") ;
 			ArrayList<String> townList = requests.getTownListRequest() ;
 			facadeView.displayTownList(townList);
 		}
 		else { 
-			System.out.println("CONTROLLER_FACADE : Deletion town : �chec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Deletion town : echec !\n") ;
 			facadeView.erreurAddTown();
 		}		
 	}
