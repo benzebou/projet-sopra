@@ -22,7 +22,7 @@ public class FacadeView {
 	public void performConnect(String nickname, String password) {
 		controller.performConnect(nickname, password);
 	}
-	public void processConnected() {
+	public void processConnected(boolean admin) {
 		Intent i = new Intent(firstActivity, RideActivity.class);
 		firstActivity.startActivity(i); 
 	}
