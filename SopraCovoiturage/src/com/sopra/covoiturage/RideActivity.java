@@ -15,10 +15,11 @@ import android.widget.Spinner;
 public class RideActivity extends Activity{
 	
 	//private FacadeView facade;
+	private FacadeView fac;
 	private EditText DepartText;
 	private Spinner workplace;
-	private FacadeView fac;
 	private Spinner conducteur;
+	private Spinner heure;
 	private ArrayList<Information> rides;
 	private Information user;
 		
@@ -57,6 +58,16 @@ public class RideActivity extends Activity{
 		this.conducteur.setAdapter(dataAdapterC);
 		
 		
+		// Initialisation spinner heure
+		this.heure = new Spinner(this);
+		this.heure = (Spinner) findViewById(R.id.Heure);
+	    List<String> listH = new ArrayList<String>();
+
+
+        ArrayAdapter<String> dataAdapterH = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listH);
+        dataAdapterH.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		this.heure.setAdapter(dataAdapterH);
+		
 		// Initialise le tableau de trajet
 		displayBasicRide();
 
@@ -78,8 +89,8 @@ public class RideActivity extends Activity{
 	
 	
 	public void displayBasicRide() {
-		//this.rides = fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
-		//displayRide("both");
+		fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
+		displayRide("both");
 	}
 	
 	
@@ -92,6 +103,10 @@ public class RideActivity extends Activity{
 			//else if (conducteur == "conducteur" // && conducteur(i) == true);
 			//else ;
 		}
+	}
+	
+	public void setRides(ArrayList<Information> rides) {
+		this.rides = rides;
 	}
 	
 }

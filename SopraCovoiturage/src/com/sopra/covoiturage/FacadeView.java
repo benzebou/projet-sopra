@@ -10,6 +10,7 @@ public class FacadeView {
 	
 	private ControllerFacade controller;
 	private ConnectingActivity firstActivity;
+	private RideActivity searchRide;
 	
 	public FacadeView(ConnectingActivity activity) {
 		controller = ControllerFacade.getInstance(this);
@@ -32,11 +33,6 @@ public class FacadeView {
 		firstActivity.startActivity(i); 
 	}
 	
-	public void performRides(String postcode, String workplace) {
-		this.controller.performRides(postcode, workplace);
-	}
-	
-
 	
 	public void processNotConnected() {
 		
@@ -82,8 +78,17 @@ public class FacadeView {
 		
 	}
 	
+	/**
+	 * Methode demandant au controller de chercher les trajets partant de postcode pour aller à workplace
+	 * @param postcode
+	 * @param workplace
+	 */
+	public void performRides(String postcode, String workplace) {
+		this.controller.performRides(postcode, workplace);
+	}
+	
 	public void processRides (ArrayList<Ride> listOfRides) {
-		
+		this.searchRide.setRides(listOfRides);
 	}
 	
 	public void displayWorkplaces(ArrayList<String> listOfWorkplaces) {
