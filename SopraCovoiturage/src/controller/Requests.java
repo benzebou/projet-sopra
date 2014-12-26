@@ -363,10 +363,12 @@ public class Requests {
 					boolean memeHoraires = false ;
 					Ride ride = new Ride () ;
 					for (int i=0; i<rideList.size(); i++) {
-						if (rideList.get(i).getHeureDepart().equals((String)nMapReponse.get("horairesMatin"))) {
-							memeHoraires = true ;
-							ride = rideList.get(i) ;
-							break ;
+						if (rideList.get(i).getHeureDepartMatin().equals((String)nMapReponse.get("horairesMatin"))) {
+							if (rideList.get(i).getHeureDepartSoir().equals((String)nMapReponse.get("horairesSoir"))) {
+								memeHoraires = true ;
+								ride = rideList.get(i) ;
+								break ;
+							}
 						}	
 					}
 					if (memeHoraires) {
@@ -378,7 +380,8 @@ public class Requests {
 						Ride nride = new Ride () ;
 						nride.setDepart((String)nMapReponse.get("postal"));
 						nride.setArrivee((String)nMapReponse.get("travail"));
-						nride.setHeureDepart((String)nMapReponse.get("horairesMatin"));
+						nride.setHeureDepartMatin((String)nMapReponse.get("horairesMatin"));
+						nride.setHeureDepartSoir((String)nMapReponse.get("horairesSoir"));
 						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
 						nride.getUserList().add(user) ;
 						rideList.add(nride) ;
