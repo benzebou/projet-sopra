@@ -7,14 +7,25 @@ public class requestException extends Exception {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+		/**
+		 * Code erreur
+		 */
 		private int errorCode;
 	
+		/**
+		 * Constructeur avec parametre
+		 * @param error : code erreur
+		 */
 		public requestException(int error){
 			System.out.println("ATTENTION : Un code d'erreur a été renvoyé par le serveur");
 			errorCode = error;
 			getCodeReason();
 		}
 		
+		/**
+		 * Methode permettant de recuperer la raison de l'erreur produite
+		 */
 		private void getCodeReason(){
 			String reason = "Code serveur : " + this.errorCode + " ";
 			switch(errorCode){
