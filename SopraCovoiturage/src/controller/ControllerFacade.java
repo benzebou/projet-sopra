@@ -2,7 +2,10 @@ package controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.sopra.covoiturage.FacadeView;
+
 import modele.Information;
 import modele.Ride;
 
@@ -282,18 +285,18 @@ public class ControllerFacade {
 	}
 
 	/**
-	 * Methode permettant de renvoyer le number de conducteurs et le nombre de non conducteurs
+	 * Methode permettant de renvoyer le number de conducteurs et le nombre de passager
 	 * @return 
 	 */
-	public int getNumberDriverAndNoDriver () {
-		int requete =requests.numberDriverAndNoDriverRequest() ;
-		System.out.println("CONTROLLER_FACADE : Number of driver and no driver !\n") ;		
+	public String[] getNumberDriverAndPassenger () {
+		String[] requete =requests.numberDriverAndPassengerRequest() ;
+		System.out.println("CONTROLLER_FACADE : Number of driver :"+requete[0]+"\n and passenger : "+requete[1]+"\n") ;		
 		return requete ;
 	}
 	
-	public int getNumberDriverAndNoDriverPerRide () {
-		int requete =requests.numberDriverAndNoDriverPerRideRequest() ;
-		System.out.println("CONTROLLER_FACADE : Number of driver and no driver per ride!\n") ;		
+	public HashMap<String,String[]> getNumberDriverAndPassengerPerRide () {
+		HashMap<String,String[]> requete =requests.numberDriverAndPassengerPerRideRequest() ;
+		System.out.println("CONTROLLER_FACADE : Number of driver and passenger per ride!\n") ;		
 		return requete ;
 	}
 	
@@ -302,10 +305,16 @@ public class ControllerFacade {
 	 * Methode permettant de renvoyer le nombre total de connexions
 	 * @return int : nombre de connexion 
 	 */
-	public int getNumberConnection () {
-		int requete =requests.numberConnectionRequest() ;
-		System.out.println("CONTROLLER_FACADE : Total number of connections!\n") ;		
-		return requete ;
+	public String[] getNumberConnection () {
+		String[] requete =requests.numberConnectionRequest() ;
+		if (requete[0].equals("0")) {
+			System.out.println("CONTROLLER_FACADE : Total number of connections : "+requete[1]+"\n") ;		
+		}
+		else {
+			System.out.println("CONTROLLER_FACADE : Echec - erreur "+requete[1]+"\n") ;
+		}
+			
+			return requete ;
 	}
 	
 	/**
@@ -353,12 +362,15 @@ public class ControllerFacade {
 		//con.performConnect("user1", "test") ; //fonctionne
 		//con.performRegister(info); //fonctionne
 		//con.performDisconnect("user1", "test") ; // fonctionne
-		con.getProfileInformation("user1");
+		//con.getProfileInformation("user1");
 		//con.performRides("31400", "3"); // fonctionne
-		con.addWorkplace("bureau5"); // fonctionne
+		//con.addWorkplace("bureau5"); // fonctionne
 		//con.deletionWorkplace("bureau3"); // fonctionne
 		//con.addTown("Foix", "09000"); // fonctionne
 		//con.deletionTown("9000");
-		con.getNumberDriverAndNoDriver() ;
+		//con.getNumberDriverAndPassenger() ;
+		//con.getNumberDriverAndPassengerPerRide() ;
+		//con.getNumberConnection() ;
+		con.getNumberConnectionDate("2014-12-26") ;
 	}
 }
