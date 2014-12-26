@@ -14,8 +14,8 @@ public class FacadeView {
 	//	   For Ride Activity    //
 	//////////////////////////////
 	
-	public ArrayList<Ride> performRides(String postcode, String workplace) {
-		return this.controller.performRides(postcode, workplace);
+	public void performRides(String postcode, String workplace) {
+		this.controller.performRides(postcode, workplace);
 	}
 	
 	public void processConnected () {

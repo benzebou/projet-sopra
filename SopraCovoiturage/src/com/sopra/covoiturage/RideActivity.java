@@ -20,7 +20,7 @@ public class RideActivity extends Activity{
 	private Spinner workplace;
 	private FacadeView fac;
 	private Spinner conducteur;
-	private ArrayList<Ride> rides;
+	private ArrayList<Information> rides;
 	private Information user;
 		
 	@Override
@@ -89,6 +89,9 @@ public class RideActivity extends Activity{
 		Iterator i = this.rides.iterator();
 		while(i.hasNext()){
 			// add a new row with mail and driver?.
+			if (conducteur == "non conducteur" //&& conducteur(i) == false );
+			else if (conducteur == "conducteur" // && conducteur(i) == true);
+			else ;
 		}
 	}
 	
