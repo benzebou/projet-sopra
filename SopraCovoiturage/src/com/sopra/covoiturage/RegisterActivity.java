@@ -1,9 +1,13 @@
 package com.sopra.covoiturage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import modele.Information;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -46,6 +50,7 @@ public class RegisterActivity extends Activity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register_page);
+		login=(EditText) findViewById(R.id.login);
 		nom = (EditText) findViewById(R.id.nom);
 		prenom = (EditText) findViewById(R.id.prenom);
 		mdp = (EditText) findViewById(R.id.mot_de_passe);
@@ -66,7 +71,16 @@ public class RegisterActivity extends Activity  {
 		notification = (CheckBox) findViewById(R.id.notification);
 
 		//to do
-		lieuDeTravail = (Spinner) findViewById(R.id.lieu_de_travail);
+		lieuDeTravail = (Spinner) findViewById(R.id.lieu_de_travail);	
+		ArrayList<String> list = new ArrayList<String>();
+		list = facade.getWorkplaces();
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
+		(this, android.R.layout.simple_spinner_item,list);
+
+		dataAdapter.setDropDownViewResource
+		(android.R.layout.simple_spinner_dropdown_item);
+
+		lieuDeTravail.setAdapter(dataAdapter);
 
 		inscrire = (Button) findViewById(R.id.inscrire);
 		annuler = (Button) findViewById(R.id.annuler);	
@@ -118,14 +132,26 @@ public class RegisterActivity extends Activity  {
 		}
 	}
 
+	/**
+	 * Send the informations collected in the view to the FaçadeView
+	 * @param v view o the application
+	 */
 	public void onInscrireButtonClick(View v) {
+		String[] horaires = new String[2] ;
+		horaires[0] = heureAller.getText().toString();
+		horaires[1] = heureRetour.getText().toString();
+		
 
 		this.info = new Information(login.getText().toString() ,mdp.getText().toString(),
 				email.getText().toString(),nom.getText().toString(),prenom.getText().toString(), 
 				telephone.getText().toString(), codePostal.getText().toString(),
-				lieuDeTravail.getTag().toString(),days, estConducteur);
+				lieuDeTravail.getTag().toString(),horaires,days, estConducteur);
 	}
 
+	/**
+	 * Send back to the connecting page
+	 * @param v view o the application
+	 */
 	public void onAnnulerButtonClick(View v) {
 		facade.changeActivityConnecting();
 
