@@ -322,9 +322,14 @@ public class ControllerFacade {
 	 * @param date : data a laquelle on compte le nombre de connexions
 	 * @return int : nombre total de connexions a la date
 	 */
-	public int getNumberConnectionDate (String date) {
-		int requete =requests.numberConnectionDateRequest(date) ;
-		System.out.println("CONTROLLER_FACADE : Number of connections on the "+date+"!\n") ;		
+	public String[] getNumberConnectionDate (String date) {
+		String[] requete =requests.numberConnectionDateRequest(date) ;
+		if (requete[0].equals("0")) {
+			System.out.println("CONTROLLER_FACADE : Number of connections on the "+date+" : "+requete[1]+"\n") ;		
+		}
+		else {
+			System.out.println("CONTROLLER_FACADE : Echec - erreur "+requete[1]+"\n") ;
+		}		
 		return requete ;		
 	}
 	

@@ -195,8 +195,10 @@ public class Requests {
 			map.put("mdp", password) ;
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.DISCONNECT,map) ;
-			if (reponse.isSuccess()) 
+			if (reponse.isSuccess()) { 
+				cookie = null ;
 				return true ;
+			}
 			else 
 				return false ;
 		}
@@ -578,19 +580,22 @@ public class Requests {
 		}
 		
 		
-		public int numberConnectionDateRequest (String date) {
+		public String[] numberConnectionDateRequest (String date) {
+			String[] tab = new String[2] ;
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("date", date) ;
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
 			if (reponse.isSuccess()) {
 				System.out.println((Integer) reponse.getData().get(date)) ;
 				System.out.println("TAILLE : "+reponse.getData().size()) ;
-				return (Integer) reponse.getData().get(date) ;
+				tab[0] = "0" ;
+				tab[1] = (String) reponse.getData().get(date);
 			}
 			else {
-				// Comment faire la difference entre un code et un nombre de conducteurs??
-				return reponse.getCode() ;
+				tab[0] = "-1" ;
+				tab[1] = ((Integer) reponse.getCode()).toString() ;
 			}
+			return tab ;
 		}
 		
 		public int numberConnectionSinceRequest (String date) {
