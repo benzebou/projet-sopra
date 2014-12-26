@@ -88,7 +88,7 @@ public class FacadeView {
 	}
 	
 	public void processRides (ArrayList<Ride> listOfRides) {
-		this.searchRide.setRides(listOfRides);
+		//this.searchRide.setRides(listOfRides);
 	}
 	
 	public void displayWorkplaces(ArrayList<String> listOfWorkplaces) {
