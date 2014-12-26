@@ -27,7 +27,7 @@ public class ConnectingActivity extends Activity {
 	}
 	
 	public void onRegisterButtonClick(View v) {
-		facade.performConnect(loginText.getText().toString(), mdpText.getText().toString());
+		facade.changeActivityRegister();
 	}
 
 }

@@ -22,6 +22,16 @@ public class FacadeView {
 	public void performConnect(String nickname, String password) {
 		controller.performConnect(nickname, password);
 	}
+	public void processConnected() {
+		Intent i = new Intent(firstActivity, RideActivity.class);
+		firstActivity.startActivity(i); 
+	}
+	
+	/* REGISTRATION */
+	public void changeActivityRegister() {
+		Intent i = new Intent(firstActivity, RegisterActivity.class);
+		firstActivity.startActivity(i); 
+	}
 	
 	
 	//////////////////////////////
@@ -32,10 +42,7 @@ public class FacadeView {
 		this.controller.performRides(postcode, workplace);
 	}
 	
-	public void processConnected() {
-		Intent i = new Intent(firstActivity, RideActivity.class);
-		firstActivity.startActivity(i); 
-	}
+
 	
 	public void processNotConnected() {
 		
