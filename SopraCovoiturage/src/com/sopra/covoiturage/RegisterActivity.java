@@ -72,15 +72,12 @@ public class RegisterActivity extends Activity  {
 
 		//to do
 		lieuDeTravail = (Spinner) findViewById(R.id.lieu_de_travail);	
-		ArrayList<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<String>();
 		list = facade.getWorkplaces();
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
-		(this, android.R.layout.simple_spinner_item,list);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
 
-		dataAdapter.setDropDownViewResource
-		(android.R.layout.simple_spinner_dropdown_item);
-
-		lieuDeTravail.setAdapter(dataAdapter);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		lieuDeTravail.setAdapter(adapter);
 
 		inscrire = (Button) findViewById(R.id.inscrire);
 		annuler = (Button) findViewById(R.id.annuler);	
