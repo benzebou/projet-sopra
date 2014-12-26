@@ -128,15 +128,6 @@ public class Ride {
 				+"\nheureDepartSoir: "+heureDepartSoir+"\nUsers: "+users ;
 	}
 	
-	/**
-	 * OVERWRITING : methode contains de la classe Ride
-	 * @param nHeureDepart 
-	 * @return vrai si les horaires de depart correspondent, sinon faux
-	 */
-	public boolean contains(String nHeureDepartMatin, String nHeureDepartSoir) {
-		if (this.heureDepartMatin == nHeureDepartMatin && this.heureDepartSoir == nHeureDepartSoir)
-			return true ;
-		else return false ;
-	}
+
 }
 
