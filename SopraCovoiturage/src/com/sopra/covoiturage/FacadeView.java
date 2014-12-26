@@ -89,5 +89,14 @@ public class FacadeView {
 	public void erreurAddTown() {
 
 	}
+	
+	/**
+	 * Methode permettant de renvoyer la liste des lieux de travail
+	 * @return ArrayList<String> : liste des lieux de travail
+	 */
+	public ArrayList<String> getWorkplaces() {
+		return controller.getWorkplaces();
+	}
+	
 }
 
