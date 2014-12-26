@@ -519,40 +519,86 @@ public class Requests {
 				return (Integer) reponse.getData().get("1") ;
 			}
 			else {
+				// Comment faire la difference entre un code et un nombre de conducteurs??
 				return reponse.getCode() ;
-			}	
+			}
 		}
 		
 		
-		/*
-		//Statistiques : nombre de conducteurs/non conducteurs 
-				System.out.println("/***** Requête 16 : Statistiques - Nombre de conducteur/non conducteur *****/
-				//System.out.println(postRequest(requestType.GET_STAT_DRIVERS_PASSENGERS,null));
-				
-				//Statistiques : nombre de conducteurs/non conducteurs en fonction du trajet
-				//System.out.println("/***** Requête 17 : Statistiques - Nombre de conducteur/non conducteur en fonction du trajet *****/");
-				//System.out.println(postRequest(requestType.GET_STAT_DRIVERS_PASSENGERS_PER_RIDE,null));	
-				
-				//Statistiques : nombre de connexions
-				/**
-				 * Remarque : On peut demander le nombre de connexions en fonction d'une date précise, d'une période ou depuis une date
-				 * Aucun paramètre : nombre total de connexions
-				 * "date" : en fonction d'une date précise
-				 * "rangeFirst" et "rangeLast" : en fonction d'un intervalle
-				 * "sinceDate" : depuis une date donnée
-				 */
-				//System.out.println("/***** Requête 18 : Statistiques - Nombre de connexions *****/");
-				//HashMap<String,String> connectionParameters18 = new HashMap<String,String>();
-				//connectionParameters18.put("date", "2014-12-23");
-				
-				//connectionParameters18.put("rangeFirst", "2014-12-22");
-				//connectionParameters18.put("rangeLast", "2014-12-24");
-				
-				//connectionParameters18.put("sinceDate", "2014-12-23");
-				//System.out.println(postRequest(requestType.GET_STAT_CONNECTIONS,connectionParameters18));
-				
+		public int numberDriverAndNoDriverPerRideRequest () {
+			RequestReponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS_PER_RIDE,null) ;
+			if (reponse.isSuccess()) {
+				System.out.println((Integer) reponse.getData().get("1")) ;
+				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
+				return (Integer) reponse.getData().get("1") ;
+			}
+			else {
+				// Comment faire la difference entre un code et un nombre de conducteurs??
+				return reponse.getCode() ;
+			}
+		}
+		
+		public int numberConnectionRequest () {
+			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,null) ;
+			if (reponse.isSuccess()) {
+				System.out.println((Integer) reponse.getData().get("1")) ;
+				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
+				return (Integer) reponse.getData().get("1") ;
+			}
+			else {
+				// Comment faire la difference entre un code et un nombre de conducteurs??
+				return reponse.getCode() ;
+			}
+		}
 		
 		
+		public int numberConnectionDateRequest (String date) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("date", date) ;
+			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
+			if (reponse.isSuccess()) {
+				System.out.println((Integer) reponse.getData().get("1")) ;
+				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
+				return (Integer) reponse.getData().get("1") ;
+			}
+			else {
+				// Comment faire la difference entre un code et un nombre de conducteurs??
+				return reponse.getCode() ;
+			}
+		}
+		
+		public int numberConnectionSinceRequest (String date) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("sinceDate", date) ;
+			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
+			if (reponse.isSuccess()) {
+				System.out.println((Integer) reponse.getData().get("1")) ;
+				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
+				return (Integer) reponse.getData().get("1") ;
+			}
+			else {
+				// Comment faire la difference entre un code et un nombre de conducteurs??
+				return reponse.getCode() ;
+			}
+		}		
+
+		public int numberConnectionBetweenRequest (String firstDate, String lastDate) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("rangeFirst", firstDate) ;
+			map.put("rangeLast", lastDate) ;
+			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
+			if (reponse.isSuccess()) {
+				System.out.println((Integer) reponse.getData().get("1")) ;
+				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
+				return (Integer) reponse.getData().get("1") ;
+			}
+			else {
+				// Comment faire la difference entre un code et un nombre de conducteurs??
+				return reponse.getCode() ;
+			}
+		}	
+		
+
 		/**
 		 * Methode permettant de recuperer les parametres d'une requete
 		 * @param typeOfRequest : type de la requete
