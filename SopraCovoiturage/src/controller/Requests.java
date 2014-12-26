@@ -510,6 +510,49 @@ public class Requests {
 			return townList ;
 		}
 
+		
+		public int numberDriverAndNoDriverRequest () {
+			RequestReponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS,null) ;
+			if (reponse.isSuccess()) {
+				System.out.println((Integer) reponse.getData().get("1")) ;
+				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
+				return (Integer) reponse.getData().get("1") ;
+			}
+			else {
+				return reponse.getCode() ;
+			}	
+		}
+		
+		
+		/*
+		//Statistiques : nombre de conducteurs/non conducteurs 
+				System.out.println("/***** Requête 16 : Statistiques - Nombre de conducteur/non conducteur *****/
+				//System.out.println(postRequest(requestType.GET_STAT_DRIVERS_PASSENGERS,null));
+				
+				//Statistiques : nombre de conducteurs/non conducteurs en fonction du trajet
+				//System.out.println("/***** Requête 17 : Statistiques - Nombre de conducteur/non conducteur en fonction du trajet *****/");
+				//System.out.println(postRequest(requestType.GET_STAT_DRIVERS_PASSENGERS_PER_RIDE,null));	
+				
+				//Statistiques : nombre de connexions
+				/**
+				 * Remarque : On peut demander le nombre de connexions en fonction d'une date précise, d'une période ou depuis une date
+				 * Aucun paramètre : nombre total de connexions
+				 * "date" : en fonction d'une date précise
+				 * "rangeFirst" et "rangeLast" : en fonction d'un intervalle
+				 * "sinceDate" : depuis une date donnée
+				 */
+				//System.out.println("/***** Requête 18 : Statistiques - Nombre de connexions *****/");
+				//HashMap<String,String> connectionParameters18 = new HashMap<String,String>();
+				//connectionParameters18.put("date", "2014-12-23");
+				
+				//connectionParameters18.put("rangeFirst", "2014-12-22");
+				//connectionParameters18.put("rangeLast", "2014-12-24");
+				
+				//connectionParameters18.put("sinceDate", "2014-12-23");
+				//System.out.println(postRequest(requestType.GET_STAT_CONNECTIONS,connectionParameters18));
+				
+		
+		
 		/**
 		 * Methode permettant de recuperer les parametres d'une requete
 		 * @param typeOfRequest : type de la requete
@@ -538,7 +581,7 @@ public class Requests {
 		 * @param json
 		 * @return Map<String,Object>
 		 */
-		private static Map<String,Object> jsonToMap(String json) {
+		private static Map<String,Object> jsonToMap(String json){
 			JSONParser parser = new JSONParser();
 			  ContainerFactory containerFactory = new ContainerFactory(){
 			    public List<String> creatArrayContainer() {
@@ -585,8 +628,8 @@ public class Requests {
 		 * @param urlParameters
 		 * @return the response in the JSON format
 		 */
-		public static RequestReponses postRequest(RequestType typeOfRequest, HashMap<String, Object> map) {
-		    String urlParameters = getRequestParameters(typeOfRequest,map);
+		public static RequestReponses postRequest(RequestType typeOfRequest, HashMap<String,Object> parameters) {
+		    String urlParameters = getRequestParameters(typeOfRequest,parameters);
 			URL url;
 			HttpURLConnection connection = null; 
 		     
@@ -631,8 +674,9 @@ public class Requests {
 			      
 			      // S'il y a le champ "Set-Cookie", on récupère le cookie
 			      if (connection.getHeaderField("Set-Cookie") != null){
-				      System.out.println(connection.getHeaderField("Set-Cookie"));
-				      cookie = connection.getHeaderField("Set-Cookie");
+			    	  
+				     cookie = connection.getHeaderField("Set-Cookie");
+			    	  
 			      }
 			      else{
 			    	  // Sinon on vérifie l'état du cookie
@@ -647,8 +691,7 @@ public class Requests {
 			        response.append('\r');
 			      }
 			      rd.close();
-			      String a = response.toString();
-			      System.out.println(a);
+			      System.out.println(response.toString());
 			      return new RequestReponses(connection.getResponseCode(),true,jsonToMap(response.toString()));
 		      }catch(requestException e){
 		    	  return new RequestReponses(connection.getResponseCode(),false,null);
@@ -666,6 +709,7 @@ public class Requests {
 		      }
 		    }
 		}
+
 
 
 
