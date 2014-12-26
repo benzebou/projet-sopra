@@ -513,10 +513,18 @@ public class Requests {
 		}
 
 		
+		/**
+		 * Methode permettant renvoyer le number de conducteurs et le nombre de passager
+		 * @return String[] requete :
+		 * si requete[0] = "-1" : echec et requete[1] = code erreur
+		 * sinon requete[0] = nombre total de conducteurs 
+		 * 	et requete[1] = nombre total de passagers 
+		 */
 		public String[] numberDriverAndPassengerRequest () {
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS,null) ;
 			String[] tab = new String[2] ;
 			if (reponse.isSuccess()) {
+				System.out.println("SUCCES") ;
 				tab[0] = (String) reponse.getData().get("drivers") ;
 				tab[1] = (String) reponse.getData().get("passengers") ;
 			}
@@ -528,6 +536,12 @@ public class Requests {
 		}
 		
 		
+		/**
+		 * Methode permettant de renvoyer le number de conducteurs et le nombre de passager par trajet
+		 * @return HashMap<String,String[]>
+		 * Key = String : trajet
+		 * Value = String[0] : nombre de conducteurs ; String[1] : nombre de passagers 
+		 */
 		public HashMap<String,String[]> numberDriverAndPassengerPerRideRequest () {
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS_PER_RIDE,null) ;
 			HashMap<String,String[]> requete = new HashMap<String,String[]> () ;
@@ -557,7 +571,12 @@ public class Requests {
 			return requete ;
 		}
 		
-		
+		/**
+		 * Methode permettant de renvoyer le nombre total de connexions
+		 * @return String[] requete :
+		 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions
+		 * sinon requete[0] = "-1" : echec et requete[1] = code erreur 
+		 */
 		public String[] numberConnectionRequest () {
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,null) ;
 			String number = "-1" ;
@@ -576,7 +595,13 @@ public class Requests {
 			return tab ;
 		}
 		
-		
+		/**
+		 * Methode permettant de renvoyer le nombre total de connexions a une date donnee
+		 * @param date : data a laquelle on compte le nombre de connexions
+		 * @return String[] requete :
+		 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions a la date
+		 * sinon requete[0] = "-1" : echec et requete[1] = code erreur
+		 */
 		public String[] numberConnectionDateRequest (String date) {
 			String[] tab = new String[2] ;
 			HashMap<String,Object> map = new HashMap<String,Object>();
@@ -593,6 +618,14 @@ public class Requests {
 			return tab ;
 		}
 		
+		
+		/**
+		 * Methode permettant de renvoyer le nombre total de connexions depuis une date donnee
+		 * @param date : data a partir de laquelle on compte le nombre de connexions
+		 * @return String[] requete :
+		 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions depuis la date
+		 * sinon requete[0] = "-1" : echec et requete[1] = code erreur
+		 */
 		public String[] numberConnectionSinceRequest (String date) {
 			String[] tab = new String[2] ;
 			HashMap<String,Object> map = new HashMap<String,Object>();
@@ -609,6 +642,16 @@ public class Requests {
 			return tab ;
 		}		
 
+		
+		
+		/**
+		 * Methode permettant de renvoyer le nombre total de connexions entre deux dates donnees
+		 * @param dateFirst : date de debut de l'intervalle
+		 * @param dateLast : date de fin de l'intervalle
+		 * @return String[] requete :
+		 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions entre les deux dates
+		 * sinon requete[0] = "-1" : echec et requete[1] = code erreur
+		 */
 		public String[] numberConnectionBetweenRequest (String firstDate, String lastDate) {
 			String[] tab = new String[2] ;
 			HashMap<String,Object> map = new HashMap<String,Object>();

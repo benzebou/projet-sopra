@@ -285,14 +285,19 @@ public class ControllerFacade {
 	}
 
 	/**
-	 * Methode permettant de renvoyer le number de conducteurs et le nombre de passager
+	 * Methode permettant renvoyer le number de conducteurs et le nombre de passager
 	 * @return String[] requete :
-	 * requete[0] = nombre de conducteurs
-	 * requete[1] = nombre de passagers
+	 * si requete[0] = "-1" : echec et requete[1] = code erreur
+	 * sinon requete[0] = nombre total de conducteurs 
+	 * 	et requete[1] = nombre total de passagers 
 	 */
 	public String[] getNumberDriverAndPassenger () {
 		String[] requete =requests.numberDriverAndPassengerRequest() ;
-		System.out.println("CONTROLLER_FACADE : Number of driver :"+requete[0]+"\n and passenger : "+requete[1]+"\n") ;		
+		if (requete[0].equals("-1")) {
+			System.out.println("CONTROLLER_FACADE : Echec - erreur "+requete[1]+"\n") ;
+		}
+		else
+			System.out.println("CONTROLLER_FACADE : Number of driver :"+requete[1]+"\n and passenger : "+requete[1]+"\n") ;
 		return requete ;
 	}
 	
@@ -348,7 +353,7 @@ public class ControllerFacade {
 	 * Methode permettant de renvoyer le nombre total de connexions depuis une date donnee
 	 * @param date : data a partir de laquelle on compte le nombre de connexions
 	 * @return String[] requete :
-	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions a la date
+	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions depuis la date
 	 * sinon requete[0] = "-1" : echec et requete[1] = code erreur
 	 */
 	public String[] getNumberConnectionSince (String date) {
@@ -366,7 +371,9 @@ public class ControllerFacade {
 	 * Methode permettant de renvoyer le nombre total de connexions entre deux dates donnees
 	 * @param dateFirst : date de debut de l'intervalle
 	 * @param dateLast : date de fin de l'intervalle
-	 * @return int : nombre total de connexions entre les deux dates
+	 * @return String[] requete :
+	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions entre les deux dates
+	 * sinon requete[0] = "-1" : echec et requete[1] = code erreur
 	 */
 	public String[] getNumberConnectionBetween (String dateFirst, String dateLast) {
 		String[] requete =requests.numberConnectionBetweenRequest(dateFirst, dateLast) ;
@@ -401,6 +408,6 @@ public class ControllerFacade {
 		//con.getNumberConnection() ; // fonctionne
 		//con.getNumberConnectionDate("2014-12-26") ; // fonctionne
 		//con.getNumberConnectionSince("2014-12-26") ; // fonctionne
-		con.getNumberConnectionBetween("2014-12-26", "2014-12-26") ;
+		//con.getNumberConnectionBetween("2014-12-26", "2014-12-26") ; // fonctionne
 	}
 }
