@@ -558,15 +558,12 @@ public class Requests {
 		}
 		
 		
-		// FONCTIONNE PAS
 		public String[] numberConnectionRequest () {
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,null) ;
 			String number = "-1" ;
 			String[] tab = new String[2] ;
 			if (reponse.isSuccess()) {
-				System.out.println("SUCCES - TAILLE : "+reponse.getData().size()) ;
 				for (Entry<String, Object> entry : reponse.getData().entrySet()) {
-					System.out.println((String) entry.getValue()) ;
 					number = (String) entry.getValue() ;
 				}
 				tab[0] = "0" ;
@@ -586,8 +583,6 @@ public class Requests {
 			map.put("date", date) ;
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
 			if (reponse.isSuccess()) {
-				System.out.println((Integer) reponse.getData().get(date)) ;
-				System.out.println("TAILLE : "+reponse.getData().size()) ;
 				tab[0] = "0" ;
 				tab[1] = (String) reponse.getData().get(date);
 			}
@@ -598,35 +593,37 @@ public class Requests {
 			return tab ;
 		}
 		
-		public int numberConnectionSinceRequest (String date) {
+		public String[] numberConnectionSinceRequest (String date) {
+			String[] tab = new String[2] ;
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("sinceDate", date) ;
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
 			if (reponse.isSuccess()) {
-				System.out.println((Integer) reponse.getData().get("1")) ;
-				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
-				return (Integer) reponse.getData().get("1") ;
+				tab[0] = "0" ;
+				tab[1] = (String) reponse.getData().get(date);
 			}
 			else {
-				// Comment faire la difference entre un code et un nombre de conducteurs??
-				return reponse.getCode() ;
+				tab[0] = "-1" ;
+				tab[1] = ((Integer) reponse.getCode()).toString() ;
 			}
+			return tab ;
 		}		
 
-		public int numberConnectionBetweenRequest (String firstDate, String lastDate) {
+		public String[] numberConnectionBetweenRequest (String firstDate, String lastDate) {
+			String[] tab = new String[2] ;
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("rangeFirst", firstDate) ;
 			map.put("rangeLast", lastDate) ;
 			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
 			if (reponse.isSuccess()) {
-				System.out.println((Integer) reponse.getData().get("1")) ;
-				System.out.println("TAILLE : "+((Integer) reponse.getData().size())) ;
-				return (Integer) reponse.getData().get("1") ;
+				tab[0] = "0" ;
+				tab[1] = (String) reponse.getData().get(firstDate);
 			}
 			else {
-				// Comment faire la difference entre un code et un nombre de conducteurs??
-				return reponse.getCode() ;
+				tab[0] = "-1" ;
+				tab[1] = ((Integer) reponse.getCode()).toString() ;
 			}
+			return tab ;
 		}	
 		
 

@@ -286,7 +286,9 @@ public class ControllerFacade {
 
 	/**
 	 * Methode permettant de renvoyer le number de conducteurs et le nombre de passager
-	 * @return 
+	 * @return String[] requete :
+	 * requete[0] = nombre de conducteurs
+	 * requete[1] = nombre de passagers
 	 */
 	public String[] getNumberDriverAndPassenger () {
 		String[] requete =requests.numberDriverAndPassengerRequest() ;
@@ -294,6 +296,12 @@ public class ControllerFacade {
 		return requete ;
 	}
 	
+	/**
+	 * Methode permettant de renvoyer le number de conducteurs et le nombre de passager par trajet
+	 * @return HashMap<String,String[]>
+	 * Key = String : trajet
+	 * Value = String[0] : nombre de conducteurs ; String[1] : nombre de passagers 
+	 */
 	public HashMap<String,String[]> getNumberDriverAndPassengerPerRide () {
 		HashMap<String,String[]> requete =requests.numberDriverAndPassengerPerRideRequest() ;
 		System.out.println("CONTROLLER_FACADE : Number of driver and passenger per ride!\n") ;		
@@ -303,7 +311,9 @@ public class ControllerFacade {
 	
 	/**
 	 * Methode permettant de renvoyer le nombre total de connexions
-	 * @return int : nombre de connexion 
+	 * @return String[] requete :
+	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions
+	 * sinon requete[0] = "-1" : echec et requete[1] = code erreur 
 	 */
 	public String[] getNumberConnection () {
 		String[] requete =requests.numberConnectionRequest() ;
@@ -313,14 +323,15 @@ public class ControllerFacade {
 		else {
 			System.out.println("CONTROLLER_FACADE : Echec - erreur "+requete[1]+"\n") ;
 		}
-			
 			return requete ;
 	}
 	
 	/**
 	 * Methode permettant de renvoyer le nombre total de connexions a une date donnee
 	 * @param date : data a laquelle on compte le nombre de connexions
-	 * @return int : nombre total de connexions a la date
+	 * @return String[] requete :
+	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions a la date
+	 * sinon requete[0] = "-1" : echec et requete[1] = code erreur
 	 */
 	public String[] getNumberConnectionDate (String date) {
 		String[] requete =requests.numberConnectionDateRequest(date) ;
@@ -330,17 +341,24 @@ public class ControllerFacade {
 		else {
 			System.out.println("CONTROLLER_FACADE : Echec - erreur "+requete[1]+"\n") ;
 		}		
-		return requete ;		
+		return requete ;	
 	}
 	
 	/**
 	 * Methode permettant de renvoyer le nombre total de connexions depuis une date donnee
 	 * @param date : data a partir de laquelle on compte le nombre de connexions
-	 * @return int : nombre total de connexions depuis la date
+	 * @return String[] requete :
+	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions a la date
+	 * sinon requete[0] = "-1" : echec et requete[1] = code erreur
 	 */
-	public int getNumberConnectionSince (String date) {
-		int requete =requests.numberConnectionSinceRequest(date) ;
-		System.out.println("CONTROLLER_FACADE : Number of connections since "+date+"!\n") ;		
+	public String[] getNumberConnectionSince (String date) {
+		String[] requete =requests.numberConnectionSinceRequest(date) ;		
+		if (requete[0].equals("0")) {
+			System.out.println("CONTROLLER_FACADE : Number of connections since "+date+" : "+requete[1]+"\n") ;		
+		}
+		else {
+			System.out.println("CONTROLLER_FACADE : Echec - erreur "+requete[1]+"\n") ;
+		}		
 		return requete ;		
 	}	
 	
@@ -350,9 +368,14 @@ public class ControllerFacade {
 	 * @param dateLast : date de fin de l'intervalle
 	 * @return int : nombre total de connexions entre les deux dates
 	 */
-	public int getNumberConnectionBetween (String dateFirst, String dateLast) {
-		int requete =requests.numberConnectionBetweenRequest(dateFirst, dateLast) ;
-		System.out.println("CONTROLLER_FACADE : Number of connections between "+dateFirst+" and "+dateLast+" !\n") ;		
+	public String[] getNumberConnectionBetween (String dateFirst, String dateLast) {
+		String[] requete =requests.numberConnectionBetweenRequest(dateFirst, dateLast) ;
+		if (requete[0].equals("0")) {
+			System.out.println("CONTROLLER_FACADE : Number of connections between "+dateFirst+" and "+dateLast+" : "+requete[1]+"\n") ;		
+		}
+		else {
+			System.out.println("CONTROLLER_FACADE : Echec - erreur "+requete[1]+"\n") ;
+		}		
 		return requete ;		
 	}	
 	
@@ -372,10 +395,12 @@ public class ControllerFacade {
 		//con.addWorkplace("bureau5"); // fonctionne
 		//con.deletionWorkplace("bureau3"); // fonctionne
 		//con.addTown("Foix", "09000"); // fonctionne
-		//con.deletionTown("9000");
-		//con.getNumberDriverAndPassenger() ;
-		//con.getNumberDriverAndPassengerPerRide() ;
-		//con.getNumberConnection() ;
-		con.getNumberConnectionDate("2014-12-26") ;
+		//con.deletionTown("9000"); // fonctionne
+		//con.getNumberDriverAndPassenger() ; // fonctionne
+		//con.getNumberDriverAndPassengerPerRide() ; // fonctionne
+		//con.getNumberConnection() ; // fonctionne
+		//con.getNumberConnectionDate("2014-12-26") ; // fonctionne
+		//con.getNumberConnectionSince("2014-12-26") ; // fonctionne
+		con.getNumberConnectionBetween("2014-12-26", "2014-12-26") ;
 	}
 }
