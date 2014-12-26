@@ -32,11 +32,6 @@ public class FacadeView {
 		firstActivity.startActivity(i); 
 	}
 	
-	
-	//////////////////////////////
-	//	   For Ride Activity    //
-	//////////////////////////////
-	
 	public void performRides(String postcode, String workplace) {
 		this.controller.performRides(postcode, workplace);
 	}
