@@ -23,9 +23,13 @@ public class RideActivity extends Activity{
 	private FacadeView fac;
 	private EditText departText;
 	private Spinner workplace;
+	private String selWorkplace;
 	private Spinner conducteur;
+	private String selConducteur = "both";
 	private Spinner aller;
+	private String selAller;
 	private Spinner retour;
+	private String selRetour;
 	private ArrayList<Ride> rides;
 	private Information user;
 	private TableLayout table;
@@ -45,12 +49,7 @@ public class RideActivity extends Activity{
 		this.workplace = (Spinner) findViewById(R.id.Arrivee);
 	    ArrayList<String> listW = new ArrayList<String>();
 	    this.fac.displayWorkplaces(listW);
-	    /*listW.add("Workplace1");
-	    listW.add("Workplace2");
-	    listW.add("Workplace3");
-	    listW.add("Workplace4");
-	    listW.add("Workplace5");
-	    listW.add("Workplace6");*/
+
         ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
         dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		workplace.setAdapter(dataAdapterW);
@@ -74,10 +73,11 @@ public class RideActivity extends Activity{
 		this.aller = (Spinner) findViewById(R.id.ChoixAller);
 		InitHeure(this.aller);
 		
-		// Initialisation spinner heure aller
+		// Initialisation spinner heure retour
 		this.retour = new Spinner(this);
 		this.retour = (Spinner) findViewById(R.id.ChoixRetour);
 		InitHeure(this.retour);
+		
 		
 		// Initialise le tableau de trajet
 		inflater = getLayoutInflater();
@@ -92,10 +92,10 @@ public class RideActivity extends Activity{
 	 */
 	public void onClickSearch(View v) {
 		this.workplace = (Spinner) findViewById(R.id.Arrivee);
-		this.departText = (EditText) findViewById(R.id.Depart);
-		Object selection = this.conducteur.getSelectedItem();	
-		fac.performRides(departText.getText().toString(), workplace.toString());
-		displayRide(selection.toString());		
+		this.selWorkplace = this.workplace.getSelectedItem().toString();
+		this.departText = (EditText) findViewById(R.id.Depart);	
+		fac.performRides(departText.getText().toString(), selWorkplace);
+		displayRide(this.selConducteur);		
 	}
 	
 	/**
@@ -104,8 +104,8 @@ public class RideActivity extends Activity{
 	 */
 	public void onClickConducteur(View v) {
 		this.conducteur = (Spinner) findViewById(R.id.Conducteur);
-		Object selection = this.conducteur.getSelectedItem();
-		displayRide(selection.toString());	
+		this.selConducteur = this.conducteur.getSelectedItem().toString();	
+		displayRide(this.selConducteur);	
 	}
 	
 	/**
@@ -120,26 +120,29 @@ public class RideActivity extends Activity{
 	 * Affichage des trajets.
 	 * @param conducteur
 	 */
-	public void displayRide(String conducteur) {
+	public void displayRide(String selCond) {
 		// parcours la liste rides et affiche les trajets dont "conducteur" correspond
 		Iterator r = this.rides.iterator();
 		while(r.hasNext()){
 			// add a new row with mail and driver?.
 			Iterator info = ((ArrayList<Ride>) r.next()).iterator();
 			while(info.hasNext())
-			if (conducteur == "non conducteur" && ((Information)info.next()).isConducteur() == false ) {
+			if (selCond == "non conducteur" && ((Information)info.next()).isConducteur() == false ) {
 				TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
 				
 				((TextView) tr.findViewById(R.id.MailUser)).setText(((Information) info.next()).getEmail());
 				((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
 				((TextView) tr.findViewById(R.id.HeureAller)).setText(((Information) info.next()).getMorning());
-				((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
+				
+				if ()
+					((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
+				
 				((TextView) tr.findViewById(R.id.HeureRetour)).setText(((Information) info.next()).getEvening());
 				
 				
 				table.addView(tr);
 			}
-			else if (conducteur == "conducteur" && ((Information)info.next()).isConducteur() == true) {
+			else if (selCond == "conducteur" && ((Information)info.next()).isConducteur() == true) {
 				TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
 				
 				((TextView) tr.findViewById(R.id.MailUser)).setText(((Information) info.next()).getEmail());
