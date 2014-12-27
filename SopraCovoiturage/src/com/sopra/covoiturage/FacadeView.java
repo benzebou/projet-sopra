@@ -92,7 +92,7 @@ public class FacadeView {
 	}
 	
 	public void displayWorkplaces(ArrayList<String> listOfWorkplaces) {
-		
+		listOfWorkplaces = this.controller.getWorkplaces();
 	}
 	
 	public void erreurAddWorkplace () {

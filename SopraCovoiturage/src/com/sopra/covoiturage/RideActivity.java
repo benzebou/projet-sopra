@@ -19,9 +19,8 @@ import android.widget.TextView;
 
 public class RideActivity extends Activity{
 	
-	//private FacadeView facade;
 	private FacadeView fac;
-	private EditText DepartText;
+	private EditText departText;
 	private Spinner workplace;
 	private Spinner conducteur;
 	private Spinner heure;
@@ -30,6 +29,10 @@ public class RideActivity extends Activity{
 	private TableLayout table;
 	private LayoutInflater inflater;
 		
+	
+	/**
+	 * Creation de RideActivity.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,15 +41,14 @@ public class RideActivity extends Activity{
 		// Initialisation spinner workplace
 		this.workplace = new Spinner(this);
 		this.workplace = (Spinner) findViewById(R.id.Arrivee);
-	    List<String> listW = new ArrayList<String>();
-	    // getWorkplace from the database
-	    listW.add("Workplace1");
+	    ArrayList<String> listW = new ArrayList<String>();
+	    this.fac.displayWorkplaces(listW);
+	    /*listW.add("Workplace1");
 	    listW.add("Workplace2");
 	    listW.add("Workplace3");
 	    listW.add("Workplace4");
 	    listW.add("Workplace5");
-	    listW.add("Workplace6");
-	    
+	    listW.add("Workplace6");*/
         ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listW);
         dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		workplace.setAdapter(dataAdapterW);
@@ -70,40 +72,52 @@ public class RideActivity extends Activity{
 		this.heure = (Spinner) findViewById(R.id.Heure);
 	    List<String> listH = new ArrayList<String>();
 
-
         ArrayAdapter<String> dataAdapterH = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listH);
         dataAdapterH.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		this.heure.setAdapter(dataAdapterH);
+		
 		
 		// Initialise le tableau de trajet
 		inflater = getLayoutInflater();
 		table = new TableLayout(this);
 		table = (TableLayout) findViewById(R.id.Trajets);
 		displayBasicRide();
-
 	}
 	
-
+	/**
+	 * Execution de cette fonction lorsque le user clique sur search.
+	 * @param v
+	 */
 	public void onClickSearch(View v) {
 		this.workplace = (Spinner) findViewById(R.id.Arrivee);
-		this.DepartText = (EditText) findViewById(R.id.Depart);
-		
+		this.departText = (EditText) findViewById(R.id.Depart);
+		Object selection = this.conducteur.getSelectedItem();	
+		fac.performRides(departText.getText().toString(), workplace.toString());
+		displayRide(selection.toString());		
 	}
 	
+	/**
+	 * Execution de cette fonction lorsque le user change le choix du spinner conducteur.
+	 * @param v
+	 */
 	public void onClickConducteur(View v) {
 		this.conducteur = (Spinner) findViewById(R.id.Conducteur);
 		Object selection = this.conducteur.getSelectedItem();
-		displayRide((String) selection);
-		
+		displayRide(selection.toString());	
 	}
 	
-	
+	/**
+	 * Affichage des trajets correspondant aux parametres du profil du user à l'ouverture de la page.
+	 */
 	public void displayBasicRide() {
 		fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
 		displayRide("both");
 	}
 	
-	
+	/**
+	 * Affichage des trajets.
+	 * @param conducteur
+	 */
 	public void displayRide(String conducteur) {
 		// parcours la liste rides et affiche les trajets dont "conducteur" correspond
 		Iterator r = this.rides.iterator();
@@ -142,6 +156,10 @@ public class RideActivity extends Activity{
 		}
 	}
 	
+	/**
+	 * setter de l'attribut rides. 
+	 * @param rides
+	 */
 	public void setRides(ArrayList<Ride> rides) {
 		this.rides = rides;
 	}
