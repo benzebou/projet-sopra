@@ -7,6 +7,7 @@ import java.util.List;
 import modele.Information;
 import modele.Ride;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -131,6 +132,7 @@ public class RideActivity extends Activity{
 				((TextView) tr.findViewById(R.id.MailUser)).setText(((Information) info.next()).getEmail());
 				((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
 				((TextView) tr.findViewById(R.id.HeureAller)).setText(((Information) info.next()).getMorning());
+				((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
 				((TextView) tr.findViewById(R.id.HeureRetour)).setText(((Information) info.next()).getEvening());
 				
 				
