@@ -6,7 +6,7 @@ public class Ride {
 
 
 	/**
-	 * Liste de user effectuant ce meme trajet, a la meme heure
+	 * Liste de user effectuant un meme trajet, a la meme heure
 	 */
 	private ArrayList<Information> userList ;
 
