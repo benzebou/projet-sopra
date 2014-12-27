@@ -24,7 +24,8 @@ public class RideActivity extends Activity{
 	private EditText departText;
 	private Spinner workplace;
 	private Spinner conducteur;
-	//private Spinner heure;
+	private Spinner aller;
+	private Spinner retour;
 	private ArrayList<Ride> rides;
 	private Information user;
 	private TableLayout table;
@@ -50,7 +51,7 @@ public class RideActivity extends Activity{
 	    listW.add("Workplace4");
 	    listW.add("Workplace5");
 	    listW.add("Workplace6");*/
-        ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listW);
+        ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
         dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		workplace.setAdapter(dataAdapterW);
 		
@@ -63,20 +64,20 @@ public class RideActivity extends Activity{
 	    listC.add("conducteur");
 	    listC.add("non conducteur");
 
-        ArrayAdapter<String> dataAdapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listC);
+        ArrayAdapter<String> dataAdapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listC);
         dataAdapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		this.conducteur.setAdapter(dataAdapterC);
 		
 		
-	/*	// Initialisation spinner heure
-		this.heure = new Spinner(this);
-		this.heure = (Spinner) findViewById(R.id.Heure);
-	    List<String> listH = new ArrayList<String>();
-
-        ArrayAdapter<String> dataAdapterH = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listH);
-        dataAdapterH.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		this.heure.setAdapter(dataAdapterH);
-		*/
+		// Initialisation spinner heure aller
+		this.aller = new Spinner(this);
+		this.aller = (Spinner) findViewById(R.id.ChoixAller);
+		InitHeure(this.aller);
+		
+		// Initialisation spinner heure aller
+		this.retour = new Spinner(this);
+		this.retour = (Spinner) findViewById(R.id.ChoixRetour);
+		InitHeure(this.retour);
 		
 		// Initialise le tableau de trajet
 		inflater = getLayoutInflater();
@@ -164,6 +165,26 @@ public class RideActivity extends Activity{
 				table.addView(tr);
 			}
 		}
+	}
+	
+	/**
+	 * Fonction d'initialisation des spinner heure aller et heure retour
+	 * @param spin
+	 */
+	private void InitHeure(Spinner spin) {
+	    String heure;
+		List<String> list = new ArrayList<String>();
+	    
+	    for(int i=7; i< 20; i++) {
+	    	for(int j=0; i<4; i++) {
+	    		heure = i + ":" + j*15;
+	    		list.add(heure);
+	    	}
+	    }
+	    
+	    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
+	    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spin.setAdapter(dataAdapter);
 	}
 	
 	/**
