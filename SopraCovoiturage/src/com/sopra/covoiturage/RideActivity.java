@@ -23,7 +23,7 @@ public class RideActivity extends Activity{
 	private EditText departText;
 	private Spinner workplace;
 	private Spinner conducteur;
-	private Spinner heure;
+	//private Spinner heure;
 	private ArrayList<Ride> rides;
 	private Information user;
 	private TableLayout table;
@@ -67,7 +67,7 @@ public class RideActivity extends Activity{
 		this.conducteur.setAdapter(dataAdapterC);
 		
 		
-		// Initialisation spinner heure
+	/*	// Initialisation spinner heure
 		this.heure = new Spinner(this);
 		this.heure = (Spinner) findViewById(R.id.Heure);
 	    List<String> listH = new ArrayList<String>();
@@ -75,7 +75,7 @@ public class RideActivity extends Activity{
         ArrayAdapter<String> dataAdapterH = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,listH);
         dataAdapterH.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		this.heure.setAdapter(dataAdapterH);
-		
+		*/
 		
 		// Initialise le tableau de trajet
 		inflater = getLayoutInflater();
@@ -130,6 +130,9 @@ public class RideActivity extends Activity{
 				
 				((TextView) tr.findViewById(R.id.MailUser)).setText(((Information) info.next()).getEmail());
 				((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
+				((TextView) tr.findViewById(R.id.HeureAller)).setText(((Information) info.next()).getMorning());
+				((TextView) tr.findViewById(R.id.HeureRetour)).setText(((Information) info.next()).getEvening());
+				
 				
 				table.addView(tr);
 			}
@@ -138,6 +141,8 @@ public class RideActivity extends Activity{
 				
 				((TextView) tr.findViewById(R.id.MailUser)).setText(((Information) info.next()).getEmail());
 				((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
+				((TextView) tr.findViewById(R.id.HeureAller)).setText(((Information) info.next()).getMorning());
+				((TextView) tr.findViewById(R.id.HeureRetour)).setText(((Information) info.next()).getEvening());
 				
 				table.addView(tr);
 			}
@@ -150,6 +155,9 @@ public class RideActivity extends Activity{
 					((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
 				else
 					((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
+			
+				((TextView) tr.findViewById(R.id.HeureAller)).setText(((Information) info.next()).getMorning());
+				((TextView) tr.findViewById(R.id.HeureRetour)).setText(((Information) info.next()).getEvening());
 				
 				table.addView(tr);
 			}

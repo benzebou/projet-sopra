@@ -12,4 +12,14 @@
     	android:id="@+id/CondUser"
         android:textSize="15sp" 
         android:paddingLeft="15dip"/>
+	
+	<TextView
+	 	 android:id="@+id/HeureAller"
+	     android:textSize="15sp" 
+	     android:paddingLeft="15dip"/>
+	       
+	<TextView
+	     android:id="@+id/HeureRetour"
+	     android:textSize="15sp" 
+	     android:paddingLeft="15dip"/>
 </TableRow>
