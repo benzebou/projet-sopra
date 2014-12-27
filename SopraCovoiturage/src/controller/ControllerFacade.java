@@ -412,7 +412,7 @@ public class ControllerFacade {
 		//con.performRegister(info); //fonctionne
 		//con.performDisconnect("user1", "test") ; // fonctionne
 		//con.getProfileInformation("user1");
-		//con.performRides("31400", "3"); // fonctionne
+		con.performRides("31400", "3"); // fonctionne
 		//con.addWorkplace("bureau5"); // fonctionne
 		//con.deletionWorkplace("bureau3"); // fonctionne
 		//con.addTown("Foix", "09000"); // fonctionne

@@ -234,6 +234,8 @@ public class Requests {
 				info.setPhone((String)reponse.getData().get("tel"));
 				info.setWorkplace((String)reponse.getData().get("travail"));
 				info.setPostcode((String)reponse.getData().get("postal"));
+				info.setMorning((String)reponse.getData().get("horairesMatin"));
+				info.setEvening((String)reponse.getData().get("horairesSoir"));
 				if (reponse.getData().get("conducteur") == "1")
 					info.setConducteur(true);
 				else
@@ -368,29 +370,32 @@ public class Requests {
 				// parcours de la HashMap
 				for (Entry<String, Object> entry : reponse.getData().entrySet()) {
 					LinkedHashMap nMapReponse = (LinkedHashMap) entry.getValue() ;
-					// meme horaires de depart
+					// meme horaires
 					boolean memeHoraires = false ;
 					Ride ride = new Ride () ;
 					for (int i=0; i<rideList.size(); i++) {
-						if (rideList.get(i).getHeureDepartMatin().equals((String)nMapReponse.get("horairesMatin"))) {
-							if (rideList.get(i).getHeureDepartSoir().equals((String)nMapReponse.get("horairesSoir"))) {
-								memeHoraires = true ;
-								ride = rideList.get(i) ;
-								break ;
+						if (rideList.get(i).getUserList().size() != 0) {
+							System.out.println("TAILLE : "+rideList.get(i).getUserList().size()) ;
+							System.out.println("MORGEN : "+rideList.get(i).getUserList().get(0).getMorning()) ;
+							System.out.println("MORGEN : "+rideList.get(i).getUserList().get(0).getLogin()) ;
+							if (rideList.get(i).getUserList().get(0).getMorning().equals((String)nMapReponse.get("horairesMatin"))) {
+								if (rideList.get(i).getUserList().get(0).getEvening().equals((String)nMapReponse.get("horairesSoir"))) {
+									memeHoraires = true ;
+									ride = rideList.get(i) ;
+									break ;
+								}
 							}
 						}	
 					}
 					if (memeHoraires) {
+						System.out.println("MEME HORAIRES") ;
 						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
 						ride.getUserList().add(user) ;
 					}
 					// different horaires de depart : nouveau ride dans la liste
 					else {
+						System.out.println("DIFFERENT HORAIRES") ;
 						Ride nride = new Ride () ;
-						nride.setDepart((String)nMapReponse.get("postal"));
-						nride.setArrivee((String)nMapReponse.get("travail"));
-						nride.setHeureDepartMatin((String)nMapReponse.get("horairesMatin"));
-						nride.setHeureDepartSoir((String)nMapReponse.get("horairesSoir"));
 						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
 						nride.getUserList().add(user) ;
 						rideList.add(nride) ;
