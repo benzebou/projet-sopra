@@ -98,24 +98,6 @@
 	    <View
 	        android:layout_height="2dip"
 	        android:background="#de002d" />
-	    
-	    <TableRow
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:padding="5dip">
-	        
-	        <TextView
-	            android:text="saade@etud.insa-toulouse.fr"
-	            android:textSize="15sp" 
-	            android:paddingRight="15dip"/>
-	 
-	        <TextView
-	            android:text="Oui"
-	            android:textSize="15sp" 
-	            android:paddingLeft="15dip"/>
-	    </TableRow>
-	    
-	    
 	</TableLayout>
 	    
 </LinearLayout>

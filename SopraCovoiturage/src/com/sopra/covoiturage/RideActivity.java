@@ -5,12 +5,17 @@ import java.util.Iterator;
 import java.util.List;
 
 import modele.Information;
+import modele.Ride;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 public class RideActivity extends Activity{
 	
@@ -20,8 +25,10 @@ public class RideActivity extends Activity{
 	private Spinner workplace;
 	private Spinner conducteur;
 	private Spinner heure;
-	private ArrayList<Information> rides;
+	private ArrayList<Ride> rides;
 	private Information user;
+	private TableLayout table;
+	private LayoutInflater inflater;
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +76,9 @@ public class RideActivity extends Activity{
 		this.heure.setAdapter(dataAdapterH);
 		
 		// Initialise le tableau de trajet
+		inflater = getLayoutInflater();
+		table = new TableLayout(this);
+		table = (TableLayout) findViewById(R.id.Trajets);
 		displayBasicRide();
 
 	}
@@ -95,17 +105,44 @@ public class RideActivity extends Activity{
 	
 	
 	public void displayRide(String conducteur) {
-		// parcours la liste rides et affiche les trajets dont conducteur correspond
-		Iterator i = this.rides.iterator();
-		while(i.hasNext()){
+		// parcours la liste rides et affiche les trajets dont "conducteur" correspond
+		Iterator r = this.rides.iterator();
+		while(r.hasNext()){
 			// add a new row with mail and driver?.
-			//if (conducteur == "non conducteur" //&& conducteur(i) == false );
-			//else if (conducteur == "conducteur" // && conducteur(i) == true);
-			//else ;
+			Iterator info = ((ArrayList<Ride>) r.next()).iterator();
+			while(info.hasNext())
+			if (conducteur == "non conducteur" && ((Information)info.next()).isConducteur() == false ) {
+				TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
+				
+				((TextView) tr.findViewById(R.id.MailUser)).setText(((Information) info.next()).getEmail());
+				((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
+				
+				table.addView(tr);
+			}
+			else if (conducteur == "conducteur" && ((Information)info.next()).isConducteur() == true) {
+				TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
+				
+				((TextView) tr.findViewById(R.id.MailUser)).setText(((Information) info.next()).getEmail());
+				((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
+				
+				table.addView(tr);
+			}
+			else {
+				TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
+				
+				((TextView) tr.findViewById(R.id.MailUser)).setText(((Information) info.next()).getEmail());
+				
+				if (((Information) info.next()).isConducteur() == true)
+					((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
+				else
+					((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
+				
+				table.addView(tr);
+			}
 		}
 	}
 	
-	public void setRides(ArrayList<Information> rides) {
+	public void setRides(ArrayList<Ride> rides) {
 		this.rides = rides;
 	}
 	
