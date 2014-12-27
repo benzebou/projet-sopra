@@ -94,6 +94,10 @@ public class RideActivity extends Activity{
 		this.workplace = (Spinner) findViewById(R.id.Arrivee);
 		this.selWorkplace = this.workplace.getSelectedItem().toString();
 		this.departText = (EditText) findViewById(R.id.Depart);	
+		this.aller = (Spinner) findViewById(R.id.ChoixAller);
+		this.selAller = this.aller.getSelectedItem().toString();
+		this.retour = (Spinner) findViewById(R.id.ChoixRetour);
+		this.selRetour = this.retour.getSelectedItem().toString();
 		fac.performRides(departText.getText().toString(), selWorkplace);
 		displayRide(this.selConducteur);		
 	}
@@ -133,12 +137,13 @@ public class RideActivity extends Activity{
 				((TextView) tr.findViewById(R.id.MailUser)).setText(((Information) info.next()).getEmail());
 				((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
 				((TextView) tr.findViewById(R.id.HeureAller)).setText(((Information) info.next()).getMorning());
-				
-				if ()
-					((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
-				
 				((TextView) tr.findViewById(R.id.HeureRetour)).setText(((Information) info.next()).getEvening());
 				
+				if (this.selAller == ((Information) info.next()).getMorning())
+					((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
+
+				if (this.selRetour == ((Information) info.next()).getEvening())
+					((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
 				
 				table.addView(tr);
 			}
@@ -149,6 +154,12 @@ public class RideActivity extends Activity{
 				((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
 				((TextView) tr.findViewById(R.id.HeureAller)).setText(((Information) info.next()).getMorning());
 				((TextView) tr.findViewById(R.id.HeureRetour)).setText(((Information) info.next()).getEvening());
+				
+				if (this.selAller == ((Information) info.next()).getMorning())
+					((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
+
+				if (this.selRetour == ((Information) info.next()).getEvening())
+					((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
 				
 				table.addView(tr);
 			}
@@ -164,6 +175,12 @@ public class RideActivity extends Activity{
 			
 				((TextView) tr.findViewById(R.id.HeureAller)).setText(((Information) info.next()).getMorning());
 				((TextView) tr.findViewById(R.id.HeureRetour)).setText(((Information) info.next()).getEvening());
+				
+				if (this.selAller == ((Information) info.next()).getMorning())
+					((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
+
+				if (this.selRetour == ((Information) info.next()).getEvening())
+					((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
 				
 				table.addView(tr);
 			}
