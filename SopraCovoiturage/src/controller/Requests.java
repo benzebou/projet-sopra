@@ -375,9 +375,6 @@ public class Requests {
 					Ride ride = new Ride () ;
 					for (int i=0; i<rideList.size(); i++) {
 						if (rideList.get(i).getUserList().size() != 0) {
-							System.out.println("TAILLE : "+rideList.get(i).getUserList().size()) ;
-							System.out.println("MORGEN : "+rideList.get(i).getUserList().get(0).getMorning()) ;
-							System.out.println("MORGEN : "+rideList.get(i).getUserList().get(0).getLogin()) ;
 							if (rideList.get(i).getUserList().get(0).getMorning().equals((String)nMapReponse.get("horairesMatin"))) {
 								if (rideList.get(i).getUserList().get(0).getEvening().equals((String)nMapReponse.get("horairesSoir"))) {
 									memeHoraires = true ;
@@ -388,13 +385,11 @@ public class Requests {
 						}	
 					}
 					if (memeHoraires) {
-						System.out.println("MEME HORAIRES") ;
 						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
 						ride.getUserList().add(user) ;
 					}
 					// different horaires de depart : nouveau ride dans la liste
 					else {
-						System.out.println("DIFFERENT HORAIRES") ;
 						Ride nride = new Ride () ;
 						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
 						nride.getUserList().add(user) ;
