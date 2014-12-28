@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,7 +29,7 @@ public class Requests {
 	/**
 	 * 
 	 * @author alexandre
-	 * Une requête HTTP POST est effectuee en utilisant la methode postRequest()
+	 * Une requï¿½te HTTP POST est effectuee en utilisant la methode postRequest()
 	 * Cette methode prend deux parametres, un type de requete et une hashmap contenant les parametres
 	 * Remarque : les types de requetes sont ceux de la classe "requestJava"
 	 * Parametres a fournir pour chaque requete :
@@ -54,8 +56,8 @@ public class Requests {
 		*
 	 */
 
-		private static String urlRequest = "http://localhost/carpooling/http_post_entry.php";
-		//private static String urlRequest = "http://etud.insa-toulouse.fr/~demeyer/http_post_entry.php";
+		//private static String urlRequest = "http://localhost/carpooling/http_post_entry.php";
+		private static String urlRequest = "http://etud.insa-toulouse.fr/~demeyer/http_post_entry.php";
 		
 		private static String cookie;
 		
@@ -69,7 +71,7 @@ public class Requests {
 			boolean[] tab = new boolean[2] ; 
 			HashMap<String, Object> map = new HashMap<String, Object> () ;
 			map.put("loginAdmin", nickname) ;
-			map.put("mdp", password) ;
+			map.put("mdp", encryptPassword(password)) ;
 			if (connectionAdminRequest(map)) {
 				tab[0] = true ;
 				tab[1] = true ;
@@ -141,7 +143,7 @@ public class Requests {
 		public int creationUserRequest (Information info) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", info.getLogin()); 
-			map.put("mdp", info.getMdp());
+			map.put("mdp", encryptPassword(info.getMdp()));
 			map.put("mail", info.getEmail());
 			map.put("nom", info.getName());
 			map.put("prenom", info.getFirstname());
@@ -201,7 +203,7 @@ public class Requests {
 		public boolean disconnectionRequest (String nickname, String password) {
 			HashMap<String, Object> map = new HashMap<String, Object> () ;
 			map.put("login", nickname) ;
-			map.put("mdp", password) ;
+			map.put("mdp", encryptPassword(password)) ;
 			RequestReponses reponse = null ;
 			reponse = postRequest(RequestType.DISCONNECT,map) ;
 			if (reponse.isSuccess()) { 
@@ -218,7 +220,7 @@ public class Requests {
 		 * @return Informations : informations sur l'utilisateur 
 		 */
 		public Information getProfileInformationRequest(String nickname) {
-			// Obtenir les informations d'un profil : nickname (utilisateur à afficher)
+			// Obtenir les informations d'un profil : nickname (utilisateur ï¿½ afficher)
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", nickname);
 			RequestReponses reponse = null ;
@@ -746,11 +748,39 @@ public class Requests {
 				  }
 			  }
 			  catch(ParseException pe){
-			    System.out.println("Erreur lors du decodage du format JSON : "+pe+", veuillez vérifier le message reçu par l'application dans la méthode postRequest avant de transformer la réponse JSON en classe");
+			    System.out.println("Erreur lors du decodage du format JSON : "+pe+", veuillez vï¿½rifier le message reï¿½u par l'application dans la mï¿½thode postRequest avant de transformer la rï¿½ponse JSON en classe");
 			  }
 			  return (Map<String,Object>)result;
 		}
 		
+		/**
+		 * Permet de crypter (hasher) le mot de passe
+		 * @param password : le mot de passe a crypte
+		 * @return le mot de passe crypte
+		 */
+		private static String encryptPassword(String password){
+			MessageDigest md;
+			try {
+				md = MessageDigest.getInstance("SHA-256");
+				md.update(password.getBytes());
+				 
+		        byte byteData[] = md.digest();
+		 
+		        //convert the byte to hex format method 1
+		        StringBuffer sb = new StringBuffer();
+		        for (int i = 0; i < byteData.length; i++) {
+		         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+		        }
+		        
+		        return sb.toString();
+		        
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+				return "";
+			}
+		}
 		
 		/**
 		 * Unique fonction qui sera appellee : effectue une requete
@@ -797,19 +827,19 @@ public class Requests {
 
 		      //Get Response  
 		      try{
-		    	  // On teste s'il n'y a pas eut d'erreur pour la requête
+		    	  // On teste s'il n'y a pas eut d'erreur pour la requï¿½te
 			      if (connection.getResponseCode()/100 != 2){ throw new requestException(connection.getResponseCode());}
 			      
 			      System.out.println("AFTER" + connection.getHeaderFields());
 			      
-			      // S'il y a le champ "Set-Cookie", on récupère le cookie
+			      // S'il y a le champ "Set-Cookie", on rï¿½cupï¿½re le cookie
 			      if (connection.getHeaderField("Set-Cookie") != null){
 			    	  
 				     cookie = connection.getHeaderField("Set-Cookie");
 			    	  
 			      }
 			      else{
-			    	  // Sinon on vérifie l'état du cookie
+			    	  // Sinon on vï¿½rifie l'ï¿½tat du cookie
 			      }
 			      
 			      InputStream is = connection.getInputStream();
