@@ -487,12 +487,18 @@ public class Requests {
 		/**
 		 * Methode permettant de renvoyer la liste des lieux de travail
 		 * @return ArrayList<String> : liste des lieux de travail
+		 * @throws ExecutionException 
+		 * @throws InterruptedException 
 		 */
-		public ArrayList<String> getWorkplacesRequest() {
-			RequestResponses reponse = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
+		public ArrayList<String> getWorkplacesRequest() throws InterruptedException, ExecutionException {
+			RequestsParams params = new RequestsParams(RequestType.CONNECT_ADMIN,null);
+			HTTPAsyncTask task = new HTTPAsyncTask();
+			task.execute(params);
+			RequestResponses result = task.get();
+			
 			ArrayList<String> workplaces = new ArrayList<String>() ;
 			// parcours de la HashMap
-			for (Entry<String, Object> entry : reponse.getData().entrySet()) {
+			for (Entry<String, Object> entry : result.getData().entrySet()) {
 				String MapReponse = (String) entry.getValue() ;
 				workplaces.add(MapReponse) ;
 			}
@@ -832,7 +838,7 @@ public class Requests {
 		      wr.flush ();
 		      wr.close ();
 
-		      Log.d("SC", "on regarde la réponse");
+		      Log.d("SC", "on regarde la rï¿½ponse");
 		      //Get Response  
 		      try{
 		    	  // On teste s'il n'y a pas eut d'erreur pour la requï¿½te
@@ -887,7 +893,7 @@ public class Requests {
 			protected RequestResponses doInBackground(RequestsParams... arg0) {
 				RequestsParams params = arg0[0];
 				RequestResponses result = postRequest(params.getTypeOfRequest(), params.getParameters());
-				Log.d("SC", "on return la réponse");
+				Log.d("SC", "on return la rï¿½ponse");
 				return result;
 			}
 
