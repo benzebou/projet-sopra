@@ -87,10 +87,18 @@ public class FacadeView {
 		this.controller.performRides(postcode, workplace);
 	}
 	
+	/**
+	 * Methode initialisation l'attribut ride de l'activite Ride.
+	 * @param listOfRides
+	 */
 	public void processRides (ArrayList<Ride> listOfRides) {
 		this.searchRide.setRides(listOfRides);
 	}
 	
+	/**
+	 * initialise le parametre listOfWorkplaces en faisant appel a la methode getWorkplace du controller
+	 * @param listOfWorkplaces
+	 */
 	public void displayWorkplaces(ArrayList<String> listOfWorkplaces) {
 		listOfWorkplaces = this.controller.getWorkplaces();
 	}

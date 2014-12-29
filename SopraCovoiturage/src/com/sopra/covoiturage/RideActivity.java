@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -63,10 +64,16 @@ public class RideActivity extends Activity{
 	    listC.add("conducteur");
 	    listC.add("non conducteur");
 
-        ArrayAdapter<String> dataAdapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listC);
+        final ArrayAdapter<String> dataAdapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listC);
         dataAdapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		this.conducteur.setAdapter(dataAdapterC);
-		
+        this.conducteur.setOnItemClickListener(new  AdapterView.OnItemClickListener() { 
+           @Override 
+           public  void  onItemClick(AdapterView<?> parent, View view, int  position, long  id) { 
+               //this.selConducteur = this.conducteur.getSelectedItem().toString();	
+               //displayRide(this.selConducteur);	 
+           } 
+       }); 
 		
 		// Initialisation spinner heure aller
 		this.aller = new Spinner(this);
