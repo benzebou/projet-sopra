@@ -18,6 +18,13 @@ public class FacadeView {
 		
 	}
 	
+	// Constructeur pour les test de ride Activity, a enlever
+	public FacadeView(RideActivity activity) {
+		controller = ControllerFacade.getInstance(this);
+		searchRide = activity;
+		
+	}
+	
 	/* CONNECTION */
 	public void performConnect(String nickname, String password) {
 		controller.performConnect(nickname, password);

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -44,6 +45,7 @@ public class RideActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ride_page);
+		this.fac = new FacadeView(this);
 		
 		// Initialisation spinner workplace
 		this.workplace = new Spinner(this);
@@ -67,13 +69,17 @@ public class RideActivity extends Activity{
         final ArrayAdapter<String> dataAdapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listC);
         dataAdapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		this.conducteur.setAdapter(dataAdapterC);
-        this.conducteur.setOnItemClickListener(new  AdapterView.OnItemClickListener() { 
+		this.conducteur.setOnItemSelectedListener(new OnItemSelectedListener() { 
            @Override 
-           public  void  onItemClick(AdapterView<?> parent, View view, int  position, long  id) { 
+           public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                //this.selConducteur = this.conducteur.getSelectedItem().toString();	
                //displayRide(this.selConducteur);	 
-           } 
-       }); 
+           }
+
+           @Override
+           public void onNothingSelected(AdapterView<?> arg0) {
+           }
+         });
 		
 		// Initialisation spinner heure aller
 		this.aller = new Spinner(this);
@@ -90,7 +96,7 @@ public class RideActivity extends Activity{
 		inflater = getLayoutInflater();
 		table = new TableLayout(this);
 		table = (TableLayout) findViewById(R.id.Trajets);
-		displayBasicRide();
+		//displayBasicRide();
 	}
 	
 	/**
