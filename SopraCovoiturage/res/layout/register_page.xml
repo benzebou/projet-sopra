@@ -23,8 +23,8 @@
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
             android:hint="login"
             android:inputType="text"
@@ -34,8 +34,8 @@
             android:id="@+id/nom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
             android:hint="nom"
             android:inputType="text"
@@ -45,8 +45,8 @@
             android:id="@+id/prenom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
             android:hint="prénom"
             android:inputType="text"
@@ -56,8 +56,8 @@
             android:id="@+id/mot_de_passe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:ems="10"
             android:gravity="center_horizontal"
             android:hint="Mot de passe"
@@ -68,8 +68,8 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:ems="10"
             android:gravity="center_horizontal"
             android:hint="email"
@@ -80,8 +80,8 @@
             android:id="@+id/telephone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:ems="10"
             android:gravity="center_horizontal"
             android:hint="téléphone"
@@ -96,7 +96,7 @@
                 android:id="@+id/commune"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50sp"
+                android:layout_marginLeft="50dp"
                 android:ems="10"
                 android:gravity="center_horizontal"
                 android:hint="commune"
@@ -107,7 +107,7 @@
                 android:id="@+id/code_postal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="50sp"
+                android:layout_marginRight="50dp"
                 android:ems="10"
                 android:gravity="center_horizontal"
                 android:hint="code"
@@ -117,21 +117,21 @@
         <Spinner
             android:id="@+id/lieu_de_travail"
             android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp" >
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp" >
 
             <Spinner
                 android:id="@+id/heure_aller"
                 android:layout_width="wrap_content"
-                android:layout_height="40sp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:textSize="12sp" />
@@ -139,7 +139,7 @@
             <Spinner
                 android:id="@+id/heure_retour"
                 android:layout_width="wrap_content"
-                android:layout_height="40sp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:textSize="12sp" />
@@ -148,8 +148,8 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp" >
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp" >
 
             <TableRow
                 android:id="@+id/tableRow1"
@@ -258,8 +258,8 @@
             android:id="@+id/conducteur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:onClick="onCheckBoxClicked"
             android:text="Conducteur"
             android:textColor="#000000"
@@ -269,8 +269,8 @@
             android:id="@+id/notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:onClick="onCheckboxClicked"
             android:text="Souhaite être notifié"
             android:textColor="#000000"
@@ -279,8 +279,8 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp" >
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp" >
 >
 
             <Button
@@ -288,8 +288,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="10sp"
-                android:layout_marginBottom="50sp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="50dp"
                 android:layout_weight="1"
                 android:background="#de002d"
                 android:onClick="onInscrireButtonClick"
@@ -301,7 +301,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="50sp"
+                android:layout_marginBottom="50dp"
                 android:layout_weight="1"
                 android:background="#de002d"
                 android:onClick="onAnnulerButtonClick"
