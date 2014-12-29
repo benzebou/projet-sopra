@@ -19,27 +19,27 @@ public class RegisterActivity extends Activity  {
 
 	private FacadeView facade;
 	private EditText login;
-	private EditText nom;
-	private EditText prenom;
-	private EditText mdp;
+	private EditText name;
+	private EditText firstname;
+	private EditText pwd;
 	private EditText email;
-	private EditText telephone;
-	private EditText commune;
-	private EditText codePostal;
-	private Spinner lieuDeTravail;
-	private Spinner heureAller;
-	private Spinner heureRetour;
-	private CheckBox lundi;
-	private CheckBox mardi;
-	private CheckBox mercredi;
-	private CheckBox jeudi;
-	private CheckBox vendredi;
-	private CheckBox samedi;
-	private CheckBox dimanche;
-	private CheckBox conducteur;
+	private EditText phone;
+	private EditText town;
+	private EditText postCode;
+	private Spinner workplace;
+	private Spinner goingTime;
+	private Spinner returningTime;
+	private CheckBox monday;
+	private CheckBox tuesday;
+	private CheckBox wednesday;
+	private CheckBox thursday;
+	private CheckBox friday;
+	private CheckBox saturday;
+	private CheckBox sunday;
+	private CheckBox conductor;
 	private CheckBox notification;
-	private Button inscrire;
-	private Button annuler;
+	private Button apply;
+	private Button cancel;
 
 	private Boolean[] days = {true,true,true,true,true,false,false};
 	private boolean estConducteur;
@@ -53,24 +53,24 @@ public class RegisterActivity extends Activity  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register_page);
 		login=(EditText) findViewById(R.id.login);
-		nom = (EditText) findViewById(R.id.nom);
-		prenom = (EditText) findViewById(R.id.prenom);
-		mdp = (EditText) findViewById(R.id.mot_de_passe);
+		name = (EditText) findViewById(R.id.nom);
+		firstname = (EditText) findViewById(R.id.prenom);
+		pwd = (EditText) findViewById(R.id.mot_de_passe);
 		email = (EditText) findViewById(R.id.email);
-		telephone = (EditText) findViewById(R.id.telephone);
-		commune = (EditText) findViewById(R.id.commune);
-		codePostal = (EditText) findViewById(R.id.code_postal);
-		lundi = (CheckBox) findViewById(R.id.lundi);
-		mardi = (CheckBox) findViewById(R.id.mardi);
-		mercredi = (CheckBox) findViewById(R.id.mercredi);
-		jeudi = (CheckBox) findViewById(R.id.jeudi);
-		vendredi =(CheckBox) findViewById(R.id.vendredi);
-		samedi = (CheckBox) findViewById(R.id.samedi);
-		dimanche = (CheckBox) findViewById(R.id.dimanche);
-		conducteur = (CheckBox) findViewById(R.id.conducteur);
+		phone = (EditText) findViewById(R.id.telephone);
+		town = (EditText) findViewById(R.id.commune);
+		postCode = (EditText) findViewById(R.id.code_postal);
+		monday = (CheckBox) findViewById(R.id.lundi);
+		tuesday = (CheckBox) findViewById(R.id.mardi);
+		wednesday = (CheckBox) findViewById(R.id.mercredi);
+		thursday = (CheckBox) findViewById(R.id.jeudi);
+		friday =(CheckBox) findViewById(R.id.vendredi);
+		saturday = (CheckBox) findViewById(R.id.samedi);
+		sunday = (CheckBox) findViewById(R.id.dimanche);
+		conductor = (CheckBox) findViewById(R.id.conducteur);
 		notification = (CheckBox) findViewById(R.id.notification);	
-		inscrire = (Button) findViewById(R.id.inscrire);
-		annuler = (Button) findViewById(R.id.annuler);	
+		apply = (Button) findViewById(R.id.inscrire);
+		cancel = (Button) findViewById(R.id.annuler);	
 
 		//to do
 		/*		lieuDeTravail = (Spinner) findViewById(R.id.lieu_de_travail);	
@@ -83,54 +83,54 @@ public class RegisterActivity extends Activity  {
 
 
 		// Initialisation spinner heure aller
-		heureAller = new Spinner(this);
-		heureAller = (Spinner) findViewById(R.id.heure_aller);	
-		InitHeure(this.heureAller);
+		goingTime = new Spinner(this);
+		goingTime = (Spinner) findViewById(R.id.heure_aller);	
+		InitHeure(this.goingTime);
 
 		// Initialisation spinner heure retour
-		heureRetour = new Spinner(this);
-		heureRetour = (Spinner) findViewById(R.id.heure_retour);
-		InitHeure(this.heureRetour);
+		returningTime = new Spinner(this);
+		returningTime = (Spinner) findViewById(R.id.heure_retour);
+		InitHeure(this.returningTime);
 		estNotif = false;
 		estConducteur = false;
 	}
 
 	/**
-	 * Aimed to set to the good values the attributes linked to checkboxes
-	 * @param v view o the application
+	 * Permet de donner les bonnes valeurs au attibuts correspondant à la checkbox
+	 * @param v vue de l'application
 	 */
 	public void onCheckBoxClicked(View v){
 
 		if(v.getId()==R.id.lundi){
-			if(lundi.isChecked())
+			if(monday.isChecked())
 				days[0]=true;
 			else days[0]=false;
 		}else if(v.getId()==R.id.mardi){
-			if(mardi.isChecked())
+			if(tuesday.isChecked())
 				days[1]=true;
 			else days[1]=false;
 		}else if(v.getId()==R.id.mercredi){
-			if(mercredi.isChecked())
+			if(wednesday.isChecked())
 				days[2]=true;
 			else days[2]=false;
 		}else if(v.getId()==R.id.jeudi){
-			if(jeudi.isChecked())
+			if(thursday.isChecked())
 				days[3]=true;
 			else days[3]=false;
 		}else if(v.getId()==R.id.vendredi){
-			if(vendredi.isChecked())
+			if(friday.isChecked())
 				days[4]=true;
 			else days[4]=false;
 		}else if(v.getId()==R.id.samedi){
-			if(samedi.isChecked())
+			if(saturday.isChecked())
 				days[5]=true;
 			else days[5]=false;
 		}else if(v.getId()==R.id.dimanche){
-			if(dimanche.isChecked())
+			if(sunday.isChecked())
 				days[6]=true;
 			else days[6]=false;
 		}else if(v.getId()==R.id.conducteur){
-			if(conducteur.isChecked())
+			if(conductor.isChecked())
 				estConducteur=true;
 			else estConducteur=false;
 		}else if(v.getId()==R.id.notification){
@@ -141,47 +141,46 @@ public class RegisterActivity extends Activity  {
 	}
 
 	/**
-	 * Send the informations collected in the view to the FaçadeView
-	 * @param v view o the application
+	 * Envoie les informations saisies si elles sont bonne vers la base de donnée
+	 *  @param v vue de l'application
 	 */
 	public void onInscrireButtonClick(View v) {
 		String[] horaires = new String[2] ;
-		horaires[0] = heureAller.getSelectedItem().toString();
-		horaires[1] = heureRetour.getSelectedItem().toString();
+		horaires[0] = goingTime.getSelectedItem().toString();
+		horaires[1] = returningTime.getSelectedItem().toString();
 
-		if (login.getText().toString().equals("") || mdp.getText().toString().equals("") || 
-				email.getText().toString().equals("")|| nom.getText().toString().equals("")||
-				prenom.getText().toString().equals("")||telephone.getText().toString().equals("")||
-				codePostal.getText().toString().equals("") || lieuDeTravail.getTag().toString().equals("")){
+		if (login.getText().toString().equals("") || pwd.getText().toString().equals("") || 
+				email.getText().toString().equals("")|| name.getText().toString().equals("")||
+				firstname.getText().toString().equals("")||phone.getText().toString().equals("")||
+				postCode.getText().toString().equals("") || workplace.getTag().toString().equals("")){
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-			// set title
+			// set le titre
 			alertDialogBuilder.setTitle("Inscription ratée");
 
-			// set dialog message
+			// set le message du dialogue
 			alertDialogBuilder
 			.setMessage("Veuillez remplir tous les champs demandés ")
 			.setCancelable(false)
 			.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
-					// if this button is clicked, just close
-					// the dialog box and do nothing
+					// si le boutton est clicker, ferme seulement la box
 					dialog.cancel();
 				}
 			});
 
-			// create alert dialog
+			// crée la alert dialog
 			AlertDialog alertDialog = alertDialogBuilder.create();
 
-			// show it
+			// l'affiche
 			alertDialog.show();
 		}else{
 
-			this.info = new Information(login.getText().toString() ,mdp.getText().toString(),
-					email.getText().toString(),nom.getText().toString(),prenom.getText().toString(), 
-					telephone.getText().toString(), codePostal.getText().toString(),
-					lieuDeTravail.getTag().toString(),horaires,days, estConducteur);
+			this.info = new Information(login.getText().toString() ,pwd.getText().toString(),
+					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
+					phone.getText().toString(), postCode.getText().toString(),
+					workplace.getTag().toString(),horaires,days, estConducteur);
 
 
 		}
@@ -189,23 +188,23 @@ public class RegisterActivity extends Activity  {
 
 
 	/**
-	 * Send back to the connecting page
-	 * @param v view o the application
+	 * Renvoit à la page de connection
+	 * @param v vue de l'application
 	 */
 	public void onAnnulerButtonClick(View v) {
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-		// set title
+		// set le titre
 		alertDialogBuilder.setTitle("Inscription ratée");
 
-		// set dialog message
+		// set le message du dialogue
 		alertDialogBuilder
 		.setMessage("Voulez vous quittez la page?")
 		.setCancelable(false)
 		.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int id) {
-				// if this button is clicked, close
-				// current activity and open Connecting activity
+				// si le boutton est cliquer fermer l'activity actuelle
+				// et ouvre la Connecting activity
 				RegisterActivity.this.finish();
 				facade.changeActivityConnecting();
 			}
@@ -213,16 +212,15 @@ public class RegisterActivity extends Activity  {
 
 		.setNegativeButton("No",new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int id) {
-				// if this button is clicked, just close
-				// the dialog box and do nothing
+				// si le boutton est clicker, ferme seulement la box
 				dialog.cancel();
 			}
 		});
 
-		// create alert dialog
+		// crée la alert dialog
 		AlertDialog alertDialog = alertDialogBuilder.create();
 
-		// show it
+		// l'affiche
 		alertDialog.show();
 
 	}
