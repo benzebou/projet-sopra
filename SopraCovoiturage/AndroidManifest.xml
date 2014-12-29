@@ -32,6 +32,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+             <activity
+            android:name="com.sopra.covoiturage.ProfileActivity"
+            android:label="@string/app_name" >
+        </activity>
+             <activity
+            android:name="com.sopra.covoiturage.ProfileModificationActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
