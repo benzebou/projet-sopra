@@ -3,19 +3,36 @@ package com.sopra.covoiturage;
 import java.util.ArrayList;
 
 import modele.Ride;
+import android.app.Activity;
 import android.content.Intent;
 import controller.ControllerFacade;
 
 public class FacadeView {
 	
+	/**
+	 * Singleton de la classe FacadeView
+	 */
+	private static FacadeView singleton ;
+	
 	private ControllerFacade controller;
-	private ConnectingActivity firstActivity;
+	private Activity firstActivity;
 	private RideActivity searchRide;
 	
-	public FacadeView(ConnectingActivity activity) {
+	private FacadeView(Activity activity) {
 		controller = ControllerFacade.getInstance(this);
 		firstActivity = activity;
 		
+	}
+	
+	/**
+	 * Permet de recuperer l'instance de FacadeView
+	 * @return singleton
+	 */
+	public static FacadeView getInstance (Activity activity) {
+		if (singleton == null) {
+			singleton = new FacadeView(activity) ;
+		}
+		return singleton ;
 	}
 	
 	// Constructeur pour les test de ride Activity, a enlever
