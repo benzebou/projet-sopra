@@ -19,7 +19,7 @@ public class ConnectingActivity extends Activity {
 		loginText = (EditText) findViewById(R.id.loginField);
 		mdpText = (EditText) findViewById(R.id.passwordField);
 		
-		facade = new FacadeView(this);
+		facade = FacadeView.getInstance(this);
 	}
 	
 	public void onConnectionButtonClick(View v) {
