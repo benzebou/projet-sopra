@@ -5,6 +5,8 @@ import java.util.List;
 
 import modele.Information;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,8 +27,8 @@ public class RegisterActivity extends Activity  {
 	private EditText commune;
 	private EditText codePostal;
 	private Spinner lieuDeTravail;
-	private EditText heureAller;
-	private EditText heureRetour;
+	private Spinner heureAller;
+	private Spinner heureRetour;
 	private CheckBox lundi;
 	private CheckBox mardi;
 	private CheckBox mercredi;
@@ -39,7 +41,7 @@ public class RegisterActivity extends Activity  {
 	private Button inscrire;
 	private Button annuler;
 
-	private Boolean[] days;
+	private Boolean[] days = {true,true,true,true,true,false,false};
 	private boolean estConducteur;
 	private boolean estNotif;
 
@@ -58,8 +60,6 @@ public class RegisterActivity extends Activity  {
 		telephone = (EditText) findViewById(R.id.telephone);
 		commune = (EditText) findViewById(R.id.commune);
 		codePostal = (EditText) findViewById(R.id.code_postal);
-		heureAller = (EditText) findViewById(R.id.heure_aller);
-		heureRetour = (EditText) findViewById(R.id.heure_retour);
 		lundi = (CheckBox) findViewById(R.id.lundi);
 		mardi = (CheckBox) findViewById(R.id.mardi);
 		mercredi = (CheckBox) findViewById(R.id.mercredi);
@@ -68,20 +68,31 @@ public class RegisterActivity extends Activity  {
 		samedi = (CheckBox) findViewById(R.id.samedi);
 		dimanche = (CheckBox) findViewById(R.id.dimanche);
 		conducteur = (CheckBox) findViewById(R.id.conducteur);
-		notification = (CheckBox) findViewById(R.id.notification);
+		notification = (CheckBox) findViewById(R.id.notification);	
+		inscrire = (Button) findViewById(R.id.inscrire);
+		annuler = (Button) findViewById(R.id.annuler);	
 
 		//to do
-		lieuDeTravail = (Spinner) findViewById(R.id.lieu_de_travail);	
+		/*		lieuDeTravail = (Spinner) findViewById(R.id.lieu_de_travail);	
 		List<String> list = new ArrayList<String>();
 		list = facade.getWorkplaces();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
 
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		lieuDeTravail.setAdapter(adapter);
+		lieuDeTravail.setAdapter(adapter);*/
 
-		inscrire = (Button) findViewById(R.id.inscrire);
-		annuler = (Button) findViewById(R.id.annuler);	
-		Boolean[] days = new Boolean[6]; 
+
+		// Initialisation spinner heure aller
+		heureAller = new Spinner(this);
+		heureAller = (Spinner) findViewById(R.id.heure_aller);	
+		InitHeure(this.heureAller);
+
+		// Initialisation spinner heure retour
+		heureRetour = new Spinner(this);
+		heureRetour = (Spinner) findViewById(R.id.heure_retour);
+		InitHeure(this.heureRetour);
+		estNotif = false;
+		estConducteur = false;
 	}
 
 	/**
@@ -135,22 +146,108 @@ public class RegisterActivity extends Activity  {
 	 */
 	public void onInscrireButtonClick(View v) {
 		String[] horaires = new String[2] ;
-		horaires[0] = heureAller.getText().toString();
-		horaires[1] = heureRetour.getText().toString();
-		
+		horaires[0] = heureAller.getSelectedItem().toString();
+		horaires[1] = heureRetour.getSelectedItem().toString();
 
-		this.info = new Information(login.getText().toString() ,mdp.getText().toString(),
-				email.getText().toString(),nom.getText().toString(),prenom.getText().toString(), 
-				telephone.getText().toString(), codePostal.getText().toString(),
-				lieuDeTravail.getTag().toString(),horaires,days, estConducteur);
+		if (login.getText().toString().equals("") || mdp.getText().toString().equals("") || 
+				email.getText().toString().equals("")|| nom.getText().toString().equals("")||
+				prenom.getText().toString().equals("")||telephone.getText().toString().equals("")||
+				codePostal.getText().toString().equals("") || lieuDeTravail.getTag().toString().equals("")){
+
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+			// set title
+			alertDialogBuilder.setTitle("Inscription ratée");
+
+			// set dialog message
+			alertDialogBuilder
+			.setMessage("Veuillez remplir tous les champs demandés ")
+			.setCancelable(false)
+			.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int id) {
+					// if this button is clicked, just close
+					// the dialog box and do nothing
+					dialog.cancel();
+				}
+			});
+
+			// create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+
+			// show it
+			alertDialog.show();
+		}else{
+
+			this.info = new Information(login.getText().toString() ,mdp.getText().toString(),
+					email.getText().toString(),nom.getText().toString(),prenom.getText().toString(), 
+					telephone.getText().toString(), codePostal.getText().toString(),
+					lieuDeTravail.getTag().toString(),horaires,days, estConducteur);
+
+
+		}
 	}
+
 
 	/**
 	 * Send back to the connecting page
 	 * @param v view o the application
 	 */
 	public void onAnnulerButtonClick(View v) {
-		facade.changeActivityConnecting();
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
+		// set title
+		alertDialogBuilder.setTitle("Inscription ratée");
+
+		// set dialog message
+		alertDialogBuilder
+		.setMessage("Voulez vous quittez la page?")
+		.setCancelable(false)
+		.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				// if this button is clicked, close
+				// current activity and open Connecting activity
+				RegisterActivity.this.finish();
+				facade.changeActivityConnecting();
+			}
+		})
+
+		.setNegativeButton("No",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				// if this button is clicked, just close
+				// the dialog box and do nothing
+				dialog.cancel();
+			}
+		});
+
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+
+		// show it
+		alertDialog.show();
+
+	}
+
+	/**
+	 * Fonction d'initialisation des spinner heure aller et heure retour
+	 * @param spin
+	 */
+	private void InitHeure(Spinner spin) {
+		String heure;
+		List<String> list = new ArrayList<String>();
+
+		for(int i=7; i< 20; i++) {
+			for(int j=0; j<4; j++) {
+				if (j==0){
+					heure = i + ":00";
+				} else {
+					heure = i + ":" + j*15;
+				}
+				list.add(heure);
+			}
+		}
+
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spin.setAdapter(dataAdapter);
 	}
 }
