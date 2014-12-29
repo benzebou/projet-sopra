@@ -137,7 +137,7 @@ public class Requests {
 			Log.d("SC", "On attend...");
 			try {
 				RequestResponses result = task.get();
-				Log.d("SC", "C'est fini !");
+				Log.d("SC", "Result code : " + result.getCode());
 				if (result.isSuccess()) {
 					return true ;
 				} else {
