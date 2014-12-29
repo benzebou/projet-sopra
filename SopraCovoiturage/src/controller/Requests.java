@@ -12,17 +12,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ExecutionException;
 
 import modele.Information;
 import modele.Ride;
 
-import org.json.simple.parser.ContainerFactory;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
+import android.util.Log;
 
 public class Requests {
 
@@ -61,6 +62,7 @@ public class Requests {
 		
 		private static String cookie;
 		
+		
 		/**
 		 * Methode permettant la connexion d'un utilisateur au serveur 
 		 * @param nickname : login de l'utilisateur
@@ -98,12 +100,27 @@ public class Requests {
 		 * @return boolean : true si la requete s'est bien executee, false sinon
 		 */
 		private boolean connectionUserRequest (HashMap<String, Object> map) {
-			RequestReponses reponse = null ;
-			reponse = postRequest(RequestType.CONNECT_USER,map) ;
-			if (reponse.isSuccess()) {
-				return true ; }
-			else 
-				return false ;
+			RequestsParams params = new RequestsParams(RequestType.CONNECT_USER,map);
+			HTTPAsyncTask task = new HTTPAsyncTask();
+			task.execute(params);
+			Log.d("SC", "On attend...");
+			try {
+				RequestResponses result = task.get();
+				Log.d("SC", "C'est fini !");
+				if (result.isSuccess()) 
+					return true ;
+				else 
+					return false ;
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
 		}
 		
 		/**
@@ -113,11 +130,29 @@ public class Requests {
 		 * @return boolean : true si la requete s'est bien executee, false sinon
 		 */
 		private boolean connectionAdminRequest (HashMap<String, Object> map) {
-			RequestReponses reponse = postRequest(RequestType.CONNECT_ADMIN,map) ;
-			if (reponse.isSuccess()) 
-				return true ;
-			else 
-				return false ;
+			RequestsParams params = new RequestsParams(RequestType.CONNECT_ADMIN,map);
+			
+			HTTPAsyncTask task = new HTTPAsyncTask();
+			task.execute(params);
+			Log.d("SC", "On attend...");
+			try {
+				RequestResponses result = task.get();
+				Log.d("SC", "C'est fini !");
+				if (result.isSuccess()) {
+					return true ;
+				} else {
+					return false ;
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+			
 		}
 		
 		/**
@@ -128,7 +163,7 @@ public class Requests {
 		public boolean passwordForgottenRequest (String mail) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("mail", mail);
-			RequestReponses reponse = postRequest(RequestType.PASSWORD_FORGOTTEN,map) ;
+			RequestResponses reponse = postRequest(RequestType.PASSWORD_FORGOTTEN,map) ;
 			if (reponse.isSuccess()) 
 				return true ;
 			else 
@@ -187,7 +222,7 @@ public class Requests {
 			else 
 				map.put("conducteur", "0");
 			
-			RequestReponses reponse = postRequest(RequestType.REGISTER,map) ;
+			RequestResponses reponse = postRequest(RequestType.REGISTER,map) ;
 			if (reponse.isSuccess()) 
 				return 0 ;
 			else 
@@ -204,7 +239,7 @@ public class Requests {
 			HashMap<String, Object> map = new HashMap<String, Object> () ;
 			map.put("login", nickname) ;
 			map.put("mdp", encryptPassword(password)) ;
-			RequestReponses reponse = null ;
+			RequestResponses reponse = null ;
 			reponse = postRequest(RequestType.DISCONNECT,map) ;
 			if (reponse.isSuccess()) { 
 				cookie = null ;
@@ -223,7 +258,7 @@ public class Requests {
 			// Obtenir les informations d'un profil : nickname (utilisateur ï¿½ afficher)
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", nickname);
-			RequestReponses reponse = null ;
+			RequestResponses reponse = null ;
 			reponse = postRequest(RequestType.GET_PROFILE_INFORMATIONS,map) ;
 			if (reponse.isSuccess()) {
 				Information info = new Information();
@@ -329,7 +364,7 @@ public class Requests {
 			else 
 				map.put("conducteur", "0");
 			
-			RequestReponses reponse = null ;
+			RequestResponses reponse = null ;
 			reponse = postRequest(RequestType.MODIFY_PROFILE,map) ;
 			if (reponse.isSuccess()) {
 				return 0 ;
@@ -346,7 +381,7 @@ public class Requests {
 		public boolean removeProfileRequest (String nickname) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("login", nickname);
-			RequestReponses reponse = null ;
+			RequestResponses reponse = null ;
 			reponse = postRequest(RequestType.REMOVE_PROFILE,map) ;
 			if (reponse.isSuccess()) {
 				return true;
@@ -364,7 +399,7 @@ public class Requests {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("postal", postCode);
 			map.put("bureau", workplace) ;
-			RequestReponses reponse = null ;
+			RequestResponses reponse = null ;
 			reponse = postRequest(RequestType.SEARCH_RIDE,map) ;
 			if (reponse.isSuccess()) {
 				ArrayList<Ride> rideList = new ArrayList<Ride> () ;
@@ -412,7 +447,7 @@ public class Requests {
 		public boolean addWorkplaceRequest(String workplace) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("bureau", workplace);
-			RequestReponses reponse = postRequest(RequestType.ADD_WORKPLACE,map) ;
+			RequestResponses reponse = postRequest(RequestType.ADD_WORKPLACE,map) ;
 			if (reponse.isSuccess()) {
 				return true;
 			}
@@ -426,7 +461,7 @@ public class Requests {
 		 * @return boolean : true si la requete s'est bien executee, false sinon
 		 */
 		public boolean deletionWorkplaceRequest (String workplace) {			
-			RequestReponses reponseBefore = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
+			RequestResponses reponseBefore = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
 			// parcours de la HashMap
 			String id = null ;
 			for (Entry<String, Object> entry : reponseBefore.getData().entrySet()) {
@@ -439,7 +474,7 @@ public class Requests {
 			if (id != null) {
 				HashMap<String,Object> map = new HashMap<String,Object>();
 				map.put("idBureau", id);
-				RequestReponses reponseAfter = postRequest(RequestType.DELETE_WORKPLACE,map) ;
+				RequestResponses reponseAfter = postRequest(RequestType.DELETE_WORKPLACE,map) ;
 				if (reponseAfter.isSuccess()) {
 					return true;
 				}
@@ -454,7 +489,7 @@ public class Requests {
 		 * @return ArrayList<String> : liste des lieux de travail
 		 */
 		public ArrayList<String> getWorkplacesRequest() {
-			RequestReponses reponse = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
+			RequestResponses reponse = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
 			ArrayList<String> workplaces = new ArrayList<String>() ;
 			// parcours de la HashMap
 			for (Entry<String, Object> entry : reponse.getData().entrySet()) {
@@ -474,7 +509,7 @@ public class Requests {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("code", postCode);
 			map.put("commune", town);
-			RequestReponses reponse = postRequest(RequestType.ADD_TOWN,map) ;
+			RequestResponses reponse = postRequest(RequestType.ADD_TOWN,map) ;
 			if (reponse.isSuccess()) {
 				return true;
 			}
@@ -488,7 +523,7 @@ public class Requests {
 		 * @return boolean : true si la requete s'est bien executee, false sinon
 		 */
 		public boolean deletionTownRequest(String postCode) {
-		RequestReponses reponseBefore = postRequest(RequestType.GET_LIST_TOWN,null) ;
+		RequestResponses reponseBefore = postRequest(RequestType.GET_LIST_TOWN,null) ;
 		// parcours de la HashMap
 		String id = null ;
 		for (Entry<String, Object> entry : reponseBefore.getData().entrySet()) {
@@ -501,7 +536,7 @@ public class Requests {
 		if (id != null) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("code", id);
-			RequestReponses reponseAfter = postRequest(RequestType.DELETE_TOWN,map) ;
+			RequestResponses reponseAfter = postRequest(RequestType.DELETE_TOWN,map) ;
 			if (reponseAfter.isSuccess()) {
 				return true;
 			}
@@ -516,7 +551,7 @@ public class Requests {
 		 * @return ArrayList<String> : liste des communes
 		 */
 		public ArrayList<String> getTownListRequest() {
-			RequestReponses reponse = postRequest(RequestType.GET_LIST_TOWN,null) ;
+			RequestResponses reponse = postRequest(RequestType.GET_LIST_TOWN,null) ;
 			ArrayList<String> townList = new ArrayList<String>() ;
 			// parcours de la HashMap
 			for (Entry<String, Object> entry : reponse.getData().entrySet()) {
@@ -535,7 +570,7 @@ public class Requests {
 		 * 	et requete[1] = nombre total de passagers 
 		 */
 		public String[] numberDriverAndPassengerRequest () {
-			RequestReponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS,null) ;
+			RequestResponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS,null) ;
 			String[] tab = new String[2] ;
 			if (reponse.isSuccess()) {
 				System.out.println("SUCCES") ;
@@ -557,7 +592,7 @@ public class Requests {
 		 * Value = String[0] : nombre de conducteurs ; String[1] : nombre de passagers 
 		 */
 		public HashMap<String,String[]> numberDriverAndPassengerPerRideRequest () {
-			RequestReponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS_PER_RIDE,null) ;
+			RequestResponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS_PER_RIDE,null) ;
 			HashMap<String,String[]> requete = new HashMap<String,String[]> () ;
 			String[] tab = new String[2] ;
 			if (reponse.isSuccess()) {
@@ -592,7 +627,7 @@ public class Requests {
 		 * sinon requete[0] = "-1" : echec et requete[1] = code erreur 
 		 */
 		public String[] numberConnectionRequest () {
-			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,null) ;
+			RequestResponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,null) ;
 			String number = "-1" ;
 			String[] tab = new String[2] ;
 			if (reponse.isSuccess()) {
@@ -620,7 +655,7 @@ public class Requests {
 			String[] tab = new String[2] ;
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("date", date) ;
-			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
+			RequestResponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
 			if (reponse.isSuccess()) {
 				tab[0] = "0" ;
 				tab[1] = (String) reponse.getData().get(date);
@@ -644,7 +679,7 @@ public class Requests {
 			String[] tab = new String[2] ;
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("sinceDate", date) ;
-			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
+			RequestResponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
 			if (reponse.isSuccess()) {
 				tab[0] = "0" ;
 				tab[1] = (String) reponse.getData().get(date);
@@ -671,7 +706,7 @@ public class Requests {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("rangeFirst", firstDate) ;
 			map.put("rangeLast", lastDate) ;
-			RequestReponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
+			RequestResponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
 			if (reponse.isSuccess()) {
 				tab[0] = "0" ;
 				tab[1] = (String) reponse.getData().get(firstDate);
@@ -706,53 +741,24 @@ public class Requests {
 			return urlParameters;
 		}
 		
-		@SuppressWarnings("unchecked")
-		/**
-		 * Conversion de JSON vers MAP
-		 * @param json
-		 * @return Map<String,Object>
-		 */
 		private static Map<String,Object> jsonToMap(String json){
-			JSONParser parser = new JSONParser();
-			  ContainerFactory containerFactory = new ContainerFactory(){
-			    public List<String> creatArrayContainer() {
-			      return new LinkedList<String>();
-			    }
-
-			    public Map<String,String> createObjectContainer() {
-			      return new LinkedHashMap<String,String>();
-			    }
-			                        
-			  };
-			    Map<String,Object> result = null;
-			    
-			  try{
-				  Object obj = parser.parse(json, containerFactory);
-				  if (obj instanceof LinkedList){
-					  
-					  LinkedList<LinkedHashMap<String,Object>> list = (LinkedList<LinkedHashMap<String,Object>>)obj;
-					  result = new HashMap<String,Object>();
-					  for (int i = 0; i < list.size(); i++){
-						  LinkedHashMap<String,Object> lhm = list.get(i);
-						  Iterator<Entry<String, Object>> it = lhm.entrySet().iterator();
-						  Entry<String, Object> entry = it.next();
-						  String id = (String)entry.getValue();
-						  entry = it.next();
-						  Object value = entry.getValue();
-						  result.put(id, value);
-					  }
-				  }
-				  else
-				  {
-					  result = (Map<String,Object>)obj;
-				  }
-			  }
-			  catch(ParseException pe){
-			    System.out.println("Erreur lors du decodage du format JSON : "+pe+", veuillez vï¿½rifier le message reï¿½u par l'application dans la mï¿½thode postRequest avant de transformer la rï¿½ponse JSON en classe");
-			  }
-			  return (Map<String,Object>)result;
+			JSONObject JSONStrings;
+			Map<String, Object> result = new HashMap<String,Object>();
+			try {
+				JSONStrings = new JSONObject(json);
+				JSONStrings.toString();
+				Iterator<String> it = JSONStrings.keys();
+				while(it.hasNext()) {
+					String value = it.next();
+					Object object = JSONStrings.get(value);
+					result.put(value, object);
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return result;
 		}
-		
 		/**
 		 * Permet de crypter (hasher) le mot de passe
 		 * @param password : le mot de passe a crypte
@@ -788,8 +794,9 @@ public class Requests {
 		 * @param urlParameters
 		 * @return the response in the JSON format
 		 */
-		public static RequestReponses postRequest(RequestType typeOfRequest, HashMap<String,Object> parameters) {
-		    String urlParameters = getRequestParameters(typeOfRequest,parameters);
+		public static RequestResponses postRequest(RequestType typeOfRequest, HashMap<String,Object> parameters) {
+			Log.d("SC", "postRequest commence");
+			String urlParameters = getRequestParameters(typeOfRequest,parameters);
 			URL url;
 			HttpURLConnection connection = null; 
 		     
@@ -825,6 +832,7 @@ public class Requests {
 		      wr.flush ();
 		      wr.close ();
 
+		      Log.d("SC", "on regarde la réponse");
 		      //Get Response  
 		      try{
 		    	  // On teste s'il n'y a pas eut d'erreur pour la requï¿½te
@@ -852,15 +860,19 @@ public class Requests {
 			      }
 			      rd.close();
 			      System.out.println(response.toString());
-			      return new RequestReponses(connection.getResponseCode(),true,jsonToMap(response.toString()));
+			      RequestResponses requestResponse = new RequestResponses(connection.getResponseCode(),true,jsonToMap(response.toString()));
+			      Log.d("SC", "postRequest finit");
+			      return requestResponse;
 		      }catch(requestException e){
-		    	  return new RequestReponses(connection.getResponseCode(),false,null);
+		    	  Log.d("SC", "postRequest finit avec requestException");
+		    	  return new RequestResponses(connection.getResponseCode(),false,null);
 		      }
 
 		    } catch (Exception e) {
 
 		      e.printStackTrace();
-		      return new RequestReponses(0,false,null);
+		      Log.d("SC", "postRequest finit avec Exception");
+		      return new RequestResponses(0,false,null);
 
 		    } finally {
 		    	
@@ -870,8 +882,15 @@ public class Requests {
 		    }
 		}
 
+		private class HTTPAsyncTask extends AsyncTask<RequestsParams, Void, RequestResponses> {
+			@Override
+			protected RequestResponses doInBackground(RequestsParams... arg0) {
+				RequestsParams params = arg0[0];
+				RequestResponses result = postRequest(params.getTypeOfRequest(), params.getParameters());
+				Log.d("SC", "on return la réponse");
+				return result;
+			}
 
-
-
+		}
 		
 	}
