@@ -32,6 +32,7 @@ public class ControllerFacade {
 	
 	/** 
 	 * Constructeur par defaut de ControllerFacade
+	 * @param facade La FacadeView
 	 */
 	private ControllerFacade (FacadeView facade) {
 		facadeView = facade;
