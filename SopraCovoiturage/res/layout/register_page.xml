@@ -286,9 +286,10 @@
             <Button
                 android:id="@+id/inscrire"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="10sp"
+                android:layout_marginBottom="50sp"
                 android:layout_weight="1"
                 android:background="#de002d"
                 android:onClick="onInscrireButtonClick"
@@ -298,8 +299,9 @@
             <Button
                 android:id="@+id/annuler"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="50sp"
                 android:layout_weight="1"
                 android:background="#de002d"
                 android:onClick="onAnnulerButtonClick"
