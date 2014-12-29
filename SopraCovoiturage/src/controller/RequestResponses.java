@@ -3,7 +3,7 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RequestReponses {
+public class RequestResponses {
 
 	/**
 	 * Code de la reponse
@@ -26,7 +26,7 @@ public class RequestReponses {
 	 * @param success : boolean indiquant le succes ou l'echec de la requete
 	 * @param map : donnee de la reponse
 	 */
-	public RequestReponses(int code, boolean success, Map<String, Object> map){
+	public RequestResponses(int code, boolean success, Map<String, Object> map){
 		this.code = code;
 		this.success = success;
 		if (map == null)
