@@ -2,6 +2,7 @@ package com.sopra.covoiturage;
 
 import java.util.ArrayList;
 
+import modele.Information;
 import modele.Ride;
 import android.app.Activity;
 import android.content.Intent;
@@ -33,6 +34,15 @@ public class FacadeView {
 			singleton = new FacadeView(activity) ;
 		}
 		return singleton ;
+	}
+	
+	/**
+	 * Methode permettant de renvoyer les informations sur l'utilisateur ayant pour login nickname 
+	 * @param nickname : login de l'utilisateur 
+	 * @return Informations : informations sur l'utilisateur 
+	 */
+	public Information getProfileInformation (String nickname) {
+		return controller.getProfileInformation (nickname);
 	}
 	
 	// Constructeur pour les test de ride Activity, a enlever
