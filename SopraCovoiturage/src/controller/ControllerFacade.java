@@ -3,6 +3,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 
 import modele.Information;
 import modele.Ride;
@@ -214,17 +215,25 @@ public class ControllerFacade {
 	 * @param workplace : lieu de travail a ajouter
 	 */
 	public void addWorkplace (String workplace) {
-		boolean requete =requests.addWorkplaceRequest(workplace) ;
-		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Addition workplace : reussite !\n") ;
-			Log.d("SC", "CONTROLLER_FACADE : Addition workplace : reussite !\n");
-			ArrayList<String> workplaces = requests.getWorkplacesRequest() ;
-			facadeView.displayWorkplaces(workplaces);
+		try {
+			boolean requete =requests.addWorkplaceRequest(workplace) ;
+			if (requete) {
+				System.out.println("CONTROLLER_FACADE : Addition workplace : reussite !\n") ;
+				Log.d("SC", "CONTROLLER_FACADE : Addition workplace : reussite !\n");
+				ArrayList<String> workplaces = requests.getWorkplacesRequest() ;
+				facadeView.displayWorkplaces(workplaces);
+			}
+			else { 
+				System.out.println("CONTROLLER_FACADE : Addition workplace : echec !\n") ;
+				facadeView.erreurAddWorkplace();
+			}	
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else { 
-			System.out.println("CONTROLLER_FACADE : Addition workplace : echec !\n") ;
-			facadeView.erreurAddWorkplace();
-		}	
 	}
 	
 	/**
@@ -233,16 +242,24 @@ public class ControllerFacade {
 	 * @param workplace : lieu de travail a supprimer
 	 */
 	public void deletionWorkplace (String workplace) {
-		boolean requete =requests.deletionWorkplaceRequest(workplace) ;
-		if (requete) {
-			System.out.println("CONTROLLER_FACADE : Deletion workplace : reussite !\n") ;
-			ArrayList<String> workplaces = requests.getWorkplacesRequest() ;
-			facadeView.displayWorkplaces(workplaces);
+		try {
+			boolean requete =requests.deletionWorkplaceRequest(workplace) ;
+			if (requete) {
+				System.out.println("CONTROLLER_FACADE : Deletion workplace : reussite !\n") ;
+				ArrayList<String> workplaces = requests.getWorkplacesRequest() ;
+				facadeView.displayWorkplaces(workplaces);
+			}
+			else { 
+				System.out.println("CONTROLLER_FACADE : Deletion workplace : echec !\n") ;
+				facadeView.erreurDeletionWorkplace();
+			}		
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else { 
-			System.out.println("CONTROLLER_FACADE : Deletion workplace : echec !\n") ;
-			facadeView.erreurDeletionWorkplace();
-		}		
 	}
 	
 	/**
@@ -250,7 +267,17 @@ public class ControllerFacade {
 	 * @return ArrayList<String> : liste des lieux de travail
 	 */
 	public ArrayList<String> getWorkplaces() {
-		return requests.getWorkplacesRequest() ;
+		ArrayList<String> res = null;
+		try {
+			res = requests.getWorkplacesRequest() ;
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
 	}
 	
 	/**
