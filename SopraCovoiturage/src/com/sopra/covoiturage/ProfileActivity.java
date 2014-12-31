@@ -3,6 +3,7 @@ package com.sopra.covoiturage;
 import modele.Information;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -27,7 +28,6 @@ public class ProfileActivity extends Activity {
 	private TextView back;
 	private TextView conductor;
 	private TextView notification;
-	private Boolean[] days = {true,true,true,true,true,false,false};
 	private Information info ;
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,5 +71,13 @@ public class ProfileActivity extends Activity {
 		workplace.setText(info.getWorkplace());
 		
 
+	}
+	
+	public void onModificationButtonClick(View v) {
+		
+	}
+	
+	public void onRetourButtonClick(View v) {
+		
 	}
 }
