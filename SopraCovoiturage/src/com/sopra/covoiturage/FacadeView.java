@@ -89,7 +89,8 @@ public class FacadeView {
 	}
 	
 	public void changeActivityProfile () {
-		
+		Intent i = new Intent(firstActivity, ProfileActivity.class);
+		firstActivity.startActivity(i); 
 	}
 	
 	public void registrationFailed (int codeErreur) {
