@@ -7,54 +7,54 @@ public class Information {
 	 * Login du user : unique
 	 */
 	private String login ;
-	
+
 	/**
 	 * Mot de passe du user
 	 */
 	private String mdp ;
-	
+
 	/**
 	 * Adresse mail du user
 	 */
 	private String email ;
-	
+
 	/**
 	 * Nom du user
 	 */
 	private String name ;
-	
+
 	/**
 	 * Prenom du user
 	 */
 	private String firstname ;
-	
+
 	/**
 	 * Numero de telephone du user
 	 */
 	private String phone ;
-	
+
 	/**
 	 * Code postal de l'adresse postale du user
 	 */
 	private String postcode ;
-	
+
 	/**
 	 * Adresse de travail du user
 	 */
 	private String workplace ;
-	
+
 	/**
 	 * Horaires de depart le matin : schedule[0]
 	 * Horaires de depart le soir : schedule[1]
 	 */
 	private String [] schedule ; 
-	
+
 	/**
 	 * Tableau indiquant si le user effectue son trajet indique le jour X
 	 * Exemple : si days[0] est vrai, alors le user effectue son trajet le lundi
 	 */
 	private Boolean[] days ;
-	
+
 	/**
 	 * Boolean indiquant si le user est conducteur ou non
 	 */
@@ -67,7 +67,7 @@ public class Information {
 		schedule = new String[2] ;
 		days = new Boolean[7] ;
 	}
-	
+
 	/**
 	 * Constructeur de Information avec parametres
 	 * @param login : login du user
@@ -130,7 +130,7 @@ public class Information {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/** 
 	 * Setter du prenom du user
 	 * @param firstname : prenom du user
@@ -170,7 +170,7 @@ public class Information {
 	public void setMorning (String morning) {
 		this.schedule[0] = morning ;
 	}
-	
+
 	/**
 	 * Setter des horaires de depart du soir
 	 * @param evening : horaires de depart le soir
@@ -178,10 +178,10 @@ public class Information {
 	public void setEvening (String evening) {
 		this.schedule[1] = evening ;
 	}
-	
+
 	/** 
 	 * Setter du tableau de jours
-	 * @param days : tableau de boolean indiquant les jours où le user effectue le trajet
+	 * @param days : tableau de boolean indiquant les jours oï¿½ le user effectue le trajet
 	 */
 	public void setDays(Boolean[] days) {
 		this.days = days;
@@ -202,7 +202,7 @@ public class Information {
 	public String getLogin() {
 		return login;
 	}
-	
+
 	/** 
 	 * Getter du mot de passe
 	 * @return mdp
@@ -266,7 +266,7 @@ public class Information {
 	public String getMorning() {
 		return schedule[0] ;
 	}
-	
+
 	/** 
 	 * Getter des horaires du soir
 	 * @return schedule[1]
@@ -274,7 +274,7 @@ public class Information {
 	public String getEvening() {
 		return schedule[1] ;
 	}
-	
+
 	/** 
 	 * Getter du tableau de jours
 	 * @return days
@@ -290,7 +290,7 @@ public class Information {
 	public boolean isConducteur() {
 		return conducteur;
 	}
-	
+
 	/**
 	 * Methode toString() de Information
 	 */
@@ -298,8 +298,35 @@ public class Information {
 		return "Login: "+login+"\nMdp: "+mdp+"\nMail: "+email+"\nNom: "+name+"\nPrenom: "+firstname+
 				"\nTel: "+phone+"\nCodePostal: "+postcode+"\nTravail: "+workplace+"\nTime morning: "+schedule[0]
 						+"\nTime evening: "+schedule[1]+"\nConducteur? : "
-				+conducteur+"\nlundi? : "+days[0]+"\nmardi? : "+days[1]+"\nmercredi? : "+days[2]
-				+"\njeudi? : "+days[3]+"\nvendredi? : "+days[4]+"\nsamedi? : "+days[5]+"\ndimanche? : "+days[6];
+						+conducteur+"\nlundi? : "+days[0]+"\nmardi? : "+days[1]+"\nmercredi? : "+days[2]
+								+"\njeudi? : "+days[3]+"\nvendredi? : "+days[4]+"\nsamedi? : "+days[5]+"\ndimanche? : "+days[6];
 	}
-	
+
+	/**
+	 * Methode toString() de l'attribut days
+	 */
+	public String daysToString(){
+		String res="";
+		for (int i=0;i<7;i++){
+			if (days[i]){
+				if (i==0)
+					res+= "lundi,";
+				if (i==1)
+					res+= "mardi,";
+				if (i==2)
+					res+= "mercredi,";
+				if (i==3)
+					res+= "jeudi,";
+				if (i==4)
+					res+= "vendredi,";
+				if (i==5)
+					res+= "samedi,";
+				if (i==6)
+					res+= "dimanche,";
+			}
+
+		}
+
+		return res;	
+	}
 }
