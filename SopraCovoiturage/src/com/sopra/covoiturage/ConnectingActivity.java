@@ -20,6 +20,7 @@ public class ConnectingActivity extends Activity {
 		mdpText = (EditText) findViewById(R.id.passwordField);
 		
 		facade = FacadeView.getInstance(this);
+
 	}
 	
 	public void onConnectionButtonClick(View v) {
@@ -29,5 +30,6 @@ public class ConnectingActivity extends Activity {
 	public void onRegisterButtonClick(View v) {
 		facade.changeActivityRegister();
 	}
+	
 
 }
