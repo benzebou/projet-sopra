@@ -66,6 +66,18 @@ public class FacadeView {
 		firstActivity.startActivity(i); 
 	}
 	
+	/* DISCONNECTION */
+	public void performDisconnect(String nickname, String password) {
+		controller.performDisconnect(nickname, password);
+	}
+	public void processUserDisconnected() {
+		
+	}
+	
+	public void processUserNotDisconnected () {
+		
+	}
+	
 	/* REGISTRATION */
 	public void changeActivityRegister() {
 		Intent i = new Intent(firstActivity, RegisterActivity.class);
@@ -82,14 +94,6 @@ public class FacadeView {
 	}
 
 	public void processSendPwdMailFailure () {
-		
-	}
-	
-	public void processUserDisconnected() {
-		
-	}
-	
-	public void processUserNotDisconnected () {
 		
 	}
 	
