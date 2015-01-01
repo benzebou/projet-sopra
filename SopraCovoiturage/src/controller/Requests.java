@@ -491,7 +491,7 @@ public class Requests {
 		 * @throws InterruptedException 
 		 */
 		public ArrayList<String> getWorkplacesRequest() throws InterruptedException, ExecutionException {
-			RequestsParams params = new RequestsParams(RequestType.CONNECT_ADMIN,null);
+			RequestsParams params = new RequestsParams(RequestType.GET_LIST_WORKPLACE,null);
 			HTTPAsyncTask task = new HTTPAsyncTask();
 			task.execute(params);
 			RequestResponses result = task.get();
@@ -503,6 +503,27 @@ public class Requests {
 				workplaces.add(MapReponse) ;
 			}
 			return workplaces ;
+		}
+		
+		/**
+		 * Methode permettant de renvoyer la liste des utilisateurs
+		 * @return ArrayList<Information> : liste des utilisateurs
+		 * @throws ExecutionException 
+		 * @throws InterruptedException 
+		 */
+		public ArrayList<Information> getUsersRequest() throws InterruptedException, ExecutionException {
+			RequestsParams params = new RequestsParams(RequestType.GET_LIST_USERS,null);
+			HTTPAsyncTask task = new HTTPAsyncTask();
+			task.execute(params);
+			RequestResponses result = task.get();
+			
+			ArrayList<Information> users = new ArrayList<Information>() ;
+			// parcours de la HashMap
+			for (Entry<String, Object> entry : result.getData().entrySet()) {
+				Information MapReponse = (Information) entry.getValue() ;
+				users.add(MapReponse) ;
+			}
+			return users;
 		}
 		
 		/**
