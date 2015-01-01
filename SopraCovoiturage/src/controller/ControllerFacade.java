@@ -281,6 +281,24 @@ public class ControllerFacade {
 	}
 	
 	/**
+	 * Methode permettant de renvoyer la liste des utilisateurs
+	 * @return ArrayList<Information> : liste des utilisateurs
+	 */
+	public ArrayList<Information> getUsers() {
+		ArrayList<Information> res = null;
+		try {
+			res = requests.getUsersRequest() ;
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	/**
 	 * Methode utilisee seulement par un administrateur
 	 * Permet d'ajouter une commune
 	 * @param town : nom de la commune a ajouter
