@@ -2,8 +2,10 @@ package com.sopra.covoiturage;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
-import android.widget.EditText;
 
 public class UsersActivity extends Activity {
 	private FacadeView facade;
@@ -14,6 +16,10 @@ public class UsersActivity extends Activity {
 		setContentView(R.layout.users_page);
 
 		facade = FacadeView.getInstance(this);
+		
+		View menu = findViewById(R.id.menu);
+		MenuHandling menuH = new MenuHandling(facade, menu);
+		
 	}
 	
 	public void onModifyButtonClick(View v) {
@@ -23,4 +29,7 @@ public class UsersActivity extends Activity {
 	public void onSuppressButtonClick(View v) {
 		//facade.changeActivityRegister();
 	}
+	
+
+
 }
