@@ -3,7 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#f6f6f6" > 	    
+    android:background="#f6f6f6" > 
+    <include
+	    android:id="@+id/menu"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    layout="@layout/menu" />	    
   
     <TextView
         android:layout_marginTop="20dp"
