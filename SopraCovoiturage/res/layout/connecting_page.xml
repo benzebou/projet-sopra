@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#f6f6f6" >
-
     <ImageView
 	    android:layout_height="wrap_content"
 	    android:layout_width="wrap_content"
