@@ -31,6 +31,8 @@ public class ControllerFacade {
 	 */
 	private Requests requests ;
 	
+	private String login;
+	
 	/** 
 	 * Constructeur par defaut de ControllerFacade
 	 * @param facade La FacadeView
@@ -72,6 +74,7 @@ public class ControllerFacade {
 		boolean[] requete =requests.connectionRequest(nickname, password) ;
 		if (requete[0]) {
 			System.out.println("CONTROLLER_FACADE : Connexion : reussite !\n") ;
+			this.login = nickname;
 			facadeView.processConnected(requete[1]);
 		}
 		else {
