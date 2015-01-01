@@ -57,7 +57,12 @@ public class FacadeView {
 		controller.performConnect(nickname, password);
 	}
 	public void processConnected(boolean admin) {
-		Intent i = new Intent(firstActivity, RideActivity.class);
+		Intent i;
+		if(admin) 
+			i = new Intent(firstActivity, UsersActivity.class); 
+		else 
+			i = new Intent(firstActivity, RideActivity.class);
+			
 		firstActivity.startActivity(i); 
 	}
 	
