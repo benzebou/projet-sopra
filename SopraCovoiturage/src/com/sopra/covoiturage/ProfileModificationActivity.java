@@ -14,10 +14,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class ProfileModificationActivity extends Activity{
 	private FacadeView facade;
-	private EditText login;
+	private TextView login;
 	private EditText name;
 	private EditText firstname;
 	private EditText pwd;
@@ -51,7 +52,7 @@ public class ProfileModificationActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register_page);
-		login=(EditText) findViewById(R.id.login);
+		login = (TextView) findViewById(R.id.login);
 		name = (EditText) findViewById(R.id.nom);
 		firstname = (EditText) findViewById(R.id.prenom);
 		pwd = (EditText) findViewById(R.id.mot_de_passe);
@@ -71,7 +72,12 @@ public class ProfileModificationActivity extends Activity{
 		apply = (Button) findViewById(R.id.inscrire);
 		cancel = (Button) findViewById(R.id.annuler);	
 		
-		info = facade.getProfileInformation("toto");
+		info = facade.getUserInfo();
+		if (info==null){
+			info = facade.getProfileInformation(facade.getLogin());
+			facade.setUserInfo(info);
+		}
+
 		
 		//On met la valeur actuelle des infos dans les champs correspondant
 		login.setText(info.getLogin());
@@ -169,7 +175,7 @@ public class ProfileModificationActivity extends Activity{
 		horaires[0] = goingTime.getSelectedItem().toString();
 		horaires[1] = returningTime.getSelectedItem().toString();
 
-		if (login.getText().toString().equals("") || pwd.getText().toString().equals("") || 
+		if (pwd.getText().toString().equals("") || 
 				email.getText().toString().equals("")|| name.getText().toString().equals("")||
 				firstname.getText().toString().equals("")||phone.getText().toString().equals("")||
 				postCode.getText().toString().equals("") || workplace.getTag().toString().equals("")){
@@ -196,11 +202,15 @@ public class ProfileModificationActivity extends Activity{
 			// l'affiche
 			alertDialog.show();
 		}else{
-
-			this.info = new Information(login.getText().toString() ,pwd.getText().toString(),
+			
+			Information newinfo = new Information(info.getLogin() ,pwd.getText().toString(),
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
 					phone.getText().toString(), postCode.getText().toString(),
 					workplace.getTag().toString(),horaires,days, estConducteur);
+		
+			//envoyer nouvelles infos à la bdd
+			facade.performProfileModification(info);
+			//on met à jour nos infos en demande à la bdd
 		}
 	}
 
