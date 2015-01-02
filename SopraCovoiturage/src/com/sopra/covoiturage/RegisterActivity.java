@@ -73,13 +73,13 @@ public class RegisterActivity extends Activity  {
 		cancel = (Button) findViewById(R.id.annuler);	
 
 		//to do
-		/*		lieuDeTravail = (Spinner) findViewById(R.id.lieu_de_travail);	
+		workplace = (Spinner) findViewById(R.id.lieu_de_travail);	
 		List<String> list = new ArrayList<String>();
 		list = facade.getWorkplaces();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
 
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		lieuDeTravail.setAdapter(adapter);*/
+		workplace.setAdapter(adapter);
 
 
 		// Initialisation spinner heure aller
