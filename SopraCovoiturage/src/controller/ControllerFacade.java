@@ -127,6 +127,8 @@ public class ControllerFacade {
 		if (requete == 0) {
 			System.out.println("CONTROLLER_FACADE : Suppression user : reussite !\n") ;
 			facadeView.confirmModification();
+			//on met à jour nos infos 
+			userInfo= info;	
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Suppression user : echec !\n") ;
