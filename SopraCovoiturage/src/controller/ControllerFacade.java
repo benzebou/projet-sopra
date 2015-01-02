@@ -33,6 +33,8 @@ public class ControllerFacade {
 	
 	private String login;
 	
+	private Information userInfo;
+	
 	/** 
 	 * Constructeur par defaut de ControllerFacade
 	 * @param facade La FacadeView
@@ -74,7 +76,7 @@ public class ControllerFacade {
 		boolean[] requete =requests.connectionRequest(nickname, password) ;
 		if (requete[0]) {
 			System.out.println("CONTROLLER_FACADE : Connexion : reussite !\n") ;
-			this.login = nickname;
+			this.setLogin(nickname);
 			facadeView.processConnected(requete[1]);
 		}
 		else {
@@ -473,4 +475,35 @@ public class ControllerFacade {
 		//con.getNumberConnectionSince("2014-12-26") ; // fonctionne
 		//con.getNumberConnectionBetween("2014-12-26", "2014-12-26") ; // fonctionne
 	}
+
+	/**
+	 * Methode permettant de renvoyer le login de l'utilisateur
+	 * @return String : login de l'utilisateur
+	 */
+	public String getLogin() {
+		return login;
+	}
+
+	/**
+	 * Methode permettant de mettre à jour le login
+	 */
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	
+	/**
+	 * Methode permettant de renvoyer les infos correspondantes au user
+	 * @return Information : infos correspondantes au user
+	 */
+	public Information getUserInfo() {
+		return userInfo;
+	}
+
+	/**
+	 * Methode permettant de mettre à jouruserInfo
+	 */
+	public void setUserInfo(Information userInfo) {
+		this.userInfo = userInfo;
+	}
+	
 }
