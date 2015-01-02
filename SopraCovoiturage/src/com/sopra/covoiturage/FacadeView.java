@@ -36,14 +36,7 @@ public class FacadeView {
 		return singleton ;
 	}
 	
-	/**
-	 * Methode permettant de renvoyer les informations sur l'utilisateur ayant pour login nickname 
-	 * @param nickname : login de l'utilisateur 
-	 * @return Informations : informations sur l'utilisateur 
-	 */
-	public Information getProfileInformation (String nickname) {
-		return controller.getProfileInformation (nickname);
-	}
+
 	
 	// Constructeur pour les test de ride Activity, a enlever
 	public FacadeView(RideActivity activity) {
@@ -66,6 +59,8 @@ public class FacadeView {
 		firstActivity.startActivity(i); 
 	}
 	
+
+	
 	/* DISCONNECTION */
 	public void performDisconnect(String nickname, String password) {
 		controller.performDisconnect(nickname, password);
@@ -83,6 +78,27 @@ public class FacadeView {
 		Intent i = new Intent(firstActivity, RegisterActivity.class);
 		firstActivity.startActivity(i); 
 	}
+	
+	
+	/*PROFILE*/
+	/**
+	 * methode permettant de modifier le profil d'un utilisateur
+	 * @param info : informations sur l'utilisateur
+	 */
+	public void performProfileModification (Information info) {
+		controller.performProfileModification(info);
+	}
+	
+	/**
+	 * Methode permettant de renvoyer les informations sur l'utilisateur ayant pour login nickname 
+	 * @param nickname : login de l'utilisateur 
+	 * @return Informations : informations sur l'utilisateur 
+	 */
+	public Information getProfileInformation (String nickname) {
+		return controller.getProfileInformation (nickname);
+	}
+	
+	
 	
 	
 	public void processNotConnected() {
