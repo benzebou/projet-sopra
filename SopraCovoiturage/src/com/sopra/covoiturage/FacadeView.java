@@ -18,6 +18,7 @@ public class FacadeView {
 	private ControllerFacade controller;
 	private Activity firstActivity;
 	private RideActivity searchRide;
+	private Information userInfo;
 	
 	private FacadeView(Activity activity) {
 		controller = ControllerFacade.getInstance(this);
@@ -169,6 +170,21 @@ public class FacadeView {
 	 */
 	public ArrayList<String> getWorkplaces() {
 		return controller.getWorkplaces();
+	}
+
+	/**
+	 * Methode permettant de renvoyer les infos correspondantes au user
+	 * @return Information : infos correspondantes au user
+	 */
+	public Information getUserInfo() {
+		return userInfo;
+	}
+
+	/**
+	 * Methode permettant de mettre à jouruserInfo
+	 */
+	public void setUserInfo(Information userInfo) {
+		this.userInfo = userInfo;
 	}
 	
 }
