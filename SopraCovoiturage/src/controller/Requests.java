@@ -1,5 +1,9 @@
 package controller;
 
+import controller.Security;
+import controller.RequestType;
+import controller.RequestResponses;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
@@ -13,6 +17,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
 
@@ -58,9 +63,16 @@ public class Requests {
 	 */
 
 		//private static String urlRequest = "http://localhost/carpooling/http_post_entry.php";
-		private static String urlRequest = "http://etud.insa-toulouse.fr/~demeyer/http_post_entry.php";
-		
+		//private static String urlRequest = "http://etud.insa-toulouse.fr/~demeyer/http_post_entry.php";
+		private static String urlRequest = "http://sopcov.hol.es/http_post_entry.php";
+	
 		private static String cookie;
+		
+		private static int SYN_REQ = -100;
+		
+		private static int ACK_REQ = -100;
+		
+		private static String key = "1e2c3d5e9aa658cb";
 		
 		
 		/**
@@ -765,10 +777,23 @@ public class Requests {
 					urlParameters += "&" + couple.getKey() + "=" + couple.getValue();
 				}
 			}
+			
+			if (typeOfRequest.equals(RequestType.CONNECT_USER) || typeOfRequest.equals(RequestType.CONNECT_ADMIN)){
+				Random rand = new Random();
+				SYN_REQ = rand.nextInt(1000000)+1;
+				ACK_REQ = -1;
+				urlParameters += "&SYN_REQ="+SYN_REQ;
+			}
+			else
+			{
+				SYN_REQ++;
+				urlParameters += "&SYN_REQ="+SYN_REQ+"&ACK_REQ="+ACK_REQ;
+			}
+			
 			return urlParameters;
 		}
 		
-		private static Map<String,Object> jsonToMap(String json){
+		private static Map<String,Object> jsonToMap(String json, boolean firstConnection){
 			JSONObject JSONStrings;
 			Map<String, Object> result = new HashMap<String,Object>();
 			try {
@@ -784,6 +809,24 @@ public class Requests {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			 if (firstConnection)
+			  {
+				  ACK_REQ = Integer.parseInt(result.get("SYN_REQ").toString());
+				  if(Integer.parseInt(result.get("ACK_REQ").toString()) != SYN_REQ){
+					  System.out.println("Attention, les numeros de sequences des requetes cryptes sont differents");
+				  }
+			  }
+			  else
+			  {
+				  if(Integer.parseInt(result.get("SYN_REQ").toString()) != ACK_REQ+1 || Integer.parseInt(result.get("ACK_REQ").toString()) != SYN_REQ){
+					  System.out.println("Attention, les numeros de sequences des requetes cryptes sont differents");
+				  }
+				  ACK_REQ++;
+			  }
+			  if (result.containsKey("SYN_REQ"))
+			  result.remove("SYN_REQ");
+			  if (result.containsKey("ACK_REQ"))
+			  result.remove("ACK_REQ");
 			return result;
 		}
 		/**
@@ -886,8 +929,17 @@ public class Requests {
 			        response.append('\r');
 			      }
 			      rd.close();
-			      System.out.println(response.toString());
-			      RequestResponses requestResponse = new RequestResponses(connection.getResponseCode(),true,jsonToMap(response.toString()));
+			      System.out.println("Crypted : "+response.toString());
+			      String responseDecrypted = Security.decrypt(response.toString(), key);
+			      System.out.println("Decrypted : "+responseDecrypted);
+			      RequestResponses requestResponse = null;
+			      if (typeOfRequest.equals(RequestType.CONNECT_USER) || typeOfRequest.equals(RequestType.CONNECT_ADMIN)){
+			    	  	requestResponse = new RequestResponses(connection.getResponseCode(),true,jsonToMap(responseDecrypted,true));
+					}
+					else
+					{
+						requestResponse = new RequestResponses(connection.getResponseCode(),true,jsonToMap(responseDecrypted,false));
+					}
 			      Log.d("SC", "postRequest finit");
 			      return requestResponse;
 		      }catch(requestException e){
