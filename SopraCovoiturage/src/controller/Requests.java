@@ -287,50 +287,64 @@ public class Requests {
 		// Obtenir les informations d'un profil : nickname (utilisateur � afficher)
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", nickname);
-		RequestResponses reponse = null ;
-		reponse = postRequest(RequestType.GET_PROFILE_INFORMATIONS,map) ;
-		if (reponse.isSuccess()) {
+		RequestResponses result = null ;
+		
+		RequestsParams params = new RequestsParams(RequestType.GET_PROFILE_INFORMATIONS,map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		try {
+			result = task.get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// reponse = postRequest(RequestType.GET_PROFILE_INFORMATIONS,map) ;
+		if (result.isSuccess()) {
 			Information info = new Information();
-			reponse.getData() ;
-			info.setLogin((String)reponse.getData().get("login"));
-			info.setEmail((String)reponse.getData().get("mail"));
-			info.setName((String)reponse.getData().get("nom"));
-			info.setFirstname((String)reponse.getData().get("prenom"));
-			info.setMdp((String)reponse.getData().get("mdp"));
-			info.setPhone((String)reponse.getData().get("tel"));
-			info.setWorkplace((String)reponse.getData().get("travail"));
-			info.setPostcode((String)reponse.getData().get("postal"));
-			info.setMorning((String)reponse.getData().get("horairesMatin"));
-			info.setEvening((String)reponse.getData().get("horairesSoir"));
-			if (reponse.getData().get("conducteur") == "1")
+			result.getData() ;
+			info.setLogin((String)result.getData().get("login"));
+			info.setEmail((String)result.getData().get("mail"));
+			info.setName((String)result.getData().get("nom"));
+			info.setFirstname((String)result.getData().get("prenom"));
+			info.setMdp((String)result.getData().get("mdp"));
+			info.setPhone((String)result.getData().get("tel"));
+			info.setWorkplace((String)result.getData().get("travail"));
+			info.setPostcode((String)result.getData().get("postal"));
+			info.setMorning((String)result.getData().get("horairesMatin"));
+			info.setEvening((String)result.getData().get("horairesSoir"));
+			if (result.getData().get("conducteur") == "1")
 				info.setConducteur(true);
 			else
 				info.setConducteur(false);
-			if (reponse.getData().get("lundi") == "1")
+			if (result.getData().get("lundi") == "1")
 				info.getDays()[0] = true ;
 			else
 				info.getDays()[0] = false ;
-			if (reponse.getData().get("mardi") == "1")
+			if (result.getData().get("mardi") == "1")
 				info.getDays()[1] = true ;
 			else
 				info.getDays()[1] = false ;
-			if (reponse.getData().get("mercredi") == "1")
+			if (result.getData().get("mercredi") == "1")
 				info.getDays()[2] = true ;
 			else
 				info.getDays()[2] = false ;
-			if (reponse.getData().get("jeudi") == "1")
+			if (result.getData().get("jeudi") == "1")
 				info.getDays()[3] = true ;
 			else
 				info.getDays()[3] = false ;
-			if (reponse.getData().get("vendredi") == "1")
+			if (result.getData().get("vendredi") == "1")
 				info.getDays()[4] = true ;
 			else
 				info.getDays()[4] = false ;
-			if (reponse.getData().get("samedi") == "1")
+			if (result.getData().get("samedi") == "1")
 				info.getDays()[5] = true ;
 			else
 				info.getDays()[5] = false ;
-			if (reponse.getData().get("dimanche") == "1")
+			if (result.getData().get("dimanche") == "1")
 				info.getDays()[6] = true ;
 			else
 				info.getDays()[6] = false ;
