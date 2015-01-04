@@ -407,13 +407,27 @@ public class Requests {
 		else 
 			map.put("conducteur", "0");
 
-		RequestResponses reponse = null ;
-		reponse = postRequest(RequestType.MODIFY_PROFILE,map) ;
-		if (reponse.isSuccess()) {
+		RequestResponses result = null ;
+		
+		RequestsParams params = new RequestsParams(RequestType.MODIFY_PROFILE,map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		try {
+			result = task.get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//reponse = postRequest(RequestType.MODIFY_PROFILE,map) ;
+		if (result.isSuccess()) {
 			return 0 ;
 		}
 		else 
-			return reponse.getCode() ;	
+			return result.getCode() ;	
 	}
 
 	/**
