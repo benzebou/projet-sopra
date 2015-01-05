@@ -84,20 +84,7 @@ public class RideActivity extends Activity{
 		// Initialisation spinner heure aller
 		this.aller = new Spinner(this);
 		this.aller = (Spinner) findViewById(R.id.ChoixAller);
-		//InitHeure(this.aller);
-		String heure;
-		List<String> list = new ArrayList<String>();
-	    list.add("merde");
-	    for(int i=7; i< 20; i++) {
-	    	for(int j=0; i<4; i++) {
-	    		heure = i + ":" + j*15;
-	    		list.add(heure);
-	    	}
-	    }
-	    
-	    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-	    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		this.aller.setAdapter(dataAdapter);
+		InitHeure(this.aller);
 		
 		// Initialisation spinner heure retour
 		this.retour = new Spinner(this);
@@ -221,10 +208,11 @@ public class RideActivity extends Activity{
 	    String heure;
 		List<String> list = new ArrayList<String>();
 	    
-	    for(int i=7; i< 20; i++) {
-	    	for(int j=0; i<4; i++) {
+		for(int i=7; i< 20; i++) {
+			heure = i + ":00";
+	    	for(int j=1; j<5; j++) {
+	    		list.add(heure);	
 	    		heure = i + ":" + j*15;
-	    		list.add(heure);
 	    	}
 	    }
 	    

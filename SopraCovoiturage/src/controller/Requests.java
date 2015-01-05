@@ -19,6 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import modele.Information;
@@ -555,9 +556,13 @@ public class Requests {
 
 		ArrayList<String> workplaces = new ArrayList<String>() ;
 		// parcours de la HashMap
-		for (Entry<String, Object> entry : result.getData().entrySet()) {
+		Map<String, Object> map = result.getData();
+		if (map.isEmpty())
+			workplaces.add("T'es baisée");
+		for (Entry<String, Object> entry : map.entrySet()) {
 			String MapReponse = (String) entry.getValue() ;
 			workplaces.add(MapReponse) ;
+			workplaces.add("Bla");
 		}
 		return workplaces ;
 	}
