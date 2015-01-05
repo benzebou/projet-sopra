@@ -79,6 +79,13 @@ public class FacadeView {
 		firstActivity.startActivity(i); 
 	}
 	
+	/**
+	 * methode permettant d'inscrire un nouvel utilisateur
+	 * @param info : informations du profil de l'utilisateur
+	 */
+	public void performRegister (Information info){
+		controller.performRegister(info);
+	}
 	
 	/*PROFILE*/
 	/**
