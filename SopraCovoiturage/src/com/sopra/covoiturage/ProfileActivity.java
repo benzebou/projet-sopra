@@ -29,12 +29,12 @@ public class ProfileActivity extends Activity {
 	private TextView conductor;
 	private TextView notification;
 	private Information info ;
-	
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.profile_page);
 		facade = FacadeView.getInstance(this);
-		
+
 		login=(TextView) findViewById(R.id.login);
 		name = (TextView) findViewById(R.id.nom);
 		firstname = (TextView) findViewById(R.id.prenom);
@@ -52,9 +52,13 @@ public class ProfileActivity extends Activity {
 		modify = (Button) findViewById(R.id.modifier);
 		back = (Button) findViewById(R.id.retour);
 
-		
-		info = facade.getProfileInformation("toto");
-		
+
+		info = facade.getUserInfo();
+		if (info==null){
+			info = facade.getProfileInformation(facade.getLogin());
+			facade.setUserInfo(info);
+		}
+
 		login.setText(info.getLogin());
 		name.setText(info.getName());
 		firstname.setText(info.getFirstname());
@@ -69,15 +73,15 @@ public class ProfileActivity extends Activity {
 		goingTime.setText(info.getMorning());
 		returningTime.setText(info.getEvening());
 		workplace.setText(info.getWorkplace());
-		
+
 
 	}
-	
+
 	public void onModificationButtonClick(View v) {
-		
+
 	}
-	
+
 	public void onRetourButtonClick(View v) {
-		
+
 	}
 }

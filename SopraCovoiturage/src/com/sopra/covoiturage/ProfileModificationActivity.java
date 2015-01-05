@@ -51,7 +51,9 @@ public class ProfileModificationActivity extends Activity{
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.register_page);
+		setContentView(R.layout.profile_modification_page);
+		facade = FacadeView.getInstance(this);
+		
 		login = (TextView) findViewById(R.id.login);
 		name = (EditText) findViewById(R.id.nom);
 		firstname = (EditText) findViewById(R.id.prenom);
@@ -275,6 +277,5 @@ public class ProfileModificationActivity extends Activity{
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spin.setAdapter(dataAdapter);
-	}
-	
+	}	
 }

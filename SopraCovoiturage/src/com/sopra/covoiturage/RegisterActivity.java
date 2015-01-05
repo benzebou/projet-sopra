@@ -52,6 +52,8 @@ public class RegisterActivity extends Activity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register_page);
+		facade = FacadeView.getInstance(this);
+
 		login=(EditText) findViewById(R.id.login);
 		name = (EditText) findViewById(R.id.nom);
 		firstname = (EditText) findViewById(R.id.prenom);
@@ -80,7 +82,17 @@ public class RegisterActivity extends Activity  {
 
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		workplace.setAdapter(adapter);
-*/
+		 */
+
+		// Initialisation spinner workplace
+		this.workplace = new Spinner(this);
+		this.workplace = (Spinner) findViewById(R.id.lieu_de_travail);
+		ArrayList<String> listW = new ArrayList<String>();
+		listW = this.facade.getWorkplaces();
+		ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
+		dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		workplace.setAdapter(dataAdapterW);
+
 
 		// Initialisation spinner heure aller
 		goingTime = new Spinner(this);
@@ -181,6 +193,7 @@ public class RegisterActivity extends Activity  {
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
 					phone.getText().toString(), postCode.getText().toString(),
 					workplace.getTag().toString(),horaires,days, estConducteur);
+			facade.performRegister (info);
 
 
 		}
