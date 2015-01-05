@@ -51,7 +51,7 @@ public class RideActivity extends Activity{
 		this.workplace = new Spinner(this);
 		this.workplace = (Spinner) findViewById(R.id.Arrivee);
 	    ArrayList<String> listW = new ArrayList<String>();
-	    this.fac.displayWorkplaces(listW);
+	    listW = this.fac.getWorkplaces();
 
         ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
         dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -87,7 +87,7 @@ public class RideActivity extends Activity{
 		//InitHeure(this.aller);
 		String heure;
 		List<String> list = new ArrayList<String>();
-	    
+	    list.add("merde");
 	    for(int i=7; i< 20; i++) {
 	    	for(int j=0; i<4; i++) {
 	    		heure = i + ":" + j*15;

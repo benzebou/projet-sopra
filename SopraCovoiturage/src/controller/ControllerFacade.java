@@ -274,7 +274,7 @@ public class ControllerFacade {
 	 * @return ArrayList<String> : liste des lieux de travail
 	 */
 	public ArrayList<String> getWorkplaces() {
-		ArrayList<String> res = null;
+		ArrayList<String> res = new ArrayList<String>();
 		try {
 			res = requests.getWorkplacesRequest() ;
 		} catch (InterruptedException e) {
