@@ -159,8 +159,8 @@ public class FacadeView {
 	 * initialise le parametre listOfWorkplaces en faisant appel a la methode getWorkplace du controller
 	 * @param listOfWorkplaces
 	 */
-	public void displayWorkplaces(ArrayList<String> listOfWorkplaces) {
-		listOfWorkplaces = this.controller.getWorkplaces();
+	public ArrayList<String> displayWorkplaces() {
+		return this.controller.getWorkplaces();
 	}
 	
 	public void erreurAddWorkplace () {
