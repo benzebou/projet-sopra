@@ -917,6 +917,10 @@ public class Requests {
 	public static RequestResponses postRequest(RequestType typeOfRequest, HashMap<String,Object> parameters) {
 		Log.d("SC", "postRequest commence");
 		String urlParameters = getRequestParameters(typeOfRequest,parameters);
+		
+		// On encrypte les donnees
+		urlParameters = "requestPHP="+Security.encrypt(urlParameters, key);
+		
 		URL url;
 		HttpURLConnection connection = null; 
 
@@ -953,6 +957,7 @@ public class Requests {
 			wr.close ();
 
 			Log.d("SC", "on regarde la r�ponse");
+			System.out.println();
 			//Get Response  
 			try{
 				// On teste s'il n'y a pas eut d'erreur pour la requ�te
