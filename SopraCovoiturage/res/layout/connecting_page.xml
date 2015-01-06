@@ -7,7 +7,7 @@
     <ImageView
 	    android:layout_height="wrap_content"
 	    android:layout_width="wrap_content"
-	    android:layout_marginTop="100dp"
+	    android:layout_marginTop="30dp"
 	    android:layout_gravity="center"
 	    android:background="@drawable/titre" />
     	    
@@ -20,29 +20,29 @@
 	    <TextView
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="120dp"
+	        android:layout_marginLeft="80dp"
 	        android:textSize="24sp"
 	        android:textColor="#de002d" 
 	        android:text="Pseudo" />
 	    <EditText   
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="100dp"
-	        android:layout_marginRight="100dp"
+	        android:layout_marginLeft="60dp"
+	        android:layout_marginRight="60dp"
 	        android:id="@+id/loginField"
 	        android:inputType="text"/>
 	    <TextView
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="120dp" 
+	        android:layout_marginLeft="80dp" 
 	        android:textSize="24sp"
 	        android:textColor="#de002d"
 	        android:text="Mot de passe" />
 	    <EditText
 	        android:id="@+id/passwordField"
 	        android:inputType="textPassword"
-	        android:layout_marginLeft="100dp"
-	        android:layout_marginRight="100dp"
+	        android:layout_marginLeft="60dp"
+	        android:layout_marginRight="60dp"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content" />
 	    
@@ -50,13 +50,13 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:textColor="#000000" 
-	        android:paddingRight="110dp"
+	        android:layout_marginRight="80dp"
 	        android:textSize="20sp"
 	        android:layout_gravity="right"
 	        android:text="Mot de passe oublié" />
 	    
 		<Button
-		    android:layout_marginTop="50dp"
+		    android:layout_marginTop="20dp"
 	        android:id="@+id/connectionButton"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -68,10 +68,10 @@
 	       
 		<Button
 	        android:id="@+id/registerButton"
-	        android:layout_width="220dp"
-	        android:layout_height="80dp"
+	        android:layout_width="160dp"
+	        android:layout_height="40dp"
 	        android:textSize="32sp"
-	        android:layout_marginTop="50dp"
+	        android:layout_marginTop="20dp"
 	        android:onClick="onRegisterButtonClick"
 	        android:text="S'inscrire"
 	        android:layout_gravity="center"
