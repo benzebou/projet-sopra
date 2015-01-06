@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+    	android:id="@+id/Workplace"
+        android:textSize="15sp" 
+        android:paddingRight="15dip"
+        android:layout_weight="3"
+        android:paddingLeft="2dip"/>
+	 
+   	<Button
+    	android:id="@+id/Delete"
+        android:textSize="15sp" 
+        android:paddingLeft="15dip"
+        android:text="delete"
+     	android:onClick="onClickDelete" 
+     	android:layout_weight="0"/>
+	
+</TableRow>
