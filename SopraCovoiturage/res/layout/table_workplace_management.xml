@@ -9,13 +9,5 @@
         android:paddingRight="15dip"
         android:layout_weight="3"
         android:paddingLeft="2dip"/>
-	 
-   	<Button
-    	android:id="@+id/Delete"
-        android:textSize="15sp" 
-        android:paddingLeft="15dip"
-        android:text="delete"
-     	android:onClick="onClickDelete" 
-     	android:layout_weight="0"/>
 	
 </TableRow>

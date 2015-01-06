@@ -1,6 +1,7 @@
 package com.sopra.covoiturage;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import modele.Information;
 import modele.Ride;
@@ -28,17 +29,33 @@ public class WorkplaceManagementActivity extends Activity {
 		inflater = getLayoutInflater();
 		table = new TableLayout(this);
 		table = (TableLayout) findViewById(R.id.WorkplaceTable);
+		this.workplace = new ArrayList<String>();
 		displayWorkplace();
 		
 	}
 
+	
 	private void displayWorkplace() {
-		TableRow tr = (TableRow) inflater.inflate(R.layout.table_workplace_management, null); 
-		
-		((TextView) tr.findViewById(R.id.Workplace)).setText("insa");
-		
+	    this.workplace = this.fac.getWorkplaces();
+		Iterator r = this.workplace.iterator();
+		while(r.hasNext()){
+			TableRow tr = (TableRow) inflater.inflate(R.layout.table_workplace_management, null); 
+			((TextView) tr.findViewById(R.id.Workplace)).setText(r.next());
+		}
 		table.addView(tr);
 	}
 	
 
+	public void onClickChange(View v) {
+		
+	}
+	
+	public void onClickAdd(View v) {
+		
+	}
+	
+	public void onClickDelete(View v) {
+		
+	}
+	
 }

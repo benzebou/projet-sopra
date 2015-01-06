@@ -29,6 +29,12 @@
 		    android:text="Add"
 		    android:textSize="15sp"
 	     	android:onClick="onClickAdd" />
+	    <Button
+    		android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+		    android:text="Delete"
+		    android:textSize="15sp"
+	     	android:onClick="onClickDelete"/>
     </LinearLayout>
     
     <TableLayout
@@ -48,13 +54,7 @@
 	            android:textSize="15sp" 
 	            android:paddingRight="15dip"
 	            android:layout_weight="3"/>
-	 
-	        <TextView
-	            android:id="@+id/HeadDelete"
-	            android:text="Delete"
-	            android:textSize="15sp" 
-	            android:paddingLeft="15dip"
-	            android:layout_weight="0"/>
+
 	    </TableRow>
 	    
 	    <!-- just draw a red line -->
@@ -85,6 +85,12 @@
 		    android:text="Add"
 		    android:textSize="15sp"
 	     	android:onClick="onClickAdd" />
+	    <Button
+    		android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+		    android:text="Delete"
+		    android:textSize="15sp"
+	     	android:onClick="onClickDelete"/>
     </LinearLayout>
 
 </LinearLayout>
