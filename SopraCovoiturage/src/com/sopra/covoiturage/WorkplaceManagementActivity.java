@@ -3,6 +3,9 @@ package com.sopra.covoiturage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
+import com.sopra.covoiturage.FacadeView;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +25,7 @@ public class WorkplaceManagementActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workplace_management_page);
-		// this.fac = new FacadeView(this);
+		this.fac = FacadeView.getInstance(this);
 		
 		// Initialise le tableau de trajet
 		inflater = getLayoutInflater();
@@ -40,17 +43,15 @@ public class WorkplaceManagementActivity extends Activity {
 		while(r.hasNext()){
 			TableRow tr = (TableRow) inflater.inflate(R.layout.table_workplace_management, null); 
 			((TextView) tr.findViewById(R.id.Workplace)).setText((String) r.next());
+			tr.findViewById(R.id.Delete).setTag((String) r.next());
 			table.addView(tr);
 		}
 	}
 	
 
-	public void onClickChange(View v) {
-		
-	}
 	
 	public void onClickAdd(View v) {
-		
+		this.fac.changeActivityWorkAdd();
 	}
 	
 	public void onClickDelete(View v) {
