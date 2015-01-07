@@ -15,7 +15,7 @@ public class UsersActivity extends Activity {
 		facade = FacadeView.getInstance(this);
 		
 		View menu = findViewById(R.id.menu);
-		MenuHandling menuH = new MenuHandling(facade, menu);
+		MenuHandling menuH = new MenuHandling(facade, this, menu);
 		
 	}
 	
