@@ -25,7 +25,11 @@ public class PasswordForgottenActivity extends Activity  {
 	}
 	
 	public void onPasswordForgottenButtonClick(View v) {
-		facade.performPasswordForgotten(mailText.getText().toString());
+		String mailTxtString = mailText.getText().toString();
+		if ((mailTxtString != null) && (mailTxtString.trim().length() > 0))
+			facade.performPasswordForgotten(mailTxtString);
+		else
+			notificationEmptyPwdMail();
 	}
 	
 	public void notificationSendPwdMailOk() {
