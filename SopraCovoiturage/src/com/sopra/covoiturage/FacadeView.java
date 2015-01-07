@@ -62,8 +62,8 @@ public class FacadeView {
 
 	
 	/* DISCONNECTION */
-	public void performDisconnect(String nickname, String password) {
-		controller.performDisconnect(nickname, password);
+	public void performDisconnect() {
+		controller.performDisconnect();
 	}
 	public void processUserDisconnected() {
 		
@@ -177,12 +177,6 @@ public class FacadeView {
 		this.searchRide.setRides(listOfRides);
 	}
 	
-	/**
-	 * initialise le parametre listOfWorkplaces en faisant appel a la methode getWorkplace du controller
-	 * @param listOfWorkplaces
-	 */
-	public void displayWorkplaces(ArrayList<String> workplace) {
-	}
 	
 	public void erreurAddWorkplace () {
 		
