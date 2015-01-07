@@ -1,6 +1,7 @@
 package com.sopra.covoiturage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import modele.Information;
 import modele.Ride;
@@ -177,6 +178,12 @@ public class FacadeView {
 		this.searchRide.setRides(listOfRides);
 	}
 	
+	/**
+	 * initialise le parametre listOfWorkplaces en faisant appel a la methode getWorkplace du controller
+	 * @param listOfWorkplaces
+	 */
+	public void displayWorkplaces(HashMap<String, String> workplace) {
+	}
 	
 	public void erreurAddWorkplace () {
 		
