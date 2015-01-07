@@ -2,6 +2,7 @@ package com.sopra.covoiturage;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -32,6 +33,7 @@ public class ConnectingActivity extends Activity {
 	}
 	
 	public void onPasswordForgottenClick(View v) {
+		Log.d("SC","passwordForgotten");
 		facade.changeActivityPasswordForgotten();
 	}
 	
