@@ -276,6 +276,18 @@ public class FacadeView {
 	public void setPwActivity(PasswordForgottenActivity pwActivity) {
 		this.pwActivity = pwActivity;
 	}
+
+	public void setSearchRide(RideActivity sRide) {
+		this.searchRide = sRide;
+	}	
+
+	public void setWorkAdd(WorkplaceAdditionActivity workAdd) {
+		this.workAdd = workAdd;
+	}
+
+	public void setWorkMan(WorkplaceManagementActivity workMan) {
+		this.workMan = workMan;
+	}
 	
 }
 

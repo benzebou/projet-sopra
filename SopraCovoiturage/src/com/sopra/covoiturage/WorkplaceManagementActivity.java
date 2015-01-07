@@ -51,11 +51,11 @@ public class WorkplaceManagementActivity extends Activity {
 
 	
 	public void onClickAdd(View v) {
-		this.fac.changeActivity(WorkplaceAdditionActivity.class);
+		this.fac.changeActivity(WorkplaceAdditionActivity.class);	
 	}
 	
 	public void onClickDelete(View v) {
-		
+		//this.fac.
 	}
 	
 }

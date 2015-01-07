@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TableLayout;
 
 public class WorkplaceAdditionActivity extends Activity {
@@ -20,12 +21,13 @@ public class WorkplaceAdditionActivity extends Activity {
 		setContentView(R.layout.workplace_addition_page);
 		this.fac = FacadeView.getInstance(this);
 		
-		// Initialise le tableau de trajet
-		inflater = getLayoutInflater();
-		table = new TableLayout(this);
-		table = (TableLayout) findViewById(R.id.WorkplaceTable);
-		this.workplace = new ArrayList<String>();
-		//displayWorkplace();
 		
+	}
+	
+	public void onClickAdd(View v) {
+		// Demande l'ajout à la base
+		
+		//Repasse sur la WorkplaceManagementActivity
+		this.fac.changeActivity(WorkplaceManagementActivity.class);
 	}
 }
