@@ -267,15 +267,28 @@ public class Requests {
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
 	public boolean disconnectionRequest () {
-		HashMap<String, Object> map = new HashMap<String, Object> () ;
-		RequestResponses reponse = null ;
-		reponse = postRequest(RequestType.DISCONNECT,null) ;
-		if (reponse.isSuccess()) { 
-			cookie = null ;
-			return true ;
+		RequestResponses result = null ;
+		RequestsParams params = new RequestsParams(RequestType.DISCONNECT, null);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		try {
+			result = task.get();
+			if (result.isSuccess()) { 
+				cookie = null ;
+				return true ;
+			}
+			else 
+				return false ;
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
 		}
-		else 
-			return false ;
+
 	}
 
 	/**
