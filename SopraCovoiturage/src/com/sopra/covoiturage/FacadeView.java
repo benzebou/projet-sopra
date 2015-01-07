@@ -110,6 +110,13 @@ public class FacadeView {
 		return controller.getProfileInformation (nickname);
 	}
 	
+	/**
+	 * Methode permettant de renvoyer la liste des communes
+	 * @return ArrayList<String> : liste des communes
+	 */
+	public ArrayList<String> getTownList() {
+		return controller.getTownList() ;
+	}
 	
 	
 	
