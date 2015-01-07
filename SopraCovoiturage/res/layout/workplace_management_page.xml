@@ -22,12 +22,6 @@
 		    android:layout_height="wrap_content"
 		    android:orientation="horizontal"
 		    android:layout_gravity="right" >
-		  	<Button
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
-			   	android:text="Change"
-			    android:textSize="15sp"
-			   	android:onClick="onClickChange" />
 		    
 		    <Button
 				android:layout_height="wrap_content"
@@ -80,13 +74,6 @@
 		    android:orientation="horizontal" 
 		    android:layout_gravity="right"
 		    android:paddingTop="15dip">
-		  	<Button
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
-				android:layout_gravity="right"
-			   	android:text="Change"
-			    android:textSize="15sp"
-			   	android:onClick="onClickChange" />
 		    
 		    <Button
 				android:layout_height="wrap_content"
