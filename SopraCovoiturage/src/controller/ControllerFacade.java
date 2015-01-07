@@ -3,11 +3,12 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
 
 import modele.Information;
 import modele.Ride;
-
 import android.util.Log;
 
 import com.sopra.covoiturage.FacadeView;
@@ -106,8 +107,8 @@ public class ControllerFacade {
 	 * @param nickname : login de l'utilisateur
 	 * @param password : mot de passe de l'utilisateur
 	 */
-	public void performDisconnect (String nickname, String password) {
-		boolean requete =requests.disconnectionRequest(nickname, password) ;
+	public void performDisconnect () {
+		boolean requete = requests.disconnectionRequest() ;
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Deconnexion user : reussite !\n") ;
 			facadeView.processUserDisconnected();
@@ -227,7 +228,7 @@ public class ControllerFacade {
 			if (requete) {
 				System.out.println("CONTROLLER_FACADE : Addition workplace : reussite !\n") ;
 				Log.d("SC", "CONTROLLER_FACADE : Addition workplace : reussite !\n");
-				ArrayList<String> workplaces = requests.getWorkplacesRequest() ;
+				HashMap<String, String> workplaces = requests.getWorkplacesRequest() ;
 				facadeView.displayWorkplaces(workplaces);
 			}
 			else { 
@@ -253,7 +254,7 @@ public class ControllerFacade {
 			boolean requete =requests.deletionWorkplaceRequest(workplace) ;
 			if (requete) {
 				System.out.println("CONTROLLER_FACADE : Deletion workplace : reussite !\n") ;
-				ArrayList<String> workplaces = requests.getWorkplacesRequest() ;
+				HashMap<String, String> workplaces = requests.getWorkplacesRequest() ;
 				facadeView.displayWorkplaces(workplaces);
 			}
 			else { 
@@ -276,7 +277,10 @@ public class ControllerFacade {
 	public ArrayList<String> getWorkplaces() {
 		ArrayList<String> res = new ArrayList<String>();
 		try {
-			res = requests.getWorkplacesRequest() ;
+			HashMap<String, String> workplaces = requests.getWorkplacesRequest();
+			Iterator<Entry<String, String>> it = workplaces.entrySet().iterator();
+			while(it.hasNext())
+				res.add(it.next().getValue());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
