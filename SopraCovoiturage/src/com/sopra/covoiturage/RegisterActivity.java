@@ -48,7 +48,10 @@ public class RegisterActivity extends Activity  {
 	private Information info ;
 
 
-
+	/**
+	 * Crée la page d'enregistrement d'un nouvel utilisateur
+	 * @param savedInstanceState
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register_page);
