@@ -29,7 +29,7 @@ public class ProfileActivity extends Activity {
 	private Information info ;
 
 	/**
-	 * Crée la page de consutation du profile utilisateur
+	 * Crée la page de consultation du profile utilisateur
 	 * @param savedInstanceState
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
