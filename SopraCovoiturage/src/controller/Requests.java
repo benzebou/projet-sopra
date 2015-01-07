@@ -200,7 +200,19 @@ public class Requests {
 		map.put("prenom", info.getFirstname());
 		map.put("tel", info.getPhone());
 		map.put("postal", info.getPostcode());
-		map.put("travail", info.getWorkplace());
+		
+		// recuperation de l'ID du workplace
+		RequestResponses reponseWorkplace = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
+		// parcours de la HashMap
+		String id = null ;
+		for (Entry<String, Object> entry : reponseWorkplace.getData().entrySet()) {
+			String MapReponse = (String) entry.getValue() ;
+			if (MapReponse.equals(info.getWorkplace())) {
+				id = entry.getKey() ;
+				break ;
+			}
+		}
+		map.put("travail", id);
 		map.put("horairesMatin", info.getMorning());
 		map.put("horairesSoir", info.getEvening());
 
