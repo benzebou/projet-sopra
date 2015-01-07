@@ -816,6 +816,8 @@ public class Requests {
 	 */
 	private static String getRequestParameters(RequestType typeOfRequest, HashMap<String, Object> map){
 		String urlParameters = "request=" + typeOfRequest.toString().toLowerCase();
+		if (typeOfRequest == RequestType.GET_LIST_WORKPLACE || typeOfRequest == RequestType.GET_LIST_TOWN)
+			return urlParameters;
 		if (map != null){
 
 			// We fetch parameters in an iterator
@@ -859,24 +861,26 @@ public class Requests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (firstConnection)
-		{
-			ACK_REQ = Integer.parseInt(result.get("SYN_REQ").toString());
-			if(Integer.parseInt(result.get("ACK_REQ").toString()) != SYN_REQ){
-				System.out.println("Attention, les numeros de sequences des requetes cryptes sont differents");
+		if (result.containsKey("SYN_REQ") || result.containsKey("ACK_REQ")){
+			if (firstConnection)
+			{
+				ACK_REQ = Integer.parseInt(result.get("SYN_REQ").toString());
+				if(Integer.parseInt(result.get("ACK_REQ").toString()) != SYN_REQ){
+					System.out.println("Attention, les numeros de sequences des requetes cryptes sont differents");
+				}
 			}
-		}
-		else
-		{
-			if(Integer.parseInt(result.get("SYN_REQ").toString()) != ACK_REQ+1 || Integer.parseInt(result.get("ACK_REQ").toString()) != SYN_REQ){
-				System.out.println("Attention, les numeros de sequences des requetes cryptes sont differents");
+			else
+			{
+				if(Integer.parseInt(result.get("SYN_REQ").toString()) != ACK_REQ+1 || Integer.parseInt(result.get("ACK_REQ").toString()) != SYN_REQ){
+					System.out.println("Attention, les numeros de sequences des requetes cryptes sont differents");
+				}
+				ACK_REQ++;
 			}
-			ACK_REQ++;
+			if (result.containsKey("SYN_REQ"))
+				result.remove("SYN_REQ");
+			if (result.containsKey("ACK_REQ"))
+				result.remove("ACK_REQ");
 		}
-		if (result.containsKey("SYN_REQ"))
-			result.remove("SYN_REQ");
-		if (result.containsKey("ACK_REQ"))
-			result.remove("ACK_REQ");
 		return result;
 	}
 	/**
