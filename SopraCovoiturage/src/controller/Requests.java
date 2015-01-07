@@ -556,12 +556,11 @@ public class Requests {
 
 		ArrayList<String> workplaces = new ArrayList<String>() ;
 		// parcours de la HashMap
-		Map<String, Object> map = result.getData();
-		if (map.isEmpty())
-			workplaces.add("T'es baisée");
-		for (Entry<String, Object> entry : map.entrySet()) {
-			String MapReponse = (String) entry.getValue() ;
-			workplaces.add(MapReponse) ;
+//		if (map.isEmpty())
+//			workplaces.add("T'es baisée");
+		for (Entry<String, Object> entry : result.getData().entrySet()) {
+			String mapReponse = (String) entry.getValue() ;
+			workplaces.add(mapReponse) ;
 			workplaces.add("Bla");
 		}
 		return workplaces ;
