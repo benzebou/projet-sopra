@@ -693,13 +693,13 @@ public class Requests {
 		try {
 			result = task.get();
 			
-			ArrayList<String> townList = new ArrayList<String>() ;
+			ArrayList<String> postcodeList = new ArrayList<String>() ;
 			// parcours de la HashMap
 			for (Entry<String, Object> entry : result.getData().entrySet()) {
-				String MapReponse = (String) entry.getValue() ;
-				townList.add(MapReponse) ;
+				String MapReponse = (String) entry.getKey() ;
+				postcodeList.add(MapReponse) ;
 			}
-			return townList ;
+			return postcodeList ;
 			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
