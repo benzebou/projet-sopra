@@ -7,6 +7,7 @@ import modele.Information;
 import modele.Ride;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import controller.ControllerFacade;
 
 public class FacadeView {
@@ -21,6 +22,7 @@ public class FacadeView {
 	private RideActivity searchRide;
 	private WorkplaceManagementActivity workMan;
 	private WorkplaceAdditionActivity workAdd;
+	private PasswordForgottenActivity pwActivity ;
 	
 	private FacadeView(Activity activity) {
 		controller = ControllerFacade.getInstance(this);
@@ -124,11 +126,17 @@ public class FacadeView {
 	}
 	
 	public void processSendPwdMailOk () {
-		
+		if (getPwActivity() == null)
+			Log.d("SC","Erreur processSendPwdMailOk");
+		else 
+			getPwActivity().notificationSendPwdMailOk();		
 	}
 
 	public void processSendPwdMailFailure () {
-		
+		if (getPwActivity() == null)
+			Log.d("SC","Erreur processSendPwdMailFailure");
+		else 
+			getPwActivity().notificationSendPwdMailFailure();		
 	}
 	
 	public void changeActivityProfile () {
@@ -259,6 +267,14 @@ public class FacadeView {
 	 */
 	public void setUserInfo(Information userInfo) {
 		setUserInfo(userInfo);
+	}
+
+	public PasswordForgottenActivity getPwActivity() {
+		return pwActivity;
+	}
+
+	public void setPwActivity(PasswordForgottenActivity pwActivity) {
+		this.pwActivity = pwActivity;
 	}
 	
 }
