@@ -7,15 +7,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:orientation="vertical" >
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="50dp"
-            android:layout_marginTop="30dp"
             android:text="Profile"
             android:textColor="#de002d"
             android:textSize="24sp" />
