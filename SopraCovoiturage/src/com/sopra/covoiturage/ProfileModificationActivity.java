@@ -236,7 +236,6 @@ public class ProfileModificationActivity extends Activity{
 				// si le boutton est cliquer fermer l'activity actuelle
 				// et ouvre la Connecting activity
 				ProfileModificationActivity.this.finish();
-				facade.changeActivityProfile();
 			}
 		})
 
