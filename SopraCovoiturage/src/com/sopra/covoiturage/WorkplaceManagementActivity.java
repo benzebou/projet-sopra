@@ -3,11 +3,10 @@ package com.sopra.covoiturage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import modele.Information;
-import modele.Ride;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
