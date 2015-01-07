@@ -842,6 +842,7 @@ public class Requests {
 			urlParameters += "&SYN_REQ="+SYN_REQ+"&ACK_REQ="+ACK_REQ;
 		}
 
+		Log.println(1, "RP", urlParameters);
 		return urlParameters;
 	}
 
