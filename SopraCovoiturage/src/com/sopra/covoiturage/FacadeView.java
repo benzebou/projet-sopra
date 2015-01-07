@@ -19,6 +19,8 @@ public class FacadeView {
 	private ControllerFacade controller;
 	private Activity firstActivity;
 	private RideActivity searchRide;
+	private WorkplaceManagementActivity workMan;
+	private WorkplaceAdditionActivity workAdd;
 	
 	private FacadeView(Activity activity) {
 		controller = ControllerFacade.getInstance(this);
@@ -37,14 +39,6 @@ public class FacadeView {
 		return singleton ;
 	}
 	
-
-	
-	// Constructeur pour les test de ride Activity, a enlever
-	public FacadeView(RideActivity activity) {
-		controller = ControllerFacade.getInstance(this);
-		searchRide = activity;
-		
-	}
 	
 	public void changeActivity(Class activity) {
 		Intent i = new Intent(firstActivity, activity);
@@ -153,6 +147,22 @@ public class FacadeView {
 		firstActivity.startActivity(i); 
 	}
 	
+	/**
+	 * Ouvre l'activité WorkplaceAddition
+	 */
+	public void changeActivityWorkAdd() {
+		Intent i = new Intent(firstActivity, WorkplaceAdditionActivity.class);
+		firstActivity.startActivity(i); 
+	}
+	
+	/**
+	 * Ouvre l'activité workplaceManagement
+	 */
+	public void changeActivityWorkManagement() {
+		Intent i = new Intent(firstActivity, WorkplaceManagementActivity.class);
+		firstActivity.startActivity(i); 
+	}
+	
 	public void registrationFailed (int codeErreur) {
 		
 	}
@@ -166,7 +176,6 @@ public class FacadeView {
 	}
 	
 	public void changeActivityConnecting () {
-		
 	}
 	
 	public void deletionFailure () {
