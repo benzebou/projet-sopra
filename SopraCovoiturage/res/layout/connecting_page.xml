@@ -53,6 +53,7 @@
 	        android:layout_marginRight="80dp"
 	        android:textSize="20sp"
 	        android:layout_gravity="right"
+	       	android:onClick="onPasswordForgottenButtonClick"
 	        android:text="Mot de passe oublié" />
 	    
 		<Button
