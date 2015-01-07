@@ -87,6 +87,10 @@ public class FacadeView {
 		controller.performRegister(info);
 	}
 	
+	public void performPasswordForgotten (String mail) {
+		controller.passwordForgotten(mail);
+	}
+	
 	/*PROFILE*/
 	/**
 	 * methode permettant de modifier le profil d'un utilisateur
