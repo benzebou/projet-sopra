@@ -319,7 +319,7 @@ public class ControllerFacade {
 		boolean requete =requests.addTownRequest(town, code) ;
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Addition town : reussite !\n") ;
-			ArrayList<String> townList = requests.getTownListRequest() ;
+			ArrayList<String> townList = requests.getPostcodeListRequest() ;
 			facadeView.displayTownList(townList);
 		}
 		else { 
@@ -338,7 +338,7 @@ public class ControllerFacade {
 		boolean requete =requests.deletionTownRequest(code) ;
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Deletion town : reussite !\n") ;
-			ArrayList<String> townList = requests.getTownListRequest() ;
+			ArrayList<String> townList = requests.getPostcodeListRequest() ;
 			facadeView.displayTownList(townList);
 		}
 		else { 
