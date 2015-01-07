@@ -46,6 +46,11 @@ public class FacadeView {
 		
 	}
 	
+	public void changeActivity(Class activity) {
+		Intent i = new Intent(firstActivity, activity);
+		firstActivity.startActivity(i);
+	}
+	
 	/* CONNECTION */
 	public void performConnect(String nickname, String password) {
 		controller.performConnect(nickname, password);
