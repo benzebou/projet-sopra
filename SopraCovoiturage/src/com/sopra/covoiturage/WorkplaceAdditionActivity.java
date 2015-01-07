@@ -24,7 +24,7 @@ public class WorkplaceAdditionActivity extends Activity {
 		table = new TableLayout(this);
 		table = (TableLayout) findViewById(R.id.WorkplaceTable);
 		this.workplace = new ArrayList<String>();
-		displayWorkplace();
+		//displayWorkplace();
 		
 	}
 }
