@@ -25,6 +25,7 @@ import java.util.concurrent.ExecutionException;
 import modele.Information;
 import modele.Ride;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -850,17 +851,15 @@ public class Requests {
 		Map<String, Object> result = new HashMap<String,Object>();
 		try {
 			JSONStrings = new JSONObject(json);
-			JSONStrings.toString();
-			Iterator<String> it = JSONStrings.keys();
-			while(it.hasNext()) {
-				String value = it.next();
-				Object object = JSONStrings.get(value);
-				result.put(value, object);
+			JSONArray names = JSONStrings.names();
+			for (int i = 0; i < names.length(); i++){
+				String name = (String)names.get(i);
+				result.put(name, JSONStrings.get(name));
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
+		
 		if (result.containsKey("SYN_REQ") || result.containsKey("ACK_REQ")){
 			if (firstConnection)
 			{
