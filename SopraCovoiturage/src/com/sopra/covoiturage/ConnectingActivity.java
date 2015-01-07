@@ -29,7 +29,7 @@ public class ConnectingActivity extends Activity {
 	}
 	
 	public void onRegisterButtonClick(View v) {
-		facade.changeActivityRegister();
+		facade.changeActivity(RegisterActivity.class);
 	}
 	
 	public void onPasswordForgottenButtonClick(View v) {
