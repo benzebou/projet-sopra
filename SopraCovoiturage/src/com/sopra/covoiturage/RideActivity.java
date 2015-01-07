@@ -9,6 +9,7 @@ import modele.Ride;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -45,14 +46,14 @@ public class RideActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ride_page);
-		this.fac = new FacadeView(this);
+		this.fac = FacadeView.getInstance(this);
 		
 		// Initialisation spinner workplace
 		this.workplace = new Spinner(this);
 		this.workplace = (Spinner) findViewById(R.id.Arrivee);
 	    ArrayList<String> listW = new ArrayList<String>();
 	    listW = this.fac.getWorkplaces();
-
+	    Log.d("Lulu","Affichage des workplaces");
         ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
         dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		workplace.setAdapter(dataAdapterW);

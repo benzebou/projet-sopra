@@ -1,116 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">    
+    android:background="#f6f6f6" >
     
-    <TextView
-		android:text="Recherche Avancée :"
-	    android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="#de002d" />
-    
-    <LinearLayout 
+	<LinearLayout
 	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
+	    android:layout_height="match_parent"
+	    android:orientation="vertical">    
 	    
-		<TextView
-		    android:text="Depart"
+	    <TextView
+			android:text="Recherche Avancée :"
 		    android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:textSize="15sp" />
-		<EditText
-	        android:id="@+id/Depart"
-	        android:inputType="text"        
-	        android:layout_width="75sp"
-	        android:layout_height="wrap_content"
-	        android:maxLength="5"/>
-		<TextView
-		    android:text="Arrivee"
-		    android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="15sp" />
-		<Spinner  
-		    android:id="@+id/Arrivee"  
-		    android:layout_width="wrap_content"  
-		    android:layout_height="wrap_content"/>
-	</LinearLayout>
-
-    <LinearLayout 
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
-		<Spinner  
-		    android:id="@+id/ChoixAller"  
-		    android:layout_width="wrap_content"  
-		    android:layout_height="wrap_content"/>
-		<Spinner  
-		    android:id="@+id/ChoixRetour"  
-		    android:layout_width="wrap_content"  
-		    android:layout_height="wrap_content"/>
-		<Button
+	        android:textSize="20sp"
+	        android:textColor="#de002d" />
+	    
+	    <LinearLayout 
+		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:layout_width="wrap_content"
-		    android:text="search"
-		    android:textSize="15sp"
-	     	android:onClick="onClickSearch" />
-	</LinearLayout>
-    
-    
-    <Spinner android:id="@+id/Conducteur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-		android:text="Trajets Correspondants :"
-		android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:textSize="20sp"
-	    android:textColor="#de002d" />
-    
-	<TableLayout
-	    android:id="@+id/Trajets"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent" >
-	 
-	    <!-- 2 columns -->
-	    <TableRow
-	        android:id="@+id/RowTitle"
+		    android:orientation="horizontal" >
+		    
+			<TextView
+			    android:text="Depart"
+			    android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="15sp" 
+		        android:textColor="#000000"/>
+			<EditText
+		        android:id="@+id/Depart"
+		        android:inputType="text"        
+		        android:layout_width="75sp"
+		        android:layout_height="wrap_content"
+		        android:maxLength="5"/>
+			<TextView
+			    android:text="Arrivee"
+			    android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:textSize="15sp" 
+		        android:textColor="#000000"/>
+			<Spinner  
+			    android:id="@+id/Arrivee"  
+			    android:layout_width="wrap_content"  
+			    android:layout_height="wrap_content"/>
+		</LinearLayout>
+	
+	    <LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+			<Spinner  
+			    android:id="@+id/ChoixAller"  
+			    android:layout_width="wrap_content"  
+			    android:layout_height="wrap_content"/>
+			<Spinner  
+			    android:id="@+id/ChoixRetour"  
+			    android:layout_width="wrap_content"  
+			    android:layout_height="wrap_content"/>
+			<Button
+			    android:layout_height="wrap_content"
+			    android:layout_width="wrap_content"
+			    android:text="search"
+			    android:textSize="15sp"
+		     	android:onClick="onClickSearch" />
+		</LinearLayout>
+	    
+	    
+	    <Spinner android:id="@+id/Conducteur"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:padding="5dip" >
-	 
-	        <TextView
-	            android:id="@+id/Mail"
-	            android:text="Mail"
-	            android:textSize="15sp" 
-	            android:paddingRight="15dip"/>
-	 
-	        <TextView
-	            android:id="@+id/ConducteurInfo"
-	            android:text="Conducteur"
-	            android:textSize="15sp" 
-	            android:paddingLeft="15dip"/>
-	        
-	        <TextView
-	            android:id="@+id/Aller"
-	            android:text="Aller"
-	            android:textSize="15sp" 
-	            android:paddingLeft="15dip"/>
-	       
-	        <TextView
-	            android:id="@+id/Retour"
-	            android:text="Retour"
-	            android:textSize="15sp" 
-	            android:paddingLeft="15dip"/>
-	    </TableRow>
+	        android:layout_height="wrap_content" />
+	
+	    <TextView
+			android:text="Trajets Correspondants :"
+			android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="20sp"
+		    android:textColor="#de002d" />
 	    
-	    <!-- just draw a red line -->
-	    <View
-	        android:layout_height="2dip"
-	        android:background="#de002d" />
-	</TableLayout>
-	    
-</LinearLayout>
+		<TableLayout
+		    android:id="@+id/Trajets"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent" >
+		 
+		    <!-- 2 columns -->
+		    <TableRow
+		        android:id="@+id/RowTitle"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:padding="5dip" >
+		 
+		        <TextView
+		            android:id="@+id/Mail"
+		            android:text="Mail"
+		            android:textSize="15sp" 
+		            android:paddingRight="15dip"
+		            android:textColor="#000000"/>
+		 
+		        <TextView
+		            android:id="@+id/ConducteurInfo"
+		            android:text="Conducteur"
+		            android:textSize="15sp" 
+		            android:paddingLeft="15dip"
+		            android:textColor="#000000"/>
+		        
+		        <TextView
+		            android:id="@+id/Aller"
+		            android:text="Aller"
+		            android:textSize="15sp" 
+		            android:paddingLeft="15dip"
+		            android:textColor="#000000"/>
+		       
+		        <TextView
+		            android:id="@+id/Retour"
+		            android:text="Retour"
+		            android:textSize="15sp" 
+		            android:paddingLeft="15dip"
+		            android:textColor="#000000"/>
+		    </TableRow>
+		    
+		    <!-- just draw a red line -->
+		    <View
+		        android:layout_height="2dip"
+		        android:background="#de002d" />
+		</TableLayout>
+		    
+	</LinearLayout>
+</ScrollView>

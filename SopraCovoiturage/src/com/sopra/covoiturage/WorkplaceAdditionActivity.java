@@ -17,8 +17,8 @@ public class WorkplaceAdditionActivity extends Activity {
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.workplace_management_page);
-		// this.fac = new FacadeView(this);
+		setContentView(R.layout.workplace_addition_page);
+		this.fac = FacadeView.getInstance(this);
 		
 		// Initialise le tableau de trajet
 		inflater = getLayoutInflater();
