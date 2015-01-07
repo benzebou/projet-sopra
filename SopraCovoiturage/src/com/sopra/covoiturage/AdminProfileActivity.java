@@ -59,7 +59,7 @@ public class AdminProfileActivity extends Activity{
 	//}
 
 	public void onRetourButtonClick(View v) {
-
+		this.finish();
 	}
 
 }
