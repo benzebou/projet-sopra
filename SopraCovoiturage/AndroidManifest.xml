@@ -6,8 +6,8 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +17,11 @@
         <activity
             android:name="com.sopra.covoiturage.ConnectingActivity"
             android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.sopra.covoiturage.RideActivity"
@@ -30,7 +35,7 @@
             android:name="com.sopra.covoiturage.RegisterActivity"
             android:label="@string/app_name" >
         </activity>
-             <activity
+        <activity
             android:name="com.sopra.covoiturage.ProfileActivity"
             android:label="@string/app_name" >
         </activity>
@@ -41,10 +46,6 @@
         <activity
             android:name="com.sopra.covoiturage.WorkplaceManagementActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.sopra.covoiturage.PasswordForgottenActivity"
