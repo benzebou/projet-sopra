@@ -952,7 +952,7 @@ public class Requests {
 	private static String encryptPassword(String password){
 		MessageDigest md;
 		try {
-			md = MessageDigest.getInstance("SHA-256");
+			md = MessageDigest.getInstance("SHA-1");
 			md.update(password.getBytes());
 
 			byte byteData[] = md.digest();
