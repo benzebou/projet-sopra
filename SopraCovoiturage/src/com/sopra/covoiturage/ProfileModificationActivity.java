@@ -48,7 +48,10 @@ public class ProfileModificationActivity extends Activity{
 	private Information info ;
 
 
-
+	/**
+	 * Crée la page de modification du profile utilisateur
+	 * @param savedInstanceState
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.profile_modification_page);
