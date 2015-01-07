@@ -266,12 +266,10 @@ public class Requests {
 	 * @param password : mot de passe de l'utilisateur
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
-	public boolean disconnectionRequest (String nickname, String password) {
+	public boolean disconnectionRequest () {
 		HashMap<String, Object> map = new HashMap<String, Object> () ;
-		map.put("login", nickname) ;
-		map.put("mdp", encryptPassword(password)) ;
 		RequestResponses reponse = null ;
-		reponse = postRequest(RequestType.DISCONNECT,map) ;
+		reponse = postRequest(RequestType.DISCONNECT,null) ;
 		if (reponse.isSuccess()) { 
 			cookie = null ;
 			return true ;
@@ -549,20 +547,18 @@ public class Requests {
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
 	 */
-	public ArrayList<String> getWorkplacesRequest() throws InterruptedException, ExecutionException {
+	public HashMap<String, String> getWorkplacesRequest() throws InterruptedException, ExecutionException {
 		RequestsParams params = new RequestsParams(RequestType.GET_LIST_WORKPLACE,null);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
 		RequestResponses result = task.get();
 
-		ArrayList<String> workplaces = new ArrayList<String>() ;
+		HashMap<String, String> workplaces = new HashMap<String, String>() ;
 		// parcours de la HashMap
-//		if (map.isEmpty())
-//			workplaces.add("T'es baisée");
 		for (Entry<String, Object> entry : result.getData().entrySet()) {
-			String mapReponse = (String) entry.getValue() ;
-			workplaces.add(mapReponse) ;
-			workplaces.add("Bla");
+			String value = (String) entry.getValue();
+			String key = (String) entry.getKey();
+			workplaces.put(key, value) ;
 		}
 		return workplaces ;
 	}
