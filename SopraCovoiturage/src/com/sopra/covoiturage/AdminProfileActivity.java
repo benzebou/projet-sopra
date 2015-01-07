@@ -37,15 +37,7 @@ public class AdminProfileActivity extends Activity{
 		pwd = (TextView) findViewById(R.id.mot_de_passe);
 		email = (TextView) findViewById(R.id.email);
 		phone = (TextView) findViewById(R.id.telephone);
-		town = (TextView) findViewById(R.id.commune);
-		postCode = (TextView) findViewById(R.id.code_postal);
-		workingDays = (TextView) findViewById(R.id.jours);
-		conductor = (TextView) findViewById(R.id.conducteur);
-		notification = (TextView) findViewById(R.id.notification);	
-		goingTime = (TextView) findViewById(R.id.heure_aller);
-		returningTime = (TextView) findViewById(R.id.heure_retour);
-		workplace = (TextView) findViewById(R.id.lieu_de_travail);	
-		modify = (Button) findViewById(R.id.modifier);
+		//modify = (Button) findViewById(R.id.modifier);
 		back = (Button) findViewById(R.id.retour);
 
 
@@ -60,22 +52,11 @@ public class AdminProfileActivity extends Activity{
 		firstname.setText(info.getFirstname());
 		email.setText(info.getEmail());
 		phone.setText(info.getPhone());
-		//town.setText(info.getText);
-		postCode.setText(info.getPostcode());
-		workingDays.setText(info.daysToString());
-		if (info.isConducteur())
-			conductor.setText("oui");
-		else conductor.setText("non");
-		goingTime.setText(info.getMorning());
-		returningTime.setText(info.getEvening());
-		workplace.setText(info.getWorkplace());
-
-
 	}
 
-	public void onModificationButtonClick(View v) {
+	//public void onModificationButtonClick(View v) {
 
-	}
+	//}
 
 	public void onRetourButtonClick(View v) {
 
