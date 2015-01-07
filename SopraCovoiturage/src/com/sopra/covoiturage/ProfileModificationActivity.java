@@ -112,7 +112,7 @@ public class ProfileModificationActivity extends Activity{
 		this.postCode = new Spinner(this);
 		this.postCode = (Spinner) findViewById(R.id.code_postal);
 		ArrayList<String> list = new ArrayList<String>();
-		list = this.facade.getTownList();
+		list = this.facade.getPostcodeList();
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		workplace.setAdapter(dataAdapter);
