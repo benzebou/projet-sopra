@@ -84,6 +84,7 @@ public class Requests {
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
 	public boolean[] connectionRequest (String nickname, String password) {
+		cookie = null;
 		boolean[] tab = new boolean[2] ; 
 		HashMap<String, Object> map = new HashMap<String, Object> () ;
 		map.put("loginAdmin", nickname) ;
@@ -904,7 +905,7 @@ public class Requests {
 			urlParameters += "&SYN_REQ="+SYN_REQ+"&ACK_REQ="+ACK_REQ;
 		}
 
-		Log.println(1, "RP", urlParameters);
+		System.out.println("Requête : " + urlParameters);
 		return urlParameters;
 	}
 
@@ -957,14 +958,16 @@ public class Requests {
 
 			byte byteData[] = md.digest();
 
-			//convert the byte to hex format method 1
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < byteData.length; i++) {
-				sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-			}
+			char hexDigit[] = {'0', '1', '2', '3', '4', '5', '6', '7',
+                    '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+			 StringBuffer buf = new StringBuffer();
+			 for (int j=0; j<byteData.length; j++) {
+			    buf.append(hexDigit[(byteData[j] >> 4) & 0x0f]);
+			    buf.append(hexDigit[byteData[j] & 0x0f]);
+			 }
 
-			System.out.println("Mot de passe crypte : "+sb.toString());
-			return sb.toString();
+			System.out.println("Mot de passe crypte : "+buf.toString().toLowerCase());
+			return buf.toString().toLowerCase();
 
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
@@ -1010,7 +1013,7 @@ public class Requests {
 			// On verifie l'etat du cookie
 			if (cookie!=null){
 				connection.setRequestProperty("Cookie", cookie);
-				System.out.println("BEFORE" + connection.getRequestProperties());
+				System.out.println("BEFORE : " + connection.getRequestProperties());
 			}
 			// sinon c'est la premiere fois qu'on se connecte, on recuperera un cookie
 
