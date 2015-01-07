@@ -351,8 +351,8 @@ public class ControllerFacade {
 	 * Methode permettant de renvoyer la liste des communes
 	 * @return ArrayList<String> : liste des communes
 	 */
-	public ArrayList<String> getTownList() {
-		return requests.getTownListRequest() ;
+	public ArrayList<String> getPostcodeList() {
+		return requests.getPostcodeListRequest() ;
 	}
 
 	/**
