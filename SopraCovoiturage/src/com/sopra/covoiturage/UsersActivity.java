@@ -2,9 +2,6 @@ package com.sopra.covoiturage;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 
 public class UsersActivity extends Activity {
@@ -30,6 +27,8 @@ public class UsersActivity extends Activity {
 		//facade.changeActivityRegister();
 	}
 	
-
-
+	public void onWorkplaceButtonClick(View v) {
+		facade.changeActivity(WorkplaceManagementActivity.class);
+	}
+	
 }
