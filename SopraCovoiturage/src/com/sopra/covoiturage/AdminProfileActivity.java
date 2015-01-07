@@ -27,6 +27,10 @@ public class AdminProfileActivity extends Activity{
 	private TextView notification;
 	private Information info ;
 	
+	/**
+	 * Crée la page de consultation du profile admin
+	 * @param savedInstanceState
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.profile_page);
@@ -53,11 +57,20 @@ public class AdminProfileActivity extends Activity{
 		email.setText(info.getEmail());
 		phone.setText(info.getPhone());
 	}
+	
+	/**
+	 * Renvoit à la page de modification du profil admin
+	 * @param v vue de l'application
+	 */
 
 	//public void onModificationButtonClick(View v) {
 
 	//}
 
+	/**
+	 * Renvoit à la page précédente
+	 * @param v vue de l'application
+	 */
 	public void onRetourButtonClick(View v) {
 		this.finish();
 	}
