@@ -26,6 +26,7 @@ public class WorkplaceManagementActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workplace_management_page);
 		this.fac = FacadeView.getInstance(this);
+		this.fac.setWorkMan(this);
 		
 		// Initialise le tableau de trajet
 		inflater = getLayoutInflater();
@@ -49,7 +50,6 @@ public class WorkplaceManagementActivity extends Activity {
 	}
 	
 
-	
 	public void onClickAdd(View v) {
 		this.fac.changeActivity(WorkplaceAdditionActivity.class);	
 	}

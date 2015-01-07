@@ -20,6 +20,7 @@ public class WorkplaceAdditionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workplace_addition_page);
 		this.fac = FacadeView.getInstance(this);
+		this.fac.setWorkAdd(this);
 		
 		
 	}

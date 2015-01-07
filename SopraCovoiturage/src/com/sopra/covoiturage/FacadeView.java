@@ -155,21 +155,6 @@ public class FacadeView {
 		firstActivity.startActivity(i); 
 	}
 	
-	/**
-	 * Ouvre l'activité WorkplaceAddition
-	 */
-	public void changeActivityWorkAdd() {
-		Intent i = new Intent(firstActivity, WorkplaceAdditionActivity.class);
-		firstActivity.startActivity(i); 
-	}
-	
-	/**
-	 * Ouvre l'activité workplaceManagement
-	 */
-	public void changeActivityWorkManagement() {
-		Intent i = new Intent(firstActivity, WorkplaceManagementActivity.class);
-		firstActivity.startActivity(i); 
-	}
 	
 	public void registrationFailed (int codeErreur) {
 		
@@ -184,6 +169,7 @@ public class FacadeView {
 	}
 	
 	public void changeActivityConnecting () {
+	
 	}
 	
 	public void deletionFailure () {
@@ -263,28 +249,49 @@ public class FacadeView {
 	}
 
 	/**
-	 * Methode permettant de mettre à jouruserInfo
+	 * Methode permettant de mettre à jour userInfo
+	 * @param userInfo
 	 */
 	public void setUserInfo(Information userInfo) {
 		setUserInfo(userInfo);
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public PasswordForgottenActivity getPwActivity() {
 		return pwActivity;
 	}
 
+	/**
+	 * Methode permettant de mettre à jour PwActivity
+	 * @param pwActivity
+	 */
 	public void setPwActivity(PasswordForgottenActivity pwActivity) {
 		this.pwActivity = pwActivity;
 	}
 
+	/**
+	 * Methode permettant de mettre à jour searchRide
+	 * @param sRide
+	 */
 	public void setSearchRide(RideActivity sRide) {
 		this.searchRide = sRide;
 	}	
 
+	/**
+	 * Methode permettant de mettre à jour workAdd
+	 * @param workAdd
+	 */
 	public void setWorkAdd(WorkplaceAdditionActivity workAdd) {
 		this.workAdd = workAdd;
 	}
 
+	/**
+	 * Methode permettant de mettre à jour workMan
+	 * @param workMan
+	 */
 	public void setWorkMan(WorkplaceManagementActivity workMan) {
 		this.workMan = workMan;
 	}

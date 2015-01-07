@@ -47,6 +47,7 @@ public class RideActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ride_page);
 		this.fac = FacadeView.getInstance(this);
+		this.fac.setSearchRide(this);
 		
 		// Initialisation spinner workplace
 		this.workplace = new Spinner(this);
