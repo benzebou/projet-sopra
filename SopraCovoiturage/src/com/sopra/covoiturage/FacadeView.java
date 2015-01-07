@@ -130,9 +130,14 @@ public class FacadeView {
 	}
 	
 
-	public void changeActivityPasswordForgotten() {
-		Intent i = new Intent(firstActivity, PasswordForgottenActivity.class);
+	public void changeActivityProfileModification () {
+		Intent i = new Intent(firstActivity, ProfileModificationActivity.class);
 		firstActivity.startActivity(i); 
+	}
+
+	public void changeActivityPasswordForgotten() {
+		//Intent i = new Intent(firstActivity, PasswordForgottenActivity.class);
+		//firstActivity.startActivity(i); 
 	}
 	
 	public void registrationFailed (int codeErreur) {
