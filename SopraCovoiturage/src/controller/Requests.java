@@ -175,13 +175,38 @@ public class Requests {
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
 	public boolean passwordForgottenRequest (String mail) {
+		
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("mail", mail);
+		/*
 		RequestResponses reponse = postRequest(RequestType.PASSWORD_FORGOTTEN,map) ;
 		if (reponse.isSuccess()) 
 			return true ;
 		else 
-			return false ;
+			return false ;*/
+		
+		RequestsParams params = new RequestsParams(RequestType.PASSWORD_FORGOTTEN,map);
+
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		Log.d("SC", "On attend...");
+		try {
+			RequestResponses result = task.get();
+			Log.d("SC", "Result code : " + result.getCode());
+			if (result.isSuccess()) {
+				return true ;
+			} else {
+				return false ;
+			}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	/**
