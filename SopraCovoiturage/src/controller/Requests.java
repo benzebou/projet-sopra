@@ -636,14 +636,30 @@ public class Requests {
 	 * @return ArrayList<String> : liste des communes
 	 */
 	public ArrayList<String> getPostcodeListRequest() {
-		RequestResponses reponse = postRequest(RequestType.GET_LIST_TOWN,null) ;
-		ArrayList<String> postcodeList = new ArrayList<String>() ;
-		// parcours de la HashMap
-		for (Entry<String, Object> entry : reponse.getData().entrySet()) {
-			String MapReponse = (String) entry.getKey() ;
-			postcodeList.add(MapReponse) ;
+		RequestsParams params = new RequestsParams(RequestType.GET_LIST_TOWN, null);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		RequestResponses result;
+		try {
+			result = task.get();
+			
+			ArrayList<String> townList = new ArrayList<String>() ;
+			// parcours de la HashMap
+			for (Entry<String, Object> entry : result.getData().entrySet()) {
+				String MapReponse = (String) entry.getValue() ;
+				townList.add(MapReponse) ;
+			}
+			return townList ;
+			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
-		return postcodeList ;
 	}
 
 
