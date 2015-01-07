@@ -960,7 +960,7 @@ public class Requests {
 			//Get Response  
 			try{
 				// On teste s'il n'y a pas eut d'erreur pour la requ�te
-				if (connection.getResponseCode()/100 != 2){ throw new requestException(connection.getResponseCode());}
+				if (connection.getResponseCode()/100 == 4){ throw new requestException(connection.getResponseCode());}
 
 				System.out.println("AFTER" + connection.getHeaderFields());
 
