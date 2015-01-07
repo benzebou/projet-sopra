@@ -41,8 +41,8 @@ public class WorkplaceManagementActivity extends Activity {
 		while(r.hasNext()){
 			TableRow tr = (TableRow) inflater.inflate(R.layout.table_workplace_management, null); 
 			((TextView) tr.findViewById(R.id.Workplace)).setText((String) r.next());
+			table.addView(tr);
 		}
-		table.addView(tr);
 	}
 	
 
