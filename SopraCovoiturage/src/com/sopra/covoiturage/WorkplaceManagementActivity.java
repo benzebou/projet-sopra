@@ -40,7 +40,7 @@ public class WorkplaceManagementActivity extends Activity {
 		Iterator r = this.workplace.iterator();
 		while(r.hasNext()){
 			TableRow tr = (TableRow) inflater.inflate(R.layout.table_workplace_management, null); 
-			((TextView) tr.findViewById(R.id.Workplace)).setText(r.next());
+			((TextView) tr.findViewById(R.id.Workplace)).setText((String) r.next());
 		}
 		table.addView(tr);
 	}
