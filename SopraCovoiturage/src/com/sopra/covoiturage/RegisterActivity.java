@@ -24,8 +24,7 @@ public class RegisterActivity extends Activity  {
 	private EditText pwd;
 	private EditText email;
 	private EditText phone;
-	private EditText town;
-	private EditText postCode;
+	private Spinner postCode;
 	private Spinner workplace;
 	private Spinner goingTime;
 	private Spinner returningTime;
@@ -63,8 +62,6 @@ public class RegisterActivity extends Activity  {
 		pwd = (EditText) findViewById(R.id.mot_de_passe);
 		email = (EditText) findViewById(R.id.email);
 		phone = (EditText) findViewById(R.id.telephone);
-		town = (EditText) findViewById(R.id.commune);
-		postCode = (EditText) findViewById(R.id.code_postal);
 		monday = (CheckBox) findViewById(R.id.lundi);
 		tuesday = (CheckBox) findViewById(R.id.mardi);
 		wednesday = (CheckBox) findViewById(R.id.mercredi);
@@ -77,15 +74,6 @@ public class RegisterActivity extends Activity  {
 		apply = (Button) findViewById(R.id.inscrire);
 		cancel = (Button) findViewById(R.id.annuler);	
 
-		/*//to do
-		workplace = (Spinner) findViewById(R.id.lieu_de_travail);	
-		List<String> list = new ArrayList<String>();
-		list = facade.getWorkplaces();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
-
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		workplace.setAdapter(adapter);
-		 */
 
 		// Initialisation spinner workplace
 		this.workplace = new Spinner(this);
@@ -95,6 +83,15 @@ public class RegisterActivity extends Activity  {
 		ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
 		dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		workplace.setAdapter(dataAdapterW);
+		
+		// Initialisation Spinner code postal
+		this.postCode = new Spinner(this);
+		this.postCode = (Spinner) findViewById(R.id.code_postal);
+		ArrayList<String> list = new ArrayList<String>();
+		list = this.facade.getTownList();
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		workplace.setAdapter(dataAdapter);
 
 
 		// Initialisation spinner heure aller
@@ -168,7 +165,7 @@ public class RegisterActivity extends Activity  {
 		if (login.getText().toString().equals("") || pwd.getText().toString().equals("") || 
 				email.getText().toString().equals("")|| name.getText().toString().equals("")||
 				firstname.getText().toString().equals("")||phone.getText().toString().equals("")||
-				postCode.getText().toString().equals("") || workplace.getTag().toString().equals("")){
+				postCode.getTag().toString().equals("") || workplace.getTag().toString().equals("")){
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
@@ -195,9 +192,9 @@ public class RegisterActivity extends Activity  {
 
 			this.info = new Information(login.getText().toString() ,pwd.getText().toString(),
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
-					phone.getText().toString(), postCode.getText().toString(),
+					phone.getText().toString(), postCode.getTag().toString(),
 					workplace.getTag().toString(),horaires,days, estConducteur);
-			facade.performRegister (info);
+			facade.performRegister(info);
 
 
 		}

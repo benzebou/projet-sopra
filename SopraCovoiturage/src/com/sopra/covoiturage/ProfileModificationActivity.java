@@ -24,8 +24,7 @@ public class ProfileModificationActivity extends Activity{
 	private EditText pwd;
 	private EditText email;
 	private EditText phone;
-	private EditText town;
-	private EditText postCode;
+	private Spinner postCode;
 	private Spinner workplace;
 	private Spinner goingTime;
 	private Spinner returningTime;
@@ -63,8 +62,6 @@ public class ProfileModificationActivity extends Activity{
 		pwd = (EditText) findViewById(R.id.mot_de_passe);
 		email = (EditText) findViewById(R.id.email);
 		phone = (EditText) findViewById(R.id.telephone);
-		town = (EditText) findViewById(R.id.commune);
-		postCode = (EditText) findViewById(R.id.code_postal);
 		monday = (CheckBox) findViewById(R.id.lundi);
 		tuesday = (CheckBox) findViewById(R.id.mardi);
 		wednesday = (CheckBox) findViewById(R.id.mercredi);
@@ -90,8 +87,7 @@ public class ProfileModificationActivity extends Activity{
 		firstname.setText(info.getFirstname());
 		email.setText(info.getEmail());
 		phone.setText(info.getPhone());
-		//town.setText(info.getText);
-		postCode.setText(info.getPostcode());
+
 		
 		//On check les boxs des jours ou l'utilisateur travail
 		monday.setChecked(info.getDays()[0]);
@@ -103,15 +99,23 @@ public class ProfileModificationActivity extends Activity{
 		sunday.setChecked(info.getDays()[6]);		
 		conductor.setChecked(info.isConducteur());
 
-		//to do
-		/*		workplace = (Spinner) findViewById(R.id.lieu_de_travail);	
-		List<String> list = new ArrayList<String>();
-		list = facade.getWorkplaces();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
+		// Initialisation spinner workplace
+		this.workplace = new Spinner(this);
+		this.workplace = (Spinner) findViewById(R.id.lieu_de_travail);
+		ArrayList<String> listW = new ArrayList<String>();
+		listW = this.facade.getWorkplaces();
+		ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
+		dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		workplace.setAdapter(dataAdapterW);
 
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		lieuDeTravail.setAdapter(adapter);*/
-
+		// Initialisation Spinner code postal
+		this.postCode = new Spinner(this);
+		this.postCode = (Spinner) findViewById(R.id.code_postal);
+		ArrayList<String> list = new ArrayList<String>();
+		list = this.facade.getTownList();
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		workplace.setAdapter(dataAdapter);
 
 		// Initialisation spinner heure aller
 		goingTime = new Spinner(this);
@@ -183,7 +187,7 @@ public class ProfileModificationActivity extends Activity{
 		if (pwd.getText().toString().equals("") || 
 				email.getText().toString().equals("")|| name.getText().toString().equals("")||
 				firstname.getText().toString().equals("")||phone.getText().toString().equals("")||
-				postCode.getText().toString().equals("") || workplace.getTag().toString().equals("")){
+				postCode.getTag().toString().equals("") || workplace.getTag().toString().equals("")){
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
@@ -210,7 +214,7 @@ public class ProfileModificationActivity extends Activity{
 			
 			Information newinfo = new Information(info.getLogin() ,pwd.getText().toString(),
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
-					phone.getText().toString(), postCode.getText().toString(),
+					phone.getText().toString(), postCode.getTag().toString(),
 					workplace.getTag().toString(),horaires,days, estConducteur);
 		
 			//envoyer nouvelles infos à la bdd

@@ -91,30 +91,25 @@
             android:inputType="phone"
             android:textSize="12sp" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp" >
 
-            <EditText
-                android:id="@+id/commune"
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:textSize="12sp" >
-            </EditText>
+                android:text="code postal :"
+                android:textSize="12sp" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/code_postal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:gravity="center_horizontal"
-                android:textSize="12sp" />
+                android:layout_height="40dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
         </LinearLayout>
 
         <Spinner
