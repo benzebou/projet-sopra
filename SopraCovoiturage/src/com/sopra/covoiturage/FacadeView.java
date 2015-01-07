@@ -216,6 +216,41 @@ public class FacadeView {
 
 	}
 	
+	
+	/**
+	 * Methode permettant renvoyer le number de conducteurs et le nombre de passager
+	 * @return String[] requete :
+	 * si requete[0] = "-1" : echec et requete[1] = code erreur
+	 * sinon requete[0] = nombre total de conducteurs 
+	 * 	et requete[1] = nombre total de passagers 
+	 */
+	public String[] getNumberDriverAndPassenger() {
+		String[] res = this.controller.getNumberDriverAndPassenger();
+		return res;
+	}
+	
+	/**
+	 * Methode permettant de renvoyer le nombre total de connexions
+	 * @return String[] requete :
+	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions
+	 * sinon requete[0] = "-1" : echec et requete[1] = code erreur 
+	 */
+	public String[] getNumberConnection() {
+		String[] res = this.controller.getNumberConnection();
+		return res;
+	}
+	
+	/**
+	 * Methode permettant de renvoyer le number de conducteurs et le nombre de passager par trajet
+	 * @return HashMap<String,String[]>
+	 * Key = String : trajet
+	 * Value = String[0] : nombre de conducteurs ; String[1] : nombre de passagers 
+	 */
+	public HashMap<String,String[]> getNumberDriverAndPassengerPerRide () {
+		HashMap<String,String[]> res = this.controller.getNumberDriverAndPassengerPerRide();
+		return res;
+	}
+	
 	/**
 	 * Methode permettant de renvoyer la liste des lieux de travail
 	 * @return ArrayList<String> : liste des lieux de travail

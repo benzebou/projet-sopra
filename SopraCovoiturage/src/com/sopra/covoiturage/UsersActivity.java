@@ -31,4 +31,8 @@ public class UsersActivity extends Activity {
 		facade.changeActivity(WorkplaceManagementActivity.class);
 	}
 	
+	public void onReportButtonClick(View v) {
+		facade.changeActivity(ReportActivity.class);
+	}
+	
 }

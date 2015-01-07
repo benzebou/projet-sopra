@@ -40,6 +40,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="com.sopra.covoiturage.ReportActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="com.sopra.covoiturage.ProfileActivity"
             android:label="@string/app_name" >
         </activity>
