@@ -635,15 +635,15 @@ public class Requests {
 	 * Methode permettant de renvoyer la liste des communes
 	 * @return ArrayList<String> : liste des communes
 	 */
-	public ArrayList<String> getTownListRequest() {
+	public ArrayList<String> getPostcodeListRequest() {
 		RequestResponses reponse = postRequest(RequestType.GET_LIST_TOWN,null) ;
-		ArrayList<String> townList = new ArrayList<String>() ;
+		ArrayList<String> postcodeList = new ArrayList<String>() ;
 		// parcours de la HashMap
 		for (Entry<String, Object> entry : reponse.getData().entrySet()) {
-			String MapReponse = (String) entry.getValue() ;
-			townList.add(MapReponse) ;
+			String MapReponse = (String) entry.getKey() ;
+			postcodeList.add(MapReponse) ;
 		}
-		return townList ;
+		return postcodeList ;
 	}
 
 
