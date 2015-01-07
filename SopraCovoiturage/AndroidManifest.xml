@@ -28,6 +28,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="com.sopra.covoiturage.UsersActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="com.sopra.covoiturage.MailRequestActivity"
             android:label="@string/app_name" >
         </activity>
