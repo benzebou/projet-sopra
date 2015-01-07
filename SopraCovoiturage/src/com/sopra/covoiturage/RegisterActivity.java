@@ -164,6 +164,7 @@ public class RegisterActivity extends Activity  {
 		horaires[0] = goingTime.getSelectedItem().toString();
 		horaires[1] = returningTime.getSelectedItem().toString();
 
+		/** Si toutes les infos on bien été rentrées on envoit le nouvel utilisateur */
 		if (login.getText().toString().equals("") || pwd.getText().toString().equals("") || 
 				email.getText().toString().equals("")|| name.getText().toString().equals("")||
 				firstname.getText().toString().equals("")||phone.getText().toString().equals("")||
