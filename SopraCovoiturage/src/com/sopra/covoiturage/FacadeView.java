@@ -119,7 +119,7 @@ public class FacadeView {
 	 * Methode permettant de renvoyer la liste des communes
 	 * @return ArrayList<String> : liste des communes
 	 */
-	public ArrayList<String> getTownList() {
+	public ArrayList<String> getPostcodeList() {
 		return controller.getPostcodeList() ;
 	}
 	
