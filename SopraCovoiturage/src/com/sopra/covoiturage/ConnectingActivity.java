@@ -26,7 +26,16 @@ public class ConnectingActivity extends Activity {
 		facade = FacadeView.getInstance(this);
 		
 		passwordForgottenText = (TextView)findViewById(R.id.passwordForgottenField);
-		passwordForgottenText.setOnClickListener((OnClickListener) this);
+		passwordForgottenText.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Log.d("SC", "Password forgotten");
+                    facade.changeActivityPasswordForgotten();
+                } catch (Exception except) {
+                    Log.e("SC","Ooops"+except.getMessage());
+                }
+            }});
 
 	}
 	
