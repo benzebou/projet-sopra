@@ -963,6 +963,7 @@ public class Requests {
 				sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
 			}
 
+			System.out.println("Mot de passe crypte : "+sb.toString());
 			return sb.toString();
 
 		} catch (NoSuchAlgorithmException e) {
