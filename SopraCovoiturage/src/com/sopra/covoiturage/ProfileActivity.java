@@ -28,6 +28,10 @@ public class ProfileActivity extends Activity {
 	private TextView notification;
 	private Information info ;
 
+	/**
+	 * Crée la page de consutation du profile utilisateur
+	 * @param savedInstanceState
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.profile_page);
@@ -50,7 +54,7 @@ public class ProfileActivity extends Activity {
 		modify = (Button) findViewById(R.id.modifier);
 		back = (Button) findViewById(R.id.retour);
 
-
+		/** on récupère la facade */
 		info = facade.getUserInfo();
 		if (info==null){
 			info = facade.getProfileInformation(facade.getLogin());
@@ -75,10 +79,18 @@ public class ProfileActivity extends Activity {
 
 	}
 
+	/**
+	 * Renvoit à la page de modification du profile utilisateur
+	 * @param v vue de l'application
+	 */
 	public void onModificationButtonClick(View v) {
 		facade.changeActivityProfileModification ();
 	}
 
+	/**
+	 * Renvoit à la page précédente
+	 * @param v vue de l'application
+	 */
 	public void onRetourButtonClick(View v) {
 		this.finish();
 	}
