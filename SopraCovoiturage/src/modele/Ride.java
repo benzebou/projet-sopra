@@ -14,7 +14,7 @@ public class Ride {
 	 * Constructeur par defaut de Ride
 	 */
 	public Ride () {
-		userList = new ArrayList<Information>() ;
+		this.userList = new ArrayList<Information>() ;
 	}	
 	
 	/**
