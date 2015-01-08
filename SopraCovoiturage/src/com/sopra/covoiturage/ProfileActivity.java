@@ -94,4 +94,15 @@ public class ProfileActivity extends Activity {
 	public void onRetourButtonClick(View v) {
 		this.finish();
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    switch(resultCode)
+	    {
+	    case MenuHandling.RESULT_CLOSE_ALL:
+	        setResult(MenuHandling.RESULT_CLOSE_ALL);
+	        finish();
+	    }
+	    super.onActivityResult(requestCode, resultCode, data);
+	}
 }
