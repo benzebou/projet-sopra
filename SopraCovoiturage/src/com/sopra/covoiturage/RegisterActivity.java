@@ -220,7 +220,6 @@ public class RegisterActivity extends Activity  {
 				// si le boutton est cliquer fermer l'activity actuelle
 				// et ouvre la Connecting activity
 				RegisterActivity.this.finish();
-				facade.changeActivityConnecting();
 			}
 		})
 
