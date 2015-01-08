@@ -7,6 +7,8 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 public class MenuHandling implements OnClickListener {
+	public static final int RESULT_CLOSE_ALL = -1;
+	
 	FacadeView facade;
 	View menu;
 	Activity activity;
@@ -29,7 +31,7 @@ public class MenuHandling implements OnClickListener {
 	public void onClick(View arg0) {
 		if(arg0.equals(disconnectionText)) {
 			facade.performDisconnect();
-			activity.finishActivity(5);
+			activity.finishActivity(RESULT_CLOSE_ALL);
 			
 		} else if (arg0.equals(profileText)) {
 			facade.changeActivity(ProfileActivity.class);
