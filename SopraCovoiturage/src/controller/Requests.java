@@ -75,6 +75,8 @@ public class Requests {
 	private static int ACK_REQ = -100;
 
 	private static String key = "1e2c3d5e9aa658cb";
+	
+	private HashMap<String, String> mapWorkplaces = new HashMap<String, String>();
 
 
 	/**
@@ -128,11 +130,9 @@ public class Requests {
 				return false ;
 
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -159,11 +159,9 @@ public class Requests {
 				return false ;
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -194,11 +192,9 @@ public class Requests {
 				return false ;
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -222,19 +218,19 @@ public class Requests {
 		map.put("postal", info.getPostcode());
 		
 		// recuperation de l'ID du workplace
-		RequestResponses reponseWorkplace = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
-		// parcours de la HashMap
 		String id = null ;
-		for (Entry<String, Object> entry : reponseWorkplace.getData().entrySet()) {
-			String MapReponse = (String) entry.getValue() ;
-			if (MapReponse.equals(info.getWorkplace())) {
-				id = entry.getKey() ;
-				break ;
-			}
+		Iterator<Entry<String, String>> it = mapWorkplaces.entrySet().iterator();
+		while(it.hasNext()) {
+			Entry<String, String> workplace = it.next();
+			if(workplace.getValue().contentEquals(info.getWorkplace()))
+				id = workplace.getKey();
+				break;
 		}
-		map.put("travail", id);
+		
+		map.put("travail", id); // TODO : Vraiment travail le nom de l'attribut ?
 		map.put("horairesMatin", info.getMorning());
 		map.put("horairesSoir", info.getEvening());
+
 
 		if (info.getDays()[0]) 
 			map.put("lundi", "1");
@@ -270,23 +266,20 @@ public class Requests {
 		else 
 			map.put("conducteur", "0");
 
-		RequestsParams params = new RequestsParams(RequestType.REGISTER,map);
+		RequestsParams params = new RequestsParams(RequestType.REGISTER, map);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
 		RequestResponses result;
 		try {
 			result = task.get();
-			//RequestResponses reponse = postRequest(RequestType.REGISTER,map) ;
 			if (result.isSuccess()) 
 				return 0 ;
 			else 
 				return result.getCode() ;
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return -1;
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return -1;
 		}
@@ -312,11 +305,9 @@ public class Requests {
 			else 
 				return false ;
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -332,72 +323,72 @@ public class Requests {
 		// Obtenir les informations d'un profil : nickname (utilisateur � afficher)
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", nickname);
-		RequestResponses result = null ;
 		
+		RequestResponses result;
 		RequestsParams params = new RequestsParams(RequestType.GET_PROFILE_INFORMATIONS,map);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
+		
 		try {
 			result = task.get();
+			
+			if (result.isSuccess()) {
+				Information info = new Information();
+				result.getData() ;
+				info.setLogin((String)result.getData().get("login"));
+				info.setEmail((String)result.getData().get("mail"));
+				info.setName((String)result.getData().get("nom"));
+				info.setFirstname((String)result.getData().get("prenom"));
+				info.setMdp((String)result.getData().get("mdp"));
+				info.setPhone((String)result.getData().get("tel"));
+				info.setWorkplace((String)result.getData().get("travail"));
+				info.setPostcode((String)result.getData().get("postal"));
+				info.setMorning((String)result.getData().get("horairesMatin"));
+				info.setEvening((String)result.getData().get("horairesSoir"));
+				if (result.getData().get("conducteur") == "1")
+					info.setConducteur(true);
+				else
+					info.setConducteur(false);
+				if (result.getData().get("lundi") == "1")
+					info.getDays()[0] = true ;
+				else
+					info.getDays()[0] = false ;
+				if (result.getData().get("mardi") == "1")
+					info.getDays()[1] = true ;
+				else
+					info.getDays()[1] = false ;
+				if (result.getData().get("mercredi") == "1")
+					info.getDays()[2] = true ;
+				else
+					info.getDays()[2] = false ;
+				if (result.getData().get("jeudi") == "1")
+					info.getDays()[3] = true ;
+				else
+					info.getDays()[3] = false ;
+				if (result.getData().get("vendredi") == "1")
+					info.getDays()[4] = true ;
+				else
+					info.getDays()[4] = false ;
+				if (result.getData().get("samedi") == "1")
+					info.getDays()[5] = true ;
+				else
+					info.getDays()[5] = false ;
+				if (result.getData().get("dimanche") == "1")
+					info.getDays()[6] = true ;
+				else
+					info.getDays()[6] = false ;
+	
+				return info;
+			} else 
+				return null ;	
+			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		
-		// reponse = postRequest(RequestType.GET_PROFILE_INFORMATIONS,map) ;
-		if (result.isSuccess()) {
-			Information info = new Information();
-			result.getData() ;
-			info.setLogin((String)result.getData().get("login"));
-			info.setEmail((String)result.getData().get("mail"));
-			info.setName((String)result.getData().get("nom"));
-			info.setFirstname((String)result.getData().get("prenom"));
-			info.setMdp((String)result.getData().get("mdp"));
-			info.setPhone((String)result.getData().get("tel"));
-			info.setWorkplace((String)result.getData().get("travail"));
-			info.setPostcode((String)result.getData().get("postal"));
-			info.setMorning((String)result.getData().get("horairesMatin"));
-			info.setEvening((String)result.getData().get("horairesSoir"));
-			if (result.getData().get("conducteur") == "1")
-				info.setConducteur(true);
-			else
-				info.setConducteur(false);
-			if (result.getData().get("lundi") == "1")
-				info.getDays()[0] = true ;
-			else
-				info.getDays()[0] = false ;
-			if (result.getData().get("mardi") == "1")
-				info.getDays()[1] = true ;
-			else
-				info.getDays()[1] = false ;
-			if (result.getData().get("mercredi") == "1")
-				info.getDays()[2] = true ;
-			else
-				info.getDays()[2] = false ;
-			if (result.getData().get("jeudi") == "1")
-				info.getDays()[3] = true ;
-			else
-				info.getDays()[3] = false ;
-			if (result.getData().get("vendredi") == "1")
-				info.getDays()[4] = true ;
-			else
-				info.getDays()[4] = false ;
-			if (result.getData().get("samedi") == "1")
-				info.getDays()[5] = true ;
-			else
-				info.getDays()[5] = false ;
-			if (result.getData().get("dimanche") == "1")
-				info.getDays()[6] = true ;
-			else
-				info.getDays()[6] = false ;
-
-			return info;
-		}
-		else 
-			return null ;		
 	}
 
 	/**
@@ -452,27 +443,25 @@ public class Requests {
 		else 
 			map.put("conducteur", "0");
 
-		RequestResponses result = null ;
-		
+		RequestResponses result;
 		RequestsParams params = new RequestsParams(RequestType.MODIFY_PROFILE,map);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
 		try {
 			result = task.get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+			if (result.isSuccess()) 
+				return 0 ;
+			else 
+				return result.getCode() ;	
 		
-		//reponse = postRequest(RequestType.MODIFY_PROFILE,map) ;
-		if (result.isSuccess()) {
-			return 0 ;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return -1; // TODO C'est correct de renvoyer -1 ?
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return -1; // TODO C'est correct de renvoyer -1 ?
 		}
-		else 
-			return result.getCode() ;	
 	}
 
 	/**
@@ -483,13 +472,25 @@ public class Requests {
 	public boolean removeProfileRequest (String nickname) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", nickname);
-		RequestResponses reponse = null ;
-		reponse = postRequest(RequestType.REMOVE_PROFILE,map) ;
-		if (reponse.isSuccess()) {
-			return true;
+		
+		RequestsParams params = new RequestsParams(RequestType.REMOVE_PROFILE, map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		RequestResponses result;
+		try {
+			result = task.get();			
+			if (result.isSuccess()) 
+				return true;
+			else 
+				return false ;
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return false;
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return false;
 		}
-		else 
-			return false ;
 	}
 
 	/** Methode permettant de recuperer des trajets 
@@ -501,56 +502,70 @@ public class Requests {
 		System.out.println("REQUEST RIDE : "+postCode+" --> "+workplace) ;
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("postal", postCode);
+		
 		// recuperation de l'ID du workplace
-		RequestResponses reponseWorkplace = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
-		// parcours de la HashMap
 		String id = null ;
-		for (Entry<String, Object> entry : reponseWorkplace.getData().entrySet()) {
-			String MapReponse = (String) entry.getValue() ;
-			if (MapReponse.equals(workplace)) {
-				id = entry.getKey() ;
-				break ;
-			}
+		Iterator<Entry<String, String>> it = mapWorkplaces.entrySet().iterator();
+		while(it.hasNext()) {
+			Entry<String, String> currentWorkplace = it.next();
+			if(currentWorkplace.getValue().contentEquals(workplace))
+				id = currentWorkplace.getKey();
+				break;
 		}
-		map.put("bureau", id) ;
-		RequestResponses reponse = null ;
-		reponse = postRequest(RequestType.SEARCH_RIDE,map) ;
-		if (reponse.isSuccess()) {
-			ArrayList<Ride> rideList = new ArrayList<Ride> () ;
-
-			// parcours de la HashMap
-			for (Entry<String, Object> entry : reponse.getData().entrySet()) {
-				LinkedHashMap nMapReponse = (LinkedHashMap) entry.getValue() ;
-				// meme horaires
-				boolean memeHoraires = false ;
-				Ride ride = new Ride () ;
-				for (int i=0; i<rideList.size(); i++) {
-					if (rideList.get(i).getUserList().size() != 0) {
-						if (rideList.get(i).getUserList().get(0).getMorning().equals((String)nMapReponse.get("horairesMatin"))) {
-							if (rideList.get(i).getUserList().get(0).getEvening().equals((String)nMapReponse.get("horairesSoir"))) {
-								memeHoraires = true ;
-								ride = rideList.get(i) ;
-								break ;
+		map.put("travail", id);
+		
+		
+		RequestsParams params = new RequestsParams(RequestType.SEARCH_RIDE, map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		RequestResponses result;
+		try {
+			result = task.get();
+	
+			if (result.isSuccess()) {
+				ArrayList<Ride> rideList = new ArrayList<Ride> () ;
+	
+				// parcours de la HashMap
+				for (Entry<String, Object> entry : result.getData().entrySet()) {
+					LinkedHashMap nMapReponse = (LinkedHashMap) entry.getValue() ;
+					// meme horaires
+					boolean memeHoraires = false ;
+					Ride ride = new Ride () ;
+					for (int i=0; i<rideList.size(); i++) {
+						if (rideList.get(i).getUserList().size() != 0) {
+							if (rideList.get(i).getUserList().get(0).getMorning().equals((String)nMapReponse.get("horairesMatin"))) {
+								if (rideList.get(i).getUserList().get(0).getEvening().equals((String)nMapReponse.get("horairesSoir"))) {
+									memeHoraires = true ;
+									ride = rideList.get(i) ;
+									break ;
+								}
 							}
-						}
+						}	
+					}
+					if (memeHoraires) {
+						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
+						ride.getUserList().add(user) ;
+					}
+					// different horaires de depart : nouveau ride dans la liste
+					else {
+						Ride nride = new Ride () ;
+						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
+						nride.getUserList().add(user) ;
+						rideList.add(nride) ;
 					}	
 				}
-				if (memeHoraires) {
-					Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
-					ride.getUserList().add(user) ;
-				}
-				// different horaires de depart : nouveau ride dans la liste
-				else {
-					Ride nride = new Ride () ;
-					Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
-					nride.getUserList().add(user) ;
-					rideList.add(nride) ;
-				}	
+				return rideList ;
 			}
-			return rideList ;
+			else
+				return null ;
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return null;
 		}
-		else
-			return null ;
 	}
 
 	/**
@@ -561,12 +576,27 @@ public class Requests {
 	public boolean addWorkplaceRequest(String workplace) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("bureau", workplace);
-		RequestResponses reponse = postRequest(RequestType.ADD_WORKPLACE,map) ;
-		if (reponse.isSuccess()) {
-			return true;
+		
+		RequestsParams params = new RequestsParams(RequestType.ADD_WORKPLACE, map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		RequestResponses result;
+		try {
+			result = task.get();
+				
+			if (result.isSuccess()) {
+				return true;
+			}
+			else 
+				return false ;
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return false;
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return false;
 		}
-		else 
-			return false ;
 	}
 
 	/**
@@ -575,27 +605,39 @@ public class Requests {
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
 	public boolean deletionWorkplaceRequest (String workplace) {			
-		RequestResponses reponseBefore = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
-		// parcours de la HashMap
+		// recuperation de l'ID du workplace
 		String id = null ;
-		for (Entry<String, Object> entry : reponseBefore.getData().entrySet()) {
-			String MapReponse = (String) entry.getValue() ;
-			if (MapReponse.equals(workplace)) {
-				id = entry.getKey() ;
-				break ;
-			}
-		}	
+		Iterator<Entry<String, String>> it = mapWorkplaces.entrySet().iterator();
+		while(it.hasNext()) {
+			Entry<String, String> currentWorkplace = it.next();
+			if(currentWorkplace.getValue().contentEquals(workplace))
+				id = currentWorkplace.getKey();
+				break;
+		}
+
 		if (id != null) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("idBureau", id);
-			RequestResponses reponseAfter = postRequest(RequestType.DELETE_WORKPLACE,map) ;
-			if (reponseAfter.isSuccess()) {
-				return true;
+			RequestsParams params = new RequestsParams(RequestType.DELETE_WORKPLACE, map);
+			HTTPAsyncTask task = new HTTPAsyncTask();
+			task.execute(params);
+			RequestResponses result;
+			try {
+				result = task.get();
+				if (result.isSuccess()) {
+					return true;
+				}
+				else 
+					return false ;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				return false;
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+				return false;
 			}
-			else 
-				return false ;
-		}
-		else return false ;
+		} else 
+			return false ;
 	}
 
 	/**
@@ -604,20 +646,29 @@ public class Requests {
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
 	 */
-	public HashMap<String, String> getWorkplacesRequest() throws InterruptedException, ExecutionException {
+	public HashMap<String, String> getWorkplacesRequest() {
 		RequestsParams params = new RequestsParams(RequestType.GET_LIST_WORKPLACE,null);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
-		RequestResponses result = task.get();
+		RequestResponses result;
+		try {
+			result = task.get();
 
-		HashMap<String, String> workplaces = new HashMap<String, String>() ;
-		// parcours de la HashMap
-		for (Entry<String, Object> entry : result.getData().entrySet()) {
-			String value = (String) entry.getValue();
-			String key = (String) entry.getKey();
-			workplaces.put(key, value) ;
+			// parcours de la HashMap
+			for (Entry<String, Object> entry : result.getData().entrySet()) {
+				String value = (String) entry.getValue();
+				String key = (String) entry.getKey();
+				this.mapWorkplaces.put(key, value) ;
+			}
+			return mapWorkplaces ;
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return null;
 		}
-		return workplaces ;
 	}
 
 	/**
@@ -626,19 +677,29 @@ public class Requests {
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
 	 */
-	public ArrayList<Information> getUsersRequest() throws InterruptedException, ExecutionException {
+	public ArrayList<Information> getUsersRequest() {
 		RequestsParams params = new RequestsParams(RequestType.GET_LIST_USERS,null);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
-		RequestResponses result = task.get();
-
-		ArrayList<Information> users = new ArrayList<Information>() ;
-		// parcours de la HashMap
-		for (Entry<String, Object> entry : result.getData().entrySet()) {
-			Information MapReponse = (Information) entry.getValue() ;
-			users.add(MapReponse) ;
+		RequestResponses result;
+		try {
+			result = task.get();
+			
+			ArrayList<Information> users = new ArrayList<Information>() ;
+			// parcours de la HashMap
+			for (Entry<String, Object> entry : result.getData().entrySet()) {
+				Information MapReponse = (Information) entry.getValue() ;
+				users.add(MapReponse) ;
+			}
+			return users;
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return null;
 		}
-		return users;
 	}
 
 	/**
@@ -651,12 +712,24 @@ public class Requests {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("code", postCode);
 		map.put("commune", town);
-		RequestResponses reponse = postRequest(RequestType.ADD_TOWN,map) ;
-		if (reponse.isSuccess()) {
-			return true;
+		
+		RequestsParams params = new RequestsParams(RequestType.ADD_TOWN, map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		RequestResponses result;
+		try {
+			result = task.get();
+			if (result.isSuccess()) {
+				return true;
+			} else 
+				return false ;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return false;
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return false;
 		}
-		else 
-			return false ;
 	}
 
 	/**
@@ -665,27 +738,53 @@ public class Requests {
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
 	public boolean deletionTownRequest(String postCode) {
-		RequestResponses reponseBefore = postRequest(RequestType.GET_LIST_TOWN,null) ;
-		// parcours de la HashMap
+		
+		RequestsParams paramsTown = new RequestsParams(RequestType.GET_LIST_TOWN, null);
+		HTTPAsyncTask taskTown = new HTTPAsyncTask();
+		taskTown.execute(paramsTown);
+		RequestResponses resultTown;
 		String id = null ;
-		for (Entry<String, Object> entry : reponseBefore.getData().entrySet()) {
-			String MapReponse = (String) entry.getKey() ;
-			if (MapReponse.equals(postCode)) {
-				id = entry.getKey() ;
-				break ;
-			}
-		}	
+		try {
+			resultTown = taskTown.get();
+
+			// parcours de la HashMap
+			for (Entry<String, Object> entry : resultTown.getData().entrySet()) {
+				String MapReponse = (String) entry.getKey() ;
+				if (MapReponse.equals(postCode)) {
+					id = entry.getKey() ;
+					break ;
+				}
+			}	
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		
 		if (id != null) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("code", id);
-			RequestResponses reponseAfter = postRequest(RequestType.DELETE_TOWN,map) ;
-			if (reponseAfter.isSuccess()) {
-				return true;
+			RequestsParams params = new RequestsParams(RequestType.DELETE_TOWN, map);
+			HTTPAsyncTask task = new HTTPAsyncTask();
+			task.execute(params);
+			RequestResponses result;
+			try {
+				result = task.get();
+				if (result.isSuccess()) 
+					return true;
+				else 
+					return false ;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				return false;
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+				return false;
 			}
-			else 
-				return false ;
 		}
-		else return false ;
+		else 
+			return false ;
 	}
 
 	/**
@@ -709,11 +808,9 @@ public class Requests {
 			return postcodeList ;
 			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -747,13 +844,11 @@ public class Requests {
 			}
 			return tab ;
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
 			return tab;
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return tab;
+			return tab; // TODO Que doit contenir tab pour renvoyer une erreur ?
 		}
 		
 	}
