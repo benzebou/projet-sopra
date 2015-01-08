@@ -7,6 +7,7 @@ import java.util.List;
 import modele.Information;
 import modele.Ride;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -231,4 +232,14 @@ public class RideActivity extends Activity{
 		this.rides = rides;
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    switch(resultCode)
+	    {
+	    case MenuHandling.RESULT_CLOSE_ALL:
+	        setResult(MenuHandling.RESULT_CLOSE_ALL);
+	        finish();
+	    }
+	    super.onActivityResult(requestCode, resultCode, data);
+	}
 }
