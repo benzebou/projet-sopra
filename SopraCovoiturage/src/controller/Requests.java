@@ -179,12 +179,6 @@ public class Requests {
 		
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("mail", mail);
-		/*
-		RequestResponses reponse = postRequest(RequestType.PASSWORD_FORGOTTEN,map) ;
-		if (reponse.isSuccess()) 
-			return true ;
-		else 
-			return false ;*/
 		
 		RequestsParams params = new RequestsParams(RequestType.PASSWORD_FORGOTTEN,map);
 
@@ -734,18 +728,34 @@ public class Requests {
 	 * 	et requete[1] = nombre total de passagers 
 	 */
 	public String[] numberDriverAndPassengerRequest () {
-		RequestResponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS,null) ;
+		RequestsParams params = new RequestsParams(RequestType.GET_STAT_DRIVERS_PASSENGERS,null);
 		String[] tab = new String[2] ;
-		if (reponse.isSuccess()) {
-			System.out.println("SUCCES") ;
-			tab[0] = (String) reponse.getData().get("drivers") ;
-			tab[1] = (String) reponse.getData().get("passengers") ;
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		Log.d("SC", "On attend...");
+		try {
+			RequestResponses result = task.get();
+			Log.d("SC", "C'est fini !");
+			if (result.isSuccess()) {
+				System.out.println("SUCCES") ;
+				tab[0] = (String) result.getData().get("drivers") ;
+				tab[1] = (String) result.getData().get("passengers") ;
+			}
+			else {
+				tab[0] = "-1" ;
+				tab[1] = ((Integer)result.getCode()).toString() ;
+			}
+			return tab ;
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return tab;
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return tab;
 		}
-		else {
-			tab[0] = "-1" ;
-			tab[1] = ((Integer)reponse.getCode()).toString() ;
-		}
-		return tab ;
+		
 	}
 
 
