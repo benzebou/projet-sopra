@@ -504,9 +504,21 @@ public class Requests {
 	 * @return ArrayList<Ride> : liste des trajets
 	 */
 	public ArrayList<Ride> ridesRequest (String postCode, String workplace) {
+		System.out.println("REQUEST RIDE : "+postCode+" "+workplace) ;
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("postal", postCode);
-		map.put("bureau", workplace) ;
+		// recuperation de l'ID du workplace
+				RequestResponses reponseWorkplace = postRequest(RequestType.GET_LIST_WORKPLACE,null) ;
+				// parcours de la HashMap
+				String id = null ;
+				for (Entry<String, Object> entry : reponseWorkplace.getData().entrySet()) {
+					String MapReponse = (String) entry.getValue() ;
+					if (MapReponse.equals(workplace)) {
+						id = entry.getKey() ;
+						break ;
+					}
+				}
+		map.put("bureau", id) ;
 		RequestResponses reponse = null ;
 		reponse = postRequest(RequestType.SEARCH_RIDE,map) ;
 		if (reponse.isSuccess()) {
