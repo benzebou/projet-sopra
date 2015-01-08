@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -141,6 +142,8 @@ public class RideActivity extends Activity{
 	 * @param conducteur
 	 */
 	public void displayRide(String selCond) {
+		resetRides();
+		initRides();
 		if (rides != null) {
 			// parcours la liste rides et affiche les trajets dont "conducteur" correspond
 			for (int i=0; i<rides.size();i++) {
@@ -203,6 +206,25 @@ public class RideActivity extends Activity{
 					}
 				}
 			}
+		}
+	}
+	
+	private void initRides() {
+		TableRow tr = (TableRow) inflater.inflate(R.layout.table_search_init, null); 
+		((TextView) tr.findViewById(R.id.Mail)).setText("Mail");
+		((TextView) tr.findViewById(R.id.ConducteurInfo)).setText("Conducteur");
+		((TextView) tr.findViewById(R.id.Aller)).setText("Aller");
+		((TextView) tr.findViewById(R.id.Retour)).setText("Retour");
+		table.addView(tr);
+	}
+	
+	
+	private void resetRides() {
+		int count = table.getChildCount();
+		for (int i = 0; i < count; i++) {
+		    View child = table.getChildAt(i);
+		    if (child instanceof TableRow) 
+		    	((ViewGroup) child).removeAllViews();
 		}
 	}
 	
