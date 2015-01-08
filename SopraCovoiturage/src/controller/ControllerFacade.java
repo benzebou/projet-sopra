@@ -223,25 +223,17 @@ public class ControllerFacade {
 	 * @param workplace : lieu de travail a ajouter
 	 */
 	public void addWorkplace (String workplace) {
-		try {
-			boolean requete =requests.addWorkplaceRequest(workplace) ;
-			if (requete) {
-				System.out.println("CONTROLLER_FACADE : Addition workplace : reussite !\n") ;
-				Log.d("SC", "CONTROLLER_FACADE : Addition workplace : reussite !\n");
-				HashMap<String, String> workplaces = requests.getWorkplacesRequest() ;
-				facadeView.displayWorkplaces(workplaces);
-			}
-			else { 
-				System.out.println("CONTROLLER_FACADE : Addition workplace : echec !\n") ;
-				facadeView.erreurAddWorkplace();
-			}	
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		boolean requete =requests.addWorkplaceRequest(workplace) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Addition workplace : reussite !\n") ;
+			Log.d("SC", "CONTROLLER_FACADE : Addition workplace : reussite !\n");
+			HashMap<String, String> workplaces = requests.getWorkplacesRequest() ;
+			facadeView.displayWorkplaces(workplaces);
 		}
+		else { 
+			System.out.println("CONTROLLER_FACADE : Addition workplace : echec !\n") ;
+			facadeView.erreurAddWorkplace();
+		}	
 	}
 	
 	/**
@@ -250,24 +242,17 @@ public class ControllerFacade {
 	 * @param workplace : lieu de travail a supprimer
 	 */
 	public void deletionWorkplace (String workplace) {
-		try {
-			boolean requete =requests.deletionWorkplaceRequest(workplace) ;
-			if (requete) {
-				System.out.println("CONTROLLER_FACADE : Deletion workplace : reussite !\n") ;
-				HashMap<String, String> workplaces = requests.getWorkplacesRequest() ;
-				facadeView.displayWorkplaces(workplaces);
-			}
-			else { 
-				System.out.println("CONTROLLER_FACADE : Deletion workplace : echec !\n") ;
-				facadeView.erreurDeletionWorkplace();
-			}		
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		boolean requete =requests.deletionWorkplaceRequest(workplace) ;
+		if (requete) {
+			System.out.println("CONTROLLER_FACADE : Deletion workplace : reussite !\n") ;
+			HashMap<String, String> workplaces = requests.getWorkplacesRequest() ;
+			facadeView.displayWorkplaces(workplaces);
 		}
+		else { 
+			System.out.println("CONTROLLER_FACADE : Deletion workplace : echec !\n") ;
+			facadeView.erreurDeletionWorkplace();
+		}		
+
 	}
 	
 	/**
@@ -276,18 +261,11 @@ public class ControllerFacade {
 	 */
 	public ArrayList<String> getWorkplaces() {
 		ArrayList<String> res = new ArrayList<String>();
-		try {
-			HashMap<String, String> workplaces = requests.getWorkplacesRequest();
-			Iterator<Entry<String, String>> it = workplaces.entrySet().iterator();
-			while(it.hasNext())
-				res.add(it.next().getValue());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		HashMap<String, String> workplaces = requests.getWorkplacesRequest();
+		Iterator<Entry<String, String>> it = workplaces.entrySet().iterator();
+		while(it.hasNext())
+			res.add(it.next().getValue());
+
 		return res;
 	}
 	
@@ -297,15 +275,7 @@ public class ControllerFacade {
 	 */
 	public ArrayList<Information> getUsers() {
 		ArrayList<Information> res = null;
-		try {
-			res = requests.getUsersRequest() ;
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		res = requests.getUsersRequest() ;
 		return res;
 	}
 	
