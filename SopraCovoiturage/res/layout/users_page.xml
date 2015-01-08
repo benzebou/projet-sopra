@@ -14,7 +14,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"
+        android:layout_marginLeft="20dp"
         android:textSize="30sp"
         android:textColor="#de002d" 
         android:text="Liste d'utilisateurs" />
