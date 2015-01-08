@@ -33,7 +33,7 @@ public class ConnectingActivity extends Activity {
 	}
 	
 	public void onPasswordForgottenButtonClick(View v) {
-		facade.changeActivityPasswordForgotten();
+		facade.changeActivity(PasswordForgottenActivity.class);
 	}
 	
 
