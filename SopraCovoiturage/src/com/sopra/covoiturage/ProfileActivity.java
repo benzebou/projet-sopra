@@ -84,7 +84,7 @@ public class ProfileActivity extends Activity {
 	 * @param v vue de l'application
 	 */
 	public void onModificationButtonClick(View v) {
-		facade.changeActivityProfileModification ();
+		facade.changeActivity(ProfileModificationActivity.class);
 	}
 
 	/**
