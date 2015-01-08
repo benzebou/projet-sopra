@@ -516,7 +516,6 @@ public class Requests {
 		}
 		map.put("travail", id);
 		
-		
 		RequestsParams params = new RequestsParams(RequestType.SEARCH_RIDE, map);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
@@ -529,7 +528,7 @@ public class Requests {
 	
 				// parcours de la HashMap
 				for (Entry<String, Object> entry : result.getData().entrySet()) {
-					LinkedHashMap nMapReponse = (LinkedHashMap) entry.getValue() ;
+					HashMap nMapReponse = (HashMap) entry.getValue() ;
 					// meme horaires
 					boolean memeHoraires = false ;
 					Ride ride = new Ride () ;
@@ -545,14 +544,99 @@ public class Requests {
 						}	
 					}
 					if (memeHoraires) {
-						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
-						ride.getUserList().add(user) ;
+						Information info = new Information();
+						info.setLogin((String)nMapReponse.get("login"));
+						info.setEmail((String)nMapReponse.get("mail"));
+						info.setName((String)nMapReponse.get("nom"));
+						info.setFirstname((String)nMapReponse.get("prenom"));
+						info.setMdp((String)nMapReponse.get("mdp"));
+						info.setPhone((String)nMapReponse.get("tel"));
+						info.setWorkplace((String)nMapReponse.get("travail"));
+						info.setPostcode((String)nMapReponse.get("postal"));
+						info.setMorning((String)nMapReponse.get("horairesMatin"));
+						info.setEvening((String)nMapReponse.get("horairesSoir"));
+						if (nMapReponse.get("conducteur") == "1")
+							info.setConducteur(true);
+						else
+							info.setConducteur(false);
+						if (nMapReponse.get("lundi") == "1")
+							info.getDays()[0] = true ;
+						else
+							info.getDays()[0] = false ;
+						if (nMapReponse.get("mardi") == "1")
+							info.getDays()[1] = true ;
+						else
+							info.getDays()[1] = false ;
+						if (nMapReponse.get("mercredi") == "1")
+							info.getDays()[2] = true ;
+						else
+							info.getDays()[2] = false ;
+						if (nMapReponse.get("jeudi") == "1")
+							info.getDays()[3] = true ;
+						else
+							info.getDays()[3] = false ;
+						if (nMapReponse.get("vendredi") == "1")
+							info.getDays()[4] = true ;
+						else
+							info.getDays()[4] = false ;
+						if (nMapReponse.get("samedi") == "1")
+							info.getDays()[5] = true ;
+						else
+							info.getDays()[5] = false ;
+						if (nMapReponse.get("dimanche") == "1")
+							info.getDays()[6] = true ;
+						else
+							info.getDays()[6] = false ;
+						
+						ride.getUserList().add(info) ;
 					}
 					// different horaires de depart : nouveau ride dans la liste
 					else {
 						Ride nride = new Ride () ;
-						Information user = this.getProfileInformationRequest((String)nMapReponse.get("login")) ;
-						nride.getUserList().add(user) ;
+						Information info = new Information();
+						info.setLogin((String)nMapReponse.get("login"));
+						info.setEmail((String)nMapReponse.get("mail"));
+						info.setName((String)nMapReponse.get("nom"));
+						info.setFirstname((String)nMapReponse.get("prenom"));
+						info.setMdp((String)nMapReponse.get("mdp"));
+						info.setPhone((String)nMapReponse.get("tel"));
+						info.setWorkplace((String)nMapReponse.get("travail"));
+						info.setPostcode((String)nMapReponse.get("postal"));
+						info.setMorning((String)nMapReponse.get("horairesMatin"));
+						info.setEvening((String)nMapReponse.get("horairesSoir"));
+						if (nMapReponse.get("conducteur") == "1")
+							info.setConducteur(true);
+						else
+							info.setConducteur(false);
+						if (nMapReponse.get("lundi") == "1")
+							info.getDays()[0] = true ;
+						else
+							info.getDays()[0] = false ;
+						if (nMapReponse.get("mardi") == "1")
+							info.getDays()[1] = true ;
+						else
+							info.getDays()[1] = false ;
+						if (nMapReponse.get("mercredi") == "1")
+							info.getDays()[2] = true ;
+						else
+							info.getDays()[2] = false ;
+						if (nMapReponse.get("jeudi") == "1")
+							info.getDays()[3] = true ;
+						else
+							info.getDays()[3] = false ;
+						if (nMapReponse.get("vendredi") == "1")
+							info.getDays()[4] = true ;
+						else
+							info.getDays()[4] = false ;
+						if (nMapReponse.get("samedi") == "1")
+							info.getDays()[5] = true ;
+						else
+							info.getDays()[5] = false ;
+						if (nMapReponse.get("dimanche") == "1")
+							info.getDays()[6] = true ;
+						else
+							info.getDays()[6] = false ;
+						nride.getUserList().add(info) ;
 						rideList.add(nride) ;
 					}	
 				}
