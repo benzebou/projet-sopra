@@ -32,7 +32,7 @@ public class MenuHandling implements OnClickListener {
 			activity.finishActivity(5);
 			
 		} else if (arg0.equals(profileText)) {
-			facade.changeActivityProfile();
+			facade.changeActivity(ProfileActivity.class);
 		}
 		
 		
