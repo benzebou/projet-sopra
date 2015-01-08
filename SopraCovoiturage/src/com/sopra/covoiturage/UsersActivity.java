@@ -1,6 +1,7 @@
 package com.sopra.covoiturage;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -35,4 +36,15 @@ public class UsersActivity extends Activity {
 		facade.changeActivity(ReportActivity.class);
 	}
 	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    switch(resultCode)
+	    {
+	    case MenuHandling.RESULT_CLOSE_ALL:
+	        setResult(MenuHandling.RESULT_CLOSE_ALL);
+	        finish();
+	    }
+	    super.onActivityResult(requestCode, resultCode, data);
+	}
 }
