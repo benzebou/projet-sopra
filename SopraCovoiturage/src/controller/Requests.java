@@ -643,8 +643,6 @@ public class Requests {
 	/**
 	 * Methode permettant de renvoyer la liste des lieux de travail
 	 * @return ArrayList<String> : liste des lieux de travail
-	 * @throws ExecutionException 
-	 * @throws InterruptedException 
 	 */
 	public HashMap<String, String> getWorkplacesRequest() {
 		RequestsParams params = new RequestsParams(RequestType.GET_LIST_WORKPLACE,null);
@@ -674,8 +672,6 @@ public class Requests {
 	/**
 	 * Methode permettant de renvoyer la liste des utilisateurs
 	 * @return ArrayList<Information> : liste des utilisateurs
-	 * @throws ExecutionException 
-	 * @throws InterruptedException 
 	 */
 	public ArrayList<Information> getUsersRequest() {
 		RequestsParams params = new RequestsParams(RequestType.GET_LIST_USERS,null);
@@ -861,30 +857,45 @@ public class Requests {
 	 * Value = String[0] : nombre de conducteurs ; String[1] : nombre de passagers 
 	 */
 	public HashMap<String,String[]> numberDriverAndPassengerPerRideRequest () {
-		RequestResponses reponse = postRequest(RequestType.GET_STAT_DRIVERS_PASSENGERS_PER_RIDE,null) ;
+		RequestsParams params = new RequestsParams(RequestType.GET_STAT_DRIVERS_PASSENGERS_PER_RIDE, null);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		RequestResponses result;
 		HashMap<String,String[]> requete = new HashMap<String,String[]> () ;
-		String[] tab = new String[2] ;
-		if (reponse.isSuccess()) {
-			// parcours de la HashMap
-			for (Entry<String, Object> entry : reponse.getData().entrySet()) {
-				LinkedHashMap nMapReponse = (LinkedHashMap) entry.getValue() ;
-
-				/**********************************************************
-				 * 				AFFICHAGE POUR TEST
-				 **********************************************************/
-				System.out.println("RIDE : "+entry.getKey()) ;
-				System.out.println("Drivers : "+((Long) nMapReponse.get("drivers")).toString()) ;
-				System.out.println("Passengers : "+((Long) nMapReponse.get("passengers")).toString()) ;
-
-				tab[0] = ((Long) nMapReponse.get("drivers")).toString() ;
-				tab[1] = ((Long) nMapReponse.get("passengers")).toString() ;
-				requete.put(entry.getKey(), tab) ;
+		
+		try {
+			result = task.get();
+		
+			String[] tab = new String[2] ;
+			if (result.isSuccess()) {
+				// parcours de la HashMap
+				for (Entry<String, Object> entry : result.getData().entrySet()) {
+					LinkedHashMap nMapReponse = (LinkedHashMap) entry.getValue() ;
+	
+					/**********************************************************
+					 * 				AFFICHAGE POUR TEST
+					 **********************************************************/
+					Log.d("SC", "RIDE : "+entry.getKey()) ;
+					Log.d("SC", "Drivers : "+((Long) nMapReponse.get("drivers")).toString()) ;
+					Log.d("SC", "Passengers : "+((Long) nMapReponse.get("passengers")).toString()) ;
+	
+					tab[0] = ((Long) nMapReponse.get("drivers")).toString() ;
+					tab[1] = ((Long) nMapReponse.get("passengers")).toString() ;
+					requete.put(entry.getKey(), tab) ;
+				}
 			}
-		}
-		else {
-			tab[0] = ((Integer)reponse.getCode()).toString() ;
-			tab[1] = ((Integer)reponse.getCode()).toString() ;
-			requete.put("-1", tab) ;
+			else {
+				tab[0] = ((Integer)result.getCode()).toString() ;
+				tab[1] = ((Integer)result.getCode()).toString() ;
+				requete.put("-1", tab) ;
+			}
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			// TODO Quoi mettre dans requete quand exception ?
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			// TODO Quoi mettre dans requete quand exception ?
 		}
 		return requete ;
 	}
@@ -902,6 +913,7 @@ public class Requests {
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
 		Log.d("SC", "On attend...");
+		
 		try {
 			RequestResponses result = task.get();
 			Log.d("SC", "C'est fini !");
@@ -918,13 +930,11 @@ public class Requests {
 			}
 			return tab ;
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return tab;
+			return tab; // TODO Que doit contenir tab pour renvoyer une erreur ?
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return tab;
+			return tab; // TODO Que doit contenir tab pour renvoyer une erreur ?
 		}
 	}
 
@@ -939,14 +949,27 @@ public class Requests {
 		String[] tab = new String[2] ;
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("date", date) ;
-		RequestResponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
-		if (reponse.isSuccess()) {
-			tab[0] = "0" ;
-			tab[1] = (String) reponse.getData().get(date);
-		}
-		else {
-			tab[0] = "-1" ;
-			tab[1] = ((Integer) reponse.getCode()).toString() ;
+		
+		RequestsParams params = new RequestsParams(RequestType.GET_STAT_CONNECTIONS, map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		RequestResponses result;
+		try {
+			result = task.get();
+				
+			if (result.isSuccess()) {
+				tab[0] = "0" ;
+				tab[1] = (String) result.getData().get(date);
+			}
+			else {
+				tab[0] = "-1" ;
+				tab[1] = ((Integer) result.getCode()).toString() ;
+			}
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
+		} catch (ExecutionException e) {
+			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
 		}
 		return tab ;
 	}
@@ -963,16 +986,30 @@ public class Requests {
 		String[] tab = new String[2] ;
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("sinceDate", date) ;
-		RequestResponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
-		if (reponse.isSuccess()) {
-			tab[0] = "0" ;
-			tab[1] = (String) reponse.getData().get(date);
-		}
-		else {
-			tab[0] = "-1" ;
-			tab[1] = ((Integer) reponse.getCode()).toString() ;
+		
+		RequestsParams params = new RequestsParams(RequestType.GET_STAT_CONNECTIONS, map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		RequestResponses result;
+		try {
+			result = task.get();
+				
+			if (result.isSuccess()) {
+				tab[0] = "0" ;
+				tab[1] = (String) result.getData().get(date);
+			}
+			else {
+				tab[0] = "-1" ;
+				tab[1] = ((Integer) result.getCode()).toString() ;
+			}
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
+		} catch (ExecutionException e) {
+			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
 		}
 		return tab ;
+
 	}		
 
 
@@ -990,16 +1027,30 @@ public class Requests {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("rangeFirst", firstDate) ;
 		map.put("rangeLast", lastDate) ;
-		RequestResponses reponse = postRequest(RequestType.GET_STAT_CONNECTIONS,map) ;
-		if (reponse.isSuccess()) {
-			tab[0] = "0" ;
-			tab[1] = (String) reponse.getData().get(firstDate);
-		}
-		else {
-			tab[0] = "-1" ;
-			tab[1] = ((Integer) reponse.getCode()).toString() ;
+		
+		RequestsParams params = new RequestsParams(RequestType.GET_STAT_CONNECTIONS, map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		RequestResponses result;
+		try {
+			result = task.get();
+				
+			if (result.isSuccess()) {
+				tab[0] = "0" ;
+				tab[1] = (String) result.getData().get(firstDate);
+			}
+			else {
+				tab[0] = "-1" ;
+				tab[1] = ((Integer) result.getCode()).toString() ;
+			}
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
+		} catch (ExecutionException e) {
+			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
 		}
 		return tab ;
+		
 	}	
 
 
