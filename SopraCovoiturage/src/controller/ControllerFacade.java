@@ -146,7 +146,7 @@ public class ControllerFacade {
 		boolean requete =requests.removeProfileRequest(nickname) ;
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Suppression user : reussite !\n") ;
-			facadeView.changeActivityConnecting();
+			// TODO : Il faut arrêter toutes les activités
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Suppression user : echec !\n") ;
