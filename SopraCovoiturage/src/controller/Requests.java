@@ -21,6 +21,8 @@ import java.util.Random;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import modele.Information;
 import modele.Ride;
@@ -1099,8 +1101,20 @@ public class Requests {
 			JSONStrings = new JSONObject(json);
 			JSONArray names = JSONStrings.names();
 			for (int i = 0; i < names.length(); i++){
-				String name = (String)names.get(i);
-				result.put(name, JSONStrings.get(name));
+				String name = names.get(i).toString();
+				System.out.println("JSON : " + i + " : " + JSONStrings.get(name));
+				// On verifie si l'objet n'est pas un format JSON (comme pour la recherche d'un trajet par exemple), si c'est le cas on modifie cela
+				if (isJSONValid(JSONStrings.get(name).toString()))
+				{
+					// On a donc un format JSON que l'on doit convertir
+					String jsonToConvert = JSONStrings.get(name).toString();
+					Map<String, Object> result2 = jsonToMap(jsonToConvert,false);
+					result.put(name, result2);
+				}
+				else
+				{
+					result.put(name, JSONStrings.get(name));
+				}
 			}
 		} catch (JSONException e) {
 			System.out.println(e.getMessage());
@@ -1126,8 +1140,31 @@ public class Requests {
 			if (result.containsKey("ACK_REQ"))
 				result.remove("ACK_REQ");
 		}
+		
+		System.out.println("Résultat après décodage du JSON : "+result.toString());
 		return result;
 	}
+	
+	/**
+	 * Permet de tester si une chaine de caracteres est au format JSON
+	 * @param test : la chaine a teste
+	 * @return vrai si la chaine est au format JSON, faux sinon
+	 */
+	public static boolean isJSONValid(String test) {
+	    try {
+	        new JSONObject(test);
+	    } catch (JSONException ex) {
+	        // edited, to include @Arthur's comment
+	        // e.g. in case JSONArray is valid as well...
+	        try {
+	            new JSONArray(test);
+	        } catch (JSONException ex1) {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+	
 	/**
 	 * Permet de crypter (hasher) le mot de passe
 	 * @param password : le mot de passe a crypte
