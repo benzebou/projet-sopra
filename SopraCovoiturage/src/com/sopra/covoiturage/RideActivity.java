@@ -141,64 +141,66 @@ public class RideActivity extends Activity{
 	 * @param conducteur
 	 */
 	public void displayRide(String selCond) {
-		// parcours la liste rides et affiche les trajets dont "conducteur" correspond
-		for (int i=0; i<rides.size();i++) {
-			for (int j = 0; j<rides.get(i).getUserList().size(); j++) {
-				Information info = rides.get(i).getUserList().get(j) ;
-				
-				// add a new row with mail and driver?.
-				if (selCond == "non conducteur" && (info.isConducteur() == false )) {
-					TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
+		if (rides != null) {
+			// parcours la liste rides et affiche les trajets dont "conducteur" correspond
+			for (int i=0; i<rides.size();i++) {
+				for (int j = 0; j<rides.get(i).getUserList().size(); j++) {
+					Information info = rides.get(i).getUserList().get(j) ;
 					
-					((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
-					((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
-					((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
-					((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
-					
-					if (this.selAller == info.getMorning())
-						((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
-	
-					if (this.selRetour == info.getEvening())
-						((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
-					
-					table.addView(tr);
-				}
-				else if (selCond == "conducteur" && (info.isConducteur() == true)) {
-					TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
-					
-					((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
-					((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
-					((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
-					((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
-					
-					if (this.selAller == info.getMorning())
-						((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
-	
-					if (this.selRetour == info.getEvening())
-						((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
-					
-					table.addView(tr);
-				}
-				else {
-					TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
-					
-					((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
-					
-					if (info.isConducteur() == true)
-						((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
-					else
+					// add a new row with mail and driver?.
+					if (selCond == "non conducteur" && (info.isConducteur() == false )) {
+						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
+						
+						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
 						((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
-				
-					((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
-					((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
+						((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
+						((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
+						
+						if (this.selAller == info.getMorning())
+							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
+		
+						if (this.selRetour == info.getEvening())
+							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
+						
+						table.addView(tr);
+					}
+					else if (selCond == "conducteur" && (info.isConducteur() == true)) {
+						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
+						
+						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
+						((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
+						((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
+						((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
+						
+						if (this.selAller == info.getMorning())
+							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
+		
+						if (this.selRetour == info.getEvening())
+							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
+						
+						table.addView(tr);
+					}
+					else {
+						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
+						
+						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
+						
+						if (info.isConducteur() == true)
+							((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
+						else
+							((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
 					
-					if (this.selAller == info.getMorning())
-						((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
-	
-					if (this.selRetour == info.getEvening())
-						((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
-					
-					table.addView(tr);
+						((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
+						((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
+						
+						if (this.selAller == info.getMorning())
+							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
+		
+						if (this.selRetour == info.getEvening())
+							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
+						
+						table.addView(tr);
+					}
 				}
 			}
 		}
