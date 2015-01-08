@@ -44,7 +44,7 @@ public class FacadeView {
 	
 	public void changeActivity(Class activity) {
 		Intent i = new Intent(firstActivity, activity);
-		firstActivity.startActivity(i);
+		firstActivity.startActivityForResult(i, 0);
 	}
 	
 	/* CONNECTION */
@@ -75,11 +75,6 @@ public class FacadeView {
 		
 	}
 	
-	/* REGISTRATION */
-	public void changeActivityRegister() {
-		Intent i = new Intent(firstActivity, RegisterActivity.class);
-		firstActivity.startActivity(i); 
-	}
 	
 	/**
 	 * methode permettant d'inscrire un nouvel utilisateur
@@ -145,16 +140,6 @@ public class FacadeView {
 	}
 	
 
-	public void changeActivityProfileModification () {
-		Intent i = new Intent(firstActivity, ProfileModificationActivity.class);
-		firstActivity.startActivity(i); 
-	}
-
-	public void changeActivityPasswordForgotten() {
-		Intent i = new Intent(firstActivity, PasswordForgottenActivity.class);
-		firstActivity.startActivity(i); 
-	}
-	
 	
 	public void registrationFailed (int codeErreur) {
 		
@@ -166,10 +151,6 @@ public class FacadeView {
 	
 	public void modificationFailed (int codeErreur) {
 		
-	}
-	
-	public void changeActivityConnecting () {
-	
 	}
 	
 	public void deletionFailure () {
