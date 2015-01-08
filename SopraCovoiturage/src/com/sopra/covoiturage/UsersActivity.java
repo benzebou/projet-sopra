@@ -8,6 +8,7 @@ import android.view.View;
 public class UsersActivity extends Activity {
 	private FacadeView facade;
 	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -95,6 +95,45 @@
 	        android:textSize="20sp"
 	        android:textColor="#de002d" 
 	        android:text="Nombre d'utilisateurs selon trajet :" />
+	    
+	    <TableLayout
+		    android:id="@+id/Trajets"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent" >
+		 
+		    <!-- 2 columns -->
+		    <TableRow
+		        android:id="@+id/RowTitle"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:padding="5dip" >
+		 
+		        <TextView
+		            android:id="@+id/Trajet"
+		            android:text="Trajet"
+		            android:textSize="15sp" 
+		            android:textColor="#000000"/>
+		 
+		        <TextView
+		            android:id="@+id/Nb_conducteurs"
+		            android:text="Nb conducteurs"
+		            android:textSize="15sp" 
+		            android:paddingLeft="10dip"
+		            android:textColor="#000000"/>
+		        
+		        <TextView
+		            android:id="@+id/Nb_passagers"
+		            android:text="Nb passagers"
+		            android:textSize="15sp" 
+		            android:paddingLeft="10dip"
+		            android:textColor="#000000"/>
+		    </TableRow>
+		    
+		    <!-- just draw a red line -->
+		    <View
+		        android:layout_height="2dip"
+		        android:background="#de002d" />
+		</TableLayout>
 
     </LinearLayout>
 
