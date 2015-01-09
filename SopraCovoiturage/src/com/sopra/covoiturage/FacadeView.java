@@ -23,14 +23,16 @@ public class FacadeView {
 	private WorkplaceManagementActivity workMan;
 	private WorkplaceAdditionActivity workAdd;
 	private PasswordForgottenActivity pwActivity;
+	private RegisterActivity rActivity;
+	
 	private boolean admin;
+	
 	
 	private FacadeView(Activity activity) {
 		controller = ControllerFacade.getInstance(this);
-		firstActivity = activity;
-		
+		firstActivity = activity;	
 	}
-	
+
 	/**
 	 * Permet de recuperer l'instance de FacadeView
 	 * @return singleton
@@ -142,6 +144,11 @@ public class FacadeView {
 			Log.d("SC","Erreur processSendPwdMailFailure");
 		else 
 			getPwActivity().notificationSendPwdMailFailure();		
+	}
+	
+	public void notificationRegisterFailure(){
+		if (getPwActivity() != null)
+			getrActivity().notificationRegisterFailure();	
 	}
 	
 	public void registrationFailed (int codeErreur) {
@@ -292,6 +299,17 @@ public class FacadeView {
 	public void setUserInfo(Information userInfo) {
 		controller.setUserInfo(userInfo);
 	}
+
+	
+	public void setrActivity(RegisterActivity rActivity) {
+		this.rActivity = rActivity;
+	}
+
+	public RegisterActivity getrActivity() {
+		return rActivity;
+	}
+
+
 	
 	/**
 	 * 
