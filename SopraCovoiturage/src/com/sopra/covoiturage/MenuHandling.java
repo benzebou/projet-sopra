@@ -18,6 +18,7 @@ public class MenuHandling implements OnClickListener {
 	public MenuHandling(FacadeView facade, Activity activity, View menu) {
 		this.facade = facade;
 		this.menu = menu;
+		this.activity = activity;
 		
 		Log.d("SC", "MenuHandling created");
 		
@@ -31,10 +32,9 @@ public class MenuHandling implements OnClickListener {
 	public void onClick(View arg0) {
 		if(arg0.equals(disconnectionText)) {
 			facade.performDisconnect();
-			activity.finishActivity(RESULT_CLOSE_ALL);
-			
+			activity.finish();
 		} else if (arg0.equals(profileText)) {
-			facade.changeActivity(ProfileActivity.class);
+			facade.changeActivityProfile();
 		}
 		
 		
