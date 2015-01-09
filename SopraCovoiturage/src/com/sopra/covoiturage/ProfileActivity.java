@@ -43,7 +43,6 @@ public class ProfileActivity extends Activity {
 		pwd = (TextView) findViewById(R.id.mot_de_passe);
 		email = (TextView) findViewById(R.id.email);
 		phone = (TextView) findViewById(R.id.telephone);
-		town = (TextView) findViewById(R.id.commune);
 		postCode = (TextView) findViewById(R.id.code_postal);
 		workingDays = (TextView) findViewById(R.id.jours);
 		conductor = (TextView) findViewById(R.id.conducteur);
