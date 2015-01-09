@@ -469,7 +469,7 @@ public class ControllerFacade {
 		String [] schedule = new String[]{"10:30", "18:00"} ;
 		Boolean[] days = new Boolean[]{true,true,true,true,true,false,false};
 		Information info = new Information("user100", "1234", "user@monmail.fr", "smith",
-				"john", "0561665522", "31400", "3", schedule,days, true);
+				"john", "0561665522", "31400", "3", schedule,days, true, true);
 		//con.performConnect("admin1", "sopra") ; //fonctionne
 		//con.performConnect("user1", "test") ; //fonctionne
 		//con.performRegister(info); //fonctionne
