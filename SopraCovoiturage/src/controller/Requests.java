@@ -1169,31 +1169,35 @@ public class Requests {
 	 */
 	private static String getRequestParameters(RequestType typeOfRequest, HashMap<String, Object> map){
 		String urlParameters = "request=" + typeOfRequest.toString().toLowerCase();
-		if (typeOfRequest == RequestType.GET_LIST_WORKPLACE || typeOfRequest == RequestType.GET_LIST_TOWN)
+		if (typeOfRequest == RequestType.GET_LIST_WORKPLACE || typeOfRequest == RequestType.GET_LIST_TOWN){
+			System.out.println("Requête : " + urlParameters);
 			return urlParameters;
-		if (map != null){
-
-			// We fetch parameters in an iterator
-			Iterator<Entry<String, Object>> it = map.entrySet().iterator();
-
-			// We add parameters
-			while(it.hasNext()){
-				Entry<String,Object> couple = it.next();
-				urlParameters += "&" + couple.getKey() + "=" + couple.getValue();
+		}
+		else{
+			if (map != null){
+	
+				// We fetch parameters in an iterator
+				Iterator<Entry<String, Object>> it = map.entrySet().iterator();
+	
+				// We add parameters
+				while(it.hasNext()){
+					Entry<String,Object> couple = it.next();
+					urlParameters += "&" + couple.getKey() + "=" + couple.getValue();
+				}
 			}
-		}
-
-		if (typeOfRequest.equals(RequestType.CONNECT_USER) || typeOfRequest.equals(RequestType.CONNECT_ADMIN) || typeOfRequest.equals(RequestType.REGISTER) 
-				|| typeOfRequest.equals(RequestType.PASSWORD_FORGOTTEN)){
-			Random rand = new Random();
-			SYN_REQ = rand.nextInt(1000000)+1;
-			ACK_REQ = -1;
-			urlParameters += "&SYN_REQ="+SYN_REQ;
-		}
-		else
-		{
-			SYN_REQ++;
-			urlParameters += "&SYN_REQ="+SYN_REQ+"&ACK_REQ="+ACK_REQ;
+	
+			if (typeOfRequest.equals(RequestType.CONNECT_USER) || typeOfRequest.equals(RequestType.CONNECT_ADMIN) || typeOfRequest.equals(RequestType.REGISTER) 
+					|| typeOfRequest.equals(RequestType.PASSWORD_FORGOTTEN)){
+				Random rand = new Random();
+				SYN_REQ = rand.nextInt(1000000)+1;
+				ACK_REQ = -1;
+				urlParameters += "&SYN_REQ="+SYN_REQ;
+			}
+			else
+			{
+				SYN_REQ++;
+				urlParameters += "&SYN_REQ="+SYN_REQ+"&ACK_REQ="+ACK_REQ;
+			}
 		}
 
 		System.out.println("Requête : " + urlParameters);
