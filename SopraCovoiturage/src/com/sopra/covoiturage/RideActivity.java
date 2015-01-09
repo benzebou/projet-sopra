@@ -55,9 +55,9 @@ public class RideActivity extends Activity{
 		// Initialisation Spinner code postal
 		this.postCode = new Spinner(this);
 		this.postCode = (Spinner) findViewById(R.id.code_postal);
-		ArrayList<String> list = new ArrayList<String>();
-		//list = this.facade.getTownList();
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+		ArrayList<String> listP = new ArrayList<String>();
+		listP = this.fac.getPostcodeList();
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listP);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		postCode.setAdapter(dataAdapter);
 		
