@@ -52,6 +52,9 @@ public class RideActivity extends Activity{
 		this.fac = FacadeView.getInstance(this);
 		this.fac.setSearchRide(this);
 		
+		View menu = findViewById(R.id.menu);
+		MenuHandling menuH = new MenuHandling(fac, this, menu);
+		
 		// Initialisation Spinner code postal
 		this.postCode = new Spinner(this);
 		this.postCode = (Spinner) findViewById(R.id.code_postal);
@@ -162,31 +165,35 @@ public class RideActivity extends Activity{
 					Information info = rides.get(i).getUserList().get(j) ;
 					
 					// add a new row with mail and driver?.
-					if (selCond == "non conducteur" && (info.isConducteur() == false )) {
+					if ((selCond.equals("non conducteur")) && (info.isConducteur() == false )) {
 						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
 						
 						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
 						((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
+						
+						if (this.selAller.equals(info.getMorning()))
+							Log.d("lulu", "on passe dans la boucle");
+							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.BLUE);
+		
+						if (this.selRetour.equals(info.getEvening()))
+							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
+						
+
 						((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
 						((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
 						
-						if (this.selAller == info.getMorning())
-							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
-		
-						if (this.selRetour == info.getEvening())
-							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
-						
 						table.addView(tr);
 					}
-					else if (selCond == "conducteur" && (info.isConducteur() == true)) {
+					else if ((selCond == "conducteur") && (info.isConducteur() == true)) {
 						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
 						
 						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
 						((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
 						((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
 						((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
-						
+
 						if (this.selAller == info.getMorning())
+							Log.d("lulu", info.getMorning());
 							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
 		
 						if (this.selRetour == info.getEvening())
@@ -196,7 +203,8 @@ public class RideActivity extends Activity{
 					}
 					else {
 						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
-						
+						Log.d("lulu", info.getMorning());
+						Log.d("lulu", this.selAller);
 						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
 						
 						if (info.isConducteur() == true)
@@ -244,7 +252,7 @@ public class RideActivity extends Activity{
 	 * @param spin
 	 */
 	private void InitHeure(Spinner spin) {
-	    String heure;
+	    String heure, h;
 		List<String> list = new ArrayList<String>();
 	    
 		for(int i=7; i< 20; i++) {
