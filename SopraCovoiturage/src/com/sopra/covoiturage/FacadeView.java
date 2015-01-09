@@ -117,7 +117,7 @@ public class FacadeView {
 	
 	
 	public void processNotConnected() {
-		
+		((ConnectingActivity)firstActivity).notificationConnectionFailure();
 	}
 	
 	public void processSendPwdMailOk () {
