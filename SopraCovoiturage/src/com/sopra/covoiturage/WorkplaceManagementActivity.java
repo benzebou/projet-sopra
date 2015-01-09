@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -41,6 +42,7 @@ public class WorkplaceManagementActivity extends Activity {
 
 	
 	private void displayWorkplace() {
+		resetRides();
 	    this.workplace = this.fac.getWorkplaces();
 		for (int i = 0 ; i<workplace.size() ;i++) {
 			TableRow tr = (TableRow) inflater.inflate(R.layout.table_workplace_management, null); 
@@ -50,6 +52,16 @@ public class WorkplaceManagementActivity extends Activity {
 		}
 	}
 	
+	
+	private void resetRides() {
+		int count = table.getChildCount();
+		for (int i = 1; i < count; i++) {
+			View child = table.getChildAt(i);
+			if (child instanceof TableRow)
+				((ViewGroup) child).removeAllViews();
+		}
+	}
+
 
 	public void onClickAdd(View v) {
 		this.fac.changeActivity(WorkplaceAdditionActivity.class);	
