@@ -1013,7 +1013,6 @@ public class Requests {
 			RequestResponses result = task.get();
 			Log.d("SC", "C'est fini !");
 			if (result.isSuccess()) {
-				tab[1] = "0" ;
 				for (Entry<String, Object> entry : result.getData().entrySet()) {
 					number += Integer.parseInt((String) entry.getValue()) ;
 				}
