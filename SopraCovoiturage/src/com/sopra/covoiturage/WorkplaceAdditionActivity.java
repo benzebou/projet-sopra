@@ -30,7 +30,7 @@ public class WorkplaceAdditionActivity extends Activity {
 	public void onClickAdd(View v) {
 		
 		// Demande l'ajout à la base
-		this.newPlace = ((EditText) findViewById(R.id.Depart)).getText().toString();	
+		this.newPlace = ((EditText) findViewById(R.id.Name)).getText().toString();	
 		this.fac.addWorkplace(this.newPlace);
 		
 		//Repasse sur la WorkplaceManagementActivity

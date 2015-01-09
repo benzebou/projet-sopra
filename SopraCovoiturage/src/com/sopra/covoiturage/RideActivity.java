@@ -26,7 +26,8 @@ import android.widget.TextView;
 public class RideActivity extends Activity{
 	
 	private FacadeView fac;
-	private EditText departText;
+	private Spinner postCode;
+	private String selPostCode;
 	private Spinner workplace;
 	private String selWorkplace;
 	private Spinner conducteur;
@@ -50,6 +51,15 @@ public class RideActivity extends Activity{
 		setContentView(R.layout.ride_page);
 		this.fac = FacadeView.getInstance(this);
 		this.fac.setSearchRide(this);
+		
+		// Initialisation Spinner code postal
+		this.postCode = new Spinner(this);
+		this.postCode = (Spinner) findViewById(R.id.code_postal);
+		ArrayList<String> list = new ArrayList<String>();
+		//list = this.facade.getTownList();
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		postCode.setAdapter(dataAdapter);
 		
 		// Initialisation spinner workplace
 		this.workplace = new Spinner(this);
@@ -108,14 +118,15 @@ public class RideActivity extends Activity{
 	 * @param v
 	 */
 	public void onClickSearch(View v) {
+		this.postCode = (Spinner) findViewById(R.id.code_postal);
+		this.selPostCode = this.postCode.getSelectedItem().toString();
 		this.workplace = (Spinner) findViewById(R.id.Arrivee);
 		this.selWorkplace = this.workplace.getSelectedItem().toString();
-		this.departText = (EditText) findViewById(R.id.Depart);	
 		this.aller = (Spinner) findViewById(R.id.ChoixAller);
 		this.selAller = this.aller.getSelectedItem().toString();
 		this.retour = (Spinner) findViewById(R.id.ChoixRetour);
 		this.selRetour = this.retour.getSelectedItem().toString();
-		fac.performRides(departText.getText().toString(), selWorkplace);
+		fac.performRides(selPostCode, selWorkplace);
 		displayRide(this.selConducteur);		
 	}
 	

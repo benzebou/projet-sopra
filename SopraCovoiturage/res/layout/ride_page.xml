@@ -4,126 +4,133 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f6f6f6" >
-    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recherche Avancée :"
+            android:textColor="#de002d"
+            android:textSize="20sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">    
-            
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
             <TextView
-                        android:text="Recherche Avancée :"
-                    android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#de002d" />
-            
-            <LinearLayout 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-                    
-                        <TextView
-                            android:text="Depart"
-                            android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp" 
-                        android:textColor="#000000"/>
-                        <EditText
-                        android:id="@+id/Depart"
-                        android:inputType="text"        
-                        android:layout_width="75sp"
-                        android:layout_height="wrap_content"
-                        android:maxLength="5"/>
-                        <TextView
-                            android:text="Arrivee"
-                            android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp" 
-                        android:textColor="#000000"/>
-                        <Spinner  
-                            android:id="@+id/Arrivee"  
-                            android:layout_width="wrap_content"  
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
-        
-            <LinearLayout 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-                        <Spinner  
-                            android:id="@+id/ChoixAller"  
-                            android:layout_width="wrap_content"  
-                            android:layout_height="wrap_content"/>
-                        <Spinner  
-                            android:id="@+id/ChoixRetour"  
-                            android:layout_width="wrap_content"  
-                            android:layout_height="wrap_content"/>
-                        <Button
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:text="search"
-                            android:textSize="15sp"
-                        android:onClick="onClickSearch" />
-                </LinearLayout>
-            
-            
-            <Spinner android:id="@+id/Conducteur"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        
+                android:layout_height="40dp"
+                android:text="code postal :"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/code_postal"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"/>
+
             <TextView
-                        android:text="Trajets Correspondants :"
-                        android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="#de002d" />
-            
-                <TableLayout
-                    android:id="@+id/Trajets"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-                 
-                    <!-- 2 columns -->
-                    <TableRow
-                        android:id="@+id/RowTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dip" >
-                 
-                        <TextView
-                            android:id="@+id/Mail"
-                            android:text="Mail"
-                            android:textSize="15sp" 
-                            android:paddingRight="15dip"
-                            android:textColor="#000000"/>
-                 
-                        <TextView
-                            android:id="@+id/ConducteurInfo"
-                            android:text="Conducteur"
-                            android:textSize="15sp" 
-                            android:paddingLeft="15dip"
-                            android:textColor="#000000"/>
-                        
-                        <TextView
-                            android:id="@+id/Aller"
-                            android:text="Aller"
-                            android:textSize="15sp" 
-                            android:paddingLeft="15dip"
-                            android:textColor="#000000"/>
-                       
-                        <TextView
-                            android:id="@+id/Retour"
-                            android:text="Retour"
-                            android:textSize="15sp" 
-                            android:paddingLeft="15dip"
-                            android:textColor="#000000"/>
-                    </TableRow>
-                    
-                    <!-- just draw a red line 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Arrivee :"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/Arrivee"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Spinner
+                android:id="@+id/ChoixAller"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"/>
+
+            <Spinner
+                android:id="@+id/ChoixRetour"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:onClick="onClickSearch"
+                android:text="search"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/Conducteur"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trajets Correspondants :"
+            android:textColor="#de002d"
+            android:textSize="20sp" />
+
+        <TableLayout
+            android:id="@+id/Trajets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <!-- 2 columns -->
+
+            <TableRow
+                android:id="@+id/RowTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/Mail"
+                    android:paddingRight="15dip"
+                    android:text="Mail"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/ConducteurInfo"
+                    android:paddingLeft="15dip"
+                    android:text="Conducteur"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/Aller"
+                    android:paddingLeft="15dip"
+                    android:text="Aller"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/Retour"
+                    android:paddingLeft="15dip"
+                    android:text="Retour"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+            </TableRow>
+
+            <!--
+                    just draw a red line 
                     <View
                         android:layout_height="2dip"
-                        android:background="#de002d" />-->
-                </TableLayout>
-                    
-        </LinearLayout>
+                        android:background="#de002d" />
+            -->
+        </TableLayout>
+    </LinearLayout>
+
 </ScrollView>
