@@ -280,7 +280,7 @@ public class FacadeView {
 	 * @param userInfo
 	 */
 	public void setUserInfo(Information userInfo) {
-		setUserInfo(userInfo);
+		controller.setUserInfo(userInfo);
 	}
 	
 	/**
