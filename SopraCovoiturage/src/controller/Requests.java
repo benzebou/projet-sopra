@@ -1003,7 +1003,7 @@ public class Requests {
 	 */
 	public String[] numberConnectionRequest () {
 		RequestsParams params = new RequestsParams(RequestType.GET_STAT_CONNECTIONS,null);
-		String number = "-1" ;
+		Integer number = 0 ;
 		String[] tab = new String[2] ;
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
@@ -1013,11 +1013,12 @@ public class Requests {
 			RequestResponses result = task.get();
 			Log.d("SC", "C'est fini !");
 			if (result.isSuccess()) {
+				tab[1] = "0" ;
 				for (Entry<String, Object> entry : result.getData().entrySet()) {
-					number = (String) entry.getValue() ;
+					number += Integer.parseInt((String) entry.getValue()) ;
 				}
 				tab[0] = "0" ;
-				tab[1] = number ;
+				tab[1] = number.toString() ;
 			}
 			else {
 				tab[0] = "-1" ;
