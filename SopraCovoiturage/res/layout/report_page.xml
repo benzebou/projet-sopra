@@ -120,21 +120,21 @@
                     android:id="@+id/Trajet"
                     android:text="Trajet"
                     android:textColor="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/Nb_conducteurs"
-                    android:paddingLeft="10dip"
+                    android:paddingLeft="18dip"
                     android:text="Nb conducteurs"
                     android:textColor="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/Nb_passagers"
-                    android:paddingLeft="10dip"
+                    android:paddingLeft="5dip"
                     android:text="Nb passagers"
                     android:textColor="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
             </TableRow>
 
             <!-- just draw a red line -->
