@@ -1238,19 +1238,23 @@ public class Requests {
 				}
 			}
 	
-			if (typeOfRequest.equals(RequestType.CONNECT_USER) || typeOfRequest.equals(RequestType.CONNECT_ADMIN) || typeOfRequest.equals(RequestType.REGISTER) 
-					|| typeOfRequest.equals(RequestType.PASSWORD_FORGOTTEN)){
-				Random rand = new Random();
-				SYN_REQ = rand.nextInt(1000000)+1;
-				ACK_REQ = -1;
-				urlParameters += "&SYN_REQ="+SYN_REQ;
+			
+			System.out.println("Type de requête : "+typeOfRequest);
+			if (!typeOfRequest.equals(RequestType.REGISTER) 
+					&& !typeOfRequest.equals(RequestType.PASSWORD_FORGOTTEN)){
+				if (typeOfRequest.equals(RequestType.CONNECT_USER) || typeOfRequest.equals(RequestType.CONNECT_ADMIN) || SYN_REQ <0 || ACK_REQ < 0){
+					Random rand = new Random();
+					SYN_REQ = rand.nextInt(1000000)+1;
+					ACK_REQ = -1;
+					urlParameters += "&SYN_REQ="+SYN_REQ;
+				}
+				else
+				{
+					SYN_REQ++;
+					urlParameters += "&SYN_REQ="+SYN_REQ+"&ACK_REQ="+ACK_REQ;
+				}
 			}
-			else
-			{
-				SYN_REQ++;
-				urlParameters += "&SYN_REQ="+SYN_REQ+"&ACK_REQ="+ACK_REQ;
 			}
-		}
 
 		System.out.println("Requête : " + urlParameters);
 		return urlParameters;
