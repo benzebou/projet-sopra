@@ -1162,7 +1162,8 @@ public class Requests {
 			}
 		}
 
-		if (typeOfRequest.equals(RequestType.CONNECT_USER) || typeOfRequest.equals(RequestType.CONNECT_ADMIN)){
+		if (typeOfRequest.equals(RequestType.CONNECT_USER) || typeOfRequest.equals(RequestType.CONNECT_ADMIN) || typeOfRequest.equals(RequestType.REGISTER) 
+				|| typeOfRequest.equals(RequestType.PASSWORD_FORGOTTEN)){
 			Random rand = new Random();
 			SYN_REQ = rand.nextInt(1000000)+1;
 			ACK_REQ = -1;
