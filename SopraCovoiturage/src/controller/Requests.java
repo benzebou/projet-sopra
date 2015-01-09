@@ -347,35 +347,35 @@ public class Requests {
 				info.setPostcode((String)result.getData().get("postal"));
 				info.setMorning((String)result.getData().get("horairesMatin"));
 				info.setEvening((String)result.getData().get("horairesSoir"));
-				if (result.getData().get("conducteur") == "1")
+				if (result.getData().get("conducteur").equals("1"))
 					info.setConducteur(true);
 				else
 					info.setConducteur(false);
-				if (result.getData().get("lundi") == "1")
+				if (result.getData().get("lundi").equals("1"))
 					info.getDays()[0] = true ;
 				else
 					info.getDays()[0] = false ;
-				if (result.getData().get("mardi") == "1")
+				if (result.getData().get("mardi").equals("1"))
 					info.getDays()[1] = true ;
 				else
 					info.getDays()[1] = false ;
-				if (result.getData().get("mercredi") == "1")
+				if (result.getData().get("mercredi").equals("1"))
 					info.getDays()[2] = true ;
 				else
 					info.getDays()[2] = false ;
-				if (result.getData().get("jeudi") == "1")
+				if (result.getData().get("jeudi").equals("1"))
 					info.getDays()[3] = true ;
 				else
 					info.getDays()[3] = false ;
-				if (result.getData().get("vendredi") == "1")
+				if (result.getData().get("vendredi").equals("1"))
 					info.getDays()[4] = true ;
 				else
 					info.getDays()[4] = false ;
-				if (result.getData().get("samedi") == "1")
+				if (result.getData().get("samedi").equals("1"))
 					info.getDays()[5] = true ;
 				else
 					info.getDays()[5] = false ;
-				if (result.getData().get("dimanche") == "1")
+				if (result.getData().get("dimanche").equals("1"))
 					info.getDays()[6] = true ;
 				else
 					info.getDays()[6] = false ;
