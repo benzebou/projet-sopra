@@ -50,7 +50,7 @@ public class StringAdapter extends BaseAdapter {
 	 * (ici, éléments du fichier ligne_de_la_listview.xml)
 	 */
   private class ViewHolder {
-    TextView numElement;
+    //TextView numElement;
     TextView element;
   }
 
@@ -64,7 +64,7 @@ public class StringAdapter extends BaseAdapter {
       // On lie les éléments au fichier ligne_de_la_listview.xml
       convertView = inflater.inflate(R.layout.ligne_de_la_list_view, null);
       // On lie les deux TextView déclarés précédemment à ceux du xml
-      holder.numElement = (TextView)convertView.findViewById(R.id.numElement);
+      //holder.numElement = (TextView)convertView.findViewById(R.id.numElement);
       holder.element = (TextView)convertView.findViewById(R.id.element);
       convertView.setTag(holder);
     } else {
@@ -72,7 +72,7 @@ public class StringAdapter extends BaseAdapter {
     }
     // On défini ici le texte que doit contenir chacun des TextView
     // Le premier affichera le numéro de l'élément (numéro de ligne)
-    holder.numElement.setText("" + position);
+    //holder.numElement.setText("" + position);
     // Le second affichera l'élément
     holder.element.setText(epreuve.get(position));
     return convertView;
