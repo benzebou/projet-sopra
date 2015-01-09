@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -28,6 +29,10 @@ public class ReportActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.report_page);
+		
+		View menu = findViewById(R.id.menu);
+		MenuHandling menuH = new MenuHandling(facade, this, menu);
+		
 		facade = FacadeView.getInstance(this);
 		nbConnexions =(TextView) findViewById(R.id.nb_connexion);
 		nbConducteurs =(TextView) findViewById(R.id.nb_conducteurs);
