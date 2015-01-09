@@ -341,7 +341,6 @@ public class Requests {
 				info.setEmail((String)result.getData().get("mail"));
 				info.setName((String)result.getData().get("nom"));
 				info.setFirstname((String)result.getData().get("prenom"));
-				info.setMdp((String)result.getData().get("mdp"));
 				info.setPhone((String)result.getData().get("tel"));
 				info.setWorkplace((String)result.getData().get("travail"));
 				info.setPostcode((String)result.getData().get("postal"));
