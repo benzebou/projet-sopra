@@ -1,12 +1,17 @@
 package com.sopra.covoiturage;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 public class UsersActivity extends Activity {
 	private FacadeView facade;
+	private ListView userList;
+	ArrayList<String> userArrayList = new ArrayList<String>();
 	
 	
 	@Override
@@ -18,6 +23,8 @@ public class UsersActivity extends Activity {
 		
 		View menu = findViewById(R.id.menu);
 		MenuHandling menuH = new MenuHandling(facade, this, menu);
+		
+		userList = (ListView) findViewById(R.id.usersTable);
 		
 	}
 	

@@ -204,6 +204,10 @@ public class FacadeView {
 
 	}
 	
+	public void getUsers() {
+		
+	}
+	
 	
 	/**
 	 * Methode permettant renvoyer le number de conducteurs et le nombre de passager

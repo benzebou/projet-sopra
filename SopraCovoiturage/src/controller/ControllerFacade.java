@@ -322,10 +322,12 @@ public class ControllerFacade {
 	 * @return ArrayList<String> : liste des communes
 	 */
 	public ArrayList<String> getPostcodeList() {
+		/*
 		ArrayList <String> postcodes = requests.getPostcodeListRequest() ;
 		for (int i=0 ; i< postcodes.size() ; i++ ) {
 			System.out.println(postcodes.get(i)) ;
 		}
+		*/
 		return requests.getPostcodeListRequest() ;
 	}
 

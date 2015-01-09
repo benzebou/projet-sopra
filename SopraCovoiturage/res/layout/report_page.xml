@@ -4,137 +4,145 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f6f6f6" >
-    	    
+
     <LinearLayout
         android:layout_width="match_parent"
- 	 	android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
-        
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp" >
 
-	    <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="5dp"	        	    
-	        android:layout_marginBottom="10dp"
-	        android:text="Nombre de connexions : "
-	        android:textColor="#de002d"
-	        android:textSize="20sp" />
-
-	   	<TextView
-            android:id="@+id/nb_connexion"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="20sp" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp" >
-
-	    <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="5dp"
-	        android:text="Nombre d'utilisateurs :" 
-	        android:textColor="#de002d"
-	        android:textSize="20sp" />
-	    </LinearLayout>
-	    
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp" 	    
-	        android:layout_marginTop="10dp">
-	    
         <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="5dp"
-	        android:textSize="20sp"
-	        android:text="Conducteurs : " />
-	    
-
-	   	<TextView
-            android:id="@+id/nb_conducteurs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp" />
-        </LinearLayout>
-        
-                <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="50dp"
+            android:text="Rapports"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp" >
-	    
-        <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="5dp"
-	        android:textSize="20sp"
-	        android:text="Passagers : " />
-	    
 
-	   	<TextView
-            android:id="@+id/nb_non_conducteurs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="5dp"
+                android:text="Nombre de connexions : "
+                android:textColor="#de002d"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/nb_connexion"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="20sp" />
         </LinearLayout>
 
-	    <TextView
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="10dp"
-	        android:layout_marginTop="10dp"
-	        android:textSize="20sp"
-	        android:textColor="#de002d" 
-	        android:text="Nombre d'utilisateurs selon trajet :" />
-	    
-	    <TableLayout
-		    android:id="@+id/Trajets"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent" >
-		 
-		    <!-- 2 columns -->
-		    <TableRow
-		        android:id="@+id/RowTitle"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:padding="5dip" >
-		 
-		        <TextView
-		            android:id="@+id/Trajet"
-		            android:text="Trajet"
-		            android:textSize="15sp" 
-		            android:textColor="#000000"/>
-		 
-		        <TextView
-		            android:id="@+id/Nb_conducteurs"
-		            android:text="Nb conducteurs"
-		            android:textSize="15sp" 
-		            android:paddingLeft="10dip"
-		            android:textColor="#000000"/>
-		        
-		        <TextView
-		            android:id="@+id/Nb_passagers"
-		            android:text="Nb passagers"
-		            android:textSize="15sp" 
-		            android:paddingLeft="10dip"
-		            android:textColor="#000000"/>
-		    </TableRow>
-		    
-		    <!-- just draw a red line -->
-		    <View
-		        android:layout_height="2dip"
-		        android:background="#de002d" />
-		</TableLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Nombre d&apos;utilisateurs :"
+                android:textColor="#de002d"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Conducteurs : "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/nb_conducteurs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Passagers : "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/nb_non_conducteurs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="Nombre d&apos;utilisateurs selon trajet :"
+            android:textColor="#de002d"
+            android:textSize="20sp" />
+
+        <TableLayout
+            android:id="@+id/Trajets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <!-- 2 columns -->
+
+            <TableRow
+                android:id="@+id/RowTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/Trajet"
+                    android:text="Trajet"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/Nb_conducteurs"
+                    android:paddingLeft="10dip"
+                    android:text="Nb conducteurs"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/Nb_passagers"
+                    android:paddingLeft="10dip"
+                    android:text="Nb passagers"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+            </TableRow>
+
+            <!-- just draw a red line -->
+
+            <View
+                android:layout_height="2dip"
+                android:background="#de002d" />
+        </TableLayout>
     </LinearLayout>
 
 </ScrollView>
