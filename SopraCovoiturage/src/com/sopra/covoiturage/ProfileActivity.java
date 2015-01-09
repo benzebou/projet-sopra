@@ -74,7 +74,10 @@ public class ProfileActivity extends Activity {
 		else conductor.setText("non");
 		goingTime.setText(info.getMorning());
 		returningTime.setText(info.getEvening());
-		workplace.setText(info.getWorkplace());
+		workplace.setText(info.getWorkplace());	
+		if (info.isNotifie())
+			notification.setText("oui");
+		else notification.setText("non");
 
 
 	}
