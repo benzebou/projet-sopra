@@ -50,7 +50,7 @@ public class ReportActivity extends Activity {
 			nbNonConducteurs.setText(res[1]);
 		}
 		
-		//fillTableNumberUsersPerRide();
+		fillTableNumberUsersPerRide();
 		
 	}
 

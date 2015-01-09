@@ -962,11 +962,11 @@ public class Requests {
 					 * 				AFFICHAGE POUR TEST
 					 **********************************************************/
 					Log.d("SC", "RIDE : "+entry.getKey()) ;
-					Log.d("SC", "Drivers : "+((Long) nMapReponse.get("drivers")).toString()) ;
-					Log.d("SC", "Passengers : "+((Long) nMapReponse.get("passengers")).toString()) ;
+					Log.d("SC", "Drivers : "+((Integer) nMapReponse.get("drivers")).toString()) ;
+					Log.d("SC", "Passengers : "+((Integer) nMapReponse.get("passengers")).toString()) ;
 	
-					tab[0] = ((Long) nMapReponse.get("drivers")).toString() ;
-					tab[1] = ((Long) nMapReponse.get("passengers")).toString() ;
+					tab[0] = ((Integer) nMapReponse.get("drivers")).toString() ;
+					tab[1] = ((Integer) nMapReponse.get("passengers")).toString() ;
 					requete.put(entry.getKey(), tab) ;
 				}
 			}
