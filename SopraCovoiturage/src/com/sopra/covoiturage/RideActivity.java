@@ -147,6 +147,11 @@ public class RideActivity extends Activity {
 		fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
 		displayRide();
 	}
+	
+	public void onButtonSearchClick(View v) {
+		findViewById(R.id.search).setVisibility(View.VISIBLE);
+		// TODO : Changer l'image et possibilité de rétractation
+	}
 
 	/**
 	 * Affichage des trajets.
