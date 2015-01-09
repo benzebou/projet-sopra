@@ -86,8 +86,8 @@ public class RideActivity extends Activity{
 		this.conducteur.setOnItemSelectedListener(new OnItemSelectedListener() { 
            @Override 
            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-               //this.selConducteur = this.conducteur.getSelectedItem().toString();	
-               //displayRide(this.selConducteur);	 
+        	   setSelCond(getCond().getSelectedItem().toString());	
+               displayRide(getCond().getSelectedItem().toString());	 
            }
 
            @Override
@@ -278,4 +278,14 @@ public class RideActivity extends Activity{
 	    }
 	    super.onActivityResult(requestCode, resultCode, data);
 	}
+	
+	
+	public void setSelCond(String selCond) {
+		this.selConducteur = selCond;
+	}
+	
+	public Spinner getCond() {
+		return this.conducteur;
+	}
+	
 }
