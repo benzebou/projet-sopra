@@ -23,8 +23,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class RideActivity extends Activity{
-	
+public class RideActivity extends Activity {
+
 	private FacadeView fac;
 	private Spinner postCode;
 	private String selPostCode;
@@ -40,8 +40,7 @@ public class RideActivity extends Activity{
 	private Information user;
 	private TableLayout table;
 	private LayoutInflater inflater;
-		
-	
+
 	/**
 	 * Creation de RideActivity.
 	 */
@@ -51,74 +50,80 @@ public class RideActivity extends Activity{
 		setContentView(R.layout.ride_page);
 		this.fac = FacadeView.getInstance(this);
 		this.fac.setSearchRide(this);
-		
+
 		View menu = findViewById(R.id.menu);
 		MenuHandling menuH = new MenuHandling(fac, this, menu);
-		
+
 		// Initialisation Spinner code postal
 		this.postCode = new Spinner(this);
 		this.postCode = (Spinner) findViewById(R.id.code_postal);
 		ArrayList<String> listP = new ArrayList<String>();
 		listP = this.fac.getPostcodeList();
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listP);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, listP);
+		dataAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		postCode.setAdapter(dataAdapter);
-		
+
 		// Initialisation spinner workplace
 		this.workplace = new Spinner(this);
 		this.workplace = (Spinner) findViewById(R.id.Arrivee);
-	    ArrayList<String> listW = new ArrayList<String>();
-	    listW = this.fac.getWorkplaces();
-	    Log.d("Lulu","Affichage des workplaces");
-        ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
-        dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ArrayList<String> listW = new ArrayList<String>();
+		listW = this.fac.getWorkplaces();
+		Log.d("Lulu", "Affichage des workplaces");
+		ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, listW);
+		dataAdapterW
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		workplace.setAdapter(dataAdapterW);
-		
-		
+
 		// Initialisation spinner conducteur
-	    this.conducteur = new Spinner(this);
+		this.conducteur = new Spinner(this);
 		this.conducteur = (Spinner) findViewById(R.id.Conducteur);
-	    List<String> listC = new ArrayList<String>();
-	    listC.add("les deux");
-	    listC.add("conducteur");
-	    listC.add("non conducteur");
-	    this.selConducteur ="les deux";
+		List<String> listC = new ArrayList<String>();
+		listC.add("les deux");
+		listC.add("conducteur");
+		listC.add("non conducteur");
+		this.selConducteur = "les deux";
 
-        final ArrayAdapter<String> dataAdapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listC);
-        dataAdapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		final ArrayAdapter<String> dataAdapterC = new ArrayAdapter<String>(
+				this, android.R.layout.simple_spinner_item, listC);
+		dataAdapterC
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		this.conducteur.setAdapter(dataAdapterC);
-		this.conducteur.setOnItemSelectedListener(new OnItemSelectedListener() { 
-           @Override 
-           public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-        	   setSelCond(getCond().getSelectedItem().toString());	
-               displayRide();	 
-           }
+		this.conducteur.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				setSelCond(getCond().getSelectedItem().toString());
+				displayRide();
+			}
 
-           @Override
-           public void onNothingSelected(AdapterView<?> arg0) {
-           }
-         });
-		
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			}
+		});
+
 		// Initialisation spinner heure aller
 		this.aller = new Spinner(this);
 		this.aller = (Spinner) findViewById(R.id.ChoixAller);
 		InitHeure(this.aller);
-		
+
 		// Initialisation spinner heure retour
 		this.retour = new Spinner(this);
 		this.retour = (Spinner) findViewById(R.id.ChoixRetour);
 		InitHeure(this.retour);
-		
-		
+
 		// Initialise le tableau de trajet
 		inflater = getLayoutInflater();
 		table = new TableLayout(this);
 		table = (TableLayout) findViewById(R.id.Trajets);
-		//displayBasicRide();
+		// displayBasicRide();
 	}
-	
+
 	/**
 	 * Execution de cette fonction lorsque le user clique sur search.
+	 * 
 	 * @param v
 	 */
 	public void onClickSearch(View v) {
@@ -131,164 +136,178 @@ public class RideActivity extends Activity{
 		this.retour = (Spinner) findViewById(R.id.ChoixRetour);
 		this.selRetour = this.retour.getSelectedItem().toString();
 		fac.performRides(selPostCode, selWorkplace);
-		displayRide();		
+		displayRide();
 	}
-	
-	
+
 	/**
-	 * Affichage des trajets correspondant aux parametres du profil du user à l'ouverture de la page.
+	 * Affichage des trajets correspondant aux parametres du profil du user à
+	 * l'ouverture de la page.
 	 */
 	public void displayBasicRide() {
 		fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
 		displayRide();
 	}
-	
+
 	/**
 	 * Affichage des trajets.
+	 * 
 	 * @param conducteur
 	 */
 	public void displayRide() {
 		String selCond = this.selConducteur;
 		resetRides();
-		//initRides();
 		if (rides != null) {
-			// parcours la liste rides et affiche les trajets dont "conducteur" correspond
-			for (int i=0; i<rides.size();i++) {
-				for (int j = 0; j<rides.get(i).getUserList().size(); j++) {
-					Information info = rides.get(i).getUserList().get(j) ;
-					
+			// parcours la liste rides et affiche les trajets dont "conducteur"
+			// correspond
+			for (int i = 0; i < rides.size(); i++) {
+				for (int j = 0; j < rides.get(i).getUserList().size(); j++) {
+					Information info = rides.get(i).getUserList().get(j);
+
 					// add a new row with mail and driver?.
-					if ((selCond.equals("non conducteur")) && (info.isConducteur() == false )) {
-						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
+					if ((selCond.equals("non conducteur"))
+							&& (info.isConducteur() == false)) {
+						TableRow tr = (TableRow) inflater.inflate(
+								R.layout.table_search, null);
 						Log.d("lulu", "on passe dans la boucle");
 
-						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
-						((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
-						
-						if (this.selAller.equals(info.getMorning()))
-							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
-		
-						if (this.selRetour.equals(info.getEvening()))
-							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
-						
+						((TextView) tr.findViewById(R.id.MailUser))
+								.setText(info.getEmail());
+						((TextView) tr.findViewById(R.id.CondUser))
+								.setText("Non");
 
-						((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
-						((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
-						
+						if (this.selAller.equals(info.getMorning()))
+							((TextView) tr.findViewById(R.id.HeureAller))
+									.setTextColor(Color.parseColor("#de002d"));
+
+						if (this.selRetour.equals(info.getEvening()))
+							((TextView) tr.findViewById(R.id.HeureRetour))
+									.setTextColor(Color.parseColor("#de002d"));
+
+						((TextView) tr.findViewById(R.id.HeureAller))
+								.setText(info.getMorning());
+						((TextView) tr.findViewById(R.id.HeureRetour))
+								.setText(info.getEvening());
+
 						table.addView(tr);
-					}
-					else if ((selCond.equals("conducteur")) && (info.isConducteur() == true)) {
-						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
+					} else if ((selCond.equals("conducteur"))
+							&& (info.isConducteur() == true)) {
+						TableRow tr = (TableRow) inflater.inflate(
+								R.layout.table_search, null);
 						Log.d("lulu", "on passe dans la boucle 2");
 
-						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
-						((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
-						((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
-						((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
+						((TextView) tr.findViewById(R.id.MailUser))
+								.setText(info.getEmail());
+						((TextView) tr.findViewById(R.id.CondUser))
+								.setText("Oui");
+						((TextView) tr.findViewById(R.id.HeureAller))
+								.setText(info.getMorning());
+						((TextView) tr.findViewById(R.id.HeureRetour))
+								.setText(info.getEvening());
 
 						if (this.selAller.equals(info.getMorning()))
 							Log.d("lulu", info.getMorning());
-							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
-		
+						((TextView) tr.findViewById(R.id.HeureAller))
+								.setTextColor(Color.parseColor("#de002d"));
+
 						if (this.selRetour.equals(info.getEvening()))
-							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
-						
+							((TextView) tr.findViewById(R.id.HeureRetour))
+									.setTextColor(Color.parseColor("#de002d"));
+
 						table.addView(tr);
-					}
-					else if((selCond.equals("les deux"))) {
-						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
+					} else if ((selCond.equals("les deux"))) {
+						TableRow tr = (TableRow) inflater.inflate(
+								R.layout.table_search, null);
 						Log.d("lulu", info.getMorning());
 						Log.d("lulu", this.selAller);
-						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
+						((TextView) tr.findViewById(R.id.MailUser))
+								.setText(info.getEmail());
 						Log.d("lulu", "on passe dans la boucle 3");
 
 						if (info.isConducteur() == true)
-							((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
+							((TextView) tr.findViewById(R.id.CondUser))
+									.setText("Oui");
 						else
-							((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
-					
-						((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
-						((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
-						
+							((TextView) tr.findViewById(R.id.CondUser))
+									.setText("Non");
+
+						((TextView) tr.findViewById(R.id.HeureAller))
+								.setText(info.getMorning());
+						((TextView) tr.findViewById(R.id.HeureRetour))
+								.setText(info.getEvening());
+
 						if (this.selAller.equals(info.getMorning()))
-							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
-		
+							((TextView) tr.findViewById(R.id.HeureAller))
+									.setTextColor(Color.parseColor("#de002d"));
+
 						if (this.selRetour.equals(info.getEvening()))
-							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
-						
+							((TextView) tr.findViewById(R.id.HeureRetour))
+									.setTextColor(Color.parseColor("#de002d"));
+
 						table.addView(tr);
 					}
 				}
 			}
 		}
 	}
-	
-	private void initRides() {
-		TableRow tr = (TableRow) inflater.inflate(R.layout.table_search_init, null); 
-		((TextView) tr.findViewById(R.id.Mail)).setText("Mail");
-		((TextView) tr.findViewById(R.id.ConducteurInfo)).setText("Conducteur");
-		((TextView) tr.findViewById(R.id.Aller)).setText("Aller");
-		((TextView) tr.findViewById(R.id.Retour)).setText("Retour");
-		table.addView(tr);
-	}
-	
-	
+
 	private void resetRides() {
 		int count = table.getChildCount();
 		for (int i = 1; i < count; i++) {
-		    View child = table.getChildAt(i);
-		    if (child instanceof TableRow) 
-		    	((ViewGroup) child).removeAllViews();
+			View child = table.getChildAt(i);
+			if (child instanceof TableRow)
+				((ViewGroup) child).removeAllViews();
 		}
 	}
-	
+
 	/**
 	 * Fonction d'initialisation des spinner heure aller et heure retour
+	 * 
 	 * @param spin
 	 */
 	private void InitHeure(Spinner spin) {
-	    String heure, h;
+		String heure, h;
 		List<String> list = new ArrayList<String>();
-	    
-		for(int i=7; i< 20; i++) {
+
+		for (int i = 7; i < 20; i++) {
 			heure = i + ":00";
-	    	for(int j=1; j<5; j++) {
-	    		list.add(heure);	
-	    		heure = i + ":" + j*15;
-	    	}
-	    }
-	    
-	    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-	    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			for (int j = 1; j < 5; j++) {
+				list.add(heure);
+				heure = i + ":" + j * 15;
+			}
+		}
+
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, list);
+		dataAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spin.setAdapter(dataAdapter);
 	}
-	
+
 	/**
-	 * setter de l'attribut rides. 
+	 * setter de l'attribut rides.
+	 * 
 	 * @param rides
 	 */
 	public void setRides(ArrayList<Ride> rides) {
 		this.rides = rides;
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    switch(resultCode)
-	    {
-	    case MenuHandling.RESULT_CLOSE_ALL:
-	        setResult(MenuHandling.RESULT_CLOSE_ALL);
-	        finish();
-	    }
-	    super.onActivityResult(requestCode, resultCode, data);
+		switch (resultCode) {
+		case MenuHandling.RESULT_CLOSE_ALL:
+			setResult(MenuHandling.RESULT_CLOSE_ALL);
+			finish();
+		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
-	
-	
+
 	public void setSelCond(String selCond) {
 		this.selConducteur = selCond;
 	}
-	
+
 	public Spinner getCond() {
 		return this.conducteur;
 	}
-	
+
 }
