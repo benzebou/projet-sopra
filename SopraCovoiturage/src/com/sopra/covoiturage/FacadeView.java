@@ -204,8 +204,8 @@ public class FacadeView {
 
 	}
 	
-	public void getUsers() {
-		
+	public ArrayList<Information> getUsers() {
+		return controller.getUsers();
 	}
 	
 	
