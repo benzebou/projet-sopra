@@ -13,6 +13,10 @@ public class PasswordForgottenActivity extends Activity  {
 	private FacadeView facade;
 	private EditText mailText;
 	
+	/**
+	 * Cree la page des mots de passes oubliés
+	 * @param savedInstanceState
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.password_forgotten_page);
@@ -24,6 +28,10 @@ public class PasswordForgottenActivity extends Activity  {
 
 	}
 	
+	/**
+	 * methode appelee lorsqu'on clique sur le bouton pour envoyer un nouveau mot de passe
+	 * @param v
+	 */
 	public void onPasswordForgottenButtonClick(View v) {
 		String mailTxtString = mailText.getText().toString();
 		if ((mailTxtString != null) && (mailTxtString.trim().length() > 0))
@@ -32,6 +40,9 @@ public class PasswordForgottenActivity extends Activity  {
 			notificationEmptyPwdMail();
 	}
 	
+	/**
+	 * methode qui notifie l'utilisateur que le nouveau mot de passe a été envoyé par mail
+	 */
 	public void notificationSendPwdMailOk() {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_LONG;
@@ -40,6 +51,9 @@ public class PasswordForgottenActivity extends Activity  {
 		toast.show();		
 	}
 	
+	/**
+	 * methode qui notifie l'utilisateur que le nouveau mot de passe n'a pas pu etre envoyé
+	 */
 	public void notificationSendPwdMailFailure() {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_LONG;
@@ -48,6 +62,9 @@ public class PasswordForgottenActivity extends Activity  {
 		toast.show();	
 	}
 	
+	/**
+	 * methode qui notifie l'utilisateur que le champs mail est vide
+	 */
 	public void notificationEmptyPwdMail() {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_LONG;
