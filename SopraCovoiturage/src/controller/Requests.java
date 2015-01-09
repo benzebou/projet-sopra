@@ -335,7 +335,7 @@ public class Requests {
 			result = task.get();
 			
 			if (result.isSuccess()) {
-				Information info = new Information();
+				Information info = this.setUser(result.getData()) ;
 				result.getData() ;
 				info.setLogin((String)result.getData().get("login"));
 				info.setEmail((String)result.getData().get("mail"));
@@ -770,7 +770,7 @@ public class Requests {
 			ArrayList<Information> users = new ArrayList<Information>() ;
 			// parcours de la HashMap
 			for (Entry<String, Object> entry : result.getData().entrySet()) {
-				HashMap<String,String> nMapReponse = (HashMap) entry.getValue() ;
+				HashMap<String,Object> nMapReponse = (HashMap<String, Object>) entry.getValue() ;
 				Information info = this.setUser(nMapReponse) ;	
 				users.add(info) ;
 			}
@@ -1164,46 +1164,47 @@ public class Requests {
 		
 	}	
 
-	private Information setUser (HashMap<String,String> nMapReponse) {
+	private Information setUser (Map<String, Object> map) {
 		Information info = new Information () ;
-		info.setLogin((String)nMapReponse.get("login"));
-		info.setEmail((String)nMapReponse.get("mail"));
-		info.setName((String)nMapReponse.get("nom"));
-		info.setFirstname((String)nMapReponse.get("prenom"));
-		info.setPhone((String)nMapReponse.get("tel"));
-		info.setWorkplace((String)nMapReponse.get("travail"));
-		info.setPostcode((String)nMapReponse.get("postal"));
-		info.setMorning((String)nMapReponse.get("horairesMatin"));
-		info.setEvening((String)nMapReponse.get("horairesSoir"));
-		if (nMapReponse.get("conducteur") == "1")
+		info.setLogin((String)map.get("login"));
+		info.setEmail((String)map.get("mail"));
+		info.setName((String)map.get("nom"));
+		info.setFirstname((String)map.get("prenom"));
+		if ((String)map.get("tel") != null)
+			info.setPhone((String)map.get("tel"));
+		info.setWorkplace((String)map.get("travail"));
+		info.setPostcode((String)map.get("postal"));
+		info.setMorning((String)map.get("horairesMatin"));
+		info.setEvening((String)map.get("horairesSoir"));
+		if (map.get("conducteur") == "1")
 			info.setConducteur(true);
 		else
 			info.setConducteur(false);
-		if (nMapReponse.get("lundi") == "1")
+		if (map.get("lundi") == "1")
 			info.getDays()[0] = true ;
 		else
 			info.getDays()[0] = false ;
-		if (nMapReponse.get("mardi") == "1")
+		if (map.get("mardi") == "1")
 			info.getDays()[1] = true ;
 		else
 			info.getDays()[1] = false ;
-		if (nMapReponse.get("mercredi") == "1")
+		if (map.get("mercredi") == "1")
 			info.getDays()[2] = true ;
 		else
 			info.getDays()[2] = false ;
-		if (nMapReponse.get("jeudi") == "1")
+		if (map.get("jeudi") == "1")
 			info.getDays()[3] = true ;
 		else
 			info.getDays()[3] = false ;
-		if (nMapReponse.get("vendredi") == "1")
+		if (map.get("vendredi") == "1")
 			info.getDays()[4] = true ;
 		else
 			info.getDays()[4] = false ;
-		if (nMapReponse.get("samedi") == "1")
+		if (map.get("samedi") == "1")
 			info.getDays()[5] = true ;
 		else
 			info.getDays()[5] = false ;
-		if (nMapReponse.get("dimanche") == "1")
+		if (map.get("dimanche") == "1")
 			info.getDays()[6] = true ;
 		else
 			info.getDays()[6] = false ;
