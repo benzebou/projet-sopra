@@ -31,7 +31,7 @@ public class RideActivity extends Activity{
 	private Spinner workplace;
 	private String selWorkplace;
 	private Spinner conducteur;
-	private String selConducteur = "both";
+	private String selConducteur = "les deux";
 	private Spinner aller;
 	private String selAller;
 	private Spinner retour;
@@ -82,6 +82,7 @@ public class RideActivity extends Activity{
 	    listC.add("les deux");
 	    listC.add("conducteur");
 	    listC.add("non conducteur");
+	    this.selConducteur ="les deux";
 
         final ArrayAdapter<String> dataAdapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listC);
         dataAdapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -90,7 +91,7 @@ public class RideActivity extends Activity{
            @Override 
            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
         	   setSelCond(getCond().getSelectedItem().toString());	
-               displayRide(getCond().getSelectedItem().toString());	 
+               displayRide();	 
            }
 
            @Override
@@ -130,32 +131,24 @@ public class RideActivity extends Activity{
 		this.retour = (Spinner) findViewById(R.id.ChoixRetour);
 		this.selRetour = this.retour.getSelectedItem().toString();
 		fac.performRides(selPostCode, selWorkplace);
-		displayRide(this.selConducteur);		
+		displayRide();		
 	}
 	
-	/**
-	 * Execution de cette fonction lorsque le user change le choix du spinner conducteur.
-	 * @param v
-	 */
-	public void onClickConducteur(View v) {
-		this.conducteur = (Spinner) findViewById(R.id.Conducteur);
-		this.selConducteur = this.conducteur.getSelectedItem().toString();	
-		displayRide(this.selConducteur);	
-	}
 	
 	/**
 	 * Affichage des trajets correspondant aux parametres du profil du user à l'ouverture de la page.
 	 */
 	public void displayBasicRide() {
 		fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
-		displayRide("both");
+		displayRide();
 	}
 	
 	/**
 	 * Affichage des trajets.
 	 * @param conducteur
 	 */
-	public void displayRide(String selCond) {
+	public void displayRide() {
+		String selCond = this.selConducteur;
 		resetRides();
 		initRides();
 		if (rides != null) {
@@ -167,13 +160,13 @@ public class RideActivity extends Activity{
 					// add a new row with mail and driver?.
 					if ((selCond.equals("non conducteur")) && (info.isConducteur() == false )) {
 						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
-						
+						Log.d("lulu", "on passe dans la boucle");
+
 						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
 						((TextView) tr.findViewById(R.id.CondUser)).setText("Non");
 						
 						if (this.selAller.equals(info.getMorning()))
-							Log.d("lulu", "on passe dans la boucle");
-							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.BLUE);
+							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
 		
 						if (this.selRetour.equals(info.getEvening()))
 							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
@@ -186,27 +179,29 @@ public class RideActivity extends Activity{
 					}
 					else if ((selCond.equals("conducteur")) && (info.isConducteur() == true)) {
 						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
-						
+						Log.d("lulu", "on passe dans la boucle 2");
+
 						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
 						((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
 						((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
 						((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
 
-						if (this.selAller == info.getMorning())
+						if (this.selAller.equals(info.getMorning()))
 							Log.d("lulu", info.getMorning());
 							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
 		
-						if (this.selRetour == info.getEvening())
+						if (this.selRetour.equals(info.getEvening()))
 							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
 						
 						table.addView(tr);
 					}
-					else {
+					else if((selCond.equals("les deux"))) {
 						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
 						Log.d("lulu", info.getMorning());
 						Log.d("lulu", this.selAller);
 						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());
-						
+						Log.d("lulu", "on passe dans la boucle 3");
+
 						if (info.isConducteur() == true)
 							((TextView) tr.findViewById(R.id.CondUser)).setText("Oui");
 						else
@@ -215,10 +210,10 @@ public class RideActivity extends Activity{
 						((TextView) tr.findViewById(R.id.HeureAller)).setText(info.getMorning());
 						((TextView) tr.findViewById(R.id.HeureRetour)).setText(info.getEvening());
 						
-						if (this.selAller == info.getMorning())
+						if (this.selAller.equals(info.getMorning()))
 							((TextView) tr.findViewById(R.id.HeureAller)).setTextColor(Color.parseColor("#de002d"));
 		
-						if (this.selRetour == info.getEvening())
+						if (this.selRetour.equals(info.getEvening()))
 							((TextView) tr.findViewById(R.id.HeureRetour)).setTextColor(Color.parseColor("#de002d"));
 						
 						table.addView(tr);
