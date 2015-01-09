@@ -770,7 +770,7 @@ public class Requests {
 			ArrayList<Information> users = new ArrayList<Information>() ;
 			// parcours de la HashMap
 			for (Entry<String, Object> entry : result.getData().entrySet()) {
-				HashMap nMapReponse = (HashMap) entry.getValue() ;
+				HashMap<String,String> nMapReponse = (HashMap) entry.getValue() ;
 				Information info = new Information() ;
 				info.setLogin((String)nMapReponse.get("login"));
 				info.setEmail((String)nMapReponse.get("mail"));
