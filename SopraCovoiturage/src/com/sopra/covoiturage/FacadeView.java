@@ -22,6 +22,7 @@ public class FacadeView {
 	private RideActivity searchRide;
 	private WorkplaceManagementActivity workMan;
 	private WorkplaceAdditionActivity workAdd;
+	private WorkplaceDeletionActivity workDel;
 	private PasswordForgottenActivity pwActivity;
 	private RegisterActivity rActivity;
 	
@@ -349,6 +350,14 @@ public class FacadeView {
 	 */
 	public void setWorkMan(WorkplaceManagementActivity workMan) {
 		this.workMan = workMan;
+	}
+	
+	/**
+	 * Methode permettant de mettre à jour workMan
+	 * @param workMan
+	 */
+	public void setWorkDel(WorkplaceDeletionActivity workDel) {
+		this.workDel = workDel;
 	}
 	
 }
