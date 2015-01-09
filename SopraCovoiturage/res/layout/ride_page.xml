@@ -16,82 +16,30 @@
             android:layout_height="wrap_content"
             layout="@layout/menu" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="Recherche Avancée :"
-            android:textColor="#de002d"
-            android:textSize="20sp" />
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp" >
-
-	            <TextView
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:text="Code Postal"
-	                android:layout_marginLeft="20dp"
-	                android:textColor="#000000"
-	                android:textSize="15sp" />
-	            
-	            <TextView
-	                android:layout_width="match_parent"
-	                android:layout_height="wrap_content"
-	                android:text="Arrivée"
-	                android:gravity="right"
-	                android:layout_marginRight="60dp"
-	                android:textColor="#000000"
-	                android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" >
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="15dp"
+	            android:text="Recherche Avancée :"
+	            android:textColor="#de002d"
+	            android:textSize="20sp" />
+	        <ImageView
+	            android:id="@+id/buttonSearch"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:orientation="horizontal" >
-            <Spinner
-                android:id="@+id/code_postal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <Spinner
-                android:id="@+id/Arrivee"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="wrap_content" />
+	            android:layout_gravity="right"
+	            android:src="@drawable/ic_menu_more" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <Spinner
-                android:id="@+id/ChoixAller"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp" />
-
-            <Spinner
-                android:id="@+id/ChoixRetour"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:onClick="onClickSearch"
-                android:text="search"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <Spinner
-            android:id="@+id/Conducteur"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp" />
+        <include
+	        android:id="@+id/search"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:visibility="gone"
+	        layout="@layout/search" />
 
         <TextView
             android:layout_width="wrap_content"
