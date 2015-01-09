@@ -64,6 +64,7 @@ public class WorkplaceManagementActivity extends Activity {
 	}
 
 	public void onClickDelete(View v) {
+		
 		this.fac.changeActivity(WorkplaceDeletionActivity.class);
 	}
 }

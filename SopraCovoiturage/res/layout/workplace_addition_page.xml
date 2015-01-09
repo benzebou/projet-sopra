@@ -26,8 +26,7 @@
 		        android:id="@+id/Name"
 			    android:inputType="text"        
 			    android:layout_width="75sp"
-			    android:layout_height="wrap_content"
-			 	android:maxLength="5"/>
+			    android:layout_height="wrap_content"/>
 		   
 		   	<Button
 		    	android:layout_height="wrap_content"

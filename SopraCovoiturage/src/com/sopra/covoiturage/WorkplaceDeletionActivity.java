@@ -21,6 +21,7 @@ public class WorkplaceDeletionActivity extends Activity {
 	private FacadeView fac;
 	private TextView title;
 	private String button;
+	private Button bDel;
 	private TableLayout table;
 	private ArrayList<String> workplace;
 	private LayoutInflater inflater;
@@ -35,6 +36,10 @@ public class WorkplaceDeletionActivity extends Activity {
 		//Change le titre
 		title = (TextView) findViewById(R.id.Title);
 		title.setText("Delete Workplace : ");
+		
+		//Rend les bouton delete invisible
+		bDel = (Button) findViewById(R.id.BDelete);
+		bDel.setVisibility(4);
 		
 		// Initialise le tableau de trajet
 		inflater = getLayoutInflater();
