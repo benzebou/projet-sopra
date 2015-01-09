@@ -42,10 +42,8 @@ public class WorkplaceManagementActivity extends Activity {
 		resetRides();
 		this.workplace = this.fac.getWorkplaces();
 		for (int i = 0; i < workplace.size(); i++) {
-			TableRow tr = (TableRow) inflater.inflate(
-					R.layout.table_workplace_management, null);
-			((TextView) tr.findViewById(R.id.Workplace))
-					.setText((String) workplace.get(i));
+			TableRow tr = (TableRow) inflater.inflate(R.layout.table_workplace_management, null);
+			((TextView) tr.findViewById(R.id.Workplace)).setText((String) workplace.get(i));
 			table.addView(tr);
 		}
 	}
@@ -64,7 +62,7 @@ public class WorkplaceManagementActivity extends Activity {
 	}
 
 	public void onClickDelete(View v) {
-		
+
 		this.fac.changeActivity(WorkplaceDeletionActivity.class);
 	}
 }
