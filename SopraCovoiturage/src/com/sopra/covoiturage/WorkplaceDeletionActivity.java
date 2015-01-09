@@ -56,7 +56,7 @@ public class WorkplaceDeletionActivity extends Activity {
 	    this.workplace = this.fac.getWorkplaces();
 		for (int i = 0 ; i<workplace.size() ;i++) {
 			TableRow tr = (TableRow) inflater.inflate(R.layout.table_deletion, null); 
-			((Button) tr.findViewById(R.id.Delete)).setText((String) workplace.get(i));
+			tr.findViewById(R.id.Delete)).setText((String) workplace.get(i);
 			table.addView(tr);
 		}
 	}
@@ -69,11 +69,6 @@ public class WorkplaceDeletionActivity extends Activity {
 			if (child instanceof TableRow)
 				((ViewGroup) child).removeAllViews();
 		}
-	}
-
-
-	public void onClickAdd(View v) {
-		this.fac.changeActivity(WorkplaceAdditionActivity.class);	
 	}
 	
 	public void onClickDelete(View v) {
