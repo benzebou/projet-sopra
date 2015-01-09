@@ -6,14 +6,17 @@ import java.util.List;
 import modele.Information;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class RegisterActivity extends Activity  {
 
@@ -165,7 +168,7 @@ public class RegisterActivity extends Activity  {
 		if (login.getText().toString().equals("") || pwd.getText().toString().equals("") || 
 				email.getText().toString().equals("")|| name.getText().toString().equals("")||
 				firstname.getText().toString().equals("")||phone.getText().toString().equals("")||
-				postCode.getTag().toString().equals("") || workplace.getTag().toString().equals("")){
+				postCode.getSelectedItem().toString().equals("") || workplace.getSelectedItem().toString().equals("")){
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
@@ -189,11 +192,12 @@ public class RegisterActivity extends Activity  {
 			// l'affiche
 			alertDialog.show();
 		}else{
-
+			facade.setLogin(login.getText().toString());
+			
 			this.info = new Information(login.getText().toString() ,pwd.getText().toString(),
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
-					phone.getText().toString(), postCode.getTag().toString(),
-					workplace.getTag().toString(),horaires,days, estConducteur);
+					phone.getText().toString(), postCode.getSelectedItem().toString(),
+					workplace.getSelectedItem().toString(),horaires,days, estConducteur);
 			facade.performRegister(info);
 
 
@@ -260,5 +264,17 @@ public class RegisterActivity extends Activity  {
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spin.setAdapter(dataAdapter);
+	}
+	
+	
+	/**
+	 * Fonction permettant de notifier lorsque l'enregistrement ne c'est pas déroulé comme prévu
+	 */
+	public void notificationRegisterFailure() {
+		Context context = getApplicationContext();
+		int duration = Toast.LENGTH_LONG;
+		Toast toast = Toast.makeText(context, "Echec de l'inscription, veuillez vérifier les informations saisie", duration);
+		toast.setGravity(Gravity.BOTTOM|Gravity.LEFT, 0, 0);
+		toast.show();	
 	}
 }
