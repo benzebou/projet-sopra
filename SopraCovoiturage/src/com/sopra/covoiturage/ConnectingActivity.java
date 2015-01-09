@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ConnectingActivity extends Activity {
 	
@@ -36,5 +37,8 @@ public class ConnectingActivity extends Activity {
 		facade.changeActivity(PasswordForgottenActivity.class);
 	}
 	
+	public void notificationConnectionFailure() {
+		Toast.makeText(this, "La connexion a échoué", Toast.LENGTH_LONG).show();
+	}
 
 }
