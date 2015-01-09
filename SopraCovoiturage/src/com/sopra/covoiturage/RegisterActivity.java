@@ -58,6 +58,7 @@ public class RegisterActivity extends Activity  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register_page);
 		facade = FacadeView.getInstance(this);
+		facade.setrActivity(this);
 
 		login=(EditText) findViewById(R.id.login);
 		name = (EditText) findViewById(R.id.nom);
