@@ -6,20 +6,24 @@
     <TextView
     	android:id="@+id/MailUser"
         android:textSize="15sp" 
-        android:paddingRight="15dip"/>
+        android:paddingRight="15dip"
+        android:textColor="#777777"/>
 	 
    	<TextView
     	android:id="@+id/CondUser"
         android:textSize="15sp" 
-        android:paddingLeft="15dip"/>
+        android:paddingLeft="15dip"
+        android:textColor="#777777"/>
 	
 	<TextView
-	 	 android:id="@+id/HeureAller"
-	     android:textSize="15sp" 
-	     android:paddingLeft="15dip"/>
+	 	android:id="@+id/HeureAller"
+	    android:textSize="15sp" 
+	    android:paddingLeft="15dip"
+        android:textColor="#777777"/>
 	       
 	<TextView
-	     android:id="@+id/HeureRetour"
-	     android:textSize="15sp" 
-	     android:paddingLeft="15dip"/>
+	    android:id="@+id/HeureRetour"
+	    android:textSize="15sp" 
+	    android:paddingLeft="15dip"
+        android:textColor="#777777"/>
 </TableRow>

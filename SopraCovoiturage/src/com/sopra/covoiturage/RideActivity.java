@@ -184,7 +184,7 @@ public class RideActivity extends Activity{
 						
 						table.addView(tr);
 					}
-					else if ((selCond == "conducteur") && (info.isConducteur() == true)) {
+					else if ((selCond.equals("conducteur")) && (info.isConducteur() == true)) {
 						TableRow tr = (TableRow) inflater.inflate(R.layout.table_search, null); 
 						
 						((TextView) tr.findViewById(R.id.MailUser)).setText(info.getEmail());

@@ -10,6 +10,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
+        <include
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/menu" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +38,7 @@
             <Spinner
                 android:id="@+id/code_postal"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -44,7 +50,7 @@
             <Spinner
                 android:id="@+id/Arrivee"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -55,12 +61,12 @@
             <Spinner
                 android:id="@+id/ChoixAller"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp" />
 
             <Spinner
                 android:id="@+id/ChoixRetour"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"/>
+                android:layout_height="40dp" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -73,7 +79,7 @@
         <Spinner
             android:id="@+id/Conducteur"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"/>
+            android:layout_height="40dp" />
 
         <TextView
             android:layout_width="wrap_content"
