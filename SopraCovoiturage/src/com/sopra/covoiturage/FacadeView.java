@@ -174,6 +174,20 @@ public class FacadeView {
 	public void displayWorkplaces(HashMap<String, String> workplace) {
 	}
 	
+	/**
+	 * Demande au controller d'ajouter un workplace en base
+	 * @param workplace
+	 */
+	public void addWorkplace(String workplace) {
+		this.controller.addWorkplace(workplace);
+	}
+	
+	public void deletionWorkplace(String workplace) {
+		this.controller.deletionWorkplace(workplace);
+	}
+	
+	
+	
 	public void erreurAddWorkplace () {
 		
 	}

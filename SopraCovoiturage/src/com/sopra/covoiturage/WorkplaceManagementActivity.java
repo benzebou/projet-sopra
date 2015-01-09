@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 public class WorkplaceManagementActivity extends Activity {
 	
 	private FacadeView fac;
+	private String button;
 	private TableLayout table;
 	private ArrayList<String> workplace;
 	private LayoutInflater inflater;
@@ -55,7 +57,14 @@ public class WorkplaceManagementActivity extends Activity {
 	}
 	
 	public void onClickDelete(View v) {
-		//this.fac.
+		// Recupere le tag du bouton
+		button = ((Button) findViewById(R.id.Delete)).getTag().toString();
+		// Si le temps : fenetre de confirmation de la deletion
+		
+		// envoie une demande de suppression du workplace correspondant
+		this.fac.deletionWorkplace(button);
+		// Re-affiche les workplaces
+		displayWorkplace();
 	}
 	
 }

@@ -6,11 +6,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TableLayout;
 
 public class WorkplaceAdditionActivity extends Activity {
 
 	private FacadeView fac;
+	private String newPlace;
 	private TableLayout table;
 	private ArrayList<String> workplace;
 	private LayoutInflater inflater;
@@ -26,7 +28,10 @@ public class WorkplaceAdditionActivity extends Activity {
 	}
 	
 	public void onClickAdd(View v) {
+		
 		// Demande l'ajout à la base
+		this.newPlace = ((EditText) findViewById(R.id.Depart)).getText().toString();	
+		this.fac.addWorkplace(this.newPlace);
 		
 		//Repasse sur la WorkplaceManagementActivity
 		this.fac.changeActivity(WorkplaceManagementActivity.class);
