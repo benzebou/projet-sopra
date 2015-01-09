@@ -60,6 +60,13 @@ public class Information {
 	 */
 	private boolean conducteur ;
 
+	
+	/**
+	 * Boolean indiquant si le user vaut est notifie par l'ajout d'un nouveau trajet qui correspond a celui du user
+	 */
+	private boolean notifie ;
+	
+	
 	/**
 	 * Constructeur par defaut de Information
 	 */
@@ -81,10 +88,11 @@ public class Information {
 	 * @param schedule : horaires de depart le matin et le soir
 	 * @param days : tableau de boolean indiquant si oui ou non le trajet est effectue un jour X
 	 * @param conducteur : indiquant si le user est conducteur ou non
+	 * @param notifie : indiquant si le user veut etre notifie
 	 */
 	public Information(String login, String mdp, String email, String name,
 			String firstname, String phone, String postcode, String workplace, String[] schedule,
-			Boolean[] days, boolean conducteur) {
+			Boolean[] days, boolean conducteur, boolean notifie) {
 		super();
 		this.login = login;
 		this.mdp = mdp;
@@ -97,6 +105,7 @@ public class Information {
 		this.schedule = schedule ;
 		this.days = days;
 		this.conducteur = conducteur;
+		this.notifie = notifie ;
 	}
 
 	/**
@@ -194,6 +203,14 @@ public class Information {
 	public void setConducteur(boolean conducteur) {
 		this.conducteur = conducteur;
 	}
+	
+	/**
+	 * Setter de notifie
+	 * @param notifie : boolean indiquant si le user veut etre notifie ou non
+	 */
+	public void setNotifie (boolean notifie) {
+		this.notifie = notifie ;
+	}
 
 	/** 
 	 * Getter du login
@@ -290,6 +307,14 @@ public class Information {
 	public boolean isConducteur() {
 		return conducteur;
 	}
+	
+	/**
+	 * Methode indiquant si le user veut etre notifie
+	 * @return vrai si le user veut etre notifie ; faux sinon
+	 */
+	public boolean isNotifie () {
+		return notifie ;
+	}
 
 	/**
 	 * Methode toString() de Information
@@ -297,9 +322,9 @@ public class Information {
 	public String toString () {
 		return "Login: "+login+"\nMdp: "+mdp+"\nMail: "+email+"\nNom: "+name+"\nPrenom: "+firstname+
 				"\nTel: "+phone+"\nCodePostal: "+postcode+"\nTravail: "+workplace+"\nTime morning: "+schedule[0]
-						+"\nTime evening: "+schedule[1]+"\nConducteur? : "
-						+conducteur+"\nlundi? : "+days[0]+"\nmardi? : "+days[1]+"\nmercredi? : "+days[2]
-								+"\njeudi? : "+days[3]+"\nvendredi? : "+days[4]+"\nsamedi? : "+days[5]+"\ndimanche? : "+days[6];
+						+"\nTime evening: "+schedule[1]+"\nConducteur? : "+conducteur+"\nNotification? : "+notifie
+						+"\nlundi? : "+days[0]+"\nmardi? : "+days[1]+"\nmercredi? : "+days[2]
+						+"\njeudi? : "+days[3]+"\nvendredi? : "+days[4]+"\nsamedi? : "+days[5]+"\ndimanche? : "+days[6];
 	}
 
 	/**
