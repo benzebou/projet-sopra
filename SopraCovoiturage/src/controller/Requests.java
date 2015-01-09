@@ -926,11 +926,13 @@ public class Requests {
 			}
 			return tab ;
 		} catch (InterruptedException e) {
-			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
+			tab[0] = "-1" ;
+			tab[1] = "Interrupted Exception" ;
 			return tab;
 		} catch (ExecutionException e) {
-			e.printStackTrace();
-			return tab; // TODO Que doit contenir tab pour renvoyer une erreur ?
+			tab[0] = "-1" ;
+			tab[1] = "Execution Exception" ;
+			return tab;
 		}
 		
 	}
