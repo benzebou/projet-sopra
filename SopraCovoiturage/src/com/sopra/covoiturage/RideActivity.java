@@ -150,7 +150,7 @@ public class RideActivity extends Activity{
 	public void displayRide() {
 		String selCond = this.selConducteur;
 		resetRides();
-		initRides();
+		//initRides();
 		if (rides != null) {
 			// parcours la liste rides et affiche les trajets dont "conducteur" correspond
 			for (int i=0; i<rides.size();i++) {
@@ -235,7 +235,7 @@ public class RideActivity extends Activity{
 	
 	private void resetRides() {
 		int count = table.getChildCount();
-		for (int i = 0; i < count; i++) {
+		for (int i = 1; i < count; i++) {
 		    View child = table.getChildAt(i);
 		    if (child instanceof TableRow) 
 		    	((ViewGroup) child).removeAllViews();

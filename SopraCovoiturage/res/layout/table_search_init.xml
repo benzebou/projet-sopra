@@ -31,5 +31,8 @@
         android:textColor="#000000"
         android:textSize="15sp" />
 
-</TableRow>
+    <View
+        android:layout_height="2dip"
+        android:background="#de002d" />
 
+</TableRow>
