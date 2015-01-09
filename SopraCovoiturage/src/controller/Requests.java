@@ -208,7 +208,7 @@ public class Requests {
 	 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
 	 */
 	
-	//TODO: Voir dans le catch ce qu'on renvoit 
+	
 	public int creationUserRequest (Information info) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", info.getLogin()); 
@@ -459,10 +459,10 @@ public class Requests {
 		
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			return -1; // TODO C'est correct de renvoyer -1 ?
+			return -1;
 		} catch (ExecutionException e) {
 			e.printStackTrace();
-			return -1; // TODO C'est correct de renvoyer -1 ?
+			return -1;
 		}
 	}
 
@@ -1023,11 +1023,14 @@ public class Requests {
 			return tab ;
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			return tab; // TODO Que doit contenir tab pour renvoyer une erreur ?
+			tab[0] = "-1" ;
+			tab[1] = "Interrupted Exception" ;
 		} catch (ExecutionException e) {
 			e.printStackTrace();
-			return tab; // TODO Que doit contenir tab pour renvoyer une erreur ?
+			tab[0] = "-1" ;
+			tab[1] = "Execution Exception" ;
 		}
+		return tab;
 	}
 
 	/**
@@ -1059,9 +1062,13 @@ public class Requests {
 			}
 		
 		} catch (InterruptedException e) {
-			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
+			e.printStackTrace();
+			tab[0] = "-1" ;
+			tab[1] = "Interruption Exception" ;
 		} catch (ExecutionException e) {
-			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
+			e.printStackTrace();
+			tab[0] = "-1" ;
+			tab[1] = "Execution Exception" ;
 		}
 		return tab ;
 	}
@@ -1096,9 +1103,13 @@ public class Requests {
 			}
 		
 		} catch (InterruptedException e) {
-			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
+			e.printStackTrace();
+			tab[0] = "-1" ;
+			tab[1] = "Interruption Exception" ;
 		} catch (ExecutionException e) {
-			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
+			e.printStackTrace();
+			tab[0] = "-1" ;
+			tab[1] = "Execution Exception" ;
 		}
 		return tab ;
 
@@ -1137,9 +1148,13 @@ public class Requests {
 			}
 		
 		} catch (InterruptedException e) {
-			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
+			e.printStackTrace();
+			tab[0] = "-1" ;
+			tab[1] = "Interruption Exception" ;
 		} catch (ExecutionException e) {
-			e.printStackTrace(); // TODO Que doit contenir tab pour renvoyer une erreur ?
+			e.printStackTrace();
+			tab[0] = "-1" ;
+			tab[1] = "Execution Exception" ;
 		}
 		return tab ;
 		
@@ -1281,7 +1296,6 @@ public class Requests {
 			return buf.toString().toLowerCase();
 
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 			return "";
