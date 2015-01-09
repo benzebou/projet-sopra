@@ -192,13 +192,14 @@ public class RegisterActivity extends Activity  {
 			// l'affiche
 			alertDialog.show();
 		}else{
-			facade.setLogin(login.getText().toString());
+			
 			
 			this.info = new Information(login.getText().toString() ,pwd.getText().toString(),
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
 					phone.getText().toString(), postCode.getSelectedItem().toString(),
 					workplace.getSelectedItem().toString(),horaires,days, estConducteur);
 			facade.performRegister(info);
+			facade.setLogin(login.getText().toString());
 
 
 		}

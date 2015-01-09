@@ -263,7 +263,7 @@ public class FacadeView {
 	 * Methode permettant de mettre à jour le login
 	 */
 	public void setLogin(String login) {
-		setLogin(login);
+		controller.setLogin(login);
 	}
 	
 
