@@ -950,7 +950,7 @@ public class Requests {
 		task.execute(params);
 		RequestResponses result;
 		HashMap<String,String[]> requete = new HashMap<String,String[]> () ;
-		String[] tab = new String[2] ;
+		
 		try {
 			result = task.get();
 		
@@ -959,7 +959,7 @@ public class Requests {
 				// parcours de la HashMap
 				for (Entry<String, Object> entry : result.getData().entrySet()) {
 					HashMap<String,Object> nMapReponse = (HashMap<String,Object>) entry.getValue() ;
-	
+					String[] tab = new String[2] ;
 					/**********************************************************
 					 * 				AFFICHAGE POUR TEST
 					 **********************************************************/
@@ -973,6 +973,7 @@ public class Requests {
 				}
 			}
 			else {
+				String[] tab = new String[2] ;
 				tab[0] = ((Integer)result.getCode()).toString() ;
 				tab[1] = ((Integer)result.getCode()).toString() ;
 				requete.put("-1", tab) ;
@@ -980,10 +981,12 @@ public class Requests {
 		
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+			String[] tab = new String[2] ;
 			tab[0] = "Interrupted Exception" ;
 			tab[1] = "Interrupted Exception" ;
 			requete.put("-1", tab) ;
 		} catch (ExecutionException e) {
+			String[] tab = new String[2] ;
 			e.printStackTrace();
 			tab[0] = "Execution Exception" ;
 			tab[1] = "Execution Exception" ;
