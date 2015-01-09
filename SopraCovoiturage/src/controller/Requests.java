@@ -948,11 +948,11 @@ public class Requests {
 		task.execute(params);
 		RequestResponses result;
 		HashMap<String,String[]> requete = new HashMap<String,String[]> () ;
-		
+		String[] tab = new String[2] ;
 		try {
 			result = task.get();
 		
-			String[] tab = new String[2] ;
+			
 			if (result.isSuccess()) {
 				// parcours de la HashMap
 				for (Entry<String, Object> entry : result.getData().entrySet()) {
@@ -978,10 +978,14 @@ public class Requests {
 		
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			// TODO Quoi mettre dans requete quand exception ?
+			tab[0] = "Interrupted Exception" ;
+			tab[1] = "Interrupted Exception" ;
+			requete.put("-1", tab) ;
 		} catch (ExecutionException e) {
 			e.printStackTrace();
-			// TODO Quoi mettre dans requete quand exception ?
+			tab[0] = "Execution Exception" ;
+			tab[1] = "Execution Exception" ;
+			requete.put("-1", tab) ;
 		}
 		return requete ;
 	}
