@@ -22,7 +22,8 @@ public class FacadeView {
 	private RideActivity searchRide;
 	private WorkplaceManagementActivity workMan;
 	private WorkplaceAdditionActivity workAdd;
-	private PasswordForgottenActivity pwActivity ;
+	private PasswordForgottenActivity pwActivity;
+	private boolean admin;
 	
 	private FacadeView(Activity activity) {
 		controller = ControllerFacade.getInstance(this);
@@ -62,6 +63,15 @@ public class FacadeView {
 	}
 	
 
+	public void changeActivityProfile() {
+		Intent i;
+		if(this.admin) 
+			i = new Intent(firstActivity, AdminProfileActivity.class); 
+		else 
+			i = new Intent(firstActivity, ProfileActivity.class);
+			
+		firstActivity.startActivity(i); 
+	}
 	
 	/* DISCONNECTION */
 	public void performDisconnect() {
