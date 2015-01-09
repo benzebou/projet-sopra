@@ -956,7 +956,7 @@ public class Requests {
 			if (result.isSuccess()) {
 				// parcours de la HashMap
 				for (Entry<String, Object> entry : result.getData().entrySet()) {
-					HashMap nMapReponse = (HashMap) entry.getValue() ;
+					HashMap<String,Object> nMapReponse = (HashMap<String,Object>) entry.getValue() ;
 	
 					/**********************************************************
 					 * 				AFFICHAGE POUR TEST
