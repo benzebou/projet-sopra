@@ -4,24 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#f6f6f6" >
+    
     <ImageView
 	    android:layout_height="wrap_content"
 	    android:layout_width="wrap_content"
-	    android:layout_marginTop="30dp"
+	    android:layout_marginTop="20dp"
+	    android:adjustViewBounds="true"
 	    android:layout_gravity="center"
 	    android:src="@drawable/titre" />
-    	    
-    <LinearLayout 
-        android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:orientation="vertical"
-	    android:gravity="center_vertical">
   
 	    <TextView
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="80dp"
-	        android:textSize="24sp"
+	        android:textSize="18sp"
 	        android:textColor="#de002d" 
 	        android:text="Pseudo" />
 	    <EditText   
@@ -35,7 +31,7 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="80dp" 
-	        android:textSize="24sp"
+	        android:textSize="18sp"
 	        android:textColor="#de002d"
 	        android:text="Mot de passe" />
 	    <EditText
@@ -50,8 +46,8 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:textColor="#000000" 
-	        android:layout_marginRight="30dp"
-	        android:textSize="20sp"
+	        android:layout_marginRight="50dp"
+	        android:textSize="16sp"
 	        android:layout_gravity="right"
 	       	android:onClick="onPasswordForgottenButtonClick"  
 	       	android:background="@android:color/transparent"    
@@ -71,7 +67,7 @@
 		<Button
 	        android:id="@+id/registerButton"
 	        android:layout_width="160dp"
-	        android:layout_height="40dp"
+	        android:layout_height="60dp"
 	        android:textSize="32sp"
 	        android:layout_marginTop="20dp"
 	        android:onClick="onRegisterButtonClick"
@@ -79,6 +75,5 @@
 	        android:layout_gravity="center"
 	        android:textColor="#000000"
 	        android:background="#de002d" />
-	</LinearLayout>
 
 </LinearLayout>
