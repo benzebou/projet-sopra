@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:textSize="30sp"
+        android:textSize="26sp"
         android:textColor="#de002d" 
         android:text="Liste d'utilisateurs" />
     
@@ -33,7 +33,7 @@
 	        android:id="@+id/modifyButton"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:textSize="20sp"
+	        android:textSize="16sp"
 	        android:onClick="onModifyButtonClick"
 	        android:textColor="#000000"
 	        android:text="Modifier" />
@@ -41,7 +41,7 @@
 	        android:id="@+id/suppressButton"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:textSize="20sp"
+	        android:textSize="16sp"
 	        android:onClick="onSuppressButtonClick"
 	        android:textColor="#000000"
 	        android:text="Supprimer" />
@@ -51,7 +51,7 @@
         android:id="@+id/reportButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:onClick="onReportButtonClick"
         android:textColor="#000000"
         android:layout_gravity="center"
@@ -61,7 +61,7 @@
         android:id="@+id/workplaceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:onClick="onWorkplaceButtonClick"
         android:textColor="#000000"
         android:layout_gravity="center"
