@@ -182,7 +182,7 @@ public class ControllerFacade {
 		int requete =requests.creationUserRequest(info) ;
 		if (requete == 0) {
 			System.out.println("CONTROLLER_FACADE : Creation user : reussite !\n") ;
-			facadeView.changeActivity(com.sopra.covoiturage.ProfileActivity.class);
+			facadeView.changeActivity(com.sopra.covoiturage.ConnectingActivity.class);
 		}
 		else { 
 			System.out.println("CONTROLLER_FACADE : Creation user : echec !\n") ;
