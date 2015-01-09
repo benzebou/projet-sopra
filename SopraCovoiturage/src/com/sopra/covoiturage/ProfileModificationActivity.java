@@ -215,7 +215,7 @@ public class ProfileModificationActivity extends Activity{
 			Information newinfo = new Information(info.getLogin() ,pwd.getText().toString(),
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
 					phone.getText().toString(), postCode.getTag().toString(),
-					workplace.getTag().toString(),horaires,days, estConducteur);
+					workplace.getTag().toString(),horaires,days, estConducteur, estNotif);
 		
 			//envoyer nouvelles infos à la bdd
 			facade.performProfileModification(info);
