@@ -29,10 +29,10 @@ public class ConnectingActivity extends Activity {
 	}
 	
 	public void onConnectionButtonClick(View v) {
-		if(isNetworkAvailable())
+		//if(isNetworkAvailable())
 			facade.performConnect(loginText.getText().toString(), mdpText.getText().toString());
-		else
-			Toast.makeText(this, "Connectez-vous à Internet", Toast.LENGTH_LONG).show();
+		//else
+			//Toast.makeText(this, "Connectez-vous à Internet", Toast.LENGTH_LONG).show();
 	}
 	
 	public void onRegisterButtonClick(View v) {
