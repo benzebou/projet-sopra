@@ -3,7 +3,6 @@ package controller;
 import controller.Security;
 import controller.RequestType;
 import controller.RequestResponses;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
@@ -15,22 +14,16 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import modele.Information;
 import modele.Ride;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -202,14 +195,13 @@ public class Requests {
 		}
 	}
 
+	
 	/**
-	 * methode permettant d'inscrire un nouvel utilisateur
-	 * @param info : informations du profil de l'utilisateur
-	 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
+	 * Methode permettant de creer une hashMap a partir d'un objet Information
+	 * @param info : Objet Information a inserer dans la HashMap
+	 * @return HashMap
 	 */
-	
-	
-	public int creationUserRequest (Information info) {
+	public HashMap<String,Object> setHashMap (Information info) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", info.getLogin()); 
 		map.put("mdp", encryptPassword(info.getMdp()));
@@ -220,16 +212,9 @@ public class Requests {
 		map.put("postal", info.getPostcode());
 		
 		// recuperation de l'ID du workplace
-		String id = null ;
-		Iterator<Entry<String, String>> it = mapWorkplaces.entrySet().iterator();
-		while(it.hasNext()) {
-			Entry<String, String> workplace = it.next();
-			if(workplace.getValue().contentEquals(info.getWorkplace()))
-				id = workplace.getKey();
-				break;
-		}
+		String id = this.getIdWorkplace(info.getWorkplace()) ;
 		
-		map.put("travail", id); // TODO : Vraiment travail le nom de l'attribut ?
+		map.put("travail", id);
 		map.put("horairesMatin", info.getMorning());
 		map.put("horairesSoir", info.getEvening());
 
@@ -267,7 +252,21 @@ public class Requests {
 			map.put("conducteur", "1");
 		else 
 			map.put("conducteur", "0");
-
+		if (info.isNotifie())
+			map.put("notification", "1") ;
+		else
+			map.put("notification", "0") ;
+		
+		return map ;
+	}
+	
+	/**
+	 * methode permettant d'inscrire un nouvel utilisateur
+	 * @param info : informations du profil de l'utilisateur
+	 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
+	 */
+	public int creationUserRequest (Information info) {
+		HashMap<String,Object> map = this.setHashMap(info) ;
 		RequestsParams params = new RequestsParams(RequestType.REGISTER, map);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
@@ -322,7 +321,6 @@ public class Requests {
 	 * @return Informations : informations sur l'utilisateur 
 	 */
 	public Information getProfileInformationRequest(String nickname) {
-		// Obtenir les informations d'un profil : nickname (utilisateur � afficher)
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", nickname);
 		
@@ -336,49 +334,6 @@ public class Requests {
 			
 			if (result.isSuccess()) {
 				Information info = this.setUser(result.getData()) ;
-				result.getData() ;
-				info.setLogin((String)result.getData().get("login"));
-				info.setEmail((String)result.getData().get("mail"));
-				info.setName((String)result.getData().get("nom"));
-				info.setFirstname((String)result.getData().get("prenom"));
-				info.setPhone((String)result.getData().get("tel"));
-				info.setWorkplace((String)result.getData().get("travail"));
-				info.setPostcode((String)result.getData().get("postal"));
-				info.setMorning((String)result.getData().get("horairesMatin"));
-				info.setEvening((String)result.getData().get("horairesSoir"));
-				if (result.getData().get("conducteur").equals("1"))
-					info.setConducteur(true);
-				else
-					info.setConducteur(false);
-				if (result.getData().get("lundi").equals("1"))
-					info.getDays()[0] = true ;
-				else
-					info.getDays()[0] = false ;
-				if (result.getData().get("mardi").equals("1"))
-					info.getDays()[1] = true ;
-				else
-					info.getDays()[1] = false ;
-				if (result.getData().get("mercredi").equals("1"))
-					info.getDays()[2] = true ;
-				else
-					info.getDays()[2] = false ;
-				if (result.getData().get("jeudi").equals("1"))
-					info.getDays()[3] = true ;
-				else
-					info.getDays()[3] = false ;
-				if (result.getData().get("vendredi").equals("1"))
-					info.getDays()[4] = true ;
-				else
-					info.getDays()[4] = false ;
-				if (result.getData().get("samedi").equals("1"))
-					info.getDays()[5] = true ;
-				else
-					info.getDays()[5] = false ;
-				if (result.getData().get("dimanche").equals("1"))
-					info.getDays()[6] = true ;
-				else
-					info.getDays()[6] = false ;
-	
 				return info;
 			} else 
 				return null ;	
@@ -398,52 +353,7 @@ public class Requests {
 	 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
 	 */
 	public int profileModificationRequest (Information info) {
-		HashMap<String,Object> map = new HashMap<String,Object>();
-		map.put("login", info.getLogin()); 
-		map.put("mdp", info.getMdp());
-		map.put("mail", info.getEmail());
-		map.put("nom", info.getName());
-		map.put("prenom", info.getFirstname());
-		map.put("tel", info.getPhone());
-		map.put("postal", info.getPostcode());
-		map.put("travail", info.getWorkplace());
-		map.put("horairesMatin", info.getMorning());
-		map.put("horairesSoir", info.getEvening());
-
-		if (info.getDays()[0]) 
-			map.put("lundi", "1");
-		else
-			map.put("lundi", "0");
-		if (info.getDays()[1]) 
-			map.put("mardi", "1");
-		else 
-			map.put("mardi", "0");
-		if (info.getDays()[2]) 
-			map.put("mercredi", "1");
-		else 
-			map.put("mercredi", "0");
-		if (info.getDays()[3]) 
-			map.put("jeudi", "1");
-		else 
-			map.put("jeudi", "0");
-		if (info.getDays()[4]) 
-			map.put("vendredi", "1");
-		else 
-			map.put("vendredi", "0");
-		if (info.getDays()[5]) 
-			map.put("samedi", "1");
-		else 
-			map.put("samedi", "0");
-		if (info.getDays()[6]) 
-			map.put("dimanche", "1");
-		else 
-			map.put("dimanche", "0");
-
-		if (info.isConducteur()) 
-			map.put("conducteur", "1");
-		else 
-			map.put("conducteur", "0");
-
+		HashMap<String,Object> map = this.setHashMap(info) ;
 		RequestResponses result;
 		RequestsParams params = new RequestsParams(RequestType.MODIFY_PROFILE,map);
 		HTTPAsyncTask task = new HTTPAsyncTask();
@@ -493,6 +403,18 @@ public class Requests {
 			return false;
 		}
 	}
+	
+	public String getIdWorkplace(String workplace) {
+		String id = null ;
+		Iterator<Entry<String, String>> it = mapWorkplaces.entrySet().iterator();
+		while(it.hasNext()) {
+			Entry<String, String> currentWorkplace = it.next();
+			if(currentWorkplace.getValue().contentEquals(workplace)) 
+				id = currentWorkplace.getKey();
+				break;
+		}
+		return id ;
+	}
 
 	/** Methode permettant de recuperer des trajets 
 	 * @param postCode : code postal du lieu de depart
@@ -505,14 +427,7 @@ public class Requests {
 		map.put("postal", postCode);
 		
 		// recuperation de l'ID du workplace
-		String id = null ;
-		Iterator<Entry<String, String>> it = mapWorkplaces.entrySet().iterator();
-		while(it.hasNext()) {
-			Entry<String, String> currentWorkplace = it.next();
-			if(currentWorkplace.getValue().contentEquals(workplace))
-				id = currentWorkplace.getKey();
-				break;
-		}
+		String id = this.getIdWorkplace(workplace) ;
 		map.put("travail", id);
 		
 		RequestsParams params = new RequestsParams(RequestType.SEARCH_RIDE, map);
@@ -527,7 +442,8 @@ public class Requests {
 	
 				// parcours de la HashMap
 				for (Entry<String, Object> entry : result.getData().entrySet()) {
-					HashMap nMapReponse = (HashMap) entry.getValue() ;
+					@SuppressWarnings("unchecked")
+					HashMap<String,Object> nMapReponse = (HashMap<String,Object>) entry.getValue() ;
 					// meme horaires
 					boolean memeHoraires = false ;
 					Ride ride = new Ride () ;
@@ -542,99 +458,13 @@ public class Requests {
 							}
 						}	
 					}
+					Information info = this.setUser(nMapReponse) ;
 					if (memeHoraires) {
-						Information info = new Information();
-						info.setLogin((String)nMapReponse.get("login"));
-						info.setEmail((String)nMapReponse.get("mail"));
-						info.setName((String)nMapReponse.get("nom"));
-						info.setFirstname((String)nMapReponse.get("prenom"));
-						info.setMdp((String)nMapReponse.get("mdp"));
-						info.setPhone((String)nMapReponse.get("tel"));
-						info.setWorkplace((String)nMapReponse.get("travail"));
-						info.setPostcode((String)nMapReponse.get("postal"));
-						info.setMorning((String)nMapReponse.get("horairesMatin"));
-						info.setEvening((String)nMapReponse.get("horairesSoir"));
-						if (nMapReponse.get("conducteur").equals("1"))
-							info.setConducteur(true);
-						else
-							info.setConducteur(false);
-						if (nMapReponse.get("lundi").equals("1"))
-							info.getDays()[0] = true ;
-						else
-							info.getDays()[0] = false ;
-						if (nMapReponse.get("mardi").equals("1"))
-							info.getDays()[1] = true ;
-						else
-							info.getDays()[1] = false ;
-						if (nMapReponse.get("mercredi").equals("1"))
-							info.getDays()[2] = true ;
-						else
-							info.getDays()[2] = false ;
-						if (nMapReponse.get("jeudi").equals("1"))
-							info.getDays()[3] = true ;
-						else
-							info.getDays()[3] = false ;
-						if (nMapReponse.get("vendredi").equals("1"))
-							info.getDays()[4] = true ;
-						else
-							info.getDays()[4] = false ;
-						if (nMapReponse.get("samedi").equals("1"))
-							info.getDays()[5] = true ;
-						else
-							info.getDays()[5] = false ;
-						if (nMapReponse.get("dimanche").equals("1"))
-							info.getDays()[6] = true ;
-						else
-							info.getDays()[6] = false ;
-						
 						ride.getUserList().add(info) ;
 					}
 					// different horaires de depart : nouveau ride dans la liste
 					else {
 						Ride nride = new Ride () ;
-						Information info = new Information();
-						info.setLogin((String)nMapReponse.get("login"));
-						info.setEmail((String)nMapReponse.get("mail"));
-						info.setName((String)nMapReponse.get("nom"));
-						info.setFirstname((String)nMapReponse.get("prenom"));
-						info.setMdp((String)nMapReponse.get("mdp"));
-						info.setPhone((String)nMapReponse.get("tel"));
-						info.setWorkplace((String)nMapReponse.get("travail"));
-						info.setPostcode((String)nMapReponse.get("postal"));
-						info.setMorning((String)nMapReponse.get("horairesMatin"));
-						info.setEvening((String)nMapReponse.get("horairesSoir"));
-						if (nMapReponse.get("conducteur").equals("1"))
-							info.setConducteur(true);
-						else
-							info.setConducteur(false);
-						if (nMapReponse.get("lundi").equals("1"))
-							info.getDays()[0] = true ;
-						else
-							info.getDays()[0] = false ;
-						if (nMapReponse.get("mardi").equals("1"))
-							info.getDays()[1] = true ;
-						else
-							info.getDays()[1] = false ;
-						if (nMapReponse.get("mercredi").equals("1"))
-							info.getDays()[2] = true ;
-						else
-							info.getDays()[2] = false ;
-						if (nMapReponse.get("jeudi").equals("1"))
-							info.getDays()[3] = true ;
-						else
-							info.getDays()[3] = false ;
-						if (nMapReponse.get("vendredi").equals("1"))
-							info.getDays()[4] = true ;
-						else
-							info.getDays()[4] = false ;
-						if (nMapReponse.get("samedi").equals("1"))
-							info.getDays()[5] = true ;
-						else
-							info.getDays()[5] = false ;
-						if (nMapReponse.get("dimanche").equals("1"))
-							info.getDays()[6] = true ;
-						else
-							info.getDays()[6] = false ;
 						nride.getUserList().add(info) ;
 						rideList.add(nride) ;
 					}	
@@ -691,14 +521,7 @@ public class Requests {
 	 */
 	public boolean deletionWorkplaceRequest (String workplace) {			
 		// recuperation de l'ID du workplace
-		String id = null ;
-		Iterator<Entry<String, String>> it = mapWorkplaces.entrySet().iterator();
-		while(it.hasNext()) {
-			Entry<String, String> currentWorkplace = it.next();
-			if(currentWorkplace.getValue().contentEquals(workplace))
-				id = currentWorkplace.getKey();
-				break;
-		}
+		String id = this.getIdWorkplace(workplace) ;
 
 		if (id != null) {
 			HashMap<String,Object> map = new HashMap<String,Object>();
@@ -769,6 +592,7 @@ public class Requests {
 			ArrayList<Information> users = new ArrayList<Information>() ;
 			// parcours de la HashMap
 			for (Entry<String, Object> entry : result.getData().entrySet()) {
+				@SuppressWarnings("unchecked")
 				HashMap<String,Object> nMapReponse = (HashMap<String, Object>) entry.getValue() ;
 				Information info = this.setUser(nMapReponse) ;	
 				users.add(info) ;
@@ -958,6 +782,7 @@ public class Requests {
 			if (result.isSuccess()) {
 				// parcours de la HashMap
 				for (Entry<String, Object> entry : result.getData().entrySet()) {
+					@SuppressWarnings("unchecked")
 					HashMap<String,Object> nMapReponse = (HashMap<String,Object>) entry.getValue() ;
 					String[] tab = new String[2] ;
 					/**********************************************************
@@ -1175,38 +1000,42 @@ public class Requests {
 		info.setPostcode((String)map.get("postal"));
 		info.setMorning((String)map.get("horairesMatin"));
 		info.setEvening((String)map.get("horairesSoir"));
-		if (map.get("conducteur") == "1")
+		if (map.get("conducteur").equals("1"))
 			info.setConducteur(true);
 		else
 			info.setConducteur(false);
-		if (map.get("lundi") == "1")
+		if (map.get("lundi").equals("1"))
 			info.getDays()[0] = true ;
 		else
 			info.getDays()[0] = false ;
-		if (map.get("mardi") == "1")
+		if (map.get("mardi").equals("1"))
 			info.getDays()[1] = true ;
 		else
 			info.getDays()[1] = false ;
-		if (map.get("mercredi") == "1")
+		if (map.get("mercredi").equals("1"))
 			info.getDays()[2] = true ;
 		else
 			info.getDays()[2] = false ;
-		if (map.get("jeudi") == "1")
+		if (map.get("jeudi").equals("1"))
 			info.getDays()[3] = true ;
 		else
 			info.getDays()[3] = false ;
-		if (map.get("vendredi") == "1")
+		if (map.get("vendredi").equals("1"))
 			info.getDays()[4] = true ;
 		else
 			info.getDays()[4] = false ;
-		if (map.get("samedi") == "1")
+		if (map.get("samedi").equals("1"))
 			info.getDays()[5] = true ;
 		else
 			info.getDays()[5] = false ;
-		if (map.get("dimanche") == "1")
+		if (map.get("dimanche").equals("1"))
 			info.getDays()[6] = true ;
 		else
 			info.getDays()[6] = false ;
+		if (map.get("notification").equals("1"))
+			info.setNotifie(true);
+		else
+			info.setNotifie(false);
 		return info ;
 	}
 	
@@ -1218,6 +1047,7 @@ public class Requests {
 	 * @param map 
 	 * @return parametres de la requete sous format "parametres d'url"
 	 */
+	@SuppressLint("DefaultLocale")
 	private static String getRequestParameters(RequestType typeOfRequest, HashMap<String, Object> map){
 		String urlParameters = "request=" + typeOfRequest.toString().toLowerCase();
 		if (typeOfRequest == RequestType.GET_LIST_WORKPLACE || typeOfRequest == RequestType.GET_LIST_TOWN){
@@ -1335,6 +1165,7 @@ public class Requests {
 	 * @param password : le mot de passe a crypte
 	 * @return le mot de passe crypte
 	 */
+	@SuppressLint("DefaultLocale")
 	private static String encryptPassword(String password){
 		MessageDigest md;
 		try {
