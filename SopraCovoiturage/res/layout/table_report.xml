@@ -6,15 +6,18 @@
     <TextView
     	android:id="@+id/Trajet"
         android:textSize="15sp" 
+        android:textColor="#000000"
         android:paddingRight="15dip"/>
 	 
    	<TextView
     	android:id="@+id/Nb_conducteurs"
         android:textSize="15sp" 
+        android:textColor="#000000"
         android:paddingLeft="15dip"/>
 	
 	<TextView
 	 	 android:id="@+id/Nb_passagers"
 	     android:textSize="15sp" 
+	     android:textColor="#000000"
 	     android:paddingLeft="15dip"/>
 </TableRow>
