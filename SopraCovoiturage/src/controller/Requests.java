@@ -406,12 +406,15 @@ public class Requests {
 	
 	public String getIdWorkplace(String workplace) {
 		String id = null ;
+		Log.d("SC", workplace);
 		Iterator<Entry<String, String>> it = mapWorkplaces.entrySet().iterator();
 		while(it.hasNext()) {
 			Entry<String, String> currentWorkplace = it.next();
-			if(currentWorkplace.getValue().contentEquals(workplace)) 
+			Log.d("SC", currentWorkplace.getValue());
+			if(currentWorkplace.getValue().contentEquals(workplace)) {
 				id = currentWorkplace.getKey();
 				break;
+			}
 		}
 		return id ;
 	}
