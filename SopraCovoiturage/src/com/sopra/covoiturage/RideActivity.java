@@ -317,5 +317,15 @@ public class RideActivity extends Activity {
 	public Spinner getCond() {
 		return this.conducteur;
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    switch(resultCode)
+	    {
+	    case RESULT_OK:
+	        finish();
+	    }
+	    super.onActivityResult(requestCode, resultCode, data);
+	}
 
 }
