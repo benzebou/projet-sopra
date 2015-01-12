@@ -72,14 +72,14 @@ public class FacadeView {
 	}
 	
 
-	public void changeActivityProfile() {
+	public void changeActivityProfile(Activity activity) {
 		Intent i;
 		if(this.admin) 
-			i = new Intent(firstActivity, AdminProfileActivity.class); 
+			i = new Intent(activity, AdminProfileActivity.class); 
 		else 
-			i = new Intent(firstActivity, ProfileActivity.class);
+			i = new Intent(activity, ProfileActivity.class);
 			
-		firstActivity.startActivity(i); 
+		activity.startActivityForResult(i, 1); 
 	}
 	
 	
