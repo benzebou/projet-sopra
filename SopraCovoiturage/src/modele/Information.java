@@ -107,6 +107,19 @@ public class Information {
 		this.conducteur = conducteur;
 		this.notifie = notifie ;
 	}
+	
+	/**
+	 * Constructeur de Information avec parametres
+	 * @param login : login du user
+	 * @param mdp : mot de passe du user
+	 * @param email : adresse mail du user
+	 */
+	public Information(String login, String mdp, String email) {
+		super();
+		this.login = login;
+		this.mdp = mdp;
+		this.email = email;
+	}
 
 	/**
 	 * Setter du login
