@@ -1,7 +1,6 @@
 package com.sopra.covoiturage;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import modele.Information;
@@ -17,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -149,8 +148,17 @@ public class RideActivity extends Activity {
 	}
 	
 	public void onButtonSearchClick(View v) {
-		findViewById(R.id.search).setVisibility(View.VISIBLE);
-		// TODO : Changer l'image et possibilité de rétractation
+		View searchView = findViewById(R.id.search);
+		ImageView buttonSearch = (ImageView)findViewById(R.id.buttonSearch);
+		
+		if(searchView.getVisibility() == View.GONE) {
+			searchView.setVisibility(View.VISIBLE);
+			buttonSearch.setImageResource(R.drawable.ic_menu_less);
+		} else {
+			searchView.setVisibility(View.GONE);
+			buttonSearch.setImageResource(R.drawable.ic_menu_more);
+			
+		}
 	}
 
 	/**
@@ -295,16 +303,6 @@ public class RideActivity extends Activity {
 	 */
 	public void setRides(ArrayList<Ride> rides) {
 		this.rides = rides;
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (resultCode) {
-		case MenuHandling.RESULT_CLOSE_ALL:
-			setResult(MenuHandling.RESULT_CLOSE_ALL);
-			finish();
-		}
-		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	public void setSelCond(String selCond) {
