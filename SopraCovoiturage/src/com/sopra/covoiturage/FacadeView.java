@@ -115,7 +115,7 @@ public class FacadeView {
 	 * Methode utilisee seulement par un administrateur
 	 * Permet de supprimer un utilisateur
 	 * @param nickname : login de l'utilisateur a supprimer
-	 * return boolean : 1 si l'utilisateur a été supprimé, 0 sinon
+	 * return boolean : 1 si l'utilisateur a ï¿½tï¿½ supprimï¿½, 0 sinon
 	 */
 	public boolean performDeletion (String nickname) {
 		return controller.performDeletion(nickname);
@@ -126,6 +126,15 @@ public class FacadeView {
 	 */
 	public void performProfileModification (Information info) {
 		controller.performProfileModification(info);
+	}
+	
+	/**
+	 * Methode permettant de renvoyer les informations sur l'admin ayant pour login nickname 
+	 * @param nickname : login de l'admin 
+	 * @return Informations : informations sur l'admin 
+	 */
+	public Information getAdminInformation(String nickname){
+		return controller.getAdminInformationRequest(nickname);
 	}
 	
 	/**
