@@ -139,6 +139,25 @@ public class ControllerFacade {
 	}
 	
 	/**
+	 * methode permettant de modifier le profil d'un administrateur
+	 * @param info : informations sur l'administrateur
+	 */
+	public void performAdminProfileModificationRequest (Information info){
+		int requete =requests.adminProfileModificationRequest(info) ;
+		if (requete == 0) {
+			System.out.println("CONTROLLER_FACADE : Modification admin : reussite !\n") ;
+			facadeView.changeActivity(com.sopra.covoiturage.AdminProfileActivity.class);
+			//facadeView.confirmModification();
+			//on met à jour nos infos 
+			userInfo= info;	
+		}
+		else {
+			System.out.println("CONTROLLER_FACADE : Modification admin : echec !\n") ;
+			facadeView.modificationFailed(requete);
+		}
+	}
+	
+	/**
 	 * Methode utilisee seulement par un administrateur
 	 * Permet de supprimer un utilisateur
 	 * @param nickname : login de l'utilisateur a supprimer
