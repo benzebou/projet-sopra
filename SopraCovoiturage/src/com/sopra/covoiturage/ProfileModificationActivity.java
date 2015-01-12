@@ -37,7 +37,7 @@ public class ProfileModificationActivity extends Activity{
 	private CheckBox sunday;
 	private CheckBox conductor;
 	private CheckBox notification;
-	private Button apply;
+	private Button modify;
 	private Button cancel;
 
 	private Boolean[] days = {true,true,true,true,true,false,false};
@@ -71,7 +71,7 @@ public class ProfileModificationActivity extends Activity{
 		sunday = (CheckBox) findViewById(R.id.dimanche);
 		conductor = (CheckBox) findViewById(R.id.conducteur);
 		notification = (CheckBox) findViewById(R.id.notification);	
-		apply = (Button) findViewById(R.id.inscrire);
+		modify = (Button) findViewById(R.id.modifier);
 		cancel = (Button) findViewById(R.id.annuler);	
 		
 		info = facade.getUserInfo();
@@ -258,7 +258,6 @@ public class ProfileModificationActivity extends Activity{
 
 		// l'affiche
 		alertDialog.show();
-
 	}
 
 	/**
