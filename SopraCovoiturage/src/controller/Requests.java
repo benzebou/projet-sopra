@@ -348,9 +348,9 @@ public class Requests {
 	}
 	
 	/**
-	 * Methode permettant de renvoyer les informations sur l'utilisateur ayant pour login nickname 
-	 * @param nickname : login de l'utilisateur 
-	 * @return Informations : informations sur l'utilisateur 
+	 * Methode permettant de renvoyer les informations sur l'admin ayant pour login nickname 
+	 * @param nickname : login de l'admin 
+	 * @return Informations : informations sur l'admin 
 	 */
 	public Information getAdminInformationRequest(String nickname) {
 		// Obtenir les informations d'un profil : nickname (utilisateur � afficher)

@@ -222,6 +222,24 @@ public class ControllerFacade {
 	}
 	
 	/**
+	 * Methode permettant de renvoyer les informations sur l'admin ayant pour login nickname 
+	 * @param nickname : login de l'admin 
+	 * @return Informations : informations sur l'admin 
+	 */
+	public Information getAdminInformationRequest(String nickname) {
+		Information requete =requests.getAdminInformationRequest(nickname) ;
+		if (requete!= null) {
+			System.out.println("CONTROLLER_FACADE : getAdminInformationRequest : reussite !\n") ;
+			System.out.println(requete) ;
+			return requete ;
+		}
+		else {
+			System.out.println("CONTROLLER_FACADE : getAdminInformationRequest : echec !\n") ;
+			return null;
+		}
+	}
+	
+	/**
 	 * Methode utilisee seulement par un administrateur
 	 * Permet d'ajouter un lieu de travail
 	 * @param workplace : lieu de travail a ajouter
