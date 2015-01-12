@@ -108,7 +108,7 @@ public class WorkplaceManagementActivity extends Activity {
 	public void onClickAdd(View v) {
 		this.fac.changeActivity(WorkplaceAdditionActivity.class);
 		this.workplace = this.fac.getWorkplaces();
-		adapter.notifyAll();
+		adapter.notifyDataSetChanged();
 	}
 
 	public FacadeView getFac() {
