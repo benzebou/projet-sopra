@@ -32,7 +32,9 @@ public class MenuHandling implements OnClickListener {
 	public void onClick(View arg0) {
 		if(arg0.equals(disconnectionText)) {
 			facade.performDisconnect();
-			activity.finishActivity(RESULT_CLOSE_ALL);
+			Log.d("SC", "Perform Disconnection");
+			activity.setResult(MenuHandling.RESULT_CLOSE_ALL);
+			activity.finish();
 		} else if (arg0.equals(profileText)) {
 			facade.changeActivityProfile();
 		}
