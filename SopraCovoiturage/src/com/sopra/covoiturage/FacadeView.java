@@ -129,6 +129,14 @@ public class FacadeView {
 	}
 	
 	/**
+	 * methode permettant de modifier le profil d'un administrateur
+	 * @param info : informations sur l'administrateur
+	 */
+	public void performAdminProfileModificationRequest (Information info){
+		controller.performAdminProfileModificationRequest(info);
+	}
+	
+	/**
 	 * Methode permettant de renvoyer les informations sur l'admin ayant pour login nickname 
 	 * @param nickname : login de l'admin 
 	 * @return Informations : informations sur l'admin 
