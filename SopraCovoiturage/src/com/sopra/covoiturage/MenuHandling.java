@@ -1,6 +1,7 @@
 package com.sopra.covoiturage;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,7 +34,8 @@ public class MenuHandling implements OnClickListener {
 		if(arg0.equals(disconnectionText)) {
 			facade.performDisconnect();
 			Log.d("SC", "Perform Disconnection");
-			activity.setResult(MenuHandling.RESULT_CLOSE_ALL);
+			Intent i = new Intent();
+			activity.setResult(MenuHandling.RESULT_CLOSE_ALL, i);
 			activity.finish();
 		} else if (arg0.equals(profileText)) {
 			facade.changeActivityProfile();
