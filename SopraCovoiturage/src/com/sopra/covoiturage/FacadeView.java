@@ -109,6 +109,15 @@ public class FacadeView {
 	}
 	
 	/*PROFILE*/
+	
+	/**
+	 * Methode utilisee seulement par un administrateur
+	 * Permet de supprimer un utilisateur
+	 * @param nickname : login de l'utilisateur a supprimer
+	 */
+	public void performDeletion (String nickname) {
+		controller.performDeletion(nickname);
+	}
 	/**
 	 * methode permettant de modifier le profil d'un utilisateur
 	 * @param info : informations sur l'utilisateur
