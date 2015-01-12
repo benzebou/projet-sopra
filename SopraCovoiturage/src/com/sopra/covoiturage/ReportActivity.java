@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TableLayout;
@@ -31,6 +32,7 @@ public class ReportActivity extends Activity {
 		setContentView(R.layout.report_page);
 		
 		View menu = findViewById(R.id.menu);
+		facade = FacadeView.getInstance(this);
 		MenuHandling menuH = new MenuHandling(facade, this, menu);
 		
 		facade = FacadeView.getInstance(this);
