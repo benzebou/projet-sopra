@@ -334,24 +334,56 @@ public class Information {
 		String res="";
 		for (int i=0;i<7;i++){
 			if (days[i]){
-				if (i==0)
-					res+= "lundi,";
-				if (i==1)
-					res+= "mardi,";
-				if (i==2)
-					res+= "mercredi,";
-				if (i==3)
-					res+= "jeudi,";
-				if (i==4)
-					res+= "vendredi,";
-				if (i==5)
-					res+= "samedi,";
-				if (i==6)
-					res+= "dimanche,";
+				if (i==0) {
+					if(!isLast(i))
+						res+= "lundi, ";
+					else
+						res+= "lundi. ";
+				} else if (i==1) {
+					if(!isLast(i))
+						res+= "mardi, ";
+					else
+						res+= "mardi. ";
+				} else if (i==2) {
+					if(!isLast(i))
+						res+= "mercredi, ";
+					else
+						res+= "mercredi. ";
+				} else if (i==3) {
+					if(!isLast(i))
+						res+= "jeudi, ";
+					else
+						res+= "jeudi. ";
+				} else if (i==4) {
+					if(!isLast(i))
+						res+= "vendredi, ";
+					else
+						res+= "vendredi. ";
+				} else if (i==5) {
+					if(!isLast(i))
+						res+= "samedi, ";
+					else
+						res+= "samedi. ";
+				} else if (i==6) {
+					res+= "dimanche.";
+				}
 			}
 
 		}
 
 		return res;	
+	}
+	
+	public boolean isLast(int i) {
+		boolean last = true;
+		if(i < 6) {
+			for (int j=i+1;j<7;j++){
+				if(days[j]) {
+					last = false;
+					break;
+				}
+			}
+		}
+		return last;
 	}
 }
