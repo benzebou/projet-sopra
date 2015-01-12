@@ -126,13 +126,13 @@ public class ControllerFacade {
 	public void performProfileModification (Information info) {
 		int requete =requests.profileModificationRequest(info) ;
 		if (requete == 0) {
-			System.out.println("CONTROLLER_FACADE : Suppression user : reussite !\n") ;
+			System.out.println("CONTROLLER_FACADE : Modification user : reussite !\n") ;
 			facadeView.confirmModification();
 			//on met à jour nos infos 
 			userInfo= info;	
 		}
 		else {
-			System.out.println("CONTROLLER_FACADE : Suppression user : echec !\n") ;
+			System.out.println("CONTROLLER_FACADE : Modification user : echec !\n") ;
 			facadeView.modificationFailed(requete);
 		}
 	}
