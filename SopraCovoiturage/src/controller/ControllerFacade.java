@@ -127,7 +127,8 @@ public class ControllerFacade {
 		int requete =requests.profileModificationRequest(info) ;
 		if (requete == 0) {
 			System.out.println("CONTROLLER_FACADE : Modification user : reussite !\n") ;
-			facadeView.confirmModification();
+			facadeView.changeActivity(com.sopra.covoiturage.ProfileActivity.class);
+			//facadeView.confirmModification();
 			//on met à jour nos infos 
 			userInfo= info;	
 		}
