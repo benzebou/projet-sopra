@@ -117,7 +117,7 @@ public class ProfileModificationActivity extends Activity{
 		list = this.facade.getPostcodeList();
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		workplace.setAdapter(dataAdapter);
+		postCode.setAdapter(dataAdapter);
 
 		// Initialisation spinner heure aller
 		goingTime = new Spinner(this);
