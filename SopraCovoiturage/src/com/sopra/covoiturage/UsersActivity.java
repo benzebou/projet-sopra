@@ -99,7 +99,8 @@ public class UsersActivity extends Activity {
 	private void fillUserArrayList() {
 		ArrayList<Information> infoList = facade.getUsers();
 		for (Information i : infoList) {
-			userArrayList.add(i.getFirstname() + " " + i.getName());
+			//userArrayList.add(i.getFirstname() + " " + i.getName());
+			userArrayList.add(i.getLogin());
 		}
 	}
 
