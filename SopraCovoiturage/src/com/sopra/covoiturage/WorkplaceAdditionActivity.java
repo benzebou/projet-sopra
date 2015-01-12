@@ -34,6 +34,6 @@ public class WorkplaceAdditionActivity extends Activity {
 		this.fac.addWorkplace(this.newPlace);
 		
 		//Repasse sur la WorkplaceManagementActivity
-		this.fac.changeActivity(WorkplaceManagementActivity.class);
+		this.finish();
 	}
 }

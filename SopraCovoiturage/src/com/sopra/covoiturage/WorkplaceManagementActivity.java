@@ -97,14 +97,18 @@ public class WorkplaceManagementActivity extends Activity {
 		String menuItemName = menuItems[menuItemIndex];
 		String listItemName = this.workplace.get(info.position);
 		if(menuItemName.equals("Supprimer")) {
-			this.workplace.remove(listItemName);
 			this.fac.deletionWorkplace(listItemName);
+			this.workplace.remove(info.position);
+			adapter.notifyDataSetChanged();
 		}
 		return true;
 	}
 
+	
 	public void onClickAdd(View v) {
 		this.fac.changeActivity(WorkplaceAdditionActivity.class);
+		this.workplace = this.fac.getWorkplaces();
+		adapter.notifyAll();
 	}
 
 	public FacadeView getFac() {
