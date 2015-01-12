@@ -411,6 +411,34 @@ public class Requests {
 			return -1;
 		}
 	}
+	
+	/**
+	 * methode permettant de modifier le profil d'un administrateur
+	 * @param info : informations sur l'administrateur
+	 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
+	 */
+	public int adminProfileModificationRequest (Information info) {
+		HashMap<String,Object> map = this.setHashMap(info) ;
+		RequestResponses result;
+		RequestsParams params = new RequestsParams(RequestType.MODIFY_ADMIN_PROFILE,map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		try {
+			result = task.get();
+	
+			if (result.isSuccess()) 
+				return 0 ;
+			else 
+				return result.getCode() ;	
+		
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return -1;
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 
 	/**
 	 * Methode permettant de supprimer un utilisateur
