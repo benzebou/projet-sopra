@@ -35,7 +35,7 @@ public class AdminProfileActivity extends Activity{
 
 		info = facade.getUserInfo();
 		if (info==null){
-			info = facade.getProfileInformation(facade.getLogin());
+			info = facade.getAdminInformation(facade.getLogin());
 			facade.setUserInfo(info);
 		}
 
