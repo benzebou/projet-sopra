@@ -48,7 +48,7 @@ public class FacadeView {
 	
 	public void changeActivity(Class activity) {
 		Intent i = new Intent(firstActivity, activity);
-		firstActivity.startActivityForResult(i, 0);
+		firstActivity.startActivityForResult(i, -1);
 	}
 	
 	/* CONNECTION */
@@ -62,7 +62,7 @@ public class FacadeView {
 		else 
 			i = new Intent(firstActivity, RideActivity.class);
 			
-		firstActivity.startActivity(i); 
+		firstActivity.startActivityForResult(i, -1); 
 	}
 	
 
