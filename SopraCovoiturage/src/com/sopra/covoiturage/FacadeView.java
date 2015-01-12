@@ -50,6 +50,12 @@ public class FacadeView {
 		firstActivity.startActivityForResult(i, -1);
 	}
 	
+	public void changeActivityReport(Activity activity) {
+		Intent i = new Intent(activity, ReportActivity.class);
+		activity.startActivityForResult(i, -1);
+	}
+
+	
 	/* CONNECTION */
 	public void performConnect(String nickname, String password) {
 		controller.performConnect(nickname, password);
