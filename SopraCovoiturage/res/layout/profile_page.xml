@@ -15,8 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="20dp"
             android:text="Profil"
             android:textColor="#de002d"
             android:textSize="24sp" />
@@ -24,285 +24,264 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="#000000"
-                android:text="Login :"
-                android:textSize="14sp" />
+                android:text="Login : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/login"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="#000000"
-                android:text="Nom :"
-                android:textSize="14sp" />
+                android:text="Nom : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/nom"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="#000000"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:text="Prenom :"
-                android:textSize="14sp" />
+                android:text="Prénom : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/prenom"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:text="Mot de Passe :"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/mdp"
-                android:layout_width="wrap_content"
-                android:textColor="#000000"
-                android:layout_height="match_parent"
-                android:text="**********"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:textColor="#000000"
-                android:layout_height="match_parent"
-                android:text="Email :"
-                android:textSize="14sp" />
+                android:text="Email : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:text="Telephone :"
-                android:textSize="14sp" />
+                android:text="Téléphone : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/telephone"
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="#000000"
-                android:text="Code Postal :"
-                android:textSize="14sp" />
+                android:text="Code Postal : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/code_postal"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:text="Lieu de Travail :"
-                android:textSize="14sp" />
+                android:text="Lieu de travail : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/lieu_de_travail"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:text="Aller :"
-                android:textSize="14sp" />
+                android:text="Horaire aller : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/heure_aller"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:text="Retour :"
-                android:textSize="14sp" />
+                android:text="Horaire retour : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/heure_retour"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:text="jours :"
-                android:textSize="14sp" />
+                android:text="Jours : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/jours"
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:textColor="#000000"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:text="Conducteur :"
-                android:textSize="14sp" />
+                android:text="Conducteur : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/conducteur"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="#000000"
                 android:layout_height="match_parent"
-                android:text="Souhaite être notifié :"
-                android:textSize="14sp" />
+                android:text="Souhaite être notifié : "
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/notification"
                 android:textColor="#000000"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_marginTop="30dp" >
 
             <Button
@@ -314,7 +293,9 @@
                 android:layout_weight="1"
                 android:background="#de002d"
                 android:onClick="onModificationButtonClick"
-                android:text="modifier"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:text="Modifier"
                 android:textColor="#000000" />
 
             <Button
@@ -325,7 +306,9 @@
                 android:layout_weight="1"
                 android:background="#de002d"
                 android:onClick="onRetourButtonClick"
-                android:text="retour"
+                android:padding="5dp"
+                android:textSize="20sp"
+                android:text="Retour"
                 android:textColor="#000000" />
         </LinearLayout>
     </LinearLayout>
