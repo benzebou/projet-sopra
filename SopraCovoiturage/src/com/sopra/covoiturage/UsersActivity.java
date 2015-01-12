@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import modele.Information;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class UsersActivity extends Activity {
 	private FacadeView facade;
@@ -26,6 +29,7 @@ public class UsersActivity extends Activity {
 		setContentView(R.layout.users_page);
 
 		facade = FacadeView.getInstance(this);
+		facade.setuActivity(this);
 
 		View menu = findViewById(R.id.menu);
 		MenuHandling menuH = new MenuHandling(facade, this, menu);
@@ -62,14 +66,20 @@ public class UsersActivity extends Activity {
 		return true;
 	}
 
-	private void deleteUser(String listItemName) {
-		// TODO Auto-generated method stub
-		
+	private void deleteUser(String nickname) {
+		facade.performDeletion(nickname);		
 	}
 
-	private void modifyUser(String listItemName) {
-		// TODO Auto-generated method stub
-		
+	private void modifyUser(String nickname) {
+		// TODO
+	}
+	
+	public void notificationDeletionFailure() {
+		Context context = getApplicationContext();
+		int duration = Toast.LENGTH_LONG;
+		Toast toast = Toast.makeText(context, "Echec de la suppression", duration);
+		toast.setGravity(Gravity.BOTTOM|Gravity.LEFT, 0, 0);
+		toast.show();	
 	}
 
 	private void fillListView() {
@@ -98,7 +108,7 @@ public class UsersActivity extends Activity {
 	}
 
 	public void onReportButtonClick(View v) {
-		facade.changeActivity(ReportActivity.class);
+		facade.changeActivityReport(this);
 	}
 
 	@Override

@@ -24,6 +24,7 @@ public class FacadeView {
 	private WorkplaceAdditionActivity workAdd;
 	private PasswordForgottenActivity pwActivity;
 	private RegisterActivity rActivity;
+	private UsersActivity uActivity;
 	
 	private boolean admin;
 	
@@ -181,7 +182,9 @@ public class FacadeView {
 	}
 	
 	public void deletionFailure () {
-		
+		UsersActivity uActivity = this.getuActivity();
+		if (uActivity != null)
+			uActivity.notificationDeletionFailure();
 	}
 	
 	/**
@@ -366,6 +369,14 @@ public class FacadeView {
 	 */
 	public void setWorkMan(WorkplaceManagementActivity workMan) {
 		this.workMan = workMan;
+	}
+
+	public UsersActivity getuActivity() {
+		return uActivity;
+	}
+
+	public void setuActivity(UsersActivity uActivity) {
+		this.uActivity = uActivity;
 	}
 	
 }
