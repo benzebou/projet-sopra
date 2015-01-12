@@ -25,19 +25,19 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/BDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:onClick="onClickDelete"
-                android:text="Delete"
-                android:textSize="15sp" />
-
-            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickAdd"
                 android:text="Add"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/BRefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:onClick="onClickRefresh"
+                android:text="Refresh"
                 android:textSize="15sp" />
         </LinearLayout>
 
@@ -76,20 +76,20 @@
             android:paddingTop="15dip" >
 
             <Button
-                android:id="@id/BDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:onClick="onClickDelete"
-                android:text="Delete"
-                android:textSize="15sp" />
-
-            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:onClick="onClickAdd"
                 android:text="Add"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@id/BRefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:onClick="onClickRefresh"
+                android:text="Refresh"
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>

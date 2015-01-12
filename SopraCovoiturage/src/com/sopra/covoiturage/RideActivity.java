@@ -295,6 +295,11 @@ public class RideActivity extends Activity {
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spin.setAdapter(dataAdapter);
 	}
+	
+	
+	public void onClickMail(View v) {
+		
+	}
 
 	/**
 	 * setter de l'attribut rides.

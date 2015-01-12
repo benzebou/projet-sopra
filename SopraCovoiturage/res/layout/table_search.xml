@@ -6,6 +6,7 @@
     <TextView
     	android:id="@+id/MailUser"
         android:textSize="15sp" 
+        android:onClick="onClickMail"
         android:paddingRight="15dip"
         android:textColor="#777777"/>
 	 
