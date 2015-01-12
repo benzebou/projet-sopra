@@ -346,6 +346,43 @@ public class Requests {
 			return null;
 		}
 	}
+	
+	/**
+	 * Methode permettant de renvoyer les informations sur l'utilisateur ayant pour login nickname 
+	 * @param nickname : login de l'utilisateur 
+	 * @return Informations : informations sur l'utilisateur 
+	 */
+	public Information getAdminInformationRequest(String nickname) {
+		// Obtenir les informations d'un profil : nickname (utilisateur � afficher)
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("login", nickname);
+		
+		RequestResponses result;
+		RequestsParams params = new RequestsParams(RequestType.GET_ADMIN_INFORMATIONS,map);
+		HTTPAsyncTask task = new HTTPAsyncTask();
+		task.execute(params);
+		
+		try {
+			result = task.get();
+			
+			if (result.isSuccess()) {
+				Information info = this.setUser(result.getData()) ;
+				result.getData() ;
+				info.setLogin((String)result.getData().get("login"));
+				info.setEmail((String)result.getData().get("mail"));
+	
+				return info;
+			} else 
+				return null ;	
+			
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	/**
 	 * methode permettant de modifier le profil d'un utilisateur
