@@ -25,6 +25,7 @@ public class RegisterActivity extends Activity  {
 	private EditText name;
 	private EditText firstname;
 	private EditText pwd;
+	private EditText pwdVerif;
 	private EditText email;
 	private EditText phone;
 	private Spinner postCode;
@@ -64,6 +65,7 @@ public class RegisterActivity extends Activity  {
 		name = (EditText) findViewById(R.id.nom);
 		firstname = (EditText) findViewById(R.id.prenom);
 		pwd = (EditText) findViewById(R.id.mot_de_passe);
+		pwdVerif = (EditText) findViewById(R.id.mdp2);
 		email = (EditText) findViewById(R.id.email);
 		phone = (EditText) findViewById(R.id.telephone);
 		monday = (CheckBox) findViewById(R.id.lundi);
@@ -87,7 +89,7 @@ public class RegisterActivity extends Activity  {
 		ArrayAdapter<String> dataAdapterW = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listW);
 		dataAdapterW.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		workplace.setAdapter(dataAdapterW);
-		
+
 		// Initialisation Spinner code postal
 		this.postCode = new Spinner(this);
 		this.postCode = (Spinner) findViewById(R.id.code_postal);
@@ -164,17 +166,25 @@ public class RegisterActivity extends Activity  {
 		String[] horaires = new String[2] ;
 		horaires[0] = goingTime.getSelectedItem().toString();
 		horaires[1] = returningTime.getSelectedItem().toString();
+		boolean pwdOk = pwd.getText().toString().equals(pwdVerif.getText().toString());
 
 		/** Si toutes les infos on bien été rentrées on envoit le nouvel utilisateur */
-		if (login.getText().toString().equals("") || pwd.getText().toString().equals("") || 
+		if (login.getText().toString().equals("") || !pwdOk || pwd.getText().toString().equals("")|| pwdVerif.getText().toString().equals("")|| 
 				email.getText().toString().equals("")|| name.getText().toString().equals("")||
 				firstname.getText().toString().equals("")||phone.getText().toString().equals("")||
 				postCode.getSelectedItem().toString().equals("") || workplace.getSelectedItem().toString().equals("")){
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
 			// set le titre
 			alertDialogBuilder.setTitle("Inscription ratée");
+			if (!pwdOk){
+				alertDialogBuilder
+				.setMessage("Mot de passe invalide ");
+			}
+			else {
+				alertDialogBuilder
+				.setMessage("Veuillez remplir tous les champs demandés ");			
+			}
 
 			// set le message du dialogue
 			alertDialogBuilder
@@ -193,8 +203,8 @@ public class RegisterActivity extends Activity  {
 			// l'affiche
 			alertDialog.show();
 		}else{
-			
-			
+
+
 			this.info = new Information(login.getText().toString() ,pwd.getText().toString(),
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
 					phone.getText().toString(), postCode.getSelectedItem().toString(),
@@ -267,8 +277,8 @@ public class RegisterActivity extends Activity  {
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spin.setAdapter(dataAdapter);
 	}
-	
-	
+
+
 	/**
 	 * Fonction permettant de notifier lorsque l'enregistrement ne c'est pas déroulé comme prévu
 	 */
