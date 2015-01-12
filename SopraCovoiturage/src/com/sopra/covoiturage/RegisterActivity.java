@@ -188,7 +188,6 @@ public class RegisterActivity extends Activity  {
 
 			// set le message du dialogue
 			alertDialogBuilder
-			.setMessage("Veuillez remplir tous les champs demandés ")
 			.setCancelable(false)
 			.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {

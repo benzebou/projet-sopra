@@ -181,7 +181,7 @@ public class ProfileModificationActivity extends Activity{
 	 * Envoie les informations saisies si elles sont bonne vers la base de donnée
 	 *  @param v vue de l'application
 	 */
-	public void onMofifierButtonClick(View v) {
+	public void onModifierButtonClick(View v) {
 		String[] horaires = new String[2] ;
 		horaires[0] = goingTime.getSelectedItem().toString();
 		horaires[1] = returningTime.getSelectedItem().toString();
@@ -195,7 +195,7 @@ public class ProfileModificationActivity extends Activity{
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 			// set le titre
-			alertDialogBuilder.setTitle("Inscription ratée");
+			alertDialogBuilder.setTitle("Modification ratée");
 			if (!pwdOk){
 				alertDialogBuilder
 				.setMessage("Mot de passe invalide ");
@@ -207,7 +207,6 @@ public class ProfileModificationActivity extends Activity{
 
 			// set le message du dialogue
 			alertDialogBuilder
-			.setMessage("Veuillez remplir tous les champs demandés ")
 			.setCancelable(false)
 			.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
@@ -221,17 +220,17 @@ public class ProfileModificationActivity extends Activity{
 
 			// l'affiche
 			alertDialog.show();
-
 		}else{
-			
-			Information newinfo = new Information(info.getLogin() ,pwd.getText().toString(),
+
+
+			this.info = new Information(login.getText().toString() ,pwd.getText().toString(),
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
-					phone.getText().toString(), postCode.getTag().toString(),
-					workplace.getTag().toString(),horaires,days, estConducteur, estNotif);
-		
-			//envoyer nouvelles infos à la bdd
-			facade.performProfileModification(info);
-			//on met à jour nos infos en demande à la bdd
+					phone.getText().toString(), postCode.getSelectedItem().toString(),
+					workplace.getSelectedItem().toString(),horaires,days, estConducteur, estNotif);
+			facade.performRegister(info);
+			facade.setLogin(login.getText().toString());
+
+
 		}
 	}
 
