@@ -22,6 +22,7 @@ public class UsersActivity extends Activity {
 	private FacadeView facade;
 	private ListView userList;
 	ArrayList<String> userArrayList = new ArrayList<String>();
+	StringAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,11 @@ public class UsersActivity extends Activity {
 	}
 
 	private void deleteUser(String nickname) {
-		facade.performDeletion(nickname);		
+		boolean requeteReussie = facade.performDeletion(nickname);
+		if (requeteReussie) {
+			this.userArrayList.remove(nickname);
+			adapter.notifyDataSetChanged();
+		}
 	}
 
 	private void modifyUser(String nickname) {
@@ -82,8 +87,10 @@ public class UsersActivity extends Activity {
 		toast.show();	
 	}
 
+
+
 	private void fillListView() {
-		StringAdapter adapter = new StringAdapter(getApplicationContext(),
+		adapter = new StringAdapter(getApplicationContext(),
 				userArrayList);
 		// On dit à la ListView de se remplir via cet adapter
 		userList.setAdapter(adapter);

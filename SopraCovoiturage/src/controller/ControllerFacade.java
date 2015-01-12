@@ -142,16 +142,19 @@ public class ControllerFacade {
 	 * Methode utilisee seulement par un administrateur
 	 * Permet de supprimer un utilisateur
 	 * @param nickname : login de l'utilisateur a supprimer
+	 * return boolean : 1 si l'utilisateur a été supprimé, 0 sinon
 	 */
-	public void performDeletion (String nickname) {
+	public boolean performDeletion (String nickname) {
 		boolean requete =requests.removeProfileRequest(nickname) ;
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Suppression user : reussite !\n") ;
+			return true;
 			// TODO : Il faut arrï¿½ter toutes les activitï¿½s
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Suppression user : echec !\n") ;
 			facadeView.deletionFailure();
+			return false;
 		}
 	}
 	
