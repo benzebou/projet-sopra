@@ -47,12 +47,12 @@ public class FacadeView {
 	
 	public void changeActivity(Class activity) {
 		Intent i = new Intent(firstActivity, activity);
-		firstActivity.startActivityForResult(i, -1);
+		firstActivity.startActivityForResult(i, 1);
 	}
 	
 	public void changeActivityReport(Activity activity) {
 		Intent i = new Intent(activity, ReportActivity.class);
-		activity.startActivityForResult(i, -1);
+		activity.startActivityForResult(i, 1);
 	}
 
 	
@@ -67,7 +67,7 @@ public class FacadeView {
 		else 
 			i = new Intent(firstActivity, RideActivity.class);
 			
-		firstActivity.startActivityForResult(i, -1); 
+		firstActivity.startActivityForResult(i, 1); 
 	}
 	
 
