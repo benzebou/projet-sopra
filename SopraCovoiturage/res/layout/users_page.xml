@@ -54,23 +54,6 @@
         android:gravity="center"
         android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/modifyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onModifyButtonClick"
-            android:text="Modifier"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/suppressButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onSuppressButtonClick"
-            android:text="Supprimer"
-            android:textColor="#000000"
-            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

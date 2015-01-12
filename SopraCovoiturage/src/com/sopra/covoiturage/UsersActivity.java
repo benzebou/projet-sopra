@@ -7,7 +7,12 @@ import modele.Information;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class UsersActivity extends Activity {
@@ -28,6 +33,43 @@ public class UsersActivity extends Activity {
 		userList = (ListView) findViewById(R.id.usersTable);
 		fillUserArrayList();
 		fillListView();
+		registerForContextMenu(userList);
+	}
+
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		if (v.getId() == R.id.usersTable) {
+			AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+			menu.setHeaderTitle(userArrayList.get(info.position));
+			String[] menuItems = getResources().getStringArray(R.array.menu);
+			for (int i = 0; i < menuItems.length; i++) {
+				menu.add(Menu.NONE, i, i, menuItems[i]);
+			}
+		}
+	}
+
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+				.getMenuInfo();
+		int menuItemIndex = item.getItemId();
+		String[] menuItems = getResources().getStringArray(R.array.menu);
+		String menuItemName = menuItems[menuItemIndex];
+		String listItemName = userArrayList.get(info.position);
+		if (menuItemName.equals("Modifier"))
+			modifyUser(listItemName);
+		else if (menuItemName.equals("Supprimer"))
+			deleteUser(listItemName);
+		return true;
+	}
+
+	private void deleteUser(String listItemName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void modifyUser(String listItemName) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void fillListView() {
@@ -47,17 +89,8 @@ public class UsersActivity extends Activity {
 	private void fillUserArrayList() {
 		ArrayList<Information> infoList = facade.getUsers();
 		for (Information i : infoList) {
-			userArrayList.add(i.getFirstname()+" "+i.getName());
+			userArrayList.add(i.getFirstname() + " " + i.getName());
 		}
-	}
-
-	public void onModifyButtonClick(View v) {
-		// facade.performConnect(loginText.getText().toString(),
-		// mdpText.getText().toString());
-	}
-
-	public void onSuppressButtonClick(View v) {
-		// facade.changeActivityRegister();
 	}
 
 	public void onWorkplaceButtonClick(View v) {
