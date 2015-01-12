@@ -3,6 +3,8 @@ package com.sopra.covoiturage;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import modele.Information;
+
 import com.sopra.covoiturage.FacadeView;
 
 import android.app.Activity;
@@ -10,22 +12,29 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class WorkplaceManagementActivity extends Activity {
 
 	private FacadeView fac;
-	private String button;
-	private TableLayout table;
-	private ArrayList<String> workplace;
+	private StringAdapter adapter;
+	private ListView listWorkplace;
+	private ArrayList<String> workplace = new ArrayList<String>();
 	private String delWorkplace;
-	private LayoutInflater inflater;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,76 +43,68 @@ public class WorkplaceManagementActivity extends Activity {
 		this.fac.setWorkMan(this);
 
 		// Initialise le tableau de trajet
-		inflater = getLayoutInflater();
-		table = new TableLayout(this);
-		table = (TableLayout) findViewById(R.id.WorkplaceTable);
-		this.workplace = new ArrayList<String>();
-		displayWorkplace();
+		/*
+		 * inflater = getLayoutInflater(); table = new TableLayout(this); table
+		 * = (TableLayout) findViewById(R.id.WorkplaceTable); this.workplace =
+		 * new ArrayList<String>(); displayWorkplace();
+		 */
 
+		listWorkplace = (ListView) findViewById(R.id.WorkplaceTable);
+		fillListView();
+		registerForContextMenu(listWorkplace);
 	}
 
-	private void displayWorkplace() {
-		resetRides();
-		this.workplace = null;
+	private void fillListView() {
 		this.workplace = this.fac.getWorkplaces();
-		for (int i = 0; i < workplace.size(); i++) {
-			TableRow tr = (TableRow) inflater.inflate(
-					R.layout.table_workplace_management, null);
-			((TextView) tr.findViewById(R.id.Workplace))
-					.setText((String) workplace.get(i));
-			table.addView(tr);
-		}		
-		Log.d("Lulu", workplace.toString());
+		adapter = new StringAdapter(getApplicationContext(),
+				this.workplace);
+		// On dit a la ListView de se remplir via cet adapter
+		this.listWorkplace.setAdapter(adapter);
+		/*
+		 * Si vos donnees changent, penser a utiliser la fonction
+		 * adapter.notifyDataSetChanged(); qui aura pour effet de notifier le
+		 * changement de donnees et de recharger la liste automatiquement.
+		 */
+		adapter.notifyDataSetChanged();
 	}
 
-	private void resetRides() {
-		int count = table.getChildCount();
-		for (int i = 1; i < count; i++) {
-			View child = table.getChildAt(i);
-			if (child instanceof TableRow)
-				((ViewGroup) child).removeAllViews();
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		if (v.getId() == R.id.WorkplaceTable) {
+			AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+			menu.setHeaderTitle(this.workplace.get(info.position));
 		}
+		String[] menuItems = getResources().getStringArray(R.array.menuSuppr);
+		for (int i = 0; i < menuItems.length; i++) {
+			menu.add(Menu.NONE, i, i, menuItems[i]);
+		}
+	}
+	
+	public void suppressionFailure(){
+		Toast.makeText(this, "Echec Suppression", Toast.LENGTH_SHORT);
+	}
+	
+	public void addFailure(){
+		Toast.makeText(this, "Echec Suppression", Toast.LENGTH_SHORT);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+				.getMenuInfo();
+		int menuItemIndex = item.getItemId();
+		String[] menuItems = getResources().getStringArray(R.array.menuSuppr);
+		String menuItemName = menuItems[menuItemIndex];
+		String listItemName = this.workplace.get(info.position);
+		if(menuItemName.equals("Supprimer")) {
+			this.workplace.remove(listItemName);
+			this.fac.deletionWorkplace(listItemName);
+		}
+		return true;
 	}
 
 	public void onClickAdd(View v) {
 		this.fac.changeActivity(WorkplaceAdditionActivity.class);
-	}
-
-	public void onClickWorkplace(View v) {
-		this.delWorkplace = ((TextView) findViewById(R.id.Workplace)).getText().toString();
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
-		// set le titre
-		alertDialogBuilder.setTitle("Suppression de " + this.delWorkplace );
-
-		// set le message du dialogue
-		alertDialogBuilder
-				.setMessage("Voulez vous supprimer " + this.delWorkplace + "?")
-				.setCancelable(false)
-				.setPositiveButton("Yes",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-								getFac().deletionWorkplace(getDelWorkplace());
-								displayWorkplace();
-							}
-						})
-
-				.setNegativeButton("No", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						// si le boutton est clicker, ferme seulement la box
-						dialog.cancel();
-					}
-				});
-
-		// crée la alert dialog
-		AlertDialog alertDialog = alertDialogBuilder.create();
-
-		// l'affiche
-		alertDialog.show();
-	}
-
-	public void onClickRefresh(View v) {
-		displayWorkplace();
 	}
 
 	public FacadeView getFac() {
@@ -121,8 +122,5 @@ public class WorkplaceManagementActivity extends Activity {
 	public void setDelWorkplace(String delWorkplace) {
 		this.delWorkplace = delWorkplace;
 	}
-	
-	
-	
-	
+
 }
