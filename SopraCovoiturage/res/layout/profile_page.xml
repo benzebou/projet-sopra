@@ -298,16 +298,16 @@
                 android:textColor="#000000" />
 
             <Button
-                android:id="@+id/retour"
+                android:id="@+id/suppress"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="#de002d"
-                android:onClick="onRetourButtonClick"
+                android:onClick="onSuppressButtonClick"
                 android:padding="5dp"
                 android:textSize="20sp"
-                android:text="Retour"
+                android:text="Supprimer"
                 android:textColor="#000000" />
         </LinearLayout>
     </LinearLayout>
