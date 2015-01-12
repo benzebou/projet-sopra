@@ -997,8 +997,8 @@ public class Requests {
 		info.setEmail((String)map.get("mail"));
 		info.setName((String)map.get("nom"));
 		info.setFirstname((String)map.get("prenom"));
-		//if ((String)map.get("tel") != null)
-		//	info.setPhone((String)map.get("tel"));
+		if (map.containsKey("tel")) 
+			info.setPhone((String)map.get("tel"));
 		info.setWorkplace((String)map.get("travail"));
 		info.setPostcode((String)map.get("postal"));
 		info.setMorning((String)map.get("horairesMatin"));
