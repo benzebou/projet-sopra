@@ -13,10 +13,8 @@ public class ProfileActivity extends Activity {
 	private TextView login;
 	private TextView name;
 	private TextView firstname;
-	private TextView pwd;
 	private TextView email;
 	private TextView phone;
-	private TextView town;
 	private TextView postCode;
 	private TextView workplace;
 	private TextView goingTime;
@@ -40,7 +38,6 @@ public class ProfileActivity extends Activity {
 		login=(TextView) findViewById(R.id.login);
 		name = (TextView) findViewById(R.id.nom);
 		firstname = (TextView) findViewById(R.id.prenom);
-		pwd = (TextView) findViewById(R.id.mot_de_passe);
 		email = (TextView) findViewById(R.id.email);
 		phone = (TextView) findViewById(R.id.telephone);
 		postCode = (TextView) findViewById(R.id.code_postal);
@@ -90,21 +87,14 @@ public class ProfileActivity extends Activity {
 	}
 
 	/**
-	 * Renvoit à la page précédente
+	 * Supprime l'utilisateur
 	 * @param v vue de l'application
 	 */
-	public void onRetourButtonClick(View v) {
+	public void onSuppressButtonClick(View v) {
+		facade.performDeletion(info.getLogin());
+		this.setResult(RESULT_OK);
 		this.finish();
 	}
 	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    switch(resultCode)
-	    {
-	    case MenuHandling.RESULT_CLOSE_ALL:
-	        setResult(MenuHandling.RESULT_CLOSE_ALL);
-	        finish();
-	    }
-	    super.onActivityResult(requestCode, resultCode, data);
-	}
+
 }
