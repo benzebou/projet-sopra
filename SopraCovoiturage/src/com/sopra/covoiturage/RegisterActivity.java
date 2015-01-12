@@ -176,14 +176,14 @@ public class RegisterActivity extends Activity  {
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 			// set le titre
-			alertDialogBuilder.setTitle("Inscription ratée");
+			alertDialogBuilder.setTitle("Echec de l'inscription");
 			if (!pwdOk){
 				alertDialogBuilder
 				.setMessage("Mot de passe invalide ");
 			}
 			else {
 				alertDialogBuilder
-				.setMessage("Veuillez remplir tous les champs demandés ");			
+				.setMessage("Veuillez remplir tous les champs demand�s ");			
 			}
 
 			// set le message du dialogue
@@ -224,7 +224,7 @@ public class RegisterActivity extends Activity  {
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
 		// set le titre
-		alertDialogBuilder.setTitle("Inscription ratée");
+		alertDialogBuilder.setTitle("Echec de l'inscription");
 
 		// set le message du dialogue
 		alertDialogBuilder
