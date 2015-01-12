@@ -146,7 +146,7 @@ public class ControllerFacade {
 		boolean requete =requests.removeProfileRequest(nickname) ;
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Suppression user : reussite !\n") ;
-			// TODO : Il faut arrêter toutes les activités
+			// TODO : Il faut arrï¿½ter toutes les activitï¿½s
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Suppression user : echec !\n") ;
@@ -227,8 +227,6 @@ public class ControllerFacade {
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Addition workplace : reussite !\n") ;
 			Log.d("SC", "CONTROLLER_FACADE : Addition workplace : reussite !\n");
-			HashMap<String, String> workplaces = requests.getWorkplacesRequest() ;
-			facadeView.displayWorkplaces(workplaces);
 		}
 		else { 
 			System.out.println("CONTROLLER_FACADE : Addition workplace : echec !\n") ;
