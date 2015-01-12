@@ -22,6 +22,7 @@ public class ProfileModificationActivity extends Activity{
 	private EditText name;
 	private EditText firstname;
 	private EditText pwd;
+	private EditText pwdVerif;
 	private EditText email;
 	private EditText phone;
 	private Spinner postCode;
@@ -60,6 +61,7 @@ public class ProfileModificationActivity extends Activity{
 		name = (EditText) findViewById(R.id.nom);
 		firstname = (EditText) findViewById(R.id.prenom);
 		pwd = (EditText) findViewById(R.id.mot_de_passe);
+		pwdVerif = (EditText) findViewById(R.id.mdp2);
 		email = (EditText) findViewById(R.id.email);
 		phone = (EditText) findViewById(R.id.telephone);
 		monday = (CheckBox) findViewById(R.id.lundi);
@@ -183,16 +185,25 @@ public class ProfileModificationActivity extends Activity{
 		String[] horaires = new String[2] ;
 		horaires[0] = goingTime.getSelectedItem().toString();
 		horaires[1] = returningTime.getSelectedItem().toString();
+		boolean pwdOk = pwd.getText().toString().equals(pwdVerif.getText().toString());
 
-		if (pwd.getText().toString().equals("") || 
+		/** Si toutes les infos on bien été rentrées on envoit le nouvel utilisateur */
+		if (login.getText().toString().equals("") || !pwdOk || pwd.getText().toString().equals("")|| pwdVerif.getText().toString().equals("")|| 
 				email.getText().toString().equals("")|| name.getText().toString().equals("")||
 				firstname.getText().toString().equals("")||phone.getText().toString().equals("")||
-				postCode.getTag().toString().equals("") || workplace.getTag().toString().equals("")){
+				postCode.getSelectedItem().toString().equals("") || workplace.getSelectedItem().toString().equals("")){
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
 			// set le titre
 			alertDialogBuilder.setTitle("Inscription ratée");
+			if (!pwdOk){
+				alertDialogBuilder
+				.setMessage("Mot de passe invalide ");
+			}
+			else {
+				alertDialogBuilder
+				.setMessage("Veuillez remplir tous les champs demandés ");			
+			}
 
 			// set le message du dialogue
 			alertDialogBuilder
@@ -210,6 +221,7 @@ public class ProfileModificationActivity extends Activity{
 
 			// l'affiche
 			alertDialog.show();
+
 		}else{
 			
 			Information newinfo = new Information(info.getLogin() ,pwd.getText().toString(),
