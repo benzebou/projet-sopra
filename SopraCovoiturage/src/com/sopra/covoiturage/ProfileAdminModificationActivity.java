@@ -35,7 +35,7 @@ public class ProfileAdminModificationActivity extends Activity {
 		pwdVerif = (EditText) findViewById(R.id.mdp2);
 		email = (EditText) findViewById(R.id.email);	
 
-		info = facade.getProfileInformation(facade.getLogin());
+		info = facade.getAdminInformation(facade.getLogin());
 
 		//On met la valeur actuelle des infos dans les champs correspondant
 		email.setText(info.getEmail());

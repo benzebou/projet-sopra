@@ -21,6 +21,7 @@ public class ProfileActivity extends Activity {
 	private TextView returningTime;
 	private TextView workingDays;
 	private TextView modify;
+	private TextView delete;
 	private TextView back;
 	private TextView conductor;
 	private TextView notification;
@@ -50,12 +51,20 @@ public class ProfileActivity extends Activity {
 		workplace = (TextView) findViewById(R.id.lieu_de_travail);	
 		modify = (Button) findViewById(R.id.modifier);
 		back = (Button) findViewById(R.id.retour);
+		delete = (Button) findViewById(R.id.suppress);
 	}
 	
 	public void onResume() {
 		super.onResume();
 		/** on récupère les infos du user */
-		info = facade.getProfileInformation(facade.getProfileLogin());		
+		info = facade.getProfileInformation(facade.getProfileLogin());	
+		
+		// si on est admin, on n'affiche pas les boutons modifier et back
+		if (!facade.getLogin().equals(facade.getProfileLogin())){
+			modify.setVisibility(View.GONE);
+			delete.setVisibility(View.GONE);
+		}
+			
 
 		login.setText(info.getLogin());
 		name.setText(info.getName());
