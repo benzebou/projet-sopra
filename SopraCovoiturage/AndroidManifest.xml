@@ -14,12 +14,12 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar"
-        android:screenOrientation="portrait" >
+        android:screenOrientation="portrait"
+        android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name="com.sopra.covoiturage.ConnectingActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"  >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,9 +28,8 @@
         </activity>
         <activity
             android:name="com.sopra.covoiturage.RideActivity"
-            android:label="@string/app_name" 
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
-            
         </activity>
         <activity
             android:name="com.sopra.covoiturage.UsersActivity"
@@ -39,12 +38,12 @@
         </activity>
         <activity
             android:name="com.sopra.covoiturage.MailRequestActivity"
-            android:label="@string/app_name" 
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.sopra.covoiturage.ProgressBarActivity"
-            android:label="@string/app_name" 
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -63,6 +62,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.sopra.covoiturage.ProfileAdminModificationActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.sopra.covoiturage.ProfileModificationActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
@@ -74,7 +78,7 @@
         </activity>
         <activity
             android:name="com.sopra.covoiturage.PasswordForgottenActivity"
-            android:label="@string/app_name" 
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
