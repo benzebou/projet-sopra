@@ -73,6 +73,11 @@ public class ProfileModificationActivity extends Activity{
 			info = facade.getProfileInformation(facade.getModificationLogin());
 			facade.setUserInfo(info);
 		}
+		
+		if(!facade.getModificationLogin().contentEquals(facade.getLogin())) {
+			pwd.setVisibility(View.GONE);
+			pwdVerif.setVisibility(View.GONE);
+		}
 
 		
 		//On met la valeur actuelle des infos dans les champs correspondant

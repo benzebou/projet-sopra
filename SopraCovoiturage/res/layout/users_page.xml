@@ -41,26 +41,22 @@
         android:text="Liste d&apos;utilisateurs"
         android:textColor="#de002d"
         android:textSize="26sp" />
+    
+    <TextView
+        android:paddingRight="15dip"
+        android:layout_width="match_parent"     
+        android:layout_height="wrap_content"        
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Appuyez longtemps sur un utilisateur pour voir les options disponibles"
+        android:textColor="#000000"
+        android:textSize="15sp" />
 
     <ListView
         android:id="@+id/usersTable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:paddingRight="15dip"
-        android:layout_width="match_parent"     
-        android:layout_height="wrap_content"        
-        android:layout_marginTop="20dp"
-        android:text="Appuyez longtemps sur un utilisateur pour voir les options disponibles"
-        android:textColor="#000000"
-        android:textSize="15sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"       
-        android:orientation="horizontal" >
-    </LinearLayout>
 
 </LinearLayout>
