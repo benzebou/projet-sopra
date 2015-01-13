@@ -99,13 +99,26 @@ public class FacadeView {
 		changeActivityProgressBar(activity, "Connexion en cours...", nickname, password);
 	}
 		
+	public void performConnect(String nickname, String password) {
+		controller.performConnect(nickname, password) ;
+	}
 	
 	public void performConnectGo(String nickname, String password, Activity activity) {
-		controller.performConnect(nickname, password, activity);
+		controller.performConnectNOTTESTED(nickname, password, activity);
 	}
 	
 	
-	public void processConnected(boolean admin, Activity activity) {
+	public void processConnected(boolean admin) {
+		Intent i;
+		this.admin = admin;
+		if(admin)
+			i = new Intent(firstActivity, UsersActivity.class); 
+		else 
+			i = new Intent(firstActivity, RideActivity.class);
+		firstActivity.startActivityForResult(i, 1); 
+	}
+	
+	public void processConnectedNOTTESTED(boolean admin, Activity activity) {
 		Intent i;
 		this.admin = admin;
 		if(admin)

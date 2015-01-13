@@ -74,13 +74,27 @@ public class ControllerFacade {
 	 * @param nickname : login de l'utilisateur
 	 * @param password : mot de passe de l'utilisateur
 	 */
-	public void performConnect (String nickname, String password, Activity activity) {
+	public void performConnectNOTTESTED (String nickname, String password, Activity activity) {
 		boolean[] requete =requests.connectionRequest(nickname, password) ;
 		if (requete[0]) {
 			System.out.println("CONTROLLER_FACADE : Connexion : reussite !\n") ;
 			this.setLogin(nickname);
 			facadeView.setModificationLogin(nickname);
-			facadeView.processConnected(requete[1], activity);
+			facadeView.processConnectedNOTTESTED(requete[1], activity);
+		}
+		else {
+			System.out.println("CONTROLLER_FACADE : Connexion : echec !\n") ;
+			facadeView.processNotConnected();
+		}
+	}
+	
+	public void performConnect (String nickname, String password) {
+		boolean[] requete =requests.connectionRequest(nickname, password) ;
+		if (requete[0]) {
+			System.out.println("CONTROLLER_FACADE : Connexion : reussite !\n") ;
+			this.setLogin(nickname);
+			facadeView.setModificationLogin(nickname);
+			facadeView.processConnected(requete[1]);
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Connexion : echec !\n") ;
