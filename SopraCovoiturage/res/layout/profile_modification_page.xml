@@ -289,16 +289,15 @@
                 android:textColor="#000000" />
 
             <Button
-                android:id="@+id/suppress"
+                android:id="@+id/annuler"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="#de002d"
-                android:onClick="onSuppressButtonClick"
-                android:padding="5dp"
-                android:textSize="20sp"
-                android:text="Supprimer"
+                android:onClick="onAnnulerButtonClick"
+                android:text="Annuler"
+                android:textSize="18sp"
                 android:textColor="#000000" />
         </LinearLayout>
     </LinearLayout>
