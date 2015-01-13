@@ -366,7 +366,7 @@ public class Requests {
 			result = task.get();
 			
 			if (result.isSuccess()) {
-				Information info = this.setUser(result.getData()) ;
+				Information info = this.setAdmin(result.getData()) ;
 				result.getData() ;
 				info.setLogin((String)result.getData().get("login"));
 				info.setEmail((String)result.getData().get("mail"));
@@ -1104,6 +1104,13 @@ public class Requests {
 			info.setNotifie(true);
 		else
 			info.setNotifie(false);
+		return info ;
+	}
+	
+	private Information setAdmin (Map<String, Object> map) {
+		Information info = new Information () ;
+		info.setLogin((String)map.get("login"));
+		info.setEmail((String)map.get("mail"));
 		return info ;
 	}
 	
