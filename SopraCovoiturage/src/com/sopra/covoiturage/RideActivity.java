@@ -126,6 +126,7 @@ public class RideActivity extends Activity {
 	
 	@Override
 	public void onResume() {
+		super.onResume();
 		displayBasicRide();
 	}
 
