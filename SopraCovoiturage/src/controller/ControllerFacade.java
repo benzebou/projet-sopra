@@ -127,10 +127,10 @@ public class ControllerFacade {
 	public void performProfileModification (Information info) {
 		int requete =requests.profileModificationRequest(info) ;
 		if (requete == 0) {
-			System.out.println("CONTROLLER_FACADE : Modification user : reussite !\n") ;
-			facadeView.confirmModification();
 			//on met à jour nos infos 
 			userInfo= info;	
+			System.out.println("CONTROLLER_FACADE : Modification user : reussite !\n") ;
+			facadeView.confirmModification();
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Modification user : echec !\n") ;
@@ -145,11 +145,11 @@ public class ControllerFacade {
 	public void performAdminProfileModificationRequest (Information info){
 		int requete =requests.adminProfileModificationRequest(info) ;
 		if (requete == 0) {
-			System.out.println("CONTROLLER_FACADE : Modification admin : reussite !\n") ;
-			facadeView.changeActivity(com.sopra.covoiturage.AdminProfileActivity.class);
 			//facadeView.confirmModification();
 			//on met à jour nos infos 
 			userInfo= info;	
+			System.out.println("CONTROLLER_FACADE : Modification admin : reussite !\n") ;
+			facadeView.changeActivity(com.sopra.covoiturage.AdminProfileActivity.class);
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Modification admin : echec !\n") ;
