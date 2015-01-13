@@ -68,18 +68,11 @@ public class ProfileModificationActivity extends Activity{
 		conductor = (CheckBox) findViewById(R.id.conducteur);
 		notification = (CheckBox) findViewById(R.id.notification);
 		
+		info = facade.getProfileInformation(facade.getModificationLogin());
 		if(!facade.getModificationLogin().contentEquals(facade.getLogin())) {
 			pwd.setVisibility(View.GONE);
-			pwdVerif.setVisibility(View.GONE);
-			info = facade.getProfileInformation(facade.getModificationLogin());
-			
-		} else {
-			info = facade.getUserInfo();
-			if (info==null){
-				info = facade.getProfileInformation(facade.getModificationLogin());
-				facade.setUserInfo(info);
-			}
-		}
+			pwdVerif.setVisibility(View.GONE);	
+		} 
 
 		
 		//On met la valeur actuelle des infos dans les champs correspondant
