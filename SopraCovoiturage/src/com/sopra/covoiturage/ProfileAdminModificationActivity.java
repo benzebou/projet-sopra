@@ -18,12 +18,9 @@ import android.widget.TextView;
 
 public class ProfileAdminModificationActivity extends Activity {
 	private FacadeView facade;
-	private TextView login;
 	private TextView pwd;
 	private TextView pwdVerif;
 	private TextView email;
-	private TextView modify;
-	private TextView cancel;
 	private Information info ;
 
 	/**
@@ -34,22 +31,13 @@ public class ProfileAdminModificationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.admin_modif_profile_page);
 		facade = FacadeView.getInstance(this);
-		login = (TextView) findViewById(R.id.login);
 		pwd = (EditText) findViewById(R.id.mot_de_passe);
 		pwdVerif = (EditText) findViewById(R.id.mdp2);
-		email = (EditText) findViewById(R.id.email);
-		modify = (Button) findViewById(R.id.modifier);
-		cancel = (Button) findViewById(R.id.annuler);	
+		email = (EditText) findViewById(R.id.email);	
 
-		info = facade.getUserInfo();
-		if (info==null){
-			info = facade.getProfileInformation(facade.getLogin());
-			facade.setUserInfo(info);
-		}
-
+		info = facade.getProfileInformation(facade.getLogin());
 
 		//On met la valeur actuelle des infos dans les champs correspondant
-		login.setText(info.getLogin());
 		email.setText(info.getEmail());
 	}
 
@@ -61,7 +49,7 @@ public class ProfileAdminModificationActivity extends Activity {
 		boolean pwdOk = pwd.getText().toString().equals(pwdVerif.getText().toString());
 
 		/** Si toutes les infos on bien été rentrées on envoit le nouvel utilisateur */
-		if (login.getText().toString().equals("") || !pwdOk || 
+		if (!pwdOk || 
 				email.getText().toString().equals("")){
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -98,10 +86,9 @@ public class ProfileAdminModificationActivity extends Activity {
 				password = null;
 			}
 
-			this.info = new Information(login.getText().toString() ,password,
+			this.info = new Information(facade.getLogin(),password,
 					email.getText().toString());
 			facade.performAdminProfileModificationRequest (info);
-			facade.setLogin(login.getText().toString());
 
 
 		}
