@@ -33,6 +33,7 @@ public class ProfileAdminModificationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.admin_modif_profile_page);
+		facade = FacadeView.getInstance(this);
 		login = (TextView) findViewById(R.id.login);
 		email = (EditText) findViewById(R.id.email);
 		modify = (Button) findViewById(R.id.modifier);

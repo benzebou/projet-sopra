@@ -25,7 +25,7 @@ public class AdminProfileActivity extends Activity{
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.profile_page);
+		setContentView(R.layout.admin_profile_page);
 		facade = FacadeView.getInstance(this);
 		login=(TextView) findViewById(R.id.login);
 		email = (TextView) findViewById(R.id.email);
@@ -47,7 +47,7 @@ public class AdminProfileActivity extends Activity{
 	 * Renvoit à la page de modification du profile utilisateur
 	 * @param v vue de l'application
 	 */
-	public void onModificationButtonClick(View v) {
+	public void onModifierButtonClick(View v) {
 		facade.changeActivity(ProfileAdminModificationActivity.class);
 	}
 
