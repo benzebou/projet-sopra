@@ -14,10 +14,11 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="50dp"
-            android:text="Profile"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            android:text="Profil"
             android:textColor="#de002d"
-            android:textSize="24sp" />
+            android:textSize="34sp" />
 
         <EditText
             android:id="@+id/login"
@@ -26,9 +27,9 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
-            android:hint="login"
+            android:hint="Login"
             android:inputType="text"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/nom"
@@ -37,9 +38,9 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
-            android:hint="nom"
+            android:hint="Nom"
             android:inputType="text"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/prenom"
@@ -48,9 +49,9 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
-            android:hint="prénom"
+            android:hint="Prénom"
             android:inputType="text"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/mot_de_passe"
@@ -58,11 +59,21 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:ems="10"
             android:gravity="center_horizontal"
-            android:hint="mot de passe"
+            android:hint="Mot de passe"
             android:inputType="textPassword"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
+        
+        <EditText
+            android:id="@+id/mdp2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center_horizontal"
+            android:hint="Vérification du mot de passe"
+            android:inputType="textPassword"
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/email"
@@ -70,11 +81,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:ems="10"
             android:gravity="center_horizontal"
-            android:hint="email"
+            android:hint="Email"
             android:inputType="textEmailAddress"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
 
         <EditText
             android:id="@+id/telephone"
@@ -82,11 +92,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:ems="10"
             android:gravity="center_horizontal"
-            android:hint="téléphone"
+            android:hint="Téléphone"
             android:inputType="phone"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -96,25 +105,26 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="code postal :"
+                android:layout_height="wrap_content"
+                android:text="Code postal :"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/code_postal"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp" />
         </LinearLayout>
 
         <Spinner
             android:id="@+id/lieu_de_travail"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp" />
 
+        
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -124,23 +134,24 @@
             <Spinner
                 android:id="@+id/heure_aller"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:textSize="12sp" />
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/heure_retour"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:textSize="12sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp" >
 
@@ -156,9 +167,9 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onCheckBoxClicked"
-                    android:text="lundi"
+                    android:text="Lundi"
                     android:textColor="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
                 <CheckBox
                     android:id="@+id/mardi"
@@ -167,9 +178,9 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onCheckBoxClicked"
-                    android:text="mardi"
+                    android:text="Mardi"
                     android:textColor="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
             </TableRow>
 
             <TableRow
@@ -184,9 +195,9 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onCheckBoxClicked"
-                    android:text="mercredi"
+                    android:text="Mercredi"
                     android:textColor="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
                 <CheckBox
                     android:id="@+id/jeudi"
@@ -195,9 +206,9 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onCheckBoxClicked"
-                    android:text="jeudi"
+                    android:text="Jeudi"
                     android:textColor="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
             </TableRow>
 
             <TableRow
@@ -212,9 +223,9 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onCheckBoxClicked"
-                    android:text="vendredi"
+                    android:text="Vendredi"
                     android:textColor="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
 
                 <CheckBox
                     android:id="@+id/samedi"
@@ -222,9 +233,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="onCheckBoxClicked"
-                    android:text="samedi"
+                    android:text="Samedi"
                     android:textColor="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
             </TableRow>
 
             <TableRow>
@@ -241,9 +252,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="onCheckBoxClicked"
-                    android:text="dimanche"
+                    android:text="Dimanche"
                     android:textColor="#000000"
-                    android:textSize="15sp" />
+                    android:textSize="20sp" />
             </TableRow>
         </TableLayout>
 
@@ -251,12 +262,13 @@
             android:id="@+id/conducteur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:onClick="onCheckBoxClicked"
             android:text="Conducteur"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
 
         <CheckBox
             android:id="@+id/notification"
@@ -264,10 +276,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:onClick="onCheckboxClicked"
+            android:onClick="onCheckBoxClicked"
             android:text="Souhaite être notifié"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -282,11 +294,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="30dp"
+                android:padding="10dp"
                 android:layout_weight="1"
                 android:background="#de002d"
                 android:onClick="onInscrireButtonClick"
-                android:text="s&apos;incrire"
+                android:text="S&apos;incrire"
+                android:textSize="28sp"
                 android:textColor="#000000" />
 
             <Button
@@ -294,10 +308,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="30dp"
+                android:padding="10dp"
                 android:layout_weight="1"
                 android:background="#de002d"
                 android:onClick="onAnnulerButtonClick"
-                android:text="annuler"
+                android:text="Annuler"
+                android:textSize="28sp"
                 android:textColor="#000000" />
         </LinearLayout>
     </LinearLayout>
