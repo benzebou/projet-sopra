@@ -282,7 +282,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="#de002d"
-                android:onClick="onModificationButtonClick"
+                android:onClick="onModifierButtonClick"
                 android:textSize="20sp"
                 android:padding="5dp"
                 android:text="Modifier"
