@@ -2,69 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#f6f6f6" > 
+    android:background="#f6f6f6"
+    android:orientation="vertical" >
+
     <include
-	    android:id="@+id/menu"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    layout="@layout/menu" />	    
-  
-    <TextView
-        android:layout_marginTop="20dp"
+        android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:textSize="30sp"
-        android:textColor="#de002d" 
-        android:text="Liste d'utilisateurs" />
-    
-    <ListView 
-	    android:id="@+id/usersTable"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" /> 
+        layout="@layout/menu" />
 
-    <LinearLayout 
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal"
-	    android:gravity="center">
-		<Button
-	        android:id="@+id/modifyButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="20sp"
-	        android:onClick="onModifyButtonClick"
-	        android:textColor="#000000"
-	        android:text="Modifier" />
-		<Button
-	        android:id="@+id/suppressButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="20sp"
-	        android:onClick="onSuppressButtonClick"
-	        android:textColor="#000000"
-	        android:text="Supprimer" />
-	</LinearLayout>
-	<Button
-	    android:layout_marginTop="10dp"
+    <Button
         android:id="@+id/reportButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:onClick="onReportButtonClick"
-        android:textColor="#000000"
         android:layout_gravity="center"
-        android:text="Génération de rapports" />
-	<Button
-	    android:layout_marginTop="10dp"
+        android:layout_marginTop="10dp"
+        android:onClick="onReportButtonClick"
+        android:text="Génération de rapports"
+        android:textColor="#000000"
+        android:textSize="26sp" />
+
+    <Button
         android:id="@+id/workplaceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:onClick="onWorkplaceButtonClick"
-        android:textColor="#000000"
         android:layout_gravity="center"
-        android:text="Gestion des lieux de travail" />
-	       
+        android:layout_marginTop="10dp"
+        android:onClick="onWorkplaceButtonClick"
+        android:text="Gestion des lieux de travail"
+        android:textColor="#000000"
+        android:textSize="26sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:text="Liste d&apos;utilisateurs"
+        android:textColor="#de002d"
+        android:textSize="34sp" />
+    
+    <TextView
+        android:paddingRight="15dip"
+        android:layout_width="match_parent"     
+        android:layout_height="wrap_content"        
+        android:layout_marginTop="20dp"
+        android:text="Appuyez longtemps sur un utilisateur pour voir les options disponibles"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+    <ListView
+        android:id="@+id/usersTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
 </LinearLayout>
