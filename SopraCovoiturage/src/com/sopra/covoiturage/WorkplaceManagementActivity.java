@@ -70,11 +70,7 @@ public class WorkplaceManagementActivity extends Activity {
 
 	public void onResume() {
 		super.onResume();
-		this.listWorkplace = null;
-		this.workplace = null;
-		this.listWorkplace = (ListView) findViewById(R.id.WorkplaceTable);
-		fillListView();
-		registerForContextMenu(listWorkplace);
+		refresh();
 		Log.d("Lulu", "On passe par le onResume");
 	}
 	
@@ -109,11 +105,20 @@ public class WorkplaceManagementActivity extends Activity {
 		if(menuItemName.equals("Supprimer")) {
 			this.fac.deletionWorkplace(listItemName);
 			this.workplace.remove(info.position);
+			this.fac.setWorkMan(this);
 			adapter.notifyDataSetChanged();
 		}
 		return true;
 	}
 
+	public void refresh() {
+		this.listWorkplace = null;
+		this.workplace = null;
+		this.listWorkplace = (ListView) findViewById(R.id.WorkplaceTable);
+		fillListView();
+		registerForContextMenu(listWorkplace);
+		this.fac.setWorkMan(this);
+	}
 	
 	public void onClickAdd(View v) {
 		this.fac.changeActivity(WorkplaceAdditionActivity.class);
@@ -135,8 +140,9 @@ public class WorkplaceManagementActivity extends Activity {
 		return delWorkplace;
 	}
 	
-	public void AddWorkplace() {
-		this.workplace = this.fac.getWorkplaces();
+	public void AddWorkplace(String place) {
+		this.fac.addWorkplace(place);
+		refresh();
 	}
 
 	public void setDelWorkplace(String delWorkplace) {
