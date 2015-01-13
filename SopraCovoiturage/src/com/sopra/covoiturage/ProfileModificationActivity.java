@@ -191,7 +191,7 @@ public class ProfileModificationActivity extends Activity{
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 			// set le titre
-			alertDialogBuilder.setTitle("Modification ratée");
+			alertDialogBuilder.setTitle("Echec de la modification");
 			if (!pwdOk){
 				alertDialogBuilder
 				.setMessage("Mot de passe invalide ");
