@@ -61,7 +61,7 @@ public class ProfileAdminModificationActivity extends Activity {
 		boolean pwdOk = pwd.getText().toString().equals(pwdVerif.getText().toString());
 
 		/** Si toutes les infos on bien été rentrées on envoit le nouvel utilisateur */
-		if (login.getText().toString().equals("") || !pwdOk || pwd.getText().toString().equals("")|| pwdVerif.getText().toString().equals("")|| 
+		if (login.getText().toString().equals("") || !pwdOk || 
 				email.getText().toString().equals("")){
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
