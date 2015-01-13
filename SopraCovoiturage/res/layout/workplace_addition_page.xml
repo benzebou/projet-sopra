@@ -11,7 +11,7 @@
 	    android:orientation="vertical">
 	    
 	    <TextView
-			android:text="Workplace Addition"
+			android:text="Ajouter Lieu de travail"
 		    android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:textSize="20sp"
@@ -31,7 +31,7 @@
 		   	<Button
 		    	android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-			    android:text="Add"
+			    android:text="Ajouter"
 			    android:textSize="15sp"
 		     	android:onClick="onClickAdd"/>
 		</LinearLayout>

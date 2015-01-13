@@ -70,7 +70,11 @@ public class WorkplaceManagementActivity extends Activity {
 
 	public void onResume() {
 		super.onResume();
-		this.getAdapter().notifyDataSetChanged();
+		this.listWorkplace = null;
+		this.workplace = null;
+		this.listWorkplace = (ListView) findViewById(R.id.WorkplaceTable);
+		fillListView();
+		registerForContextMenu(listWorkplace);
 		Log.d("Lulu", "On passe par le onResume");
 	}
 	
@@ -131,8 +135,8 @@ public class WorkplaceManagementActivity extends Activity {
 		return delWorkplace;
 	}
 	
-	public void AddWorkplace(String place) {
-		this.workplace.add(place);
+	public void AddWorkplace() {
+		this.workplace = this.fac.getWorkplaces();
 	}
 
 	public void setDelWorkplace(String delWorkplace) {
