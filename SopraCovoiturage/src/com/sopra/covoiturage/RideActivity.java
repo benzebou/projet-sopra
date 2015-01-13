@@ -155,6 +155,7 @@ public class RideActivity extends Activity {
 	public void displayBasicRide() {
 		Log.d("SC", "display Basic Ride : " + this.user.getWorkplace());
 		fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
+		this.user =  fac.getUserInfo();
 		this.selAller = this.user.getMorning();
 		this.selRetour = this.user.getEvening();
 		displayRide();
