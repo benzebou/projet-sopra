@@ -16,6 +16,9 @@ public class ConnectingActivity extends Activity {
 	private EditText mdpText;
 	
 	@Override
+	/**
+	 * cree la page de connexion
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.connecting_page);
@@ -28,6 +31,10 @@ public class ConnectingActivity extends Activity {
 
 	}
 	
+	/**
+	 * methode appelee lorsqu'on clique sur le bouton connexion
+	 * @param v
+	 */
 	public void onConnectionButtonClick(View v) {
 		if(isNetworkAvailable())
 			facade.performConnect(loginText.getText().toString().replaceAll("\\s", ""), mdpText.getText().toString());
@@ -35,6 +42,10 @@ public class ConnectingActivity extends Activity {
 			Toast.makeText(this, "Connectez-vous à Internet", Toast.LENGTH_LONG).show();
 	}
 	
+	/**
+	 * methode appelee lorsqu'on clique sur le bouton s'enregistrer
+	 * @param v
+	 */
 	public void onRegisterButtonClick(View v) {
 		if(isNetworkAvailable())
 			facade.changeActivity(RegisterActivity.class);
@@ -43,6 +54,10 @@ public class ConnectingActivity extends Activity {
 			
 	}
 	
+	/**
+	 * methode appelee lorsqu'on clique sur mot de passe oublié
+	 * @param v
+	 */
 	public void onPasswordForgottenButtonClick(View v) {
 		if(isNetworkAvailable())
 			facade.changeActivity(PasswordForgottenActivity.class);
@@ -51,10 +66,17 @@ public class ConnectingActivity extends Activity {
 		
 	}
 	
+	/**
+	 * methode notifiant a l'utilisateur que la connexion a échoué
+	 */
 	public void notificationConnectionFailure() {
 		Toast.makeText(this, "La connexion a échoué", Toast.LENGTH_LONG).show();
 	}
 	
+	/**
+	 * verifie que la connexion au reseau est active
+	 * @return true si le reseau est disponible, false sinon
+	 */
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager 
 	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
