@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutionException;
 
 import modele.Information;
 import modele.Ride;
+import android.app.Activity;
 import android.util.Log;
 
 import com.sopra.covoiturage.FacadeView;
@@ -73,13 +74,13 @@ public class ControllerFacade {
 	 * @param nickname : login de l'utilisateur
 	 * @param password : mot de passe de l'utilisateur
 	 */
-	public void performConnect (String nickname, String password) {
+	public void performConnect (String nickname, String password, Activity activity) {
 		boolean[] requete =requests.connectionRequest(nickname, password) ;
 		if (requete[0]) {
 			System.out.println("CONTROLLER_FACADE : Connexion : reussite !\n") ;
 			this.setLogin(nickname);
 			facadeView.setModificationLogin(nickname);
-			facadeView.processConnected(requete[1]);
+			facadeView.processConnected(requete[1], activity);
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Connexion : echec !\n") ;
