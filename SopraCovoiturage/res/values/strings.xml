@@ -4,6 +4,7 @@
     <string name="app_name">SopraCovoiturage</string>
 
     <string-array name="menu">
+        <item>Consulter</item>
         <item>Modifier</item>
         <item>Supprimer</item>
         <item>Annuler</item>

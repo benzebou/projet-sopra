@@ -75,7 +75,17 @@ public class UsersActivity extends Activity {
 			modifyUser(nickname);
 		else if (menuItemName.equals("Supprimer"))
 			deleteUser(nickname);
+		else if (menuItemName.equals("Consulter"))
+			consultUser(nickname);
 		return true;
+	}
+
+	/**
+	 * consulter le profil d'un utilisateur
+	 * @param nickname
+	 */
+	private void consultUser(String nickname) {
+		// TODO Auto-generated method stub		
 	}
 
 	/**
@@ -96,6 +106,7 @@ public class UsersActivity extends Activity {
 	 * @param nickname
 	 */
 	private void modifyUser(String nickname) {
+		System.out.println(nickname);
 		facade.setModificationLogin(nickname);
 		facade.changeActivity(ProfileModificationActivity.class);
 	}
@@ -151,6 +162,7 @@ public class UsersActivity extends Activity {
 		return login;
 	}
 	
+	
 	/**
 	 * recupère a partir du login la ligne complete de la listView
 	 * @param login
@@ -159,7 +171,7 @@ public class UsersActivity extends Activity {
 	private String getListNameFromLogin (String login) {
 		String listname = null;
 		for (String s : userArrayList){
-			if (s.contains(": "+login) == true)
+			if (s.substring(s.indexOf(":")+2).equals(login))
 				listname = s;
 		}
 			
