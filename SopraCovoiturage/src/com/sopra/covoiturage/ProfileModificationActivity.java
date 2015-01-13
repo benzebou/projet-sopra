@@ -219,9 +219,6 @@ public class ProfileModificationActivity extends Activity{
 					phone.getText().toString(), postCode.getSelectedItem().toString(),
 					workplace.getSelectedItem().toString(),horaires,days, estConducteur, estNotif);
 			facade.performProfileModification(this, info);
-			facade.setLogin(info.getLogin());
-
-
 		}
 	}
 
