@@ -13,11 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 public class ProfileModificationActivity extends Activity{
 	private FacadeView facade;
-	private TextView login;
 	private EditText name;
 	private EditText firstname;
 	private EditText pwd;
@@ -54,7 +52,6 @@ public class ProfileModificationActivity extends Activity{
 		setContentView(R.layout.profile_modification_page);
 		facade = FacadeView.getInstance(this);
 		
-		login = (TextView) findViewById(R.id.login);
 		name = (EditText) findViewById(R.id.nom);
 		firstname = (EditText) findViewById(R.id.prenom);
 		pwd = (EditText) findViewById(R.id.mot_de_passe);
@@ -79,7 +76,6 @@ public class ProfileModificationActivity extends Activity{
 
 		
 		//On met la valeur actuelle des infos dans les champs correspondant
-		login.setText(info.getLogin());
 		name.setText(info.getName());
 		firstname.setText(info.getFirstname());
 		email.setText(info.getEmail());
@@ -183,7 +179,7 @@ public class ProfileModificationActivity extends Activity{
 		boolean pwdOk = pwd.getText().toString().equals(pwdVerif.getText().toString());
 
 		/** Si toutes les infos on bien été rentrées on envoit le nouvel utilisateur */
-		if (login.getText().toString().equals("") || !pwdOk || pwd.getText().toString().equals("")|| pwdVerif.getText().toString().equals("")|| 
+		if (!pwdOk || pwd.getText().toString().equals("")|| pwdVerif.getText().toString().equals("")|| 
 				email.getText().toString().equals("")|| name.getText().toString().equals("")||
 				firstname.getText().toString().equals("")||phone.getText().toString().equals("")||
 				postCode.getSelectedItem().toString().equals("") || workplace.getSelectedItem().toString().equals("")){
@@ -218,12 +214,12 @@ public class ProfileModificationActivity extends Activity{
 		}else{
 
 
-			this.info = new Information(login.getText().toString() ,pwd.getText().toString(),
+			this.info = new Information(info.getLogin(),pwd.getText().toString(),
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
 					phone.getText().toString(), postCode.getSelectedItem().toString(),
 					workplace.getSelectedItem().toString(),horaires,days, estConducteur, estNotif);
 			facade.performProfileModification(info);
-			facade.setLogin(login.getText().toString());
+			facade.setLogin(info.getLogin());
 
 
 		}
