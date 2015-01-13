@@ -149,6 +149,8 @@ public class RideActivity extends Activity {
 	public void displayBasicRide() {
 		Log.d("SC", "display Basic Ride : " + this.user.getWorkplace());
 		fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
+		this.selAller = this.user.getMorning();
+		this.selRetour = this.user.getEvening();
 		displayRide();
 	}
 	
@@ -223,7 +225,7 @@ public class RideActivity extends Activity {
 								.setText(info.getEvening());
 
 						if (this.selAller.equals(info.getMorning()))
-							Log.d("lulu", info.getMorning());
+							Log.d("lulu", "1:" + info.getMorning());
 						((TextView) tr.findViewById(R.id.HeureAller))
 								.setTextColor(Color.parseColor("#de002d"));
 
@@ -235,8 +237,8 @@ public class RideActivity extends Activity {
 					} else if ((selCond.equals("les deux"))) {
 						TableRow tr = (TableRow) inflater.inflate(
 								R.layout.table_search, null);
-						Log.d("lulu", info.getMorning());
-						Log.d("lulu", this.selAller);
+						Log.d("lulu", "2:" + info.getMorning());
+						Log.d("lulu", "3:" + this.selAller);
 						((TextView) tr.findViewById(R.id.MailUser))
 								.setText(info.getEmail());
 						Log.d("lulu", "on passe dans la boucle 3");
