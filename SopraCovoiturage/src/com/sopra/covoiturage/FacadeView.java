@@ -232,6 +232,11 @@ public class FacadeView {
 		((ConnectingActivity)firstActivity).notificationConnectionFailure();
 	}
 	
+	public void processNotConnectedNOTTESTED(Activity activity) {
+		activity.finish();
+		((ConnectingActivity)firstActivity).notificationConnectionFailure();
+	}
+	
 	public void processSendPwdMailOk () {
 		if (getPwActivity() == null)
 			Log.d("SC","Erreur processSendPwdMailOk");

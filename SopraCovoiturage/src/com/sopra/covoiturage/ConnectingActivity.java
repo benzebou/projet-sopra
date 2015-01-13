@@ -37,8 +37,8 @@ public class ConnectingActivity extends Activity {
 	 */
 	public void onConnectionButtonClick(View v) {
 		if(isNetworkAvailable()) {
-			//facade.performConnect(loginText.getText().toString().replaceAll("\\s", ""), mdpText.getText().toString(), this);
-			facade.performConnect(loginText.getText().toString().replaceAll("\\s", ""), mdpText.getText().toString()) ;
+			facade.performConnect(loginText.getText().toString().replaceAll("\\s", ""), mdpText.getText().toString(), this);
+			//facade.performConnect(loginText.getText().toString().replaceAll("\\s", ""), mdpText.getText().toString()) ;
 		}
 		else
 			Toast.makeText(this, "Connectez-vous à Internet", Toast.LENGTH_LONG).show();
@@ -72,7 +72,11 @@ public class ConnectingActivity extends Activity {
 	 * methode notifiant a l'utilisateur que la connexion a échoué
 	 */
 	public void notificationConnectionFailure() {
-		Toast.makeText(this, "La connexion a échoué", Toast.LENGTH_LONG).show();
+		this.runOnUiThread(new Runnable() {
+			  public void run() {
+			    Toast.makeText(ConnectingActivity.this, "La connexion a échoué", Toast.LENGTH_LONG).show();
+			  }
+			});
 	}
 	
 	/**

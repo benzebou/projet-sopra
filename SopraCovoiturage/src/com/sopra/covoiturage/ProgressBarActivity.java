@@ -55,13 +55,13 @@ public class ProgressBarActivity extends Activity {
 		    mProgressDialog = ProgressDialog.show(this, "Patientez s'il vous plait",getIntent().getStringExtra("type"), true);
 		    
 		    final Handler uiThreadCallback = new Handler();
-		    /*
+		    
 		    final Runnable runInUIThread = new Runnable() {
 	    	    public void run() {
-	    	    	facade.changeActivity(com.sopra.covoiturage.UsersActivity.class);  	     
+	    	    	//facade.changeActivityFromProgressBar(ProgressBarActivity.this, com.sopra.covoiturage.ConnectingActivity.class);  	     
 	    	    }
 		    };
-		    */
+		    
 		    new Thread((new Runnable() {
 		        @Override
 		        public void run() {
