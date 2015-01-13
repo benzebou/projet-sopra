@@ -268,12 +268,7 @@ public class FacadeView {
 		this.searchRide.setRides(listOfRides);
 	}
 	
-	/**
-	 * initialise le parametre listOfWorkplaces en faisant appel a la methode getWorkplace du controller
-	 * @param listOfWorkplaces
-	 */
-	public void displayWorkplaces(HashMap<String, String> workplace) {
-	}
+
 	
 	/**
 	 * Demande au controller d'ajouter un workplace en base
