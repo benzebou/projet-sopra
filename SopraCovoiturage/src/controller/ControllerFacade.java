@@ -84,7 +84,7 @@ public class ControllerFacade {
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Connexion : echec !\n") ;
-			facadeView.processNotConnected();
+			facadeView.processNotConnectedNOTTESTED(activity);
 		}
 	}
 	
