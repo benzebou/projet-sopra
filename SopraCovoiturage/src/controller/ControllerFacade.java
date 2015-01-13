@@ -231,6 +231,7 @@ public class ControllerFacade {
 		if (requete!= null) {
 			System.out.println("CONTROLLER_FACADE : getProfileInformation : reussite !\n") ;
 			System.out.println(requete) ;
+			this.userInfo = requete;
 			return requete ;
 		}
 		else {
