@@ -58,7 +58,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
-            android:hint="mot de passe vérification"
+            android:hint="Vérification du mot de passe"
             android:inputType="textPassword"
             android:textSize="12sp" />
 
