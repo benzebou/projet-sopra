@@ -33,11 +33,7 @@ public class AdminProfileActivity extends Activity{
 		back = (Button) findViewById(R.id.retour);
 
 
-		info = facade.getUserInfo();
-		if (info==null){
-			info = facade.getAdminInformation(facade.getLogin());
-			facade.setUserInfo(info);
-		}
+		info = facade.getAdminInformation(facade.getLogin());
 
 		login.setText(info.getLogin());
 		email.setText(info.getEmail());
