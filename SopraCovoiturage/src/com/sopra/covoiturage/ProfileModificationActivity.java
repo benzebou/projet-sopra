@@ -220,8 +220,12 @@ public class ProfileModificationActivity extends Activity{
 			alertDialog.show();
 		}else{
 
+			String password = pwd.getText().toString();
+			if (password.equals("")){
+				password = null;
+			}
 
-			this.info = new Information(info.getLogin(),pwd.getText().toString(),
+			this.info = new Information(info.getLogin(),password,
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
 					phone.getText().toString(), postCode.getSelectedItem().toString(),
 					workplace.getSelectedItem().toString(),horaires,days, estConducteur, estNotif);
