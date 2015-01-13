@@ -658,6 +658,7 @@ public class Requests {
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
 		RequestResponses result;
+		this.mapWorkplaces = new HashMap<String, String>();
 		try {
 			result = task.get();
 
@@ -1162,7 +1163,7 @@ public class Requests {
 	private static String getRequestParameters(RequestType typeOfRequest, HashMap<String, Object> map){
 		String urlParameters = "request=" + typeOfRequest.toString().toLowerCase();
 		if (typeOfRequest == RequestType.GET_LIST_WORKPLACE || typeOfRequest == RequestType.GET_LIST_TOWN){
-			System.out.println("Requête : " + urlParameters);
+			System.out.println("Requï¿½te : " + urlParameters);
 			return urlParameters;
 		}
 		else{
@@ -1179,7 +1180,7 @@ public class Requests {
 			}
 	
 			
-			System.out.println("Type de requête : "+typeOfRequest);
+			System.out.println("Type de requï¿½te : "+typeOfRequest);
 			if (!typeOfRequest.equals(RequestType.REGISTER) 
 					&& !typeOfRequest.equals(RequestType.PASSWORD_FORGOTTEN)){
 				if (typeOfRequest.equals(RequestType.CONNECT_USER) || typeOfRequest.equals(RequestType.CONNECT_ADMIN) || SYN_REQ <0 || ACK_REQ < 0){
@@ -1196,7 +1197,7 @@ public class Requests {
 			}
 			}
 
-		System.out.println("Requête : " + urlParameters);
+		System.out.println("Requï¿½te : " + urlParameters);
 		return urlParameters;
 	}
 
@@ -1247,7 +1248,7 @@ public class Requests {
 				result.remove("ACK_REQ");
 		}
 		
-		System.out.println("Résultat après décodage du JSON : "+result.toString());
+		System.out.println("Rï¿½sultat aprï¿½s dï¿½codage du JSON : "+result.toString());
 		return result;
 	}
 	
