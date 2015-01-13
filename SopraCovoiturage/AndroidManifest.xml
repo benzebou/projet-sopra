@@ -43,6 +43,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.sopra.covoiturage.ProgressBarActivity"
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.sopra.covoiturage.RegisterActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
@@ -84,11 +89,6 @@
         </activity>
         <activity
             android:name="com.sopra.covoiturage.AdminProfileActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" >
-        </activity>
-               <activity
-            android:name="com.sopra.covoiturage.ProfileAdminModificationActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
