@@ -195,9 +195,23 @@ public class Requests {
 		}
 	}
 
+	/**
+	 * Methode permettant de creer une hashMap a partir d'un objet Information pour Admin
+	 * @param info : Objet Information a inserer dans la HashMap
+	 * @return HashMap
+	 */
+	public HashMap<String,Object> setHashMapAdmin (Information info) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("login", info.getLogin()); 
+		map.put("mdp", encryptPassword(info.getMdp()));
+		map.put("mail", info.getEmail());		
+		return map ;
+	}
+
+	
 	
 	/**
-	 * Methode permettant de creer une hashMap a partir d'un objet Information
+	 * Methode permettant de creer une hashMap a partir d'un objet Information pour User
 	 * @param info : Objet Information a inserer dans la HashMap
 	 * @return HashMap
 	 */
@@ -418,7 +432,7 @@ public class Requests {
 	 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
 	 */
 	public int adminProfileModificationRequest (Information info) {
-		HashMap<String,Object> map = this.setHashMap(info) ;
+		HashMap<String,Object> map = this.setHashMapAdmin(info) ;
 		RequestResponses result;
 		RequestsParams params = new RequestsParams(RequestType.MODIFY_ADMIN_PROFILE,map);
 		HTTPAsyncTask task = new HTTPAsyncTask();
