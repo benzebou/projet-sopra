@@ -29,10 +29,11 @@ public class ProgressBarActivity extends Activity {
 		    mProgressDialog = ProgressDialog.show(this, "Patientez s'il vous plait",getIntent().getStringExtra("type"), true);
 		            
 		    final Handler uiThreadCallback = new Handler();
+  
 		    
 		    final Runnable runInUIThread = new Runnable() {
 	    	    public void run() {
-	    	    	facade.changeActivity(com.sopra.covoiturage.ConnectingActivity.class);  	     
+	    	    	facade.changeActivityFromProgressBar(ProgressBarActivity.this, com.sopra.covoiturage.ConnectingActivity.class);  	     
 	    	    }
 		    };
 		    
@@ -52,25 +53,24 @@ public class ProgressBarActivity extends Activity {
 	    else {
 	    	System.out.println(getIntent().getStringExtra("type")) ;
 		    mProgressDialog = ProgressDialog.show(this, "Patientez s'il vous plait",getIntent().getStringExtra("type"), true);
-		            
-		    final Handler uiThreadCallback = new Handler();
 		    
+		    final Handler uiThreadCallback = new Handler();
+		    /*
 		    final Runnable runInUIThread = new Runnable() {
 	    	    public void run() {
-	    	    	facade.changeActivity(com.sopra.covoiturage.ConnectingActivity.class);  	     
+	    	    	facade.changeActivity(com.sopra.covoiturage.UsersActivity.class);  	     
 	    	    }
 		    };
-		    
+		    */
 		    new Thread((new Runnable() {
 		        @Override
 		        public void run() {
-		        	facade.performConnectGo(getIntent().getStringExtra("nickname"), getIntent().getStringExtra("mdp")) ;
+		        	facade.performConnectGo(getIntent().getStringExtra("nickname"), getIntent().getStringExtra("mdp"), ProgressBarActivity.this) ;
 		            if (mProgressDialog.isShowing()) {
 		                mProgressDialog.dismiss();   
 		            }
 		            
-		            uiThreadCallback.post(runInUIThread);
-		            //doLongOperation2() ; 
+		            //uiThreadCallback.post(runInUIThread);
 		        }
 		    })).start();
 	    }
