@@ -70,7 +70,7 @@ public class ProfileModificationActivity extends Activity{
 		
 		info = facade.getUserInfo();
 		if (info==null){
-			info = facade.getProfileInformation(facade.getLogin());
+			info = facade.getProfileInformation(facade.getModificationLogin());
 			facade.setUserInfo(info);
 		}
 
