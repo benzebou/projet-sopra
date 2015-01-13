@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f6f6f6" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+        <include
+	        android:id="@+id/menu"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        layout="@layout/menu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:text="Rapports"
+            android:textColor="#000000"
+            android:textSize="34sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="5dp"
+                android:text="Nombre de connexions : "
+                android:textColor="#de002d"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/nb_connexion"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#000000"
+                android:textSize="28sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Nombre d&apos;utilisateurs :"
+                android:textColor="#de002d"
+                android:textSize="28sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:layout_marginLeft="5dp"
+                android:text="Conducteurs : "
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/nb_conducteurs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="28sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="#000000"
+                android:text="Passagers : "
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/nb_non_conducteurs"
+                android:layout_width="wrap_content"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:textSize="28sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Nombre d&apos;utilisateurs selon trajet :"
+            android:textColor="#de002d"
+            android:textSize="28sp" />
+
+        <TableLayout
+            android:id="@+id/Trajets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"  >
+
+            <!-- 2 columns -->
+
+            <TableRow
+                android:id="@+id/RowTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/Trajet"
+                    android:text="Trajet"
+                    android:textColor="#000000"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/Nb_conducteurs"
+                    android:text="Nombre de conducteurs"
+                    android:textColor="#000000"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/Nb_passagers"
+                    android:paddingLeft="5dip"
+                    android:gravity="right"
+                    android:text="Nombre de passagers"
+                    android:textColor="#000000"
+                    android:textSize="22sp" />
+            </TableRow>
+
+            <!-- just draw a red line -->
+
+            <View
+                android:layout_height="2dip"
+                android:background="#de002d" />
+        </TableLayout>
+    </LinearLayout>
+
+</ScrollView>
