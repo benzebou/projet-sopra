@@ -93,8 +93,12 @@ public class ProfileAdminModificationActivity extends Activity {
 			alertDialog.show();
 		}else{
 
+			String password = pwd.getText().toString();
+			if (password.equals("")){
+				password = null;
+			}
 
-			this.info = new Information(login.getText().toString() ,pwd.getText().toString(),
+			this.info = new Information(login.getText().toString() ,password,
 					email.getText().toString());
 			facade.performAdminProfileModificationRequest (info);
 			facade.setLogin(login.getText().toString());
