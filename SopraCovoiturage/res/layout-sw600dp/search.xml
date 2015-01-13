@@ -101,7 +101,6 @@
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
 	            android:onClick="onClickSearch"
-	            android:layout_margin="3dp"
 	            android:text="Rechercher"
 	            android:background="#de002d"
 	            android:layout_weight="1"
