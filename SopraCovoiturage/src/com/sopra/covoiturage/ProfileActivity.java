@@ -55,15 +55,7 @@ public class ProfileActivity extends Activity {
 	public void onResume() {
 		super.onResume();
 		/** on récupère les infos du user */
-		if(!facade.getModificationLogin().contentEquals(facade.getLogin())) {
-			info = facade.getProfileInformation(facade.getProfileLogin());		
-		} else {
-			info = facade.getUserInfo();
-			if (info==null){
-				info = facade.getProfileInformation(facade.getProfileLogin());
-				facade.setUserInfo(info);
-			}
-		}
+		info = facade.getProfileInformation(facade.getProfileLogin());		
 
 		login.setText(info.getLogin());
 		name.setText(info.getName());
