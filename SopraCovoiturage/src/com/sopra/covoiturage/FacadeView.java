@@ -26,6 +26,7 @@ public class FacadeView {
 	private RegisterActivity rActivity;
 	private UsersActivity uActivity;
 	private ProfileModificationActivity modifActivity;
+	private String modificationLogin;
 	
 	private boolean admin;
 	
@@ -398,6 +399,14 @@ public class FacadeView {
 
 	public void setuActivity(UsersActivity uActivity) {
 		this.uActivity = uActivity;
+	}
+
+	public String getModificationLogin() {
+		return modificationLogin;
+	}
+
+	public void setModificationLogin(String modificationLogin) {
+		this.modificationLogin = modificationLogin;
 	}
 	
 }
