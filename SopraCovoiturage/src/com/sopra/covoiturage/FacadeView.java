@@ -63,6 +63,7 @@ public class FacadeView {
 	}
 	public void processConnected(boolean admin) {
 		Intent i;
+		this.admin = admin;
 		if(admin) 
 			i = new Intent(firstActivity, UsersActivity.class); 
 		else 
