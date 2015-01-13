@@ -121,7 +121,7 @@ public class WorkplaceManagementActivity extends Activity {
 	}
 	
 	public void onClickAdd(View v) {
-		this.fac.changeActivity(WorkplaceAdditionActivity.class);
+		this.fac.changeActivityAddWorkplace();
 	}
 
 	public FacadeView getFac() {

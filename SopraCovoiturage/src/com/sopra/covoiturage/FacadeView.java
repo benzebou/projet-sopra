@@ -53,6 +53,19 @@ public class FacadeView {
 		Intent i = new Intent(firstActivity, activity);
 		firstActivity.startActivityForResult(i, 1);
 	}
+
+	public void changeActivityAddWorkplace() {
+		this.workMan.finish();
+		Intent i = new Intent(firstActivity, WorkplaceAdditionActivity.class);
+		firstActivity.startActivityForResult(i, 1);
+	}
+
+	public void changeActivityManWorkplace() {
+		this.workAdd.finish();
+		Intent i = new Intent(firstActivity, WorkplaceManagementActivity.class);
+		firstActivity.startActivityForResult(i, 1);
+	}
+	
 	
 	public void changeActivityReport(Activity activity) {
 		Intent i = new Intent(activity, ReportActivity.class);

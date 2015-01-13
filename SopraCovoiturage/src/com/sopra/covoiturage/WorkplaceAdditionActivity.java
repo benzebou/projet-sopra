@@ -35,6 +35,6 @@ public class WorkplaceAdditionActivity extends Activity {
 		this.fac.setWorkMan(this.workMan);
 		
 		//Repasse sur la WorkplaceManagementActivity
-		this.finish();
+		this.fac.changeActivityManWorkplace();
 	}
 }
