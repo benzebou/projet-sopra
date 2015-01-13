@@ -68,6 +68,7 @@
                 android:background="#de002d"
                 android:onClick="onModifierButtonClick"
                 android:text="Modifier"
+                android:textSize="20sp"
                 android:layout_margin="5dp"
                 android:textColor="#000000" />
 
@@ -80,6 +81,7 @@
                 android:background="#de002d"
                 android:onClick="onAnnulerButtonClick"
                 android:layout_margin="5dp"
+                android:textSize="20sp"
                 android:text="Annuler"
                 android:textColor="#000000" />
         </LinearLayout>
