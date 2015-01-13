@@ -29,12 +29,12 @@ public class RideActivity extends Activity {
 	private String selPostCode;
 	private Spinner workplace;
 	private String selWorkplace;
-	private Spinner conducteur;
-	private String selConducteur = "Les deux";
-	private Spinner aller;
-	private String selAller;
-	private Spinner retour;
-	private String selRetour;
+	private Spinner driver;
+	private String seldriver = "Les deux";
+	private Spinner morning;
+	private String selmorning;
+	private Spinner evening;
+	private String selevening;
 	private ArrayList<Ride> rides;
 	private Information user;
 	private TableLayout table;
@@ -80,21 +80,21 @@ public class RideActivity extends Activity {
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		workplace.setAdapter(dataAdapterW);
 
-		// Initialisation spinner conducteur
-		this.conducteur = new Spinner(this);
-		this.conducteur = (Spinner) findViewById(R.id.Conducteur);
+		// Initialisation spinner driver
+		this.driver = new Spinner(this);
+		this.driver = (Spinner) findViewById(R.id.Conducteur);
 		List<String> listC = new ArrayList<String>();
 		listC.add("les deux");
 		listC.add("conducteur");
 		listC.add("non conducteur");
-		this.selConducteur = "les deux";
+		this.seldriver = "les deux";
 
 		final ArrayAdapter<String> dataAdapterC = new ArrayAdapter<String>(
 				this, android.R.layout.simple_spinner_item, listC);
 		dataAdapterC
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		this.conducteur.setAdapter(dataAdapterC);
-		this.conducteur.setOnItemSelectedListener(new OnItemSelectedListener() {
+		this.driver.setAdapter(dataAdapterC);
+		this.driver.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
@@ -108,14 +108,14 @@ public class RideActivity extends Activity {
 		});
 
 		// Initialisation spinner heure aller
-		this.aller = new Spinner(this);
-		this.aller = (Spinner) findViewById(R.id.ChoixAller);
-		InitHeure(this.aller);
+		this.morning = new Spinner(this);
+		this.morning = (Spinner) findViewById(R.id.ChoixAller);
+		InitHeure(this.morning);
 
-		// Initialisation spinner heure retour
-		this.retour = new Spinner(this);
-		this.retour = (Spinner) findViewById(R.id.ChoixRetour);
-		InitHeure(this.retour);
+		// Initialisation spinner heure evening
+		this.evening = new Spinner(this);
+		this.evening = (Spinner) findViewById(R.id.ChoixRetour);
+		InitHeure(this.evening);
 
 		// Initialise le tableau de trajet
 		inflater = getLayoutInflater();
@@ -140,10 +140,10 @@ public class RideActivity extends Activity {
 		this.selPostCode = this.postCode.getSelectedItem().toString();
 		this.workplace = (Spinner) findViewById(R.id.Arrivee);
 		this.selWorkplace = this.workplace.getSelectedItem().toString();
-		this.aller = (Spinner) findViewById(R.id.ChoixAller);
-		this.selAller = this.aller.getSelectedItem().toString();
-		this.retour = (Spinner) findViewById(R.id.ChoixRetour);
-		this.selRetour = this.retour.getSelectedItem().toString();
+		this.morning = (Spinner) findViewById(R.id.ChoixAller);
+		this.selmorning = this.morning.getSelectedItem().toString();
+		this.evening = (Spinner) findViewById(R.id.ChoixRetour);
+		this.selevening = this.evening.getSelectedItem().toString();
 		fac.performRides(selPostCode, selWorkplace);
 		displayRide();
 	}
@@ -156,8 +156,8 @@ public class RideActivity extends Activity {
 		Log.d("SC", "display Basic Ride : " + this.user.getWorkplace());
 		fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
 		this.user =  fac.getUserInfo();
-		this.selAller = this.user.getMorning();
-		this.selRetour = this.user.getEvening();
+		this.selmorning = this.user.getMorning();
+		this.selevening = this.user.getEvening();
 		displayRide();
 	}
 	
@@ -178,10 +178,10 @@ public class RideActivity extends Activity {
 	/**
 	 * Affichage des trajets.
 	 * 
-	 * @param conducteur
+	 * @param driver
 	 */
 	public void displayRide() {
-		String selCond = this.selConducteur;
+		String selCond = this.seldriver;
 		resetRides();
 		if (rides != null) {
 			// parcours la liste rides et affiche les trajets dont "conducteur"
@@ -202,11 +202,11 @@ public class RideActivity extends Activity {
 						((TextView) tr.findViewById(R.id.CondUser))
 								.setText("Non");
 
-						if (this.selAller.equals(info.getMorning()))
+						if (this.selmorning.equals(info.getMorning()))
 							((TextView) tr.findViewById(R.id.HeureAller))
 									.setTextColor(Color.parseColor("#de002d"));
 
-						if (this.selRetour.equals(info.getEvening()))
+						if (this.selevening.equals(info.getEvening()))
 							((TextView) tr.findViewById(R.id.HeureRetour))
 									.setTextColor(Color.parseColor("#de002d"));
 
@@ -231,12 +231,12 @@ public class RideActivity extends Activity {
 						((TextView) tr.findViewById(R.id.HeureRetour))
 								.setText(info.getEvening());
 
-						if (this.selAller.equals(info.getMorning()))
+						if (this.selmorning.equals(info.getMorning()))
 							Log.d("lulu", "1:" + info.getMorning());
 						((TextView) tr.findViewById(R.id.HeureAller))
 								.setTextColor(Color.parseColor("#de002d"));
 
-						if (this.selRetour.equals(info.getEvening()))
+						if (this.selevening.equals(info.getEvening()))
 							((TextView) tr.findViewById(R.id.HeureRetour))
 									.setTextColor(Color.parseColor("#de002d"));
 
@@ -245,7 +245,7 @@ public class RideActivity extends Activity {
 						TableRow tr = (TableRow) inflater.inflate(
 								R.layout.table_search, null);
 						Log.d("lulu", "2:" + info.getMorning());
-						Log.d("lulu", "3:" + this.selAller);
+						Log.d("lulu", "3:" + this.selmorning);
 						((TextView) tr.findViewById(R.id.MailUser))
 								.setText(info.getEmail());
 						Log.d("lulu", "on passe dans la boucle 3");
@@ -262,11 +262,11 @@ public class RideActivity extends Activity {
 						((TextView) tr.findViewById(R.id.HeureRetour))
 								.setText(info.getEvening());
 
-						if (this.selAller.equals(info.getMorning()))
+						if (this.selmorning.equals(info.getMorning()))
 							((TextView) tr.findViewById(R.id.HeureAller))
 									.setTextColor(Color.parseColor("#de002d"));
 
-						if (this.selRetour.equals(info.getEvening()))
+						if (this.selevening.equals(info.getEvening()))
 							((TextView) tr.findViewById(R.id.HeureRetour))
 									.setTextColor(Color.parseColor("#de002d"));
 
@@ -325,11 +325,11 @@ public class RideActivity extends Activity {
 	}
 
 	public void setSelCond(String selCond) {
-		this.selConducteur = selCond;
+		this.seldriver = selCond;
 	}
 
 	public Spinner getCond() {
-		return this.conducteur;
+		return this.driver;
 	}
 	
 	@Override

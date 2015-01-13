@@ -70,7 +70,6 @@ public class WorkplaceManagementActivity extends Activity {
 
 	public void onResume() {
 		super.onResume();
-		this.workplace.add("sushi");
 		this.getAdapter().notifyDataSetChanged();
 		Log.d("Lulu", "On passe par le onResume");
 	}
