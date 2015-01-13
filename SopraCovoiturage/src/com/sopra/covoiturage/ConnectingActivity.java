@@ -37,8 +37,8 @@ public class ConnectingActivity extends Activity {
 	 */
 	public void onConnectionButtonClick(View v) {
 		if(isNetworkAvailable()) {
-			//facade.performConnect(loginText.getText().toString().replaceAll("\\s", ""), mdpText.getText().toString(), this);
-			facade.performConnectGo(loginText.getText().toString().replaceAll("\\s", ""), mdpText.getText().toString()) ;
+			facade.performConnect(loginText.getText().toString().replaceAll("\\s", ""), mdpText.getText().toString(), this);
+			//facade.performConnectGo(loginText.getText().toString().replaceAll("\\s", ""), mdpText.getText().toString()) ;
 		}
 		else
 			Toast.makeText(this, "Connectez-vous à Internet", Toast.LENGTH_LONG).show();
