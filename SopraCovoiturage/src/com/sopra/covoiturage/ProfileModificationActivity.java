@@ -184,7 +184,7 @@ public class ProfileModificationActivity extends Activity{
 		boolean pwdOk = pwd.getText().toString().equals(pwdVerif.getText().toString());
 
 		/** Si toutes les infos on bien été rentrées on envoit le nouvel utilisateur */
-		if (!pwdOk || pwd.getText().toString().equals("")|| pwdVerif.getText().toString().equals("")|| 
+		if (!pwdOk||
 				email.getText().toString().equals("")|| name.getText().toString().equals("")||
 				firstname.getText().toString().equals("")||phone.getText().toString().equals("")||
 				postCode.getSelectedItem().toString().equals("") || workplace.getSelectedItem().toString().equals("")){
