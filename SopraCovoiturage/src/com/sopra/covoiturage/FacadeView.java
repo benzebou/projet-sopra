@@ -30,7 +30,7 @@ public class FacadeView {
 	private String profileLogin;
 	
 	private boolean admin;
-	
+	private Information info;
 	
 	private FacadeView(Activity activity) {
 		controller = ControllerFacade.getInstance(this);
@@ -48,6 +48,14 @@ public class FacadeView {
 		return singleton ;
 	}
 	
+	private void setInfo(Information info) {
+		this.info = info ;
+	}
+	
+	
+	public Information getInfo () {
+		return info ;
+	}
 	
 	public void changeActivity(Class activity) {
 		Intent i = new Intent(firstActivity, activity);
@@ -72,11 +80,26 @@ public class FacadeView {
 		activity.startActivityForResult(i, 1);
 	}
 
+	public void changeActivityProgressBar(Activity activity, String type, String nickname, String mdp) {
+		Intent i = new Intent(activity, ProgressBarActivity.class);
+		i.putExtra("type", type) ;
+		i.putExtra("nickname", nickname) ;
+		i.putExtra("mdp", mdp) ;
+		activity.startActivityForResult(i, 1);
+	}
 	
 	/* CONNECTION */
-	public void performConnect(String nickname, String password) {
+	public void performConnect(String nickname, String password, Activity activity) {
+		this.setInfo(info) ;
+		changeActivityProgressBar(activity, "Connexion en cours...", nickname, password);
+	}
+		
+	
+	public void performConnectGo(String nickname, String password) {
 		controller.performConnect(nickname, password);
 	}
+	
+	
 	public void processConnected(boolean admin) {
 		Intent i;
 		this.admin = admin;
@@ -118,7 +141,12 @@ public class FacadeView {
 	 * methode permettant d'inscrire un nouvel utilisateur
 	 * @param info : informations du profil de l'utilisateur
 	 */
-	public void performRegister (Information info){
+	public void performRegister (Information info, Activity activity){
+		this.setInfo(info) ;
+		changeActivityProgressBar(activity, "Votre inscription est en cours...", "", "");
+	}
+	
+	public void performRegisterGo (Information info){
 		controller.performRegister(info);
 	}
 	
