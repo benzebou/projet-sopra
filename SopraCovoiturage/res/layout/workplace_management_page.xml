@@ -9,7 +9,7 @@
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lieu de travail "
+        android:text="Lieux de travail "
         android:textColor="#de002d"
         android:textSize="20sp" />
 
