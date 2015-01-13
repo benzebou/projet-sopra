@@ -51,7 +51,7 @@ public class ProfileActivity extends Activity {
 		back = (Button) findViewById(R.id.retour);
 
 		/** on récupère les infos du user */
-		if(!facade.getModificationLogin().contentEquals(facade.getLogin())) {
+		if(!facade.getProfileLogin().contentEquals(facade.getLogin())) {
 			info = facade.getProfileInformation(facade.getProfileLogin());		
 		} else {
 			info = facade.getUserInfo();
