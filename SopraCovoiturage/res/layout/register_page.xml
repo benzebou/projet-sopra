@@ -27,7 +27,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
-            android:hint="login"
+            android:hint="Login"
             android:inputType="text"
             android:textSize="12sp" />
 
@@ -38,7 +38,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
-            android:hint="nom"
+            android:hint="Nom"
             android:inputType="text"
             android:textSize="12sp" />
 
@@ -49,7 +49,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
-            android:hint="prénom"
+            android:hint="Prénom"
             android:inputType="text"
             android:textSize="12sp" />
 
@@ -60,7 +60,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
-            android:hint="mot de passe"
+            android:hint="Mot de passe"
             android:inputType="textPassword"
             android:textSize="12sp" />
         
@@ -71,7 +71,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
-            android:hint="mot de passe vérification"
+            android:hint="Vérification du mot de passe"
             android:inputType="textPassword"
             android:textSize="12sp" />
         
@@ -84,7 +84,7 @@
             android:layout_marginRight="50dp"
             android:ems="10"
             android:gravity="center_horizontal"
-            android:hint="email"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:textSize="12sp" />
 
@@ -96,7 +96,7 @@
             android:layout_marginRight="50dp"
             android:ems="10"
             android:gravity="center_horizontal"
-            android:hint="téléphone"
+            android:hint="Téléphone"
             android:inputType="phone"
             android:textSize="12sp" />
 
@@ -109,7 +109,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="code postal :"
+                android:text="Code postal :"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 
@@ -168,7 +168,7 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onCheckBoxClicked"
-                    android:text="lundi"
+                    android:text="Lundi"
                     android:textColor="#000000"
                     android:textSize="15sp" />
 
@@ -179,7 +179,7 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onCheckBoxClicked"
-                    android:text="mardi"
+                    android:text="Mardi"
                     android:textColor="#000000"
                     android:textSize="15sp" />
             </TableRow>
@@ -196,7 +196,7 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onCheckBoxClicked"
-                    android:text="mercredi"
+                    android:text="Mercredi"
                     android:textColor="#000000"
                     android:textSize="15sp" />
 
@@ -207,7 +207,7 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onCheckBoxClicked"
-                    android:text="jeudi"
+                    android:text="Jeudi"
                     android:textColor="#000000"
                     android:textSize="15sp" />
             </TableRow>
@@ -224,7 +224,7 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onCheckBoxClicked"
-                    android:text="vendredi"
+                    android:text="Vendredi"
                     android:textColor="#000000"
                     android:textSize="15sp" />
 
@@ -234,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="onCheckBoxClicked"
-                    android:text="samedi"
+                    android:text="Samedi"
                     android:textColor="#000000"
                     android:textSize="15sp" />
             </TableRow>
@@ -253,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="onCheckBoxClicked"
-                    android:text="dimanche"
+                    android:text="Dimanche"
                     android:textColor="#000000"
                     android:textSize="15sp" />
             </TableRow>
