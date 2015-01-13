@@ -56,28 +56,32 @@
 
                 <TextView
                     android:id="@+id/Mail"
-                    android:paddingRight="35dip"
+                    android:layout_weight="1"
+                    android:paddingRight="15dip"
                     android:text="Mail"
                     android:textColor="#000000"
                     android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/ConducteurInfo"
-                    android:paddingLeft="35dip"
+                    android:paddingLeft="15dip"
+                    android:layout_weight="1"
                     android:text="Conducteur"
                     android:textColor="#000000"
                     android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/Aller"
-                    android:paddingLeft="35dip"
+                    android:paddingLeft="15dip"
+                    android:layout_weight="1"
                     android:text="Aller"
                     android:textColor="#000000"
                     android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/Retour"
-                    android:paddingLeft="35dip"
+                    android:layout_weight="1"
+                    android:paddingLeft="15dip"
                     android:text="Retour"
                     android:textColor="#000000"
                     android:textSize="25sp" />
