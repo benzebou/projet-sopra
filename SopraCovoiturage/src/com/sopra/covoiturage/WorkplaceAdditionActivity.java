@@ -16,21 +16,22 @@ public class WorkplaceAdditionActivity extends Activity {
 	private TableLayout table;
 	private ArrayList<String> workplace;
 	private LayoutInflater inflater;
-
+	private WorkplaceManagementActivity workMan;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workplace_addition_page);
 		this.fac = FacadeView.getInstance(this);
 		this.fac.setWorkAdd(this);
-		
+		this.workMan = this.fac.getWorkMan();
 		
 	}
 	
 	public void onClickAdd(View v) {
 		
 		// Demande l'ajout à la base
-		this.newPlace = ((EditText) findViewById(R.id.Name)).getText().toString();	
+		this.newPlace = ((EditText) findViewById(R.id.Name)).getText().toString();
+		this.workMan.AddWorkplace(this.newPlace);
 		this.fac.addWorkplace(this.newPlace);
 		
 		//Repasse sur la WorkplaceManagementActivity

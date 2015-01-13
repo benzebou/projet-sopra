@@ -17,30 +17,33 @@
             layout="@layout/menu" />
 
         <LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:orientation="horizontal" >
-	        <TextView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_marginLeft="15dp"
-	            android:text="Recherche Avancée :"
-	            android:textColor="#de002d"
-	            android:textSize="20sp" />
-	        <ImageView
-	            android:id="@+id/buttonSearch"
-	            android:onClick="onButtonSearchClick"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:layout_gravity="right"
-	            android:src="@drawable/ic_menu_more" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Recherche Avancée :"
+                android:textColor="#de002d"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/buttonSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:onClick="onButtonSearchClick"
+                android:src="@drawable/ic_menu_more" />
         </LinearLayout>
+
         <include
-	        android:id="@+id/search"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:visibility="gone"
-	        layout="@layout/search" />
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/search"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,53 +53,58 @@
             android:textColor="#de002d"
             android:textSize="20sp" />
 
-        <TableLayout
-            android:id="@+id/Trajets"
+        <HorizontalScrollView
+            android:id="@+id/HscrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <!-- 2 columns -->
+            <TableLayout
+                android:id="@+id/Trajets"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-            <TableRow
-                android:id="@+id/RowTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip" >
+                <!-- 2 columns -->
 
-                <TextView
-                    android:id="@+id/Mail"
-                    android:paddingRight="15dip"
-                    android:text="Mail"
-                    android:textColor="#000000"
-                    android:textSize="15sp" />
+                <TableRow
+                    android:id="@+id/RowTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/ConducteurInfo"
-                    android:paddingLeft="15dip"
-                    android:text="Conducteur"
-                    android:textColor="#000000"
-                    android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/Mail"
+                        android:paddingRight="15dip"
+                        android:text="Mail"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/Aller"
-                    android:paddingLeft="15dip"
-                    android:text="Aller"
-                    android:textColor="#000000"
-                    android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/ConducteurInfo"
+                        android:paddingLeft="15dip"
+                        android:text="Conducteur"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/Retour"
-                    android:paddingLeft="15dip"
-                    android:text="Retour"
-                    android:textColor="#000000"
-                    android:textSize="15sp" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/Aller"
+                        android:paddingLeft="15dip"
+                        android:text="Aller"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
 
-                    <View
-                        android:layout_height="2dip"
-                        android:background="#de002d" />
-            
-        </TableLayout>
+                    <TextView
+                        android:id="@+id/Retour"
+                        android:paddingLeft="15dip"
+                        android:text="Retour"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+                </TableRow>
+
+                <View
+                    android:layout_height="2dip"
+                    android:background="#de002d" />
+            </TableLayout>
+        </HorizontalScrollView>
     </LinearLayout>
 
 </ScrollView>

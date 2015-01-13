@@ -9,7 +9,7 @@
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Workplace"
+        android:text="Lieu de travail "
         android:textColor="#de002d"
         android:textSize="20sp" />
 
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClickAdd"
-            android:text="Add"
+            android:text="Ajouter"
             android:textSize="15sp" />
 
     </LinearLayout>
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:onClick="onClickAdd"
-            android:text="Add"
+            android:text="Ajouter"
             android:textSize="15sp" />
 
     </LinearLayout>

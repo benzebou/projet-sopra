@@ -68,6 +68,13 @@ public class WorkplaceManagementActivity extends Activity {
 		adapter.notifyDataSetChanged();
 	}
 
+	public void onResume() {
+		super.onResume();
+		this.workplace.add("sushi");
+		this.getAdapter().notifyDataSetChanged();
+		Log.d("Lulu", "On passe par le onResume");
+	}
+	
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		if (v.getId() == R.id.WorkplaceTable) {
@@ -107,8 +114,6 @@ public class WorkplaceManagementActivity extends Activity {
 	
 	public void onClickAdd(View v) {
 		this.fac.changeActivity(WorkplaceAdditionActivity.class);
-		this.workplace = this.fac.getWorkplaces();
-		adapter.notifyDataSetChanged();
 	}
 
 	public FacadeView getFac() {
@@ -119,8 +124,16 @@ public class WorkplaceManagementActivity extends Activity {
 		this.fac = fac;
 	}
 
+	public StringAdapter getAdapter() {
+		return this.adapter;
+	}
+	
 	public String getDelWorkplace() {
 		return delWorkplace;
+	}
+	
+	public void AddWorkplace(String place) {
+		this.workplace.add(place);
 	}
 
 	public void setDelWorkplace(String delWorkplace) {
