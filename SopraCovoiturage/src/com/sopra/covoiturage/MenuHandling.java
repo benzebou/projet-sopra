@@ -38,6 +38,7 @@ public class MenuHandling implements OnClickListener {
 			activity.setResult(MenuHandling.RESULT_CLOSE_ALL, i);
 			activity.finish();
 		} else if (arg0.equals(profileText)) {
+			Log.d("SC", "Profil : " + facade.getLogin());
 			facade.setProfileLogin(facade.getLogin());
 			facade.changeActivityProfile(activity);
 		}
