@@ -74,6 +74,11 @@ public class FacadeView {
 		firstActivity.startActivityForResult(i, 1);
 	}
 	
+	public void changeActivityFromProgressBar (Activity activityToFinish, Class newActivity) {
+		activityToFinish.finish();
+		changeActivity(newActivity);
+	}
+	
 	
 	public void changeActivityReport(Activity activity) {
 		Intent i = new Intent(activity, ReportActivity.class);
@@ -95,19 +100,19 @@ public class FacadeView {
 	}
 		
 	
-	public void performConnectGo(String nickname, String password) {
-		controller.performConnect(nickname, password);
+	public void performConnectGo(String nickname, String password, Activity activity) {
+		controller.performConnect(nickname, password, activity);
 	}
 	
 	
-	public void processConnected(boolean admin) {
+	public void processConnected(boolean admin, Activity activity) {
 		Intent i;
 		this.admin = admin;
-		if(admin) 
+		if(admin)
 			i = new Intent(firstActivity, UsersActivity.class); 
 		else 
 			i = new Intent(firstActivity, RideActivity.class);
-			
+		activity.finish() ;
 		firstActivity.startActivityForResult(i, 1); 
 	}
 	
