@@ -121,6 +121,11 @@ public class RideActivity extends Activity {
 		inflater = getLayoutInflater();
 		table = new TableLayout(this);
 		table = (TableLayout) findViewById(R.id.Trajets);
+		
+	}
+	
+	@Override
+	public void onResume() {
 		displayBasicRide();
 	}
 
