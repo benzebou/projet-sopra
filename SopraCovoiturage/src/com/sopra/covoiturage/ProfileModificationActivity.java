@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -38,9 +37,7 @@ public class ProfileModificationActivity extends Activity{
 	private CheckBox sunday;
 	private CheckBox conductor;
 	private CheckBox notification;
-	private Button modify;
-	private Button cancel;
-
+	
 	private Boolean[] days = {true,true,true,true,true,false,false};
 	private boolean estConducteur;
 	private boolean estNotif;
@@ -72,9 +69,7 @@ public class ProfileModificationActivity extends Activity{
 		saturday = (CheckBox) findViewById(R.id.samedi);
 		sunday = (CheckBox) findViewById(R.id.dimanche);
 		conductor = (CheckBox) findViewById(R.id.conducteur);
-		notification = (CheckBox) findViewById(R.id.notification);	
-		modify = (Button) findViewById(R.id.modifier);
-		cancel = (Button) findViewById(R.id.annuler);	
+		notification = (CheckBox) findViewById(R.id.notification);
 		
 		info = facade.getUserInfo();
 		if (info==null){
