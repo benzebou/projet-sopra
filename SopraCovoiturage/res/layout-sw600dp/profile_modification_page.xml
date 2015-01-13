@@ -274,7 +274,7 @@
             android:layout_marginTop="30dp" >
 
             <Button
-                android:id="@+id/inscrire"
+                android:id="@+id/modifier"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
@@ -282,8 +282,8 @@
                 android:padding="10dp"
                 android:layout_weight="1"
                 android:background="#de002d"
-                android:onClick="onInscrireButtonClick"
-                android:text="S&apos;incrire"
+                android:onClick="onModifierButtonClick"
+                android:text="Modifier"
                 android:textSize="28sp"
                 android:textColor="#000000" />
 
