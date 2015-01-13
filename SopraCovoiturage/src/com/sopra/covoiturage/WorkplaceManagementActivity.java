@@ -39,25 +39,13 @@ public class WorkplaceManagementActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workplace_management_page);
-		this.fac = FacadeView.getInstance(this);
-		this.fac.setWorkMan(this);
 
-		// Initialise le tableau de trajet
-		/*
-		 * inflater = getLayoutInflater(); table = new TableLayout(this); table
-		 * = (TableLayout) findViewById(R.id.WorkplaceTable); this.workplace =
-		 * new ArrayList<String>(); displayWorkplace();
-		 */
-
-		listWorkplace = (ListView) findViewById(R.id.WorkplaceTable);
-		fillListView();
-		registerForContextMenu(listWorkplace);
 	}
 
 	private void fillListView() {
+		this.workplace = new ArrayList<String>();
 		this.workplace = this.fac.getWorkplaces();
-		adapter = new StringAdapter(getApplicationContext(),
-				this.workplace);
+		adapter = new StringAdapter(getApplicationContext(), this.workplace);
 		// On dit a la ListView de se remplir via cet adapter
 		this.listWorkplace.setAdapter(adapter);
 		/*
@@ -66,14 +54,20 @@ public class WorkplaceManagementActivity extends Activity {
 		 * changement de donnees et de recharger la liste automatiquement.
 		 */
 		adapter.notifyDataSetChanged();
+		Log.d("Lulu", "On passe dan fillListView" + this.fac.getWorkplaces().toString());
 	}
 
 	public void onResume() {
 		super.onResume();
-		refresh();
+		this.fac = FacadeView.getInstance(this);
+		// Initialise la list de trajet
+		listWorkplace = (ListView) findViewById(R.id.WorkplaceTable);
+		fillListView();
+		registerForContextMenu(listWorkplace);
 		Log.d("Lulu", "On passe par le onResume");
+
 	}
-	
+
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		if (v.getId() == R.id.WorkplaceTable) {
@@ -85,15 +79,15 @@ public class WorkplaceManagementActivity extends Activity {
 			menu.add(Menu.NONE, i, i, menuItems[i]);
 		}
 	}
-	
-	public void suppressionFailure(){
+
+	public void suppressionFailure() {
 		Toast.makeText(this, "Echec Suppression", Toast.LENGTH_SHORT);
 	}
-	
-	public void addFailure(){
+
+	public void addFailure() {
 		Toast.makeText(this, "Echec Suppression", Toast.LENGTH_SHORT);
 	}
-	
+
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
@@ -102,26 +96,18 @@ public class WorkplaceManagementActivity extends Activity {
 		String[] menuItems = getResources().getStringArray(R.array.menuSuppr);
 		String menuItemName = menuItems[menuItemIndex];
 		String listItemName = this.workplace.get(info.position);
-		if(menuItemName.equals("Supprimer")) {
+		if (menuItemName.equals("Supprimer")) {
 			this.fac.deletionWorkplace(listItemName);
 			this.workplace.remove(info.position);
-			this.fac.setWorkMan(this);
+			Log.d("Lulu", workplace.toString());
+			
 			adapter.notifyDataSetChanged();
 		}
 		return true;
 	}
 
-	public void refresh() {
-		this.listWorkplace = null;
-		this.workplace = null;
-		this.listWorkplace = (ListView) findViewById(R.id.WorkplaceTable);
-		fillListView();
-		registerForContextMenu(listWorkplace);
-		this.fac.setWorkMan(this);
-	}
-	
 	public void onClickAdd(View v) {
-		this.fac.changeActivityAddWorkplace();
+		this.fac.changeActivity(WorkplaceAdditionActivity.class);
 	}
 
 	public FacadeView getFac() {
@@ -135,14 +121,9 @@ public class WorkplaceManagementActivity extends Activity {
 	public StringAdapter getAdapter() {
 		return this.adapter;
 	}
-	
+
 	public String getDelWorkplace() {
 		return delWorkplace;
-	}
-	
-	public void AddWorkplace(String place) {
-		this.fac.addWorkplace(place);
-		refresh();
 	}
 
 	public void setDelWorkplace(String delWorkplace) {

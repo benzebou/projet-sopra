@@ -22,7 +22,7 @@ public class WorkplaceAdditionActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workplace_addition_page);
 		this.fac = FacadeView.getInstance(this);
-		this.fac.setWorkAdd(this);
+		// this.fac.setWorkAdd(this);
 		this.workMan = this.fac.getWorkMan();
 		
 	}
@@ -31,10 +31,9 @@ public class WorkplaceAdditionActivity extends Activity {
 		
 		// Demande l'ajout à la base
 		this.newPlace = ((EditText) findViewById(R.id.Name)).getText().toString();
-		this.workMan.AddWorkplace(this.newPlace);
-		this.fac.setWorkMan(this.workMan);
+		this.fac.addWorkplace(this.newPlace);
 		
 		//Repasse sur la WorkplaceManagementActivity
-		this.fac.changeActivityManWorkplace();
+		this.finish();
 	}
 }
