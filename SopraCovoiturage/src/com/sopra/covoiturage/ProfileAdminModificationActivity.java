@@ -25,7 +25,7 @@ public class ProfileAdminModificationActivity extends Activity {
 	private TextView modify;
 	private TextView cancel;
 	private Information info ;
-	
+
 	/**
 	 * Crée la page de consultation du profile admin
 	 * @param savedInstanceState
@@ -35,28 +35,29 @@ public class ProfileAdminModificationActivity extends Activity {
 		setContentView(R.layout.admin_modif_profile_page);
 		facade = FacadeView.getInstance(this);
 		login = (TextView) findViewById(R.id.login);
+		pwd = (EditText) findViewById(R.id.mot_de_passe);
+		pwdVerif = (EditText) findViewById(R.id.mdp2);
 		email = (EditText) findViewById(R.id.email);
 		modify = (Button) findViewById(R.id.modifier);
 		cancel = (Button) findViewById(R.id.annuler);	
-		
+
 		info = facade.getUserInfo();
 		if (info==null){
 			info = facade.getProfileInformation(facade.getLogin());
 			facade.setUserInfo(info);
 		}
 
-		
+
 		//On met la valeur actuelle des infos dans les champs correspondant
 		login.setText(info.getLogin());
 		email.setText(info.getEmail());
 	}
-		
+
 	/**
-	 * Envoie les informations saisies si elles sont bonne vers la base de donnée
+	 * Envoie les informations saisies si elles sont bonnes vers la base de donnée
 	 *  @param v vue de l'application
 	 */
 	public void onModifierButtonClick(View v) {
-		String[] horaires = new String[2] ;
 		boolean pwdOk = pwd.getText().toString().equals(pwdVerif.getText().toString());
 
 		/** Si toutes les infos on bien été rentrées on envoit le nouvel utilisateur */
