@@ -50,10 +50,10 @@ public class ProfileActivity extends Activity {
 		modify = (Button) findViewById(R.id.modifier);
 		back = (Button) findViewById(R.id.retour);
 
-		/** on récupère la facade */
+		/** on récupère les infos du user */
 		info = facade.getUserInfo();
 		if (info==null){
-			info = facade.getProfileInformation(facade.getLogin());
+			info = facade.getProfileInformation(facade.getProfileLogin());
 			facade.setUserInfo(info);
 		}
 

@@ -409,10 +409,17 @@ public class FacadeView {
 		this.uActivity = uActivity;
 	}
 
+	/**
+	 * Methode permettant de récupérer profileLogin
+	 */
 	public String getProfileLogin() {
 		return profileLogin;
 	}
 
+	/**
+	 * Methode permettant de mettre à jour profileLogin
+	 * @param profileLogin
+	 */
 	public void setProfileLogin(String profileLogin) {
 		this.profileLogin = profileLogin;
 	}
