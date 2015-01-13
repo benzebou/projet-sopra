@@ -285,7 +285,6 @@ public class ControllerFacade {
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Deletion workplace : reussite !\n") ;
 			HashMap<String, String> workplaces = requests.getWorkplacesRequest() ;
-			facadeView.displayWorkplaces(workplaces);
 		}
 		else { 
 			System.out.println("CONTROLLER_FACADE : Deletion workplace : echec !\n") ;
