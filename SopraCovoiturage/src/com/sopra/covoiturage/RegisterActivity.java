@@ -208,7 +208,7 @@ public class RegisterActivity extends Activity  {
 					email.getText().toString(),name.getText().toString(),firstname.getText().toString(), 
 					phone.getText().toString(), postCode.getSelectedItem().toString(),
 					workplace.getSelectedItem().toString(),horaires,days, estConducteur, estNotif);
-			facade.performProfileModification(info);
+			facade.performRegister(info);
 			facade.setLogin(login.getText().toString());
 
 
