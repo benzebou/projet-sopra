@@ -51,10 +51,14 @@ public class ProfileActivity extends Activity {
 		back = (Button) findViewById(R.id.retour);
 
 		/** on récupère les infos du user */
-		info = facade.getUserInfo();
-		if (info==null){
-			info = facade.getProfileInformation(facade.getProfileLogin());
-			facade.setUserInfo(info);
+		if(!facade.getModificationLogin().contentEquals(facade.getLogin())) {
+			info = facade.getProfileInformation(facade.getProfileLogin());		
+		} else {
+			info = facade.getUserInfo();
+			if (info==null){
+				info = facade.getProfileInformation(facade.getProfileLogin());
+				facade.setUserInfo(info);
+			}
 		}
 
 		login.setText(info.getLogin());

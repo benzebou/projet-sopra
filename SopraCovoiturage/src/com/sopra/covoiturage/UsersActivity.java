@@ -85,7 +85,8 @@ public class UsersActivity extends Activity {
 	 * @param nickname
 	 */
 	private void consultUser(String nickname) {
-		// TODO Auto-generated method stub		
+		facade.setProfileLogin(nickname);
+		facade.changeActivity(ProfileActivity.class);
 	}
 
 	/**
