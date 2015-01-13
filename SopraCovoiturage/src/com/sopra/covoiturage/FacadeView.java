@@ -387,6 +387,13 @@ public class FacadeView {
 	}
 
 	/**
+	 * Methode permettant de retourner workMan
+	 */
+	public WorkplaceManagementActivity getWorkMan() {
+		return this.workMan;
+	}
+	
+	/**
 	 * Methode permettant de mettre à jour workMan
 	 * @param workMan
 	 */
