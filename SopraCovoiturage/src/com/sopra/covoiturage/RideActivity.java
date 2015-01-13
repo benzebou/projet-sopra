@@ -30,7 +30,7 @@ public class RideActivity extends Activity {
 	private Spinner workplace;
 	private String selWorkplace;
 	private Spinner conducteur;
-	private String selConducteur = "les deux";
+	private String selConducteur = "Les deux";
 	private Spinner aller;
 	private String selAller;
 	private Spinner retour;
@@ -49,6 +49,10 @@ public class RideActivity extends Activity {
 		setContentView(R.layout.ride_page);
 		this.fac = FacadeView.getInstance(this);
 		this.fac.setSearchRide(this);
+		
+		this.user = fac.getUserInfo();
+		if(this.user == null)
+			this.user = fac.getProfileInformation(fac.getLogin());
 
 		View menu = findViewById(R.id.menu);
 		MenuHandling menuH = new MenuHandling(fac, this, menu);
@@ -117,7 +121,7 @@ public class RideActivity extends Activity {
 		inflater = getLayoutInflater();
 		table = new TableLayout(this);
 		table = (TableLayout) findViewById(R.id.Trajets);
-		// displayBasicRide();
+		displayBasicRide();
 	}
 
 	/**
@@ -143,6 +147,7 @@ public class RideActivity extends Activity {
 	 * l'ouverture de la page.
 	 */
 	public void displayBasicRide() {
+		Log.d("SC", "display Basic Ride : " + this.user.getWorkplace());
 		fac.performRides(this.user.getPostcode(), this.user.getWorkplace());
 		displayRide();
 	}
