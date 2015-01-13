@@ -25,6 +25,7 @@ public class FacadeView {
 	private PasswordForgottenActivity pwActivity;
 	private RegisterActivity rActivity;
 	private UsersActivity uActivity;
+	private ProfileModificationActivity modifActivity;
 	
 	private boolean admin;
 	
@@ -125,7 +126,8 @@ public class FacadeView {
 	 * methode permettant de modifier le profil d'un utilisateur
 	 * @param info : informations sur l'utilisateur
 	 */
-	public void performProfileModification (Information info) {
+	public void performProfileModification (ProfileModificationActivity activity, Information info) {
+		this.modifActivity = activity;
 		controller.performProfileModification(info);
 	}
 	
@@ -193,7 +195,7 @@ public class FacadeView {
 	}
 	
 	public void confirmModification () {
-		
+		this.modifActivity.finish();
 	}
 	
 	public void modificationFailed (int codeErreur) {
