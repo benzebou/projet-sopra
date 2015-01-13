@@ -483,6 +483,23 @@ public class Requests {
 		}
 		return id ;
 	}
+	
+	public String getStringWorkplace(String ID) {
+		String workplace = null ;
+		if(mapWorkplaces.size() == 0)
+			getWorkplacesRequest();
+		Log.d("SC", "Taille : " + this.mapWorkplaces.size());
+		Iterator<Entry<String, String>> it = mapWorkplaces.entrySet().iterator();
+		while(it.hasNext()) {
+			Entry<String, String> currentWorkplace = it.next();
+			Log.d("SC", "getStringWorkplace : " + currentWorkplace.getKey());
+			if(currentWorkplace.getKey().contentEquals(ID)) {
+				workplace = currentWorkplace.getValue();
+				break;
+			}
+		}
+		return workplace ;
+	}
 
 	/** Methode permettant de recuperer des trajets 
 	 * @param postCode : code postal du lieu de depart
@@ -1064,7 +1081,10 @@ public class Requests {
 		info.setFirstname((String)map.get("prenom"));
 		if (map.containsKey("tel"))
 			info.setPhone((String)map.get("tel"));
-		info.setWorkplace((String)map.get("travail"));
+		String workplace = getStringWorkplace((String)map.get("travail"));
+		Log.d("SC", "setUser : ID " + map.get("travail"));
+		Log.d("SC", "setUser : NOM " + workplace);
+		info.setWorkplace(workplace);
 		info.setPostcode((String)map.get("postal"));
 		info.setMorning((String)map.get("horairesMatin"));
 		info.setEvening((String)map.get("horairesSoir"));
