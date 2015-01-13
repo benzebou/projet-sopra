@@ -203,6 +203,7 @@ public class Requests {
 	public HashMap<String,Object> setHashMapAdmin (Information info) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", info.getLogin()); 
+			if (info.getMdp()!=null)
 		map.put("mdp", encryptPassword(info.getMdp()));
 		map.put("mail", info.getEmail());		
 		return map ;
@@ -218,6 +219,7 @@ public class Requests {
 	public HashMap<String,Object> setHashMap (Information info) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", info.getLogin()); 
+			if (info.getMdp()!=null)
 		map.put("mdp", encryptPassword(info.getMdp()));
 		map.put("mail", info.getEmail());
 		map.put("nom", info.getName());
