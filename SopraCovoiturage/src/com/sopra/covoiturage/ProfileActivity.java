@@ -33,6 +33,7 @@ public class ProfileActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.profile_page);
+		
 		facade = FacadeView.getInstance(this);
 
 		login=(TextView) findViewById(R.id.login);
@@ -49,9 +50,12 @@ public class ProfileActivity extends Activity {
 		workplace = (TextView) findViewById(R.id.lieu_de_travail);	
 		modify = (Button) findViewById(R.id.modifier);
 		back = (Button) findViewById(R.id.retour);
-
+	}
+	
+	public void onResume() {
+		super.onResume();
 		/** on récupère les infos du user */
-		if(!facade.getProfileLogin().contentEquals(facade.getLogin())) {
+		if(!facade.getModificationLogin().contentEquals(facade.getLogin())) {
 			info = facade.getProfileInformation(facade.getProfileLogin());		
 		} else {
 			info = facade.getUserInfo();
@@ -78,8 +82,6 @@ public class ProfileActivity extends Activity {
 		if (info.isNotifie())
 			notification.setText("oui");
 		else notification.setText("non");
-
-
 	}
 
 	/**
