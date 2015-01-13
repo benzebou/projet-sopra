@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:text="Profil"
             android:textColor="#de002d"
             android:textSize="34sp" />
@@ -24,7 +24,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -45,7 +46,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,7 +68,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -88,7 +91,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,7 +113,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -131,7 +136,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -152,7 +158,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -173,7 +180,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -194,7 +202,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -215,7 +224,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -237,7 +247,8 @@
             android:textColor="#000000"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -258,7 +269,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp" >
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -278,9 +290,8 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_marginTop="30dp" >
 
             <Button
