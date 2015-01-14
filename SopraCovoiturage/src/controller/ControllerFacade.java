@@ -228,14 +228,6 @@ public class ControllerFacade {
 	}
 	
 	
-	public void changeActivityReport () {
-		
-	}
-	
-	public void changeActivityAccountModificationPage () {
-		
-	}
-	
 	/**
 	 * Methode permettant de renvoyer les informations sur l'utilisateur ayant pour login nickname 
 	 * @param nickname : login de l'utilisateur 
@@ -375,12 +367,6 @@ public class ControllerFacade {
 	 * @return ArrayList<String> : liste des communes
 	 */
 	public ArrayList<String> getPostcodeList() {
-		/*
-		ArrayList <String> postcodes = requests.getPostcodeListRequest() ;
-		for (int i=0 ; i< postcodes.size() ; i++ ) {
-			System.out.println(postcodes.get(i)) ;
-		}
-		*/
 		return requests.getPostcodeListRequest() ;
 	}
 
@@ -514,33 +500,5 @@ public class ControllerFacade {
 	public void setUserInfo(Information userInfo) {
 		this.userInfo = userInfo;
 	}
-	
-	
-	public static void main (String argv[]) {	
-		ControllerFacade con = null ;
-		con = ControllerFacade.getInstance() ;
-		String [] schedule = new String[]{"10:30", "18:00"} ;
-		Boolean[] days = new Boolean[]{true,true,true,true,true,false,false};
-		Information info = new Information("user100", "1234", "user@monmail.fr", "smith",
-				"john", "0561665522", "31400", "3", schedule,days, true, true);
-		//con.performConnect("admin1", "sopra") ; //fonctionne
-		//con.performConnect("user1", "test") ; //fonctionne
-		//con.performRegister(info); //fonctionne
-		//con.performDisconnect("user1", "test") ; // fonctionne
-		//con.getProfileInformation("user1");
-		//con.performRides("31400", "3"); // fonctionne
-		//con.addWorkplace("bureau5"); // fonctionne
-		//con.deletionWorkplace("bureau3"); // fonctionne
-		//con.addTown("Foix", "09000"); // fonctionne
-		//con.deletionTown("9000"); // fonctionne
-		//con.getNumberDriverAndPassenger() ; // fonctionne
-		//con.getNumberDriverAndPassengerPerRide() ; // fonctionne
-		//con.getNumberConnection() ; // fonctionne
-		//con.getNumberConnectionDate("2014-12-26") ; // fonctionne
-		//con.getNumberConnectionSince("2014-12-26") ; // fonctionne
-		//con.getNumberConnectionBetween("2014-12-26", "2014-12-26") ; // fonctionne
-		con.getPostcodeList() ;
-	}
-
 
 }
