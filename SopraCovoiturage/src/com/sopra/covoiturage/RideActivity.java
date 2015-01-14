@@ -232,7 +232,6 @@ public class RideActivity extends Activity {
 								.setText(info.getEvening());
 
 						if (this.selmorning.equals(info.getMorning()))
-							Log.d("lulu", "1:" + info.getMorning());
 						((TextView) tr.findViewById(R.id.HeureAller))
 								.setTextColor(Color.parseColor("#de002d"));
 
@@ -296,10 +295,16 @@ public class RideActivity extends Activity {
 		List<String> list = new ArrayList<String>();
 
 		for (int i = 7; i < 20; i++) {
-			heure = i + ":00";
+			if(i < 10)
+				heure = "0" + i + ":00";
+			else
+				heure = i + ":00";
 			for (int j = 1; j < 5; j++) {
 				list.add(heure);
-				heure = i + ":" + j * 15;
+				if( i < 10)
+					heure = "0" + i + ":" + j * 15;
+				else
+					heure = i + ":" + j * 15;
 			}
 		}
 
