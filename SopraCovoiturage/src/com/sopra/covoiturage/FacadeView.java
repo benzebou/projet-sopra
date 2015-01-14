@@ -146,10 +146,13 @@ public class FacadeView {
 	public void performDisconnect() {
 		controller.performDisconnect();
 	}
+	
+	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
 	public void processUserDisconnected() {
 		
 	}
 	
+	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
 	public void processUserNotDisconnected () {
 		
 	}
@@ -256,6 +259,7 @@ public class FacadeView {
 			getrActivity().notificationRegisterFailure();	
 	}
 	
+	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
 	public void registrationFailed (int codeErreur) {
 		
 	}
@@ -264,6 +268,7 @@ public class FacadeView {
 		this.modifActivity.finish();
 	}
 	
+	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
 	public void modificationFailed (int codeErreur) {
 		
 	}
@@ -306,19 +311,22 @@ public class FacadeView {
 	}
 	
 	
-	
+	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
 	public void erreurAddWorkplace () {
 		
 	}
 	
+	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
 	public void erreurDeletionWorkplace() {
 		
 	}
 
+	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
 	public void displayTownList(ArrayList<String> townList) {
 
 	}
 
+	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
 	public void erreurAddTown() {
 
 	}
