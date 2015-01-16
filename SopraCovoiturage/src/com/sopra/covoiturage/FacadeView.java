@@ -536,6 +536,46 @@ public class FacadeView {
 	public void setModificationLogin(String modificationLogin) {
 		this.modificationLogin = modificationLogin;
 	}
+
+	public void processUserDisconnected() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void processUserNotDisconnected() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void modificationFailed(int requete) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void registrationFailed(int requete) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void erreurAddWorkplace() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void erreurDeletionWorkplace() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void displayTownList(ArrayList<String> townList) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void erreurAddTown() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 
