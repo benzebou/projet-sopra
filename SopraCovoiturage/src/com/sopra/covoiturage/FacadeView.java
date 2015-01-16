@@ -102,11 +102,7 @@ public class FacadeView {
 	public void performConnect(String nickname, String password) {
 		controller.performConnect(nickname, password) ;
 	}
-	
-	public void performConnectGo(String nickname, String password, Activity activity) {
-		controller.performConnectNOTTESTED(nickname, password, activity);
-	}
-	
+
 	
 	public void processConnected(boolean admin) {
 		Intent i;
@@ -117,18 +113,7 @@ public class FacadeView {
 			i = new Intent(firstActivity, RideActivity.class);
 		firstActivity.startActivityForResult(i, 1); 
 	}
-	
-	public void processConnectedNOTTESTED(boolean admin, Activity activity) {
-		Intent i;
-		this.admin = admin;
-		if(admin)
-			i = new Intent(firstActivity, UsersActivity.class); 
-		else 
-			i = new Intent(firstActivity, RideActivity.class);
-		activity.finish() ;
-		firstActivity.startActivityForResult(i, 1); 
-	}
-	
+		
 
 	public void changeActivityProfile(Activity activity) {
 		Intent i;

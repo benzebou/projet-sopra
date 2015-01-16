@@ -1,13 +1,9 @@
 package com.sopra.covoiturage;
 
-import modele.Information;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.widget.Toast;
 
 public class ProgressBarActivity extends Activity {
 
@@ -47,30 +43,6 @@ public class ProgressBarActivity extends Activity {
 		            
 		            uiThreadCallback.post(runInUIThread);
 		            //doLongOperation2() ; 
-		        }
-		    })).start();
-	    }
-	    else {
-	    	System.out.println(getIntent().getStringExtra("type")) ;
-		    mProgressDialog = ProgressDialog.show(this, "Patientez s'il vous plait",getIntent().getStringExtra("type"), true);
-		    
-		    final Handler uiThreadCallback = new Handler();
-		    
-		    final Runnable runInUIThread = new Runnable() {
-	    	    public void run() {
-	    	    	//facade.changeActivityFromProgressBar(ProgressBarActivity.this, com.sopra.covoiturage.ConnectingActivity.class);  	     
-	    	    }
-		    };
-		    
-		    new Thread((new Runnable() {
-		        @Override
-		        public void run() {
-		        	facade.performConnectGo(getIntent().getStringExtra("nickname"), getIntent().getStringExtra("mdp"), ProgressBarActivity.this) ;
-		            if (mProgressDialog.isShowing()) {
-		                mProgressDialog.dismiss();   
-		            }
-		            
-		            //uiThreadCallback.post(runInUIThread);
 		        }
 		    })).start();
 	    }
