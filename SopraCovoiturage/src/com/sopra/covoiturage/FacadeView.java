@@ -144,7 +144,7 @@ public class FacadeView {
 	
 	
 	/**
-	 * methode permettant d'inscrire un nouvel utilisateur
+	 * methode permettant d'inscrire un nouvel utilisateur et lance la barre de progression
 	 * @param info : informations du profil de l'utilisateur
 	 */
 	public void performRegister (Information info, Activity activity){
@@ -152,9 +152,14 @@ public class FacadeView {
 		changeActivityProgressBar(activity, "Votre inscription est en cours...", "", "");
 	}
 	
+	/**
+	 * methode permettant d'inscrire un nouvel utilisateur
+	 * @param info : informations du profil de l'utilisateur
+	 */
 	public void performRegisterGo (Information info){
 		controller.performRegister(info);
 	}
+	
 	
 	public void performPasswordForgotten (String mail) {
 		controller.passwordForgotten(mail);
