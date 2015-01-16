@@ -57,33 +57,52 @@ public class FacadeView {
 		return info ;
 	}
 	
+	/**
+	 * permet de changer d'activity
+	 * @param activity
+	 */
 	public void changeActivity(Class activity) {
 		Intent i = new Intent(firstActivity, activity);
 		firstActivity.startActivityForResult(i, 1);
 	}
 
+	/**
+	 * permet de changer d'activity : WorkplaceAdditionActivity
+	 */
 	public void changeActivityAddWorkplace() {
 		this.workMan.finish();
 		Intent i = new Intent(firstActivity, WorkplaceAdditionActivity.class);
 		firstActivity.startActivityForResult(i, 1);
 	}
 
+	/**
+	 * permet de changer d'activity : WorkplaceManagementActivity
+	 */
 	public void changeActivityManWorkplace() {
 		this.workAdd.finish();
 		Intent i = new Intent(firstActivity, WorkplaceManagementActivity.class);
 		firstActivity.startActivityForResult(i, 1);
 	}
 	
+	/**
+	 * changer d'activity a partir de la progressBar
+	 * @param activityToFinish
+	 * @param newActivity
+	 */
 	public void changeActivityFromProgressBar (Activity activityToFinish, Class newActivity) {
 		activityToFinish.finish();
 		changeActivity(newActivity);
 	}
 	
-	
+	/**
+	 * lance l'activity ReportActivity
+	 * @param activity
+	 */
 	public void changeActivityReport(Activity activity) {
 		Intent i = new Intent(activity, ReportActivity.class);
 		activity.startActivityForResult(i, 1);
 	}
+
 
 	public void changeActivityProgressBar(Activity activity, String type, String nickname, String mdp) {
 		Intent i = new Intent(activity, ProgressBarActivity.class);
@@ -93,17 +112,30 @@ public class FacadeView {
 		activity.startActivityForResult(i, 1);
 	}
 	
-	/* CONNECTION */
+	/**
+	 * se connecter
+	 * @param nickname
+	 * @param password
+	 * @param activity
+	 */
 	public void performConnect(String nickname, String password, Activity activity) {
 		this.setInfo(info) ;
 		changeActivityProgressBar(activity, "Connexion en cours...", nickname, password);
 	}
 		
+	/**
+	 * se connecter
+	 * @param nickname
+	 * @param password
+	 */
 	public void performConnect(String nickname, String password) {
 		controller.performConnect(nickname, password) ;
 	}
 
-	
+	/**
+	 * appelle l'activity d'acceuil lorsqu'un user se connecte
+	 * @param admin : boolean, 1 si connection d'un admin
+	 */
 	public void processConnected(boolean admin) {
 		Intent i;
 		this.admin = admin;
@@ -115,6 +147,10 @@ public class FacadeView {
 	}
 		
 
+	/**
+	 * changer d'activity : profileActivity si user simple, AdminProfileActivity sinon
+	 * @param activity
+	 */
 	public void changeActivityProfile(Activity activity) {
 		Intent i;
 		if(this.admin) 
@@ -125,21 +161,12 @@ public class FacadeView {
 		activity.startActivityForResult(i, 1); 
 	}
 	
-	
-	
-	/* DISCONNECTION */
+
+	/**
+	 * se deconnecter 
+	 */
 	public void performDisconnect() {
 		controller.performDisconnect();
-	}
-	
-	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
-	public void processUserDisconnected() {
-		
-	}
-	
-	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
-	public void processUserNotDisconnected () {
-		
 	}
 	
 	
@@ -160,7 +187,10 @@ public class FacadeView {
 		controller.performRegister(info);
 	}
 	
-	
+	/**
+	 * methode permettant d'envoyer un mail avec un nouveau mot de passe
+	 * @param mail
+	 */
 	public void performPasswordForgotten (String mail) {
 		controller.passwordForgotten(mail);
 	}
@@ -220,7 +250,9 @@ public class FacadeView {
 	}
 	
 	
-	
+	/**
+	 * methode appelee si la connection a échoué
+	 */
 	public void processNotConnected() {
 		((ConnectingActivity)firstActivity).notificationConnectionFailure();
 	}
@@ -230,6 +262,9 @@ public class FacadeView {
 		((ConnectingActivity)firstActivity).notificationConnectionFailure();
 	}
 	
+	/**
+	 * methode appelée si l'envoi d'un nouveau mot de passe a reussi
+	 */
 	public void processSendPwdMailOk () {
 		if (getPwActivity() == null)
 			Log.d("SC","Erreur processSendPwdMailOk");
@@ -237,6 +272,9 @@ public class FacadeView {
 			getPwActivity().notificationSendPwdMailOk();		
 	}
 
+	/**
+	 * methode appelée si l'envoi d'un nouveau mot de passe a echoue
+	 */
 	public void processSendPwdMailFailure () {
 		if (getPwActivity() == null)
 			Log.d("SC","Erreur processSendPwdMailFailure");
@@ -244,25 +282,24 @@ public class FacadeView {
 			getPwActivity().notificationSendPwdMailFailure();		
 	}
 	
+	/**
+	 * notifier l'echec de l'inscription
+	 */
 	public void notificationRegisterFailure(){
 		if (getPwActivity() != null)
 			getrActivity().notificationRegisterFailure();	
 	}
 	
-	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
-	public void registrationFailed (int codeErreur) {
-		
-	}
-	
+	/**
+	 * confirmer la modification d'un profil
+	 */
 	public void confirmModification () {
 		this.modifActivity.finish();
 	}
 	
-	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
-	public void modificationFailed (int codeErreur) {
-		
-	}
-	
+	/**
+	 * echec de la suppression d'un user
+	 */
 	public void deletionFailure () {
 		UsersActivity uActivity = this.getuActivity();
 		if (uActivity != null)
@@ -296,31 +333,19 @@ public class FacadeView {
 		this.controller.addWorkplace(workplace);
 	}
 	
+	/**
+	 * supprimer un lieu de travail
+	 * @param workplace
+	 */
 	public void deletionWorkplace(String workplace) {
 		this.controller.deletionWorkplace(workplace);
 	}
 	
 	
-	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
-	public void erreurAddWorkplace () {
-		
-	}
-	
-	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
-	public void erreurDeletionWorkplace() {
-		
-	}
-
-	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
-	public void displayTownList(ArrayList<String> townList) {
-
-	}
-
-	// ELLE SERT A QUELQUE CHOSE CETTE METHODE ?
-	public void erreurAddTown() {
-
-	}
-	
+	/**
+	 * recuperer tous les utilisateurs et leurs informations
+	 * @return ArrayList<Information>
+	 */
 	public ArrayList<Information> getUsers() {
 		return controller.getUsers();
 	}
@@ -400,11 +425,18 @@ public class FacadeView {
 		controller.setUserInfo(userInfo);
 	}
 
-	
+	/**
+	 * methode permettant de mettre a jour RegisterActivity
+	 * @param rActivity
+	 */
 	public void setrActivity(RegisterActivity rActivity) {
 		this.rActivity = rActivity;
 	}
 
+	/**
+	 * methode permettant de recuperer RegisterActivity
+	 * @return RegisterActivity
+	 */
 	public RegisterActivity getrActivity() {
 		return rActivity;
 	}
@@ -412,8 +444,8 @@ public class FacadeView {
 
 	
 	/**
-	 * 
-	 * @return
+	 * methode permettant de recuperer PasswordForgottenActivity
+	 * @return PasswordForgottenActivity
 	 */
 	public PasswordForgottenActivity getPwActivity() {
 		return pwActivity;
@@ -458,10 +490,18 @@ public class FacadeView {
 		this.workMan = workMan;
 	}
 
+	/**
+	 * methode permettant de recuperer UsersActivity
+	 * @return UsersActivity
+	 */
 	public UsersActivity getuActivity() {
 		return uActivity;
 	}
 
+	/**
+	 * methode permettant de mettre a jour UsersActivity
+	 * @param uActivity
+	 */
 	public void setuActivity(UsersActivity uActivity) {
 		this.uActivity = uActivity;
 	}
@@ -481,10 +521,18 @@ public class FacadeView {
 		this.profileLogin = profileLogin;
 	}
 	
+	/**
+	 * methode permettant de recuperer le login modifié
+	 * @return string
+	 */
 	public String getModificationLogin() {
 		return modificationLogin;
 	}
 
+	/**
+	 * methode permettant de mettre a jour le login modifié
+	 * @return string
+	 */
 	public void setModificationLogin(String modificationLogin) {
 		this.modificationLogin = modificationLogin;
 	}
