@@ -59,8 +59,6 @@ public class Requests {
 	 *
 	 */
 
-	//private static String urlRequest = "http://localhost/carpooling/http_post_entry.php";
-	//private static String urlRequest = "http://etud.insa-toulouse.fr/~demeyer/http_post_entry.php";
 	private static String urlRequest = "http://sopcov.hol.es/http_post_entry.php";
 
 	private static String cookie;
@@ -78,9 +76,12 @@ public class Requests {
 	 * Methode permettant la connexion d'un utilisateur au serveur 
 	 * @param nickname : login de l'utilisateur
 	 * @param password : mot de passe de l'utilisateur
-	 * @return boolean : true si la requete s'est bien executee, false sinon
+	 * @return boolean : si la requete s'est bien executee : 
+	 * tab[0]=true et tab[1]=true si c'est un admin
+	 * tab[0]=true et tab[1]=false si c'est un user
+	 * Lors d'un echec : tab[0]=false et tab[1]=false
 	 */
-	public boolean[] connectionRequest (String nickname, String password) {
+	protected boolean[] connectionRequest (String nickname, String password) {
 		cookie = null;
 		boolean[] tab = new boolean[2] ; 
 		HashMap<String, Object> map = new HashMap<String, Object> () ;
@@ -168,7 +169,7 @@ public class Requests {
 	 * @param mail : mail de l'utilisateur
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
-	public boolean passwordForgottenRequest (String mail) {
+	protected boolean passwordForgottenRequest (String mail) {
 		
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("mail", mail);
@@ -195,12 +196,13 @@ public class Requests {
 		}
 	}
 
+	
 	/**
 	 * Methode permettant de creer une hashMap a partir d'un objet Information pour Admin
 	 * @param info : Objet Information a inserer dans la HashMap
 	 * @return HashMap
 	 */
-	public HashMap<String,Object> setHashMapAdmin (Information info) {
+	protected HashMap<String,Object> setHashMapAdmin (Information info) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", info.getLogin()); 
 			if (info.getMdp()!=null)
@@ -208,7 +210,6 @@ public class Requests {
 		map.put("mail", info.getEmail());		
 		return map ;
 	}
-
 	
 	
 	/**
@@ -216,7 +217,7 @@ public class Requests {
 	 * @param info : Objet Information a inserer dans la HashMap
 	 * @return HashMap
 	 */
-	public HashMap<String,Object> setHashMap (Information info) {
+	protected HashMap<String,Object> setHashMap (Information info) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", info.getLogin()); 
 			if (info.getMdp()!=null)
@@ -281,7 +282,7 @@ public class Requests {
 	 * @param info : informations du profil de l'utilisateur
 	 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
 	 */
-	public int creationUserRequest (Information info) {
+	protected int creationUserRequest (Information info) {
 		HashMap<String,Object> map = this.setHashMap(info) ;
 		RequestsParams params = new RequestsParams(RequestType.REGISTER, map);
 		HTTPAsyncTask task = new HTTPAsyncTask();
@@ -336,7 +337,7 @@ public class Requests {
 	 * @param nickname : login de l'utilisateur 
 	 * @return Informations : informations sur l'utilisateur 
 	 */
-	public Information getProfileInformationRequest(String nickname) {
+	protected Information getProfileInformationRequest(String nickname) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", nickname);
 		
@@ -368,7 +369,7 @@ public class Requests {
 	 * @param nickname : login de l'admin 
 	 * @return Informations : informations sur l'admin 
 	 */
-	public Information getAdminInformationRequest(String nickname) {
+	protected Information getAdminInformationRequest(String nickname) {
 		// Obtenir les informations d'un profil : nickname (utilisateur � afficher)
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", nickname);
@@ -405,7 +406,7 @@ public class Requests {
 	 * @param info : informations sur l'utilisateur
 	 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
 	 */
-	public int profileModificationRequest (Information info) {
+	protected int profileModificationRequest (Information info) {
 		HashMap<String,Object> map = this.setHashMap(info) ;
 		RequestResponses result;
 		RequestsParams params = new RequestsParams(RequestType.MODIFY_PROFILE,map);
@@ -433,7 +434,7 @@ public class Requests {
 	 * @param info : informations sur l'administrateur
 	 * @return int : 0 si la requete s'est bien executee, code d'erreur sinon
 	 */
-	public int adminProfileModificationRequest (Information info) {
+	protected int adminProfileModificationRequest (Information info) {
 		HashMap<String,Object> map = this.setHashMapAdmin(info) ;
 		RequestResponses result;
 		RequestsParams params = new RequestsParams(RequestType.MODIFY_ADMIN_PROFILE,map);
@@ -461,7 +462,7 @@ public class Requests {
 	 * @param nickname : login de l'utilisateur a supprimer
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
-	public boolean removeProfileRequest (String nickname) {
+	protected boolean removeProfileRequest (String nickname) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", nickname);
 		
@@ -485,7 +486,13 @@ public class Requests {
 		}
 	}
 	
-	public String getIdWorkplace(String workplace) {
+	
+	/**
+	 * Methode renvoyant l'ID d'un workplace
+	 * @param workplace
+	 * @return String : "ID"
+	 */
+	protected String getIdWorkplace(String workplace) {
 		String id = null ;
 		Log.d("SC", workplace);
 		Iterator<Entry<String, String>> it = mapWorkplaces.entrySet().iterator();
@@ -500,7 +507,13 @@ public class Requests {
 		return id ;
 	}
 	
-	public String getStringWorkplace(String ID) {
+	
+	/**
+	 * Methode renvoyant le nom d'un workplace
+	 * @param ID : String
+	 * @return String : workplace
+	 */
+	protected String getStringWorkplace(String ID) {
 		String workplace = null ;
 		if(mapWorkplaces.size() == 0)
 			getWorkplacesRequest();
@@ -516,13 +529,14 @@ public class Requests {
 		}
 		return workplace ;
 	}
+	
 
 	/** Methode permettant de recuperer des trajets 
 	 * @param postCode : code postal du lieu de depart
 	 * @param workplace : lieu de travail (destination)
 	 * @return ArrayList<Ride> : liste des trajets
 	 */
-	public ArrayList<Ride> ridesRequest (String postCode, String workplace) {
+	protected ArrayList<Ride> ridesRequest (String postCode, String workplace) {
 		System.out.println("REQUEST RIDE : "+postCode+" --> "+workplace) ;
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("postal", postCode);
@@ -589,7 +603,7 @@ public class Requests {
 	 * @param workplace : lieu de travail a ajouter
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
-	public boolean addWorkplaceRequest(String workplace) {
+	protected boolean addWorkplaceRequest(String workplace) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("bureau", workplace);
 		
@@ -620,7 +634,7 @@ public class Requests {
 	 * @param workplace : lieu de travail a supprimer
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
-	public boolean deletionWorkplaceRequest (String workplace) {			
+	protected boolean deletionWorkplaceRequest (String workplace) {			
 		// recuperation de l'ID du workplace
 		String id = this.getIdWorkplace(workplace) ;
 
@@ -653,7 +667,7 @@ public class Requests {
 	 * Methode permettant de renvoyer la liste des lieux de travail
 	 * @return ArrayList<String> : liste des lieux de travail
 	 */
-	public HashMap<String, String> getWorkplacesRequest() {
+	protected HashMap<String, String> getWorkplacesRequest() {
 		RequestsParams params = new RequestsParams(RequestType.GET_LIST_WORKPLACE,null);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
@@ -683,7 +697,7 @@ public class Requests {
 	 * Methode permettant de renvoyer la liste des utilisateurs
 	 * @return ArrayList<Information> : liste des utilisateurs
 	 */
-	public ArrayList<Information> getUsersRequest() {
+	protected ArrayList<Information> getUsersRequest() {
 		RequestsParams params = new RequestsParams(RequestType.GET_LIST_USERS,null);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
@@ -716,7 +730,7 @@ public class Requests {
 	 * @param postCode : code postal de la commune a ajouter
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
-	public boolean addTownRequest(String town, String postCode) {
+	protected boolean addTownRequest(String town, String postCode) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("code", postCode);
 		map.put("commune", town);
@@ -745,7 +759,7 @@ public class Requests {
 	 * @param postCode : code postal de la commune a supprimer
 	 * @return boolean : true si la requete s'est bien executee, false sinon
 	 */
-	public boolean deletionTownRequest(String postCode) {
+	protected boolean deletionTownRequest(String postCode) {
 		
 		RequestsParams paramsTown = new RequestsParams(RequestType.GET_LIST_TOWN, null);
 		HTTPAsyncTask taskTown = new HTTPAsyncTask();
@@ -799,7 +813,7 @@ public class Requests {
 	 * Methode permettant de renvoyer la liste des communes
 	 * @return ArrayList<String> : liste des communes
 	 */
-	public ArrayList<String> getPostcodeListRequest() {
+	protected ArrayList<String> getPostcodeListRequest() {
 		RequestsParams params = new RequestsParams(RequestType.GET_LIST_TOWN, null);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
@@ -832,7 +846,7 @@ public class Requests {
 	 * sinon requete[0] = nombre total de conducteurs 
 	 * 	et requete[1] = nombre total de passagers 
 	 */
-	public String[] numberDriverAndPassengerRequest () {
+	protected String[] numberDriverAndPassengerRequest () {
 		RequestsParams params = new RequestsParams(RequestType.GET_STAT_DRIVERS_PASSENGERS,null);
 		String[] tab = new String[2] ;
 		HTTPAsyncTask task = new HTTPAsyncTask();
@@ -870,7 +884,7 @@ public class Requests {
 	 * Key = String : trajet
 	 * Value = String[0] : nombre de conducteurs ; String[1] : nombre de passagers 
 	 */
-	public HashMap<String,String[]> numberDriverAndPassengerPerRideRequest () {
+	protected HashMap<String,String[]> numberDriverAndPassengerPerRideRequest () {
 		RequestsParams params = new RequestsParams(RequestType.GET_STAT_DRIVERS_PASSENGERS_PER_RIDE, null);
 		HTTPAsyncTask task = new HTTPAsyncTask();
 		task.execute(params);
@@ -928,7 +942,7 @@ public class Requests {
 	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions
 	 * sinon requete[0] = "-1" : echec et requete[1] = code erreur 
 	 */
-	public String[] numberConnectionRequest () {
+	protected String[] numberConnectionRequest () {
 		RequestsParams params = new RequestsParams(RequestType.GET_STAT_CONNECTIONS,null);
 		Integer number = 0 ;
 		String[] tab = new String[2] ;
@@ -970,7 +984,7 @@ public class Requests {
 	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions a la date
 	 * sinon requete[0] = "-1" : echec et requete[1] = code erreur
 	 */
-	public String[] numberConnectionDateRequest (String date) {
+	protected String[] numberConnectionDateRequest (String date) {
 		String[] tab = new String[2] ;
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("date", date) ;
@@ -1011,7 +1025,7 @@ public class Requests {
 	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions depuis la date
 	 * sinon requete[0] = "-1" : echec et requete[1] = code erreur
 	 */
-	public String[] numberConnectionSinceRequest (String date) {
+	protected String[] numberConnectionSinceRequest (String date) {
 		String[] tab = new String[2] ;
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("sinceDate", date) ;
@@ -1055,7 +1069,7 @@ public class Requests {
 	 * si requete[0] = "0" : succes et requete[1] = nombre total de connexions entre les deux dates
 	 * sinon requete[0] = "-1" : echec et requete[1] = code erreur
 	 */
-	public String[] numberConnectionBetweenRequest (String firstDate, String lastDate) {
+	protected String[] numberConnectionBetweenRequest (String firstDate, String lastDate) {
 		String[] tab = new String[2] ;
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("rangeFirst", firstDate) ;
@@ -1090,6 +1104,12 @@ public class Requests {
 		
 	}	
 
+	
+	/**
+	 * Methode qui extrait les informations d'une HashMap
+	 * @param map : HashMap<String,Object>
+	 * @return Information : info sur un user
+	 */
 	private Information setUser (Map<String, Object> map) {
 		Information info = new Information () ;
 		info.setLogin((String)map.get("login"));
@@ -1201,6 +1221,13 @@ public class Requests {
 		return urlParameters;
 	}
 
+	
+	/**
+	 * Methode qui convertie un String JSON en HashMap
+	 * @param json : String
+	 * @param firstConnection : boolean
+	 * @return HashMap<String, Object>
+	 */
 	private static Map<String,Object> jsonToMap(String json, boolean firstConnection){
 		JSONObject JSONStrings;
 		Map<String, Object> result = new HashMap<String,Object>();
@@ -1252,6 +1279,7 @@ public class Requests {
 		return result;
 	}
 	
+	
 	/**
 	 * Permet de tester si une chaine de caracteres est au format JSON
 	 * @param test : la chaine a teste
@@ -1271,6 +1299,7 @@ public class Requests {
 	    }
 	    return true;
 	}
+	
 	
 	/**
 	 * Permet de crypter (hasher) le mot de passe
@@ -1304,6 +1333,7 @@ public class Requests {
 		}
 	}
 
+	
 	/**
 	 * Unique fonction qui sera appellee : effectue une requete
 	 * @param typeOfRequest
@@ -1417,7 +1447,7 @@ public class Requests {
 		protected RequestResponses doInBackground(RequestsParams... arg0) {
 			RequestsParams params = arg0[0];
 			RequestResponses result = postRequest(params.getTypeOfRequest(), params.getParameters());
-			Log.d("SC", "on return la r�ponse");
+			Log.d("SC", "on return la reponse");
 			return result;
 		}
 

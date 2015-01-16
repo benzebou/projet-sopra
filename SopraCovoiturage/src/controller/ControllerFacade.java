@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
-import java.util.concurrent.ExecutionException;
-
 import modele.Information;
 import modele.Ride;
-import android.app.Activity;
 import android.util.Log;
 
 import com.sopra.covoiturage.FacadeView;
@@ -33,8 +30,14 @@ public class ControllerFacade {
 	 */
 	private Requests requests ;
 	
+	/**
+	 * Attribut correspondant au login du user local
+	 */
 	private String login;
 	
+	/**
+	 * Attribut contenant toutes les informations du user local
+	 */
 	private Information userInfo;
 	
 	/** 
@@ -57,37 +60,12 @@ public class ControllerFacade {
 		return singleton ;
 	}
 	
-	// TESTS UNIQUEMENT
-	private ControllerFacade () {
-		requests = new Requests () ;
-	}
-	public static ControllerFacade getInstance () {
-		if (singleton == null) {
-			singleton = new ControllerFacade() ;
-		}
-		return singleton ;
-	}
-	
 
 	/**
 	 * Methode permettant la connexion d'un utilisateur au serveur 
 	 * @param nickname : login de l'utilisateur
 	 * @param password : mot de passe de l'utilisateur
 	 */
-	public void performConnectNOTTESTED (String nickname, String password, Activity activity) {
-		boolean[] requete =requests.connectionRequest(nickname, password) ;
-		if (requete[0]) {
-			System.out.println("CONTROLLER_FACADE : Connexion : reussite !\n") ;
-			this.setLogin(nickname);
-			facadeView.setModificationLogin(nickname);
-			facadeView.processConnectedNOTTESTED(requete[1], activity);
-		}
-		else {
-			System.out.println("CONTROLLER_FACADE : Connexion : echec !\n") ;
-			facadeView.processNotConnectedNOTTESTED(activity);
-		}
-	}
-	
 	public void performConnect (String nickname, String password) {
 		boolean[] requete =requests.connectionRequest(nickname, password) ;
 		if (requete[0]) {
@@ -118,7 +96,8 @@ public class ControllerFacade {
 		}
 	}
 	
-	/**
+	/**.
+	 * 
 	 * Methode permettant la deconnexion d'un utilisateur au serveur 
 	 * @param nickname : login de l'utilisateur
 	 * @param password : mot de passe de l'utilisateur
@@ -142,7 +121,6 @@ public class ControllerFacade {
 	public void performProfileModification (Information info) {
 		int requete =requests.profileModificationRequest(info) ;
 		if (requete == 0) {
-			//on met Ã  jour nos infos 
 			userInfo= info;	
 			System.out.println("CONTROLLER_FACADE : Modification user : reussite !\n") ;
 			facadeView.confirmModification();
@@ -153,6 +131,7 @@ public class ControllerFacade {
 		}
 	}
 	
+	
 	/**
 	 * methode permettant de modifier le profil d'un administrateur
 	 * @param info : informations sur l'administrateur
@@ -160,8 +139,6 @@ public class ControllerFacade {
 	public void performAdminProfileModificationRequest (Information info){
 		int requete =requests.adminProfileModificationRequest(info) ;
 		if (requete == 0) {
-			//facadeView.confirmModification();
-			//on met Ã  jour nos infos 
 			userInfo= info;	
 			System.out.println("CONTROLLER_FACADE : Modification admin : reussite !\n") ;
 			facadeView.changeActivity(com.sopra.covoiturage.AdminProfileActivity.class);
@@ -172,18 +149,18 @@ public class ControllerFacade {
 		}
 	}
 	
+	
 	/**
 	 * Methode utilisee seulement par un administrateur
 	 * Permet de supprimer un utilisateur
 	 * @param nickname : login de l'utilisateur a supprimer
-	 * return boolean : 1 si l'utilisateur a été supprimé, 0 sinon
+	 * return boolean : true si l'utilisateur a été supprimé, false sinon
 	 */
 	public boolean performDeletion (String nickname) {
 		boolean requete =requests.removeProfileRequest(nickname) ;
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Suppression user : reussite !\n") ;
-			return true;
-			// TODO : Il faut arrï¿½ter toutes les activitï¿½s
+			return true ;
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Suppression user : echec !\n") ;
@@ -191,6 +168,7 @@ public class ControllerFacade {
 			return false;
 		}
 	}
+	
 	
 	/**
 	 * Methode permettant de recuperer des trajets 
@@ -200,11 +178,7 @@ public class ControllerFacade {
 	public void performRides (String postcode, String workplace) {
 		ArrayList<Ride> requete = requests.ridesRequest(postcode, workplace) ;
 		if (requete != null) {
-			System.out.println("CONTROLLER_FACADE : Rides : reussite !\n") ;
-			for (int i=0; i<requete.size(); i++) {
-				System.out.println(requete.get(i)+"\n") ;
-			}
-			
+			System.out.println("CONTROLLER_FACADE : Rides : reussite !\n") ;	
 		}
 		else {
 			System.out.println("CONTROLLER_FACADE : Rides : echec !\n") ;
@@ -246,6 +220,7 @@ public class ControllerFacade {
 			return null;
 		}
 	}
+	
 	
 	/**
 	 * Methode permettant de renvoyer les informations sur l'admin ayant pour login nickname 
@@ -291,7 +266,6 @@ public class ControllerFacade {
 		boolean requete =requests.deletionWorkplaceRequest(workplace) ;
 		if (requete) {
 			System.out.println("CONTROLLER_FACADE : Deletion workplace : reussite !\n") ;
-			HashMap<String, String> workplaces = requests.getWorkplacesRequest() ;
 		}
 		else { 
 			System.out.println("CONTROLLER_FACADE : Deletion workplace : echec !\n") ;
@@ -323,6 +297,7 @@ public class ControllerFacade {
 		res = requests.getUsersRequest() ;
 		return res;
 	}
+	
 	
 	/**
 	 * Methode utilisee seulement par un administrateur
