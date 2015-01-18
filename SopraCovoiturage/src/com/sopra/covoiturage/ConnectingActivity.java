@@ -22,12 +22,12 @@ public class ConnectingActivity extends Activity {
 	private FacadeView facade;
 	
 	/**
-     * Le login entré par l'utilisateur
+     * La vue associée au login
      */
 	private EditText loginText;
 	
 	/**
-     * Le mot de passe entré par l'utilisateur
+     * La vue associée au mot de passe
      */
 	private EditText mdpText;
 	
