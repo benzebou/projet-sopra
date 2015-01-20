@@ -251,7 +251,7 @@ public class FacadeView {
 	
 	
 	/**
-	 * methode appelee si la connection a échoué
+	 * methode appelee si la connection a ï¿½chouï¿½
 	 */
 	public void processNotConnected() {
 		((ConnectingActivity)firstActivity).notificationConnectionFailure();
@@ -263,7 +263,7 @@ public class FacadeView {
 	}
 	
 	/**
-	 * methode appelée si l'envoi d'un nouveau mot de passe a reussi
+	 * methode appelï¿½e si l'envoi d'un nouveau mot de passe a reussi
 	 */
 	public void processSendPwdMailOk () {
 		if (getPwActivity() == null)
@@ -273,7 +273,7 @@ public class FacadeView {
 	}
 
 	/**
-	 * methode appelée si l'envoi d'un nouveau mot de passe a echoue
+	 * methode appelï¿½e si l'envoi d'un nouveau mot de passe a echoue
 	 */
 	public void processSendPwdMailFailure () {
 		if (getPwActivity() == null)
@@ -522,7 +522,7 @@ public class FacadeView {
 	}
 	
 	/**
-	 * methode permettant de recuperer le login modifié
+	 * methode permettant de recuperer le login modifiï¿½
 	 * @return string
 	 */
 	public String getModificationLogin() {
@@ -530,7 +530,7 @@ public class FacadeView {
 	}
 
 	/**
-	 * methode permettant de mettre a jour le login modifié
+	 * methode permettant de mettre a jour le login modifiï¿½
 	 * @return string
 	 */
 	public void setModificationLogin(String modificationLogin) {
