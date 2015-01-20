@@ -43,7 +43,6 @@ public class RideActivity extends Activity {
 	/**
 	 * Creation de RideActivity.
 	 */
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ride_page);
@@ -124,6 +123,9 @@ public class RideActivity extends Activity {
 		
 	}
 	
+	/**
+	 * Methode appelée lorsque l'on revient sur l'activité Workplace Management
+	 */
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -161,6 +163,10 @@ public class RideActivity extends Activity {
 		displayRide();
 	}
 	
+	/**
+	 * Methode appelée lorsque qu'on appuie sur le bouton du menu
+	 * @param v
+	 */
 	public void onButtonSearchClick(View v) {
 		View searchView = findViewById(R.id.search);
 		ImageView buttonSearch = (ImageView)findViewById(R.id.buttonSearch);
@@ -177,7 +183,6 @@ public class RideActivity extends Activity {
 
 	/**
 	 * Affichage des trajets.
-	 * 
 	 * @param driver
 	 */
 	public void displayRide() {
@@ -276,6 +281,9 @@ public class RideActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Methode ré-initialisant le tableau des trajets
+	 */
 	private void resetRides() {
 		int count = table.getChildCount();
 		for (int i = 1; i < count; i++) {
@@ -287,7 +295,6 @@ public class RideActivity extends Activity {
 
 	/**
 	 * Fonction d'initialisation des spinner heure aller et heure retour
-	 * 
 	 * @param spin
 	 */
 	private void InitHeure(Spinner spin) {
@@ -321,22 +328,32 @@ public class RideActivity extends Activity {
 	}
 
 	/**
-	 * setter de l'attribut rides.
-	 * 
+	 * setter du champ ArrayList<Ride> rides.
 	 * @param rides
 	 */
 	public void setRides(ArrayList<Ride> rides) {
 		this.rides = rides;
 	}
 
+	/**
+	 * setter du champ String selDriver.
+	 * @param selCond
+	 */
 	public void setSelCond(String selCond) {
 		this.seldriver = selCond;
 	}
 
+	/**
+	 * getter du champ Spinner : driver
+	 * @return
+	 */
 	public Spinner getCond() {
 		return this.driver;
 	}
-	
+
+	/**
+	 * Methode appelée à la fin de l'activité
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    switch(resultCode)

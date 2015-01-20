@@ -163,7 +163,7 @@ public class FacadeView {
 	
 
 	/**
-	 * se deconnecter 
+	 * Methode pour se deconnecter 
 	 */
 	public void performDisconnect() {
 		controller.performDisconnect();

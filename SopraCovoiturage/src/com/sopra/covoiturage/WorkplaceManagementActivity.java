@@ -36,12 +36,18 @@ public class WorkplaceManagementActivity extends Activity {
 	private ArrayList<String> workplace = new ArrayList<String>();
 	private String delWorkplace;
 
+	/**
+	 * Création de WorkplaceManagementActivity
+	 **/
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workplace_management_page);
 
 	}
 
+	/**
+	 * Methode pour remplir la liste des workplaces
+	 */
 	private void fillListView() {
 		this.workplace = new ArrayList<String>();
 		this.workplace = this.fac.getWorkplaces();
@@ -57,6 +63,9 @@ public class WorkplaceManagementActivity extends Activity {
 		Log.d("Lulu", "On passe dan fillListView" + this.fac.getWorkplaces().toString());
 	}
 
+	/**
+	 * Methode appelée lorsque l'on revient sur l'activité Workplace Management
+	 */
 	public void onResume() {
 		super.onResume();
 		this.fac = FacadeView.getInstance(this);
@@ -68,6 +77,9 @@ public class WorkplaceManagementActivity extends Activity {
 
 	}
 
+	/**
+	 * Methode pour créer l'ouverture d'une fenetre lors d'un click long
+	 */
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		if (v.getId() == R.id.WorkplaceTable) {
@@ -88,7 +100,9 @@ public class WorkplaceManagementActivity extends Activity {
 		Toast.makeText(this, "Echec Suppression", Toast.LENGTH_SHORT);
 	}
 
-	@Override
+	/**
+	 * Methode définissant ce que font les options de la fenetre ouverte lors du click long sur un workplace
+	 */
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
 				.getMenuInfo();
@@ -106,26 +120,50 @@ public class WorkplaceManagementActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * fonction appelée lors du click sur le bouton ajouter
+	 * @param v
+	 */
 	public void onClickAdd(View v) {
 		this.fac.changeActivity(WorkplaceAdditionActivity.class);
 	}
 
+	/**
+	 * getter du champ FacadeView : fac
+	 * @return FacadeView
+	 */
 	public FacadeView getFac() {
 		return fac;
 	}
 
+	/**
+	 * setter du champ FacadeView : fac
+	 * @param fac
+	 */
 	public void setFac(FacadeView fac) {
 		this.fac = fac;
 	}
 
+	/**
+	 * getter du champ StringAdapter : adapter
+	 * @return
+	 */
 	public StringAdapter getAdapter() {
 		return this.adapter;
 	}
 
+	/**
+	 * getter du champ String : delWorkplace
+	 * @return
+	 */
 	public String getDelWorkplace() {
 		return delWorkplace;
 	}
 
+	/**
+	 * setter du champ String : delWorkplace
+	 * @param delWorkplace
+	 */
 	public void setDelWorkplace(String delWorkplace) {
 		this.delWorkplace = delWorkplace;
 	}

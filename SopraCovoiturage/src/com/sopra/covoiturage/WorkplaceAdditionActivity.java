@@ -18,6 +18,9 @@ public class WorkplaceAdditionActivity extends Activity {
 	private LayoutInflater inflater;
 	private WorkplaceManagementActivity workMan;
 	
+	/**
+	 * Création de WorkplaceAdditionActivity
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workplace_addition_page);
@@ -27,6 +30,10 @@ public class WorkplaceAdditionActivity extends Activity {
 		
 	}
 	
+	/**
+	 * Methode appelée au click sur le bouton ajouter
+	 * @param v
+	 */
 	public void onClickAdd(View v) {
 		
 		// Demande l'ajout à la base
