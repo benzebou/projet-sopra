@@ -183,7 +183,7 @@ public class RegisterActivity extends Activity  {
 			}
 			else {
 				alertDialogBuilder
-				.setMessage("Veuillez remplir tous les champs demandés ");			
+				.setMessage("Veuillez remplir tous les champs demandes ");			
 			}
 
 			// set le message du dialogue

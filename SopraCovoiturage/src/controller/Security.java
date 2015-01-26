@@ -7,11 +7,11 @@ import android.util.*;
 public class Security {
 	
 	/**
-	 * Permet de crypter une chaîne de caractères à l'aide de la clé
-	 * La méthode de cryptage est en AES sur une clé de 128 bits (soit 16 caractères)
-	 * @param input : chaîne à crypter
-	 * @param key : clé de cryptage (qui sert également au décryptage)
-	 * @return la chaîne "input" cryptée
+	 * Permet de crypter une chaene de caracteres e l'aide de la cle
+	 * La methode de cryptage est en AES sur une cle de 128 bits (soit 16 caracteres)
+	 * @param input : chaene e crypter
+	 * @param key : cle de cryptage (qui sert egalement au decryptage)
+	 * @return la chaene "input" cryptee
 	 */
 	public static String encrypt(String input, String key){
 	  byte[] crypted = null;
@@ -27,11 +27,11 @@ public class Security {
 	}
 
 	/**
-	 * Permet de décrypter une chaîne de caractères à l'aide de la clé
-	 * La méthode de décryptage est en AES sur une clé de 128 bits (soit 16 caractères)
-	 * @param input : chaîne à décrypter
-	 * @param key : clé de décryptage (qui sert également au cryptage)
-	 * @return la chaîne "input" décryptée
+	 * Permet de decrypter une chaene de caracteres e l'aide de la cle
+	 * La methode de decryptage est en AES sur une cle de 128 bits (soit 16 caracteres)
+	 * @param input : chaene e decrypter
+	 * @param key : cle de decryptage (qui sert egalement au cryptage)
+	 * @return la chaene "input" decryptee
 	 */
 	public static String decrypt(String input, String key){
 	    byte[] output = null;

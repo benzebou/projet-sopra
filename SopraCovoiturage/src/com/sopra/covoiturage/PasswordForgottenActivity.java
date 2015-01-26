@@ -14,7 +14,7 @@ public class PasswordForgottenActivity extends Activity  {
 	private EditText mailText;
 	
 	/**
-	 * Cree la page des mots de passes oubliés
+	 * Cree la page des mots de passes oublies
 	 * @param savedInstanceState
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +41,18 @@ public class PasswordForgottenActivity extends Activity  {
 	}
 	
 	/**
-	 * methode qui notifie l'utilisateur que le nouveau mot de passe a été envoyé par mail
+	 * methode qui notifie l'utilisateur que le nouveau mot de passe a ete envoye par mail
 	 */
 	public void notificationSendPwdMailOk() {
 		Context context = getApplicationContext();
 		int duration = Toast.LENGTH_LONG;
-		Toast toast = Toast.makeText(context, "Votre nouveau mot de passe a été envoyé", duration);
+		Toast toast = Toast.makeText(context, "Votre nouveau mot de passe a ete envoye", duration);
 		toast.setGravity(Gravity.BOTTOM|Gravity.LEFT, 0, 0);
 		toast.show();		
 	}
 	
 	/**
-	 * methode qui notifie l'utilisateur que le nouveau mot de passe n'a pas pu etre envoyé
+	 * methode qui notifie l'utilisateur que le nouveau mot de passe n'a pas pu etre envoye
 	 */
 	public void notificationSendPwdMailFailure() {
 		Context context = getApplicationContext();

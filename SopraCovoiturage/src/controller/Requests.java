@@ -32,7 +32,7 @@ public class Requests {
 	/**
 	 * 
 	 * @author alexandre
-	 * Une requ�te HTTP POST est effectuee en utilisant la methode postRequest()
+	 * Une requete HTTP POST est effectuee en utilisant la methode postRequest()
 	 * Cette methode prend deux parametres, un type de requete et une hashmap contenant les parametres
 	 * Remarque : les types de requetes sont ceux de la classe "requestJava"
 	 * Parametres a fournir pour chaque requete :
@@ -370,7 +370,7 @@ public class Requests {
 	 * @return Informations : informations sur l'admin 
 	 */
 	protected Information getAdminInformationRequest(String nickname) {
-		// Obtenir les informations d'un profil : nickname (utilisateur � afficher)
+		// Obtenir les informations d'un profil : nickname (utilisateur e afficher)
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("login", nickname);
 		
@@ -1183,7 +1183,7 @@ public class Requests {
 	private static String getRequestParameters(RequestType typeOfRequest, HashMap<String, Object> map){
 		String urlParameters = "request=" + typeOfRequest.toString().toLowerCase();
 		if (typeOfRequest == RequestType.GET_LIST_WORKPLACE || typeOfRequest == RequestType.GET_LIST_TOWN){
-			System.out.println("Requ�te : " + urlParameters);
+			System.out.println("Requete : " + urlParameters);
 			return urlParameters;
 		}
 		else{
@@ -1200,7 +1200,7 @@ public class Requests {
 			}
 	
 			
-			System.out.println("Type de requ�te : "+typeOfRequest);
+			System.out.println("Type de requete : "+typeOfRequest);
 			if (!typeOfRequest.equals(RequestType.REGISTER) 
 					&& !typeOfRequest.equals(RequestType.PASSWORD_FORGOTTEN)){
 				if (typeOfRequest.equals(RequestType.CONNECT_USER) || typeOfRequest.equals(RequestType.CONNECT_ADMIN) || SYN_REQ <0 || ACK_REQ < 0){
@@ -1217,7 +1217,7 @@ public class Requests {
 			}
 			}
 
-		System.out.println("Requ�te : " + urlParameters);
+		System.out.println("Requete : " + urlParameters);
 		return urlParameters;
 	}
 
@@ -1275,7 +1275,7 @@ public class Requests {
 				result.remove("ACK_REQ");
 		}
 		
-		System.out.println("R�sultat apr�s d�codage du JSON : "+result.toString());
+		System.out.println("Resultat apres decodage du JSON : "+result.toString());
 		return result;
 	}
 	
@@ -1382,23 +1382,23 @@ public class Requests {
 			wr.flush ();
 			wr.close ();
 
-			Log.d("SC", "on regarde la r�ponse");
+			Log.d("SC", "on regarde la reponse");
 			System.out.println();
 			//Get Response  
 			try{
-				// On teste s'il n'y a pas eut d'erreur pour la requ�te
+				// On teste s'il n'y a pas eut d'erreur pour la requete
 				if (connection.getResponseCode()/100 != 2){ throw new requestException(connection.getResponseCode());}
 
 				System.out.println("AFTER" + connection.getHeaderFields());
 
-				// S'il y a le champ "Set-Cookie", on r�cup�re le cookie
+				// S'il y a le champ "Set-Cookie", on recupere le cookie
 				if (connection.getHeaderField("Set-Cookie") != null){
 
 					cookie = connection.getHeaderField("Set-Cookie");
 
 				}
 				else{
-					// Sinon on v�rifie l'�tat du cookie
+					// Sinon on verifie l'etat du cookie
 				}
 
 				InputStream is = connection.getInputStream();

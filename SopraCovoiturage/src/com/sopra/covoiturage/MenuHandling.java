@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 /**
- * MenuHandling permet d'afficher le menu et de gérer les boutons associés : Profil et Déconnexion.
+ * MenuHandling permet d'afficher le menu et de gerer les boutons associes : Profil et Deconnexion.
  */
 public class MenuHandling implements OnClickListener {
 	public static final int RESULT_CLOSE_ALL = -1;
@@ -20,12 +20,12 @@ public class MenuHandling implements OnClickListener {
 	FacadeView facade;
 	
 	/**
-     * La vue associée au menu
+     * La vue associee au menu
      */
 	View menu;
 	
 	/**
-     * L'activité qui a créé le menu
+     * L'activite qui a cree le menu
      */
 	Activity activity;
 	
@@ -35,23 +35,23 @@ public class MenuHandling implements OnClickListener {
 	TextView profileText;
 	
 	/**
-     * Le bouton "Déconnexion"
+     * Le bouton "Deconnexion"
      */
 	TextView disconnectionText;
 	
 	/**
-     * Création du menu
+     * Creation du menu
      * @param facade 
-     * @param activity L'activité créant le menu
+     * @param activity L'activite creant le menu
      * @param menu La vue contenant le layout du menu
      */
 	public MenuHandling(FacadeView facade, Activity activity, View menu) {
-		// Récupération des objets
+		// Recuperation des objets
 		this.facade = facade;
 		this.menu = menu;
 		this.activity = activity;
 		
-		// Récupération des boutons 
+		// Recuperation des boutons 
 		this.profileText = (TextView) menu.findViewById(R.id.profileText);
 		this.profileText.setOnClickListener(this);
 		this.disconnectionText = (TextView) menu.findViewById(R.id.disconnectionText);
@@ -59,22 +59,22 @@ public class MenuHandling implements OnClickListener {
 	}
 
 	/**
-     * Méthode déclenchée lorsqu'on clique sur l'un des boutons
-     * Si on clique sur profil, on ouvre l'activité montrant le profil de l'utilisateur
-     * Si on clique sur déconnexion, on déconnecte l'utilisateur
-     * @param arg0 Bouton cliqué
+     * Methode declenchee lorsqu'on clique sur l'un des boutons
+     * Si on clique sur profil, on ouvre l'activite montrant le profil de l'utilisateur
+     * Si on clique sur deconnexion, on deconnecte l'utilisateur
+     * @param arg0 Bouton clique
      */
 	@Override
 	public void onClick(View arg0) {
-		// Si on a cliqué sur déconnexion
+		// Si on a clique sur deconnexion
 		if(arg0.equals(disconnectionText)) {
-			facade.performDisconnect(); // On déconnecte l'utilisateur
+			facade.performDisconnect(); // On deconnecte l'utilisateur
 			Intent i = new Intent();
-			activity.setResult(MenuHandling.RESULT_CLOSE_ALL, i); // On prévient l'activité précédente qu'il faut se quitter
-			activity.finish(); // On quitte cette activité
-		} else if (arg0.equals(profileText)) { // Si on a cliqué sur profil
-			facade.setProfileLogin(facade.getLogin()); // On prévient qu'on veut voir le profil de l'utilisateur
-			facade.changeActivityProfile(activity); // On ouvre une nouvelle activité
+			activity.setResult(MenuHandling.RESULT_CLOSE_ALL, i); // On previent l'activite precedente qu'il faut se quitter
+			activity.finish(); // On quitte cette activite
+		} else if (arg0.equals(profileText)) { // Si on a clique sur profil
+			facade.setProfileLogin(facade.getLogin()); // On previent qu'on veut voir le profil de l'utilisateur
+			facade.changeActivityProfile(activity); // On ouvre une nouvelle activite
 		}
 		
 		

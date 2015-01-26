@@ -19,7 +19,7 @@ public class ProgressBarActivity extends Activity {
 
 
 	/**
-	 * Methode qui cree l'activité
+	 * Methode qui cree l'activite
 	 */
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);

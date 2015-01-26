@@ -201,7 +201,7 @@ public class FacadeView {
 	 * Methode utilisee seulement par un administrateur
 	 * Permet de supprimer un utilisateur
 	 * @param nickname : login de l'utilisateur a supprimer
-	 * return boolean : 1 si l'utilisateur a �t� supprim�, 0 sinon
+	 * return boolean : 1 si l'utilisateur a ete supprime, 0 sinon
 	 */
 	public boolean performDeletion (String nickname) {
 		return controller.performDeletion(nickname);
@@ -251,7 +251,7 @@ public class FacadeView {
 	
 	
 	/**
-	 * methode appelee si la connection a �chou�
+	 * methode appelee si la connection a echoue
 	 */
 	public void processNotConnected() {
 		((ConnectingActivity)firstActivity).notificationConnectionFailure();
@@ -263,7 +263,7 @@ public class FacadeView {
 	}
 	
 	/**
-	 * methode appel�e si l'envoi d'un nouveau mot de passe a reussi
+	 * methode appelee si l'envoi d'un nouveau mot de passe a reussi
 	 */
 	public void processSendPwdMailOk () {
 		if (getPwActivity() == null)
@@ -273,7 +273,7 @@ public class FacadeView {
 	}
 
 	/**
-	 * methode appel�e si l'envoi d'un nouveau mot de passe a echoue
+	 * methode appelee si l'envoi d'un nouveau mot de passe a echoue
 	 */
 	public void processSendPwdMailFailure () {
 		if (getPwActivity() == null)
@@ -522,7 +522,7 @@ public class FacadeView {
 	}
 	
 	/**
-	 * methode permettant de recuperer le login modifi�
+	 * methode permettant de recuperer le login modifie
 	 * @return string
 	 */
 	public String getModificationLogin() {
@@ -530,7 +530,7 @@ public class FacadeView {
 	}
 
 	/**
-	 * methode permettant de mettre a jour le login modifi�
+	 * methode permettant de mettre a jour le login modifie
 	 * @return string
 	 */
 	public void setModificationLogin(String modificationLogin) {

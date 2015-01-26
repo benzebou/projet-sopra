@@ -61,7 +61,7 @@ public class UsersActivity extends Activity {
 	}
 
 	/**
-	 * methode appelée lorsqu'on clique sur un element du menu contextuel
+	 * methode appelee lorsqu'on clique sur un element du menu contextuel
 	 */
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
@@ -130,12 +130,12 @@ public class UsersActivity extends Activity {
 	private void fillListView() {
 		adapter = new StringAdapter(getApplicationContext(),
 				userArrayList);
-		// On dit à la ListView de se remplir via cet adapter
+		// On dit e la ListView de se remplir via cet adapter
 		userList.setAdapter(adapter);
 		/*
-		 * Si vos données changent, penser à utiliser la fonction
+		 * Si vos donnees changent, penser e utiliser la fonction
 		 * adapter.notifyDataSetChanged(); qui aura pour effet de notifier le
-		 * changement de données et de recharger la liste automatiquement.
+		 * changement de donnees et de recharger la liste automatiquement.
 		 */
 		adapter.notifyDataSetChanged();
 
@@ -153,8 +153,8 @@ public class UsersActivity extends Activity {
 	}
 	
 	/**
-	 * recupère le login d'un utilisateur a partir de la listView : nom+prenom : login
-	 * @param element : ligne de la listView concernée
+	 * recupere le login d'un utilisateur a partir de la listView : nom+prenom : login
+	 * @param element : ligne de la listView concernee
 	 * @return login
 	 */
 	private String getLoginFromList(String element) {
@@ -165,7 +165,7 @@ public class UsersActivity extends Activity {
 	
 	
 	/**
-	 * recupère a partir du login la ligne complete de la listView
+	 * recupere a partir du login la ligne complete de la listView
 	 * @param login
 	 * @return nom+prenom : login
 	 */

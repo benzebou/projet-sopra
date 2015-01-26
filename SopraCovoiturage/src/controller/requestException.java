@@ -18,7 +18,7 @@ public class requestException extends Exception {
 		 * @param error : code erreur
 		 */
 		public requestException(int error){
-			System.out.println("ATTENTION : Un code d'erreur a été renvoyé par le serveur");
+			System.out.println("ATTENTION : Un code d'erreur a ete renvoye par le serveur");
 			errorCode = error;
 			getCodeReason();
 		}
@@ -30,27 +30,27 @@ public class requestException extends Exception {
 			String reason = "Code serveur : " + this.errorCode + " ";
 			switch(errorCode){
 			case(400):
-				reason += "| BAD REQUEST : La syntaxe de la requête est erronée";
+				reason += "| BAD REQUEST : La syntaxe de la requete est erronee";
 				break;
 			
 			case(401):
-				reason += "| UNAUTHORIZED : Une authentification est nécessaire pour accéder à la ressource";
+				reason += "| UNAUTHORIZED : Une authentification est necessaire pour acceder e la ressource";
 				break;
 				
 			case(403):
-				reason += "| FORBIDDEN : Le serveur a compris la requête, mais refuse de l'exécuter. Contrairement à l'erreur 401, s'authentifier ne fera aucune différence. Sur les serveurs où l'authentification est requise, cela signifie généralement que l'authentification a été acceptée mais que les droits d'accès ne permettent pas au client d'accéder à la ressource";
+				reason += "| FORBIDDEN : Le serveur a compris la requete, mais refuse de l'executer. Contrairement e l'erreur 401, s'authentifier ne fera aucune difference. Sur les serveurs oe l'authentification est requise, cela signifie generalement que l'authentification a ete acceptee mais que les droits d'acces ne permettent pas au client d'acceder e la ressource";
 				break;
 				
 			case(404):
-				reason += "| NOT FOUND : Ressource non trouvée";
+				reason += "| NOT FOUND : Ressource non trouvee";
 				break;
 				
 			case(405):
-				reason += "| REQUEST NOT ALLOWED : Methode de requête non autorisee";
+				reason += "| REQUEST NOT ALLOWED : Methode de requete non autorisee";
 				break;
 			
 			case(500):
-				reason += "| ERROR SERVER : Problème inconnu mais venant probablement d'une requête en base";
+				reason += "| ERROR SERVER : Probleme inconnu mais venant probablement d'une requete en base";
 				break;
 			}
 			
@@ -60,15 +60,15 @@ public class requestException extends Exception {
 }
 
 /**
- * Liste des codes HTTP utilisés :
- * - 200	OK	Requête traitée avec succès
- * - 201	Created	Requête traitée avec succès avec création d’un document
- * - 202	Accepted	Requête traitée mais sans garantie de résultat
- * - 204	No Content	Requête traitée avec succès mais pas d’information à renvoyer
- * - 400	Bad Request	La syntaxe de la requête est erronée
- * - 401	Unauthorized	Une authentification est nécessaire pour accéder à la ressource
- * - 403	Forbidden	Le serveur a compris la requête, mais refuse de l'exécuter. Contrairement à l'erreur 401, s'authentifier ne fera aucune différence. Sur les serveurs où l'authentification est requise, cela signifie généralement que l'authentification a été acceptée mais que les droits d'accès ne permettent pas au client d'accéder à la ressource
- * - 404	Not Found	Ressource non trouvée
- * - 405	Method Not Allowed	Méthode de requête non autorisée
- * - 406	Not Acceptable	La ressource demandée n'est pas disponible dans un format qui respecterait les en-têtes "Accept" de la requête.
+ * Liste des codes HTTP utilises :
+ * - 200	OK	Requete traitee avec succes
+ * - 201	Created	Requete traitee avec succes avec creation deun document
+ * - 202	Accepted	Requete traitee mais sans garantie de resultat
+ * - 204	No Content	Requete traitee avec succes mais pas deinformation e renvoyer
+ * - 400	Bad Request	La syntaxe de la requete est erronee
+ * - 401	Unauthorized	Une authentification est necessaire pour acceder e la ressource
+ * - 403	Forbidden	Le serveur a compris la requete, mais refuse de l'executer. Contrairement e l'erreur 401, s'authentifier ne fera aucune difference. Sur les serveurs oe l'authentification est requise, cela signifie generalement que l'authentification a ete acceptee mais que les droits d'acces ne permettent pas au client d'acceder e la ressource
+ * - 404	Not Found	Ressource non trouvee
+ * - 405	Method Not Allowed	Methode de requete non autorisee
+ * - 406	Not Acceptable	La ressource demandee n'est pas disponible dans un format qui respecterait les en-tetes "Accept" de la requete.
  */

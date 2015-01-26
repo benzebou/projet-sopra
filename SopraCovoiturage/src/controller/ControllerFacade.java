@@ -154,7 +154,7 @@ public class ControllerFacade {
 	 * Methode utilisee seulement par un administrateur
 	 * Permet de supprimer un utilisateur
 	 * @param nickname : login de l'utilisateur a supprimer
-	 * return boolean : true si l'utilisateur a été supprimé, false sinon
+	 * return boolean : true si l'utilisateur a ete supprime, false sinon
 	 */
 	public boolean performDeletion (String nickname) {
 		boolean requete =requests.removeProfileRequest(nickname) ;
